@@ -57,7 +57,7 @@ public class HanSQLServer extends TcpServer implements AsyncConnectionManager {
         try {
             startHanEngine();
         } catch (Exception e) {
-            logger.error("Failed to start BatsEngine", e);
+            logger.error("Failed to start engine", e);
         }
     }
 

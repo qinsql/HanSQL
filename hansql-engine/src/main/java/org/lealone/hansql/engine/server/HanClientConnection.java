@@ -33,20 +33,18 @@ import org.lealone.hansql.engine.HanEngine;
 
 public class HanClientConnection implements org.apache.drill.exec.session.UserClientConnection {
 
-    // private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(BatsClientConnection.class);
-
     private final HanBatchResult batchResult = new HanBatchResult();
     private final ServerSession serverSession;
     private final UserSession session;
     private final SocketAddress remoteAddress;
     private final AsyncHandler<AsyncResult<Result>> asyncHandler;
 
-    public HanClientConnection(SchemaPlus schema, ServerSession serverSession, HanEngine batsEngine,
+    public HanClientConnection(SchemaPlus schema, ServerSession serverSession, HanEngine engine,
             SocketAddress remoteAddress, AsyncHandler<AsyncResult<Result>> asyncHandler) {
         this.serverSession = serverSession;
         session = UserSession.Builder.newBuilder()
                 .withCredentials(UserCredentials.newBuilder().setUserName(serverSession.getUser().getName()).build())
-                .withOptionManager(batsEngine.getOptionManager())
+                .withOptionManager(engine.getOptionManager())
                 // .withUserProperties(inbound.getProperties())
                 // .setSupportComplexTypes(inbound.getSupportComplexTypes())
                 .build();
@@ -89,7 +87,7 @@ public class HanClientConnection implements org.apache.drill.exec.session.UserCl
     @Override
     public void sendData(RecordBatch data) {
         HanResult result = new HanResult(data);
-        batchResult.addBatsResult(result);
+        batchResult.addResult(result);
     }
 
     public org.lealone.db.result.Result getResult() {

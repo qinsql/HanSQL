@@ -17,11 +17,7 @@
  */
 package org.lealone.hansql.test.start;
 
-import java.util.ArrayList;
-
 import org.lealone.common.exceptions.ConfigException;
-import org.lealone.db.Constants;
-import org.lealone.hansql.engine.server.HanSQLServerEngine;
 import org.lealone.p2p.config.Config;
 import org.lealone.p2p.config.Config.PluggableEngineDef;
 import org.lealone.p2p.server.P2pServerEngine;
@@ -36,7 +32,6 @@ public class HanSQLEngineStart extends NodeBase {
 
     @Override
     public void applyConfig(Config config) throws ConfigException {
-        // enableBatsServer(config);
         for (PluggableEngineDef e : config.protocol_server_engines) {
             if (P2pServerEngine.NAME.equalsIgnoreCase(e.name)) {
                 e.enabled = false;
@@ -47,23 +42,5 @@ public class HanSQLEngineStart extends NodeBase {
 
     public static void main(String[] args) throws Exception {
         NodeBase.run(HanSQLEngineStart.class, null);
-    }
-
-    public static void enableBatsServer(Config config) {
-        enableProtocolServer(config, HanSQLServerEngine.NAME, Constants.DEFAULT_TCP_PORT);
-    }
-
-    private static void enableProtocolServer(Config config, String protocolServerName, int port) {
-        if (config.protocol_server_engines == null) {
-            config.protocol_server_engines = new ArrayList<>(1);
-        }
-
-        PluggableEngineDef def = new PluggableEngineDef();
-        def.enabled = true;
-        def.name = protocolServerName;
-        def.getParameters().put("port", port + "");
-        def.getParameters().put("allow_others", "true");
-
-        config.protocol_server_engines.add(def);
     }
 }

@@ -30,7 +30,7 @@ public class HanBatchResult implements Result {
     int index;
     private int rowCount;
 
-    void addBatsResult(HanResult result) {
+    void addResult(HanResult result) {
         list.add(result);
         rowCount += result.getRowCount();
         if (current == null)

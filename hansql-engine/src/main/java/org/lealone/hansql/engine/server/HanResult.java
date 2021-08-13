@@ -52,14 +52,13 @@ import org.lealone.db.value.ValueTime;
 import org.lealone.db.value.ValueTimestamp;
 
 public class HanResult implements Result {
-    // private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(BatsResult.class);
 
     // SqlAccessor直接访问ValueVector
-    static class BatsSqlAccessor {
+    static class HanSqlAccessor {
         final SqlAccessor accessor;
         final int valueType;
 
-        public BatsSqlAccessor(SqlAccessor accessor, int valueType) {
+        public HanSqlAccessor(SqlAccessor accessor, int valueType) {
             this.accessor = accessor;
             this.valueType = valueType;
         }
@@ -104,11 +103,11 @@ public class HanResult implements Result {
         }
     }
 
-    static class BatsAccessor {
+    static class HanAccessor {
         final Accessor accessor;
         final int valueType;
 
-        public BatsAccessor(Accessor accessor, int valueType) {
+        public HanAccessor(Accessor accessor, int valueType) {
             this.accessor = accessor;
             this.valueType = valueType;
         }
@@ -158,7 +157,7 @@ public class HanResult implements Result {
     int columnCount;
     int rowCount;
     int index;
-    BatsAccessor[] accessors;
+    HanAccessor[] accessors;
     Value[] current;
     ArrayList<Value[]> rows = new ArrayList<>();
 
@@ -166,7 +165,7 @@ public class HanResult implements Result {
         // this.data = data;
         schema = data.getSchema();
         columnCount = schema.getFieldCount();
-        accessors = new BatsAccessor[columnCount];
+        accessors = new HanAccessor[columnCount];
         int column = 0;
         for (VectorWrapper<?> vw : data) {
             // final ValueVector vector = vw.getValueVector();
@@ -188,7 +187,7 @@ public class HanResult implements Result {
             final int jdbcTypeId = Types.getJdbcTypeCode(sqlTypeName);
             int valueType = DataType.convertSQLTypeToValueType(jdbcTypeId);
 
-            accessors[column++] = new BatsAccessor(acc, valueType);
+            accessors[column++] = new HanAccessor(acc, valueType);
         }
         // 提前获取所有记录，否则ValueVector内部会发生变化，延迟获取时会导致错误的值
         rowCount = data.getRecordCount();

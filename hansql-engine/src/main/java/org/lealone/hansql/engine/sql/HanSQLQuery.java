@@ -66,23 +66,23 @@ public class HanSQLQuery extends StatementBase {
 
     @Override
     public Result query(int maxRows) {
-        YieldableBatsQuery yieldable = new YieldableBatsQuery(this, maxRows, false, null, null);
+        YieldableHanSQLQuery yieldable = new YieldableHanSQLQuery(this, maxRows, false, null, null);
         return syncExecute(yieldable);
     }
 
     @Override
     public YieldableBase<Result> createYieldableQuery(int maxRows, boolean scrollable,
             AsyncHandler<AsyncResult<Result>> asyncHandler) {
-        return new YieldableBatsQuery(this, maxRows, scrollable, asyncHandler, null);
+        return new YieldableHanSQLQuery(this, maxRows, scrollable, asyncHandler, null);
     }
 
-    private static class YieldableBatsQuery extends YieldableQueryBase {
+    private static class YieldableHanSQLQuery extends YieldableQueryBase {
 
         private final HanSQLQuery select;
         // private final ResultTarget target;
         private Result result;
 
-        public YieldableBatsQuery(HanSQLQuery select, int maxRows, boolean scrollable,
+        public YieldableHanSQLQuery(HanSQLQuery select, int maxRows, boolean scrollable,
                 AsyncHandler<AsyncResult<Result>> asyncHandler, ResultTarget target) {
             super(select, maxRows, scrollable, asyncHandler);
             this.select = select;
