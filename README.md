@@ -64,9 +64,7 @@ SELECT count(*) FROM olap.my_table WHERE name>='a';
 ## 模块依赖关系
 
 ```
-                                  rpc ----------------------|
-                                   ↑                        |
-                                   |                        ↓
+
 test --> engine --> function --> executor --> vector --> common
                                    |                        ↑
                                    |                        |
