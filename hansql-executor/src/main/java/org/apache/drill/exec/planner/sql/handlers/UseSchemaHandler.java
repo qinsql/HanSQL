@@ -19,6 +19,7 @@ package org.apache.drill.exec.planner.sql.handlers;
 
 import java.io.IOException;
 
+import org.apache.calcite.sql.SqlNode;
 import org.apache.calcite.tools.RelConversionException;
 import org.apache.calcite.tools.ValidationException;
 import org.apache.drill.exec.ops.QueryContext;
@@ -26,23 +27,24 @@ import org.apache.drill.exec.physical.PhysicalPlan;
 import org.apache.drill.exec.planner.sql.DirectPlan;
 import org.apache.drill.exec.planner.sql.parser.SqlUseSchema;
 import org.apache.drill.exec.work.exception.SqlExecutorSetupException;
-import org.apache.calcite.sql.SqlNode;
 
 public class UseSchemaHandler extends AbstractSqlHandler {
-  QueryContext context;
 
-  public UseSchemaHandler(QueryContext context) {
-    this.context = context;
-  }
+    private final QueryContext context;
 
-  @Override
-  public PhysicalPlan getPlan(SqlNode sqlNode) throws ValidationException, RelConversionException, IOException, SqlExecutorSetupException {
-    final SqlUseSchema useSchema = unwrap(sqlNode, SqlUseSchema.class);
-    final String newDefaultSchemaPath = useSchema.getSchema();
+    public UseSchemaHandler(QueryContext context) {
+        this.context = context;
+    }
 
-    context.getSession().setDefaultSchemaPath(newDefaultSchemaPath, context.getNewDefaultSchema());
+    @Override
+    public PhysicalPlan getPlan(SqlNode sqlNode)
+            throws ValidationException, RelConversionException, IOException, SqlExecutorSetupException {
+        SqlUseSchema useSchema = unwrap(sqlNode, SqlUseSchema.class);
+        String newDefaultSchemaPath = useSchema.getSchema();
 
-    return DirectPlan.createDirectPlan(context, true,
-        String.format("Default schema changed to [%s]", context.getSession().getDefaultSchemaPath()));
-  }
+        context.getSession().setDefaultSchemaPath(newDefaultSchemaPath, context.getNewDefaultSchema());
+
+        return DirectPlan.createDirectPlan(context, true,
+                String.format("Default schema changed to [%s]", context.getSession().getDefaultSchemaPath()));
+    }
 }

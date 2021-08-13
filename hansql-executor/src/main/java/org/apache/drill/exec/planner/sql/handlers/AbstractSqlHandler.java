@@ -19,23 +19,24 @@ package org.apache.drill.exec.planner.sql.handlers;
 
 import java.io.IOException;
 
+import org.apache.calcite.sql.SqlNode;
 import org.apache.calcite.tools.RelConversionException;
 import org.apache.calcite.tools.ValidationException;
-
 import org.apache.drill.exec.physical.PhysicalPlan;
 import org.apache.drill.exec.work.exception.SqlExecutorSetupException;
-import org.apache.calcite.sql.SqlNode;
 
 public abstract class AbstractSqlHandler {
-  static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(AbstractSqlHandler.class);
 
-  public abstract PhysicalPlan getPlan(SqlNode sqlNode) throws ValidationException, RelConversionException, IOException, SqlExecutorSetupException;
+    public abstract PhysicalPlan getPlan(SqlNode sqlNode)
+            throws ValidationException, RelConversionException, IOException, SqlExecutorSetupException;
 
-  public static <T> T unwrap(Object o, Class<T> clazz) throws SqlExecutorSetupException {
-    if (clazz.isAssignableFrom(o.getClass())) {
-      return (T) o;
-    } else {
-      throw new SqlExecutorSetupException(String.format("Failure trying to treat %s as type %s.", o.getClass().getSimpleName(), clazz.getSimpleName()));
+    @SuppressWarnings("unchecked")
+    public static <T> T unwrap(Object o, Class<T> clazz) throws SqlExecutorSetupException {
+        if (clazz.isAssignableFrom(o.getClass())) {
+            return (T) o;
+        } else {
+            throw new SqlExecutorSetupException(String.format("Failure trying to treat %s as type %s.",
+                    o.getClass().getSimpleName(), clazz.getSimpleName()));
+        }
     }
-  }
 }

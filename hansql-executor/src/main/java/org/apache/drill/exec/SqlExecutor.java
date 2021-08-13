@@ -33,11 +33,11 @@ import org.apache.drill.exec.opt.BasicOptimizer;
 import org.apache.drill.exec.physical.PhysicalPlan;
 import org.apache.drill.exec.physical.base.FragmentRoot;
 import org.apache.drill.exec.physical.base.PhysicalOperator;
+import org.apache.drill.exec.planner.SqlPlanner;
 import org.apache.drill.exec.planner.fragment.DefaultQueryParallelizer;
 import org.apache.drill.exec.planner.fragment.Fragment;
 import org.apache.drill.exec.planner.fragment.MakeFragmentsVisitor;
 import org.apache.drill.exec.planner.sql.DirectPlan;
-import org.apache.drill.exec.planner.sql.DrillSqlWorker;
 import org.apache.drill.exec.proto.BitControl.PlanFragment;
 import org.apache.drill.exec.proto.ExecProtos.FragmentHandle;
 import org.apache.drill.exec.proto.ExecProtos.ServerPreparedStatementState;
@@ -161,7 +161,7 @@ public class SqlExecutor implements Runnable {
 
     private void runSQL(String sql) throws ExecutionSetupException {
         Pointer<String> textPlan = new Pointer<>();
-        PhysicalPlan plan = DrillSqlWorker.getPlan(queryContext, sql, textPlan);
+        PhysicalPlan plan = SqlPlanner.getPlan(queryContext, sql, textPlan);
         runPhysicalPlan(plan, textPlan);
     }
 
