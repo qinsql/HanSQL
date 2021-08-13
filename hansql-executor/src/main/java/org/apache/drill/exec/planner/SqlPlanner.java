@@ -18,6 +18,8 @@
 package org.apache.drill.exec.planner;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 
 import org.apache.calcite.sql.SqlDescribeSchema;
 import org.apache.calcite.sql.SqlKind;
@@ -30,10 +32,15 @@ import org.apache.calcite.sql.parser.SqlParserPos;
 import org.apache.calcite.tools.RelConversionException;
 import org.apache.calcite.tools.ValidationException;
 import org.apache.drill.common.exceptions.UserException;
+import org.apache.drill.common.logical.PlanProperties;
+import org.apache.drill.common.logical.PlanProperties.Generator.ResultMode;
+import org.apache.drill.common.logical.PlanProperties.PlanPropertiesBuilder;
+import org.apache.drill.common.logical.PlanProperties.PlanType;
 import org.apache.drill.exec.ExecConstants;
 import org.apache.drill.exec.ops.QueryContext;
 import org.apache.drill.exec.ops.QueryContext.SqlStatementType;
 import org.apache.drill.exec.physical.PhysicalPlan;
+import org.apache.drill.exec.physical.config.Screen;
 import org.apache.drill.exec.planner.sql.QueryInputException;
 import org.apache.drill.exec.planner.sql.SqlConverter;
 import org.apache.drill.exec.planner.sql.handlers.AbstractSqlHandler;
@@ -45,11 +52,15 @@ import org.apache.drill.exec.planner.sql.handlers.ExplainHandler;
 import org.apache.drill.exec.planner.sql.handlers.RefreshMetadataHandler;
 import org.apache.drill.exec.planner.sql.handlers.SchemaHandler;
 import org.apache.drill.exec.planner.sql.handlers.SetOptionHandler;
+import org.apache.drill.exec.planner.sql.handlers.SimpleCommandResult;
 import org.apache.drill.exec.planner.sql.handlers.SqlHandlerConfig;
 import org.apache.drill.exec.planner.sql.parser.DrillSqlCall;
 import org.apache.drill.exec.planner.sql.parser.DrillSqlDescribeTable;
 import org.apache.drill.exec.planner.sql.parser.SqlCreateTable;
 import org.apache.drill.exec.planner.sql.parser.SqlSchema;
+import org.apache.drill.exec.proto.CoordinationProtos.DrillbitEndpoint;
+import org.apache.drill.exec.store.direct.DirectGroupScan;
+import org.apache.drill.exec.store.pojo.PojoRecordReader;
 import org.apache.drill.exec.testing.ControlsInjector;
 import org.apache.drill.exec.testing.ControlsInjectorFactory;
 import org.apache.drill.exec.util.Pointer;
@@ -251,5 +262,28 @@ public class SqlPlanner {
                     autoLimitLiteral);
         }
         return new SqlOrderBy(SqlParserPos.ZERO, sqlNode, SqlNodeList.EMPTY, null, autoLimitLiteral);
+    }
+
+    public static PhysicalPlan createDirectPlan(QueryContext context, boolean result, String message) {
+        return createDirectPlan(context, new SimpleCommandResult(result, message));
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <T> PhysicalPlan createDirectPlan(QueryContext context, T obj) {
+        return createDirectPlan(context.getCurrentEndpoint(), Collections.singletonList(obj),
+                (Class<T>) obj.getClass());
+    }
+
+    public static <T> PhysicalPlan createDirectPlan(DrillbitEndpoint endpoint, List<T> records, Class<T> clazz) {
+        PojoRecordReader<T> reader = new PojoRecordReader<>(clazz, records);
+        DirectGroupScan scan = new DirectGroupScan(reader);
+        Screen screen = new Screen(scan, endpoint);
+
+        PlanPropertiesBuilder propsBuilder = PlanProperties.builder();
+        propsBuilder.type(PlanType.APACHE_DRILL_PHYSICAL);
+        propsBuilder.version(1);
+        propsBuilder.resultMode(ResultMode.EXEC);
+        propsBuilder.generator(SqlPlanner.class.getSimpleName(), "");
+        return new PhysicalPlan(propsBuilder.build(), DefaultSqlHandler.getPops(screen));
     }
 }

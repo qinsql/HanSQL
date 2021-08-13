@@ -24,7 +24,7 @@ import org.apache.calcite.tools.RelConversionException;
 import org.apache.calcite.tools.ValidationException;
 import org.apache.drill.exec.ops.QueryContext;
 import org.apache.drill.exec.physical.PhysicalPlan;
-import org.apache.drill.exec.planner.sql.DirectPlan;
+import org.apache.drill.exec.planner.SqlPlanner;
 import org.apache.drill.exec.planner.sql.parser.SqlUseSchema;
 import org.apache.drill.exec.work.exception.SqlExecutorSetupException;
 
@@ -44,7 +44,7 @@ public class UseSchemaHandler extends AbstractSqlHandler {
 
         context.getSession().setDefaultSchemaPath(newDefaultSchemaPath, context.getNewDefaultSchema());
 
-        return DirectPlan.createDirectPlan(context, true,
+        return SqlPlanner.createDirectPlan(context, true,
                 String.format("Default schema changed to [%s]", context.getSession().getDefaultSchemaPath()));
     }
 }

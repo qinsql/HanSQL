@@ -37,7 +37,6 @@ import org.apache.drill.exec.planner.SqlPlanner;
 import org.apache.drill.exec.planner.fragment.DefaultQueryParallelizer;
 import org.apache.drill.exec.planner.fragment.Fragment;
 import org.apache.drill.exec.planner.fragment.MakeFragmentsVisitor;
-import org.apache.drill.exec.planner.sql.DirectPlan;
 import org.apache.drill.exec.proto.BitControl.PlanFragment;
 import org.apache.drill.exec.proto.ExecProtos.FragmentHandle;
 import org.apache.drill.exec.proto.ExecProtos.ServerPreparedStatementState;
@@ -251,7 +250,7 @@ public class SqlExecutor implements Runnable {
 
     private void returnPhysical(PhysicalPlan plan) throws ExecutionSetupException {
         String jsonPlan = plan.unparse(queryContext.getLpPersistence().getMapper().writer());
-        runPhysicalPlan(DirectPlan.createDirectPlan(queryContext, new PhysicalFromLogicalExplain(jsonPlan)));
+        runPhysicalPlan(SqlPlanner.createDirectPlan(queryContext, new PhysicalFromLogicalExplain(jsonPlan)));
     }
 
     public static class PhysicalFromLogicalExplain {

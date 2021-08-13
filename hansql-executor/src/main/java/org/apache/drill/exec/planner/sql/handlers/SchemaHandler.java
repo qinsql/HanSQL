@@ -17,6 +17,12 @@
  */
 package org.apache.drill.exec.planner.sql.handlers;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import org.apache.calcite.schema.Schema;
 import org.apache.calcite.schema.SchemaPlus;
 import org.apache.calcite.schema.Table;
@@ -25,7 +31,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.drill.common.exceptions.UserException;
 import org.apache.drill.exec.ExecConstants;
 import org.apache.drill.exec.physical.PhysicalPlan;
-import org.apache.drill.exec.planner.sql.DirectPlan;
+import org.apache.drill.exec.planner.SqlPlanner;
 import org.apache.drill.exec.planner.sql.SchemaUtilites;
 import org.apache.drill.exec.planner.sql.parser.SqlCreateType;
 import org.apache.drill.exec.planner.sql.parser.SqlSchema;
@@ -45,273 +51,259 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
 /**
  * Parent class for CREATE / DROP / DESCRIBE SCHEMA handlers.
  * Contains common logic on how extract workspace, output error result.
  */
 public abstract class SchemaHandler extends DefaultSqlHandler {
 
-  static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(SchemaHandler.class);
+    static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(SchemaHandler.class);
 
-  SchemaHandler(SqlHandlerConfig config) {
-    super(config);
-  }
-
-  WorkspaceSchemaFactory.WorkspaceSchema getWorkspaceSchema(List<String> tableSchema, String tableName) {
-    SchemaPlus defaultSchema = config.getConverter().getDefaultSchema();
-    AbstractSchema temporarySchema = SchemaUtilites.resolveToTemporarySchema(tableSchema, defaultSchema, context.getConfig());
-
-    if (context.getSession().isTemporaryTable(temporarySchema, context.getConfig(), tableName)) {
-      produceErrorResult(String.format("Indicated table [%s] is temporary table", tableName), true);
+    SchemaHandler(SqlHandlerConfig config) {
+        super(config);
     }
 
-    AbstractSchema drillSchema = SchemaUtilites.resolveToMutableDrillSchema(defaultSchema, tableSchema);
-    Table table = SqlHandlerUtil.getTableFromSchema(drillSchema, tableName);
-    if (table == null || table.getJdbcTableType() != Schema.TableType.TABLE) {
-      produceErrorResult(String.format("Table [%s] was not found", tableName), true);
+    WorkspaceSchemaFactory.WorkspaceSchema getWorkspaceSchema(List<String> tableSchema, String tableName) {
+        SchemaPlus defaultSchema = config.getConverter().getDefaultSchema();
+        AbstractSchema temporarySchema = SchemaUtilites.resolveToTemporarySchema(tableSchema, defaultSchema,
+                context.getConfig());
+
+        if (context.getSession().isTemporaryTable(temporarySchema, context.getConfig(), tableName)) {
+            produceErrorResult(String.format("Indicated table [%s] is temporary table", tableName), true);
+        }
+
+        AbstractSchema drillSchema = SchemaUtilites.resolveToMutableDrillSchema(defaultSchema, tableSchema);
+        Table table = SqlHandlerUtil.getTableFromSchema(drillSchema, tableName);
+        if (table == null || table.getJdbcTableType() != Schema.TableType.TABLE) {
+            produceErrorResult(String.format("Table [%s] was not found", tableName), true);
+        }
+
+        if (!(drillSchema instanceof WorkspaceSchemaFactory.WorkspaceSchema)) {
+            produceErrorResult(String.format("Table [`%s`.`%s`] must belong to file storage plugin",
+                    drillSchema.getFullSchemaName(), tableName), true);
+        }
+
+        Preconditions.checkState(drillSchema instanceof WorkspaceSchemaFactory.WorkspaceSchema);
+        return (WorkspaceSchemaFactory.WorkspaceSchema) drillSchema;
     }
 
-    if (!(drillSchema instanceof WorkspaceSchemaFactory.WorkspaceSchema)) {
-      produceErrorResult(String.format("Table [`%s`.`%s`] must belong to file storage plugin",
-        drillSchema.getFullSchemaName(), tableName), true);
-    }
-
-    Preconditions.checkState(drillSchema instanceof WorkspaceSchemaFactory.WorkspaceSchema);
-    return (WorkspaceSchemaFactory.WorkspaceSchema) drillSchema;
-  }
-
-  PhysicalPlan produceErrorResult(String message, boolean doFail) {
-    if (doFail) {
-      throw UserException.validationError().message(message).build(logger);
-    } else {
-      return DirectPlan.createDirectPlan(context, false, message);
-    }
-  }
-
-  /**
-   * CREATE SCHEMA command handler.
-   */
-  public static class Create extends SchemaHandler {
-
-    public Create(SqlHandlerConfig config) {
-      super(config);
-    }
-
-    @Override
-    public PhysicalPlan getPlan(SqlNode sqlNode) {
-
-      SqlSchema.Create sqlCall = ((SqlSchema.Create) sqlNode);
-
-      String schemaString = getSchemaString(sqlCall);
-      String schemaSource = sqlCall.hasTable() ? sqlCall.getTable().toString() : sqlCall.getPath();
-      try {
-
-        SchemaProvider schemaProvider;
-        if (sqlCall.hasTable()) {
-          String tableName = sqlCall.getTableName();
-          WorkspaceSchemaFactory.WorkspaceSchema wsSchema = getWorkspaceSchema(sqlCall.getSchemaPath(), tableName);
-          schemaProvider = new FsMetastoreSchemaProvider(wsSchema, tableName);
+    PhysicalPlan produceErrorResult(String message, boolean doFail) {
+        if (doFail) {
+            throw UserException.validationError().message(message).build(logger);
         } else {
-          schemaProvider = new PathSchemaProvider(new Path(sqlCall.getPath()));
+            return SqlPlanner.createDirectPlan(context, false, message);
         }
-
-        if (schemaProvider.exists()) {
-          if (SqlCreateType.OR_REPLACE == sqlCall.getSqlCreateType()) {
-            schemaProvider.delete();
-          } else {
-            return produceErrorResult(String.format("Schema already exists for [%s]", schemaSource), true);
-          }
-        }
-
-        // schema file will be created with same permission as used for persistent tables
-        StorageStrategy storageStrategy = new StorageStrategy(context.getOption(
-          ExecConstants.PERSISTENT_TABLE_UMASK).string_val, false);
-        schemaProvider.store(schemaString, sqlCall.getProperties(), storageStrategy);
-        return DirectPlan.createDirectPlan(context, true, String.format("Created schema for [%s]", schemaSource));
-      } catch (SchemaParsingException e) {
-        throw UserException.parseError(e)
-          .message(e.getMessage())
-          .addContext("Schema: " + schemaString)
-          .build(logger);
-      } catch (IOException e) {
-        throw UserException.resourceError(e)
-          .message(e.getMessage())
-          .addContext("Error while preparing / creating schema for [%s]", schemaSource)
-          .build(logger);
-      } catch (IllegalArgumentException e) {
-        throw UserException.validationError(e)
-          .message(e.getMessage())
-          .addContext("Error while preparing / creating schema for [%s]", schemaSource)
-          .build(logger);
-      }
     }
 
     /**
-     * If raw schema was present in create schema command, returns schema from command,
-     * otherwise loads raw schema from the given file.
-     *
-     * @param sqlCall sql create schema call
-     * @return string representation of raw schema (column names, types and nullability)
+     * CREATE SCHEMA command handler.
      */
-    private String getSchemaString(SqlSchema.Create sqlCall) {
-      if (sqlCall.hasSchema()) {
-        return sqlCall.getSchema();
-      }
+    public static class Create extends SchemaHandler {
 
-      Path path = new Path(sqlCall.getLoad());
-      try {
-        FileSystem rawFs = path.getFileSystem(new Configuration());
-        FileSystem fs = ImpersonationUtil.createFileSystem(ImpersonationUtil.getProcessUserName(), rawFs.getConf());
-
-        if (!fs.exists(path)) {
-          throw UserException.resourceError()
-            .message("File with raw schema [%s] does not exist", path.toUri().getPath())
-            .build(logger);
+        public Create(SqlHandlerConfig config) {
+            super(config);
         }
 
-        try (InputStream stream = fs.open(path)) {
-          return IOUtils.toString(stream);
+        @Override
+        public PhysicalPlan getPlan(SqlNode sqlNode) {
+
+            SqlSchema.Create sqlCall = ((SqlSchema.Create) sqlNode);
+
+            String schemaString = getSchemaString(sqlCall);
+            String schemaSource = sqlCall.hasTable() ? sqlCall.getTable().toString() : sqlCall.getPath();
+            try {
+
+                SchemaProvider schemaProvider;
+                if (sqlCall.hasTable()) {
+                    String tableName = sqlCall.getTableName();
+                    WorkspaceSchemaFactory.WorkspaceSchema wsSchema = getWorkspaceSchema(sqlCall.getSchemaPath(),
+                            tableName);
+                    schemaProvider = new FsMetastoreSchemaProvider(wsSchema, tableName);
+                } else {
+                    schemaProvider = new PathSchemaProvider(new Path(sqlCall.getPath()));
+                }
+
+                if (schemaProvider.exists()) {
+                    if (SqlCreateType.OR_REPLACE == sqlCall.getSqlCreateType()) {
+                        schemaProvider.delete();
+                    } else {
+                        return produceErrorResult(String.format("Schema already exists for [%s]", schemaSource), true);
+                    }
+                }
+
+                // schema file will be created with same permission as used for persistent tables
+                StorageStrategy storageStrategy = new StorageStrategy(
+                        context.getOption(ExecConstants.PERSISTENT_TABLE_UMASK).string_val, false);
+                schemaProvider.store(schemaString, sqlCall.getProperties(), storageStrategy);
+                return SqlPlanner.createDirectPlan(context, true,
+                        String.format("Created schema for [%s]", schemaSource));
+            } catch (SchemaParsingException e) {
+                throw UserException.parseError(e).message(e.getMessage()).addContext("Schema: " + schemaString)
+                        .build(logger);
+            } catch (IOException e) {
+                throw UserException.resourceError(e).message(e.getMessage())
+                        .addContext("Error while preparing / creating schema for [%s]", schemaSource).build(logger);
+            } catch (IllegalArgumentException e) {
+                throw UserException.validationError(e).message(e.getMessage())
+                        .addContext("Error while preparing / creating schema for [%s]", schemaSource).build(logger);
+            }
         }
 
-      } catch (IOException e) {
-        throw UserException.resourceError(e)
-          .message("Unable to load raw schema from file %s", path.toUri().getPath())
-          .build(logger);
-      }
-    }
-  }
+        /**
+         * If raw schema was present in create schema command, returns schema from command,
+         * otherwise loads raw schema from the given file.
+         *
+         * @param sqlCall sql create schema call
+         * @return string representation of raw schema (column names, types and nullability)
+         */
+        private String getSchemaString(SqlSchema.Create sqlCall) {
+            if (sqlCall.hasSchema()) {
+                return sqlCall.getSchema();
+            }
 
-  /**
-   * DROP SCHEMA command handler.
-   */
-  public static class Drop extends SchemaHandler {
+            Path path = new Path(sqlCall.getLoad());
+            try {
+                FileSystem rawFs = path.getFileSystem(new Configuration());
+                FileSystem fs = ImpersonationUtil.createFileSystem(ImpersonationUtil.getProcessUserName(),
+                        rawFs.getConf());
 
-    public Drop(SqlHandlerConfig config) {
-      super(config);
-    }
+                if (!fs.exists(path)) {
+                    throw UserException.resourceError()
+                            .message("File with raw schema [%s] does not exist", path.toUri().getPath()).build(logger);
+                }
 
-    @Override
-    public PhysicalPlan getPlan(SqlNode sqlNode) {
-      SqlSchema.Drop sqlCall = ((SqlSchema.Drop) sqlNode);
+                try (InputStream stream = fs.open(path)) {
+                    return IOUtils.toString(stream);
+                }
 
-      String tableName = sqlCall.getTableName();
-      WorkspaceSchemaFactory.WorkspaceSchema wsSchema = getWorkspaceSchema(sqlCall.getSchemaPath(), tableName);
-
-      try {
-
-        SchemaProvider schemaProvider = new FsMetastoreSchemaProvider(wsSchema, tableName);
-
-        if (!schemaProvider.exists()) {
-          return produceErrorResult(String.format("Schema [%s] does not exist in table [%s] root directory",
-            SchemaProvider.DEFAULT_SCHEMA_NAME, sqlCall.getTable()), !sqlCall.ifExists());
+            } catch (IOException e) {
+                throw UserException.resourceError(e)
+                        .message("Unable to load raw schema from file %s", path.toUri().getPath()).build(logger);
+            }
         }
-
-        schemaProvider.delete();
-
-        return DirectPlan.createDirectPlan(context, true,
-          String.format("Dropped schema for table [%s]", sqlCall.getTable()));
-
-      } catch (IOException e) {
-        throw UserException.resourceError(e)
-          .message(e.getMessage())
-          .addContext("Error while accessing table location or deleting schema for [%s]", sqlCall.getTable())
-          .build(logger);
-      }
-    }
-  }
-
-  /**
-   * DESCRIBE SCHEMA FOR TABLE command handler.
-   */
-  public static class Describe extends SchemaHandler {
-
-    public Describe(SqlHandlerConfig config) {
-      super(config);
-    }
-
-    @Override
-    public PhysicalPlan getPlan(SqlNode sqlNode) {
-      SqlSchema.Describe sqlCall = ((SqlSchema.Describe) sqlNode);
-
-      String tableName = sqlCall.getTableName();
-      WorkspaceSchemaFactory.WorkspaceSchema wsSchema = getWorkspaceSchema(sqlCall.getSchemaPath(), tableName);
-
-      try {
-
-        SchemaProvider schemaProvider = new FsMetastoreSchemaProvider(wsSchema, tableName);
-
-        if (schemaProvider.exists()) {
-
-          SchemaContainer schemaContainer = schemaProvider.read();
-
-          String schema;
-          switch (sqlCall.getFormat()) {
-            case JSON:
-              schema = PathSchemaProvider.WRITER.writeValueAsString(schemaContainer);
-              break;
-            case STATEMENT:
-              TupleMetadata metadata = schemaContainer.getSchema();
-              StringBuilder builder = new StringBuilder("CREATE OR REPLACE SCHEMA \n");
-              builder.append("(\n");
-
-              builder.append(metadata.toMetadataList().stream()
-              .map(ColumnMetadata::columnString)
-              .collect(Collectors.joining(", \n")));
-
-              builder.append("\n) \n");
-
-              builder.append("FOR TABLE ").append(schemaContainer.getTable()).append(" \n");
-
-              Map<String, String> properties = metadata.properties();
-              if (!properties.isEmpty()) {
-                builder.append("PROPERTIES (\n");
-
-                builder.append(properties.entrySet().stream()
-                  .map(e -> String.format("'%s' = '%s'", e.getKey(), e.getValue()))
-                  .collect(Collectors.joining(", \n")));
-                builder.append("\n)");
-              }
-
-              schema = builder.toString();
-              break;
-            default:
-              throw UserException.validationError()
-                .message("Unsupported describe schema format: [%s]", sqlCall.getFormat())
-                .build(logger);
-          }
-
-          return DirectPlan.createDirectPlan(context, new SchemaResult(schema));
-        }
-
-        return DirectPlan.createDirectPlan(context, false,
-          String.format("Schema for table [%s] is absent", sqlCall.getTable()));
-
-      } catch (IOException e) {
-        throw UserException.resourceError(e)
-          .message(e.getMessage())
-          .addContext("Error while accessing schema for table [%s]", sqlCall.getTable())
-          .build(logger);
-      }
     }
 
     /**
-     * Wrapper to output schema in a form of table with one column named `schema`.
+     * DROP SCHEMA command handler.
      */
-    public static class SchemaResult {
+    public static class Drop extends SchemaHandler {
 
-      public String schema;
+        public Drop(SqlHandlerConfig config) {
+            super(config);
+        }
 
-      public SchemaResult(String schema) {
-        this.schema = schema;
-      }
+        @Override
+        public PhysicalPlan getPlan(SqlNode sqlNode) {
+            SqlSchema.Drop sqlCall = ((SqlSchema.Drop) sqlNode);
+
+            String tableName = sqlCall.getTableName();
+            WorkspaceSchemaFactory.WorkspaceSchema wsSchema = getWorkspaceSchema(sqlCall.getSchemaPath(), tableName);
+
+            try {
+
+                SchemaProvider schemaProvider = new FsMetastoreSchemaProvider(wsSchema, tableName);
+
+                if (!schemaProvider.exists()) {
+                    return produceErrorResult(String.format("Schema [%s] does not exist in table [%s] root directory",
+                            SchemaProvider.DEFAULT_SCHEMA_NAME, sqlCall.getTable()), !sqlCall.ifExists());
+                }
+
+                schemaProvider.delete();
+
+                return SqlPlanner.createDirectPlan(context, true,
+                        String.format("Dropped schema for table [%s]", sqlCall.getTable()));
+
+            } catch (IOException e) {
+                throw UserException.resourceError(e).message(e.getMessage())
+                        .addContext("Error while accessing table location or deleting schema for [%s]",
+                                sqlCall.getTable())
+                        .build(logger);
+            }
+        }
     }
 
-  }
+    /**
+     * DESCRIBE SCHEMA FOR TABLE command handler.
+     */
+    public static class Describe extends SchemaHandler {
+
+        public Describe(SqlHandlerConfig config) {
+            super(config);
+        }
+
+        @Override
+        public PhysicalPlan getPlan(SqlNode sqlNode) {
+            SqlSchema.Describe sqlCall = ((SqlSchema.Describe) sqlNode);
+
+            String tableName = sqlCall.getTableName();
+            WorkspaceSchemaFactory.WorkspaceSchema wsSchema = getWorkspaceSchema(sqlCall.getSchemaPath(), tableName);
+
+            try {
+
+                SchemaProvider schemaProvider = new FsMetastoreSchemaProvider(wsSchema, tableName);
+
+                if (schemaProvider.exists()) {
+
+                    SchemaContainer schemaContainer = schemaProvider.read();
+
+                    String schema;
+                    switch (sqlCall.getFormat()) {
+                    case JSON:
+                        schema = PathSchemaProvider.WRITER.writeValueAsString(schemaContainer);
+                        break;
+                    case STATEMENT:
+                        TupleMetadata metadata = schemaContainer.getSchema();
+                        StringBuilder builder = new StringBuilder("CREATE OR REPLACE SCHEMA \n");
+                        builder.append("(\n");
+
+                        builder.append(metadata.toMetadataList().stream().map(ColumnMetadata::columnString)
+                                .collect(Collectors.joining(", \n")));
+
+                        builder.append("\n) \n");
+
+                        builder.append("FOR TABLE ").append(schemaContainer.getTable()).append(" \n");
+
+                        Map<String, String> properties = metadata.properties();
+                        if (!properties.isEmpty()) {
+                            builder.append("PROPERTIES (\n");
+
+                            builder.append(properties.entrySet().stream()
+                                    .map(e -> String.format("'%s' = '%s'", e.getKey(), e.getValue()))
+                                    .collect(Collectors.joining(", \n")));
+                            builder.append("\n)");
+                        }
+
+                        schema = builder.toString();
+                        break;
+                    default:
+                        throw UserException.validationError()
+                                .message("Unsupported describe schema format: [%s]", sqlCall.getFormat()).build(logger);
+                    }
+
+                    return SqlPlanner.createDirectPlan(context, new SchemaResult(schema));
+                }
+
+                return SqlPlanner.createDirectPlan(context, false,
+                        String.format("Schema for table [%s] is absent", sqlCall.getTable()));
+
+            } catch (IOException e) {
+                throw UserException.resourceError(e).message(e.getMessage())
+                        .addContext("Error while accessing schema for table [%s]", sqlCall.getTable()).build(logger);
+            }
+        }
+
+        /**
+         * Wrapper to output schema in a form of table with one column named `schema`.
+         */
+        public static class SchemaResult {
+
+            public String schema;
+
+            public SchemaResult(String schema) {
+                this.schema = schema;
+            }
+        }
+
+    }
 
 }
