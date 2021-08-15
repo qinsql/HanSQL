@@ -336,12 +336,7 @@ public class RelOptTableImpl implements PreparingTable {
 
     @Override
     public boolean supportsModality(SqlModality modality) {
-        switch (modality) {
-        case STREAM:
-            return table instanceof StreamableTable;
-        default:
-            return !(table instanceof StreamableTable);
-        }
+        return true;
     }
 
     @Override

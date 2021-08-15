@@ -40,8 +40,6 @@ import org.apache.calcite.rel.logical.LogicalTableScan;
 import org.apache.calcite.rel.logical.LogicalUnion;
 import org.apache.calcite.rel.logical.LogicalValues;
 import org.apache.calcite.rel.logical.LogicalWindow;
-import org.apache.calcite.rel.stream.LogicalChi;
-import org.apache.calcite.rel.stream.LogicalDelta;
 import org.apache.calcite.rel.type.java.Primitive;
 import org.apache.calcite.rex.RexNode;
 import org.apache.calcite.util.ControlFlowException;
@@ -131,9 +129,7 @@ public class JaninoRelMetadataProvider implements RelMetadataProvider {
             LogicalTableScan.class,
             LogicalUnion.class,
             LogicalValues.class,
-            LogicalWindow.class,
-            LogicalChi.class,
-            LogicalDelta.class,
+            LogicalWindow.class, 
 
 //            EnumerableAggregate.class,
 //            EnumerableFilter.class,

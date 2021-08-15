@@ -84,8 +84,6 @@ import org.apache.calcite.rel.logical.LogicalValues;
 import org.apache.calcite.rel.metadata.JaninoRelMetadataProvider;
 import org.apache.calcite.rel.metadata.RelColumnMapping;
 import org.apache.calcite.rel.metadata.RelMetadataQuery;
-import org.apache.calcite.rel.stream.Delta;
-import org.apache.calcite.rel.stream.LogicalDelta;
 import org.apache.calcite.rel.type.RelDataType;
 import org.apache.calcite.rel.type.RelDataTypeFactory;
 import org.apache.calcite.rel.type.RelDataTypeField;
@@ -513,11 +511,6 @@ public class SqlToRelConverter {
 
         RelMetadataQuery.THREAD_PROVIDERS.set(JaninoRelMetadataProvider.of(cluster.getMetadataProvider()));
         RelNode result = convertQueryRecursive(query, top, null).rel;
-        if (top) {
-            if (isStream(query)) {
-                result = new LogicalDelta(cluster, result.getTraitSet(), result);
-            }
-        }
         RelCollation collation = RelCollations.EMPTY;
         if (!query.isA(SqlKind.DML)) {
             if (isOrdered(query)) {
@@ -558,9 +551,6 @@ public class SqlToRelConverter {
         }
         if (r instanceof Project) {
             return requiredCollation(((Project) r).getInput());
-        }
-        if (r instanceof Delta) {
-            return requiredCollation(((Delta) r).getInput());
         }
         throw new AssertionError();
     }

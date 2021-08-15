@@ -54,8 +54,6 @@ import org.apache.calcite.rel.logical.LogicalTableFunctionScan;
 import org.apache.calcite.rel.logical.LogicalTableModify;
 import org.apache.calcite.rel.logical.LogicalUnion;
 import org.apache.calcite.rel.logical.LogicalValues;
-import org.apache.calcite.rel.stream.LogicalChi;
-import org.apache.calcite.rel.stream.LogicalDelta;
 import org.apache.calcite.rel.type.RelDataType;
 import org.apache.calcite.rel.type.RelDataTypeField;
 import org.apache.calcite.rex.RexBuilder;
@@ -605,14 +603,6 @@ public class RelStructuredTypeFlattener implements ReflectiveVisitor {
         RelNode newRel = rel.copy(rel.getTraitSet(), getNewForOldRel(rel.getInput()),
                 rel.getPeriod().accept(new RewriteRexShuttle()));
         setNewForOldRel(rel, newRel);
-    }
-
-    public void rewriteRel(LogicalDelta rel) {
-        rewriteGeneric(rel);
-    }
-
-    public void rewriteRel(LogicalChi rel) {
-        rewriteGeneric(rel);
     }
 
     public void rewriteRel(LogicalMatch rel) {
