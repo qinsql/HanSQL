@@ -68,8 +68,6 @@ import org.apache.calcite.tools.Program;
 import org.apache.calcite.tools.Programs;
 import org.apache.calcite.util.Pair;
 
-import com.google.common.collect.ImmutableList;
-
 public class HanSQLOptimizerTest {
 
     public static void main(String[] args) throws Exception {
@@ -315,7 +313,7 @@ public class HanSQLOptimizerTest {
     static void testPrograms(RelNode relNode) {
         final RelOptPlanner planner = relNode.getCluster().getPlanner();
         final Program program = Programs.ofRules(ReduceExpressionsRule.PROJECT_INSTANCE);
-        relNode = program.run(planner, relNode, relNode.getTraitSet(), ImmutableList.of(), ImmutableList.of());
+        relNode = program.run(planner, relNode, relNode.getTraitSet());
         String plan = RelOptUtil.toString(relNode);
         System.out.println(plan);
     }

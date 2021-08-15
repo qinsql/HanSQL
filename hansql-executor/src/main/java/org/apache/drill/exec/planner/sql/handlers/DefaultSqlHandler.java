@@ -102,7 +102,6 @@ import org.apache.drill.exec.work.exception.SqlExecutorSetupException;
 import org.apache.drill.exec.work.exception.SqlUnsupportedException;
 import org.apache.drill.shaded.guava.com.google.common.base.Preconditions;
 import org.apache.drill.shaded.guava.com.google.common.base.Stopwatch;
-import org.apache.drill.shaded.guava.com.google.common.collect.ImmutableList;
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
 import org.apache.drill.shaded.guava.com.google.common.collect.Sets;
 import org.slf4j.Logger;
@@ -434,7 +433,7 @@ public class DefaultSqlHandler extends AbstractSqlHandler {
             Preconditions.checkArgument(planner instanceof VolcanoPlanner,
                     "Cluster is expected to be constructed using VolcanoPlanner. Was actually of type %s.",
                     planner.getClass().getName());
-            output = program.run(planner, input, toTraits, ImmutableList.of(), ImmutableList.of());
+            output = program.run(planner, input, toTraits);
 
             break;
         }

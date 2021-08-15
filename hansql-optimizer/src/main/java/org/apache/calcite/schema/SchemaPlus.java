@@ -16,7 +16,6 @@
  */
 package org.apache.calcite.schema;
 
-import org.apache.calcite.materialize.Lattice;
 import org.apache.calcite.rel.type.RelProtoDataType;
 
 import com.google.common.collect.ImmutableList;
@@ -43,48 +42,47 @@ import com.google.common.collect.ImmutableList;
  * {@link Schema}, or indeed might not.
  */
 public interface SchemaPlus extends Schema {
-  /**
-   * Returns the parent schema, or null if this schema has no parent.
-   */
-  SchemaPlus getParentSchema();
+    /**
+     * Returns the parent schema, or null if this schema has no parent.
+     */
+    SchemaPlus getParentSchema();
 
-  /**
-   * Returns the name of this schema.
-   *
-   * <p>The name must not be null, and must be unique within its parent.
-   * The root schema is typically named "".
-   */
-  String getName();
+    /**
+     * Returns the name of this schema.
+     *
+     * <p>The name must not be null, and must be unique within its parent.
+     * The root schema is typically named "".
+     */
+    String getName();
 
-  // override with stricter return
-  SchemaPlus getSubSchema(String name);
+    // override with stricter return
+    @Override
+    SchemaPlus getSubSchema(String name);
 
-  /** Adds a schema as a sub-schema of this schema, and returns the wrapped
-   * object. */
-  SchemaPlus add(String name, Schema schema);
+    /** Adds a schema as a sub-schema of this schema, and returns the wrapped
+     * object. */
+    SchemaPlus add(String name, Schema schema);
 
-  /** Adds a table to this schema. */
-  void add(String name, Table table);
+    /** Adds a table to this schema. */
+    void add(String name, Table table);
 
-  /** Adds a function to this schema. */
-  void add(String name, Function function);
+    /** Adds a function to this schema. */
+    void add(String name, Function function);
 
-  /** Adds a type to this schema.  */
-  void add(String name, RelProtoDataType type);
+    /** Adds a type to this schema.  */
+    void add(String name, RelProtoDataType type);
 
-  /** Adds a lattice to this schema. */
-  void add(String name, Lattice lattice);
+    @Override
+    boolean isMutable();
 
-  boolean isMutable();
+    /** Returns an underlying object. */
+    <T> T unwrap(Class<T> clazz);
 
-  /** Returns an underlying object. */
-  <T> T unwrap(Class<T> clazz);
+    void setPath(ImmutableList<ImmutableList<String>> path);
 
-  void setPath(ImmutableList<ImmutableList<String>> path);
+    void setCacheEnabled(boolean cache);
 
-  void setCacheEnabled(boolean cache);
-
-  boolean isCacheEnabled();
+    boolean isCacheEnabled();
 }
 
 // End SchemaPlus.java
