@@ -17,8 +17,6 @@
  */
 package org.lealone.hansql.common.exceptions;
 
-import org.lealone.hansql.common.exceptions.DrillRuntimeException;
-
 public class LogicalPlanParsingException extends DrillRuntimeException {
 
     public LogicalPlanParsingException() {

@@ -18,52 +18,53 @@
 package org.lealone.hansql.common.exceptions;
 
 public class DrillRuntimeException extends RuntimeException {
-  private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(DrillRuntimeException.class);
-  private static final long serialVersionUID = -3796081521525479249L;
 
-  public DrillRuntimeException() {
-    super();
-  }
+    private static final long serialVersionUID = -3796081521525479249L;
 
-  public DrillRuntimeException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-    super(message, cause, enableSuppression, writableStackTrace);
-  }
-
-  public DrillRuntimeException(String message, Throwable cause) {
-    super(message, cause);
-  }
-
-  public DrillRuntimeException(String message) {
-    super(message);
-  }
-
-  public DrillRuntimeException(Throwable cause) {
-    super(cause);
-  }
-
-  public static void format(String format, Object...args) {
-    format(null, format, args);
-  }
-
-  public static void format(Throwable cause, String format, Object...args) {
-    throw new DrillRuntimeException(String.format(format, args), cause);
-  }
-
-  /**
-   * This method can be called within loops to check whether the current thread has been
-   * interrupted; it ensures that operator implementation can respond to query cancellation
-   * in a timely manner.
-   *
-   * <p>Calling this method will result in the following behavior:
-   * <ul>
-   * <li>Throws a runtime exception if current thread interrupt flag has been set
-   * <li>Clears current thread interrupt flag
-   * </ul>
-   */
-  public static void checkInterrupted() {
-    if (Thread.interrupted()) {
-      // This exception will ensure the control layer will immediately get back control
-      throw new DrillRuntimeException("Interrupt received; aborting current operation");
+    public DrillRuntimeException() {
+        super();
     }
-  }
+
+    public DrillRuntimeException(String message, Throwable cause, boolean enableSuppression,
+            boolean writableStackTrace) {
+        super(message, cause, enableSuppression, writableStackTrace);
+    }
+
+    public DrillRuntimeException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public DrillRuntimeException(String message) {
+        super(message);
+    }
+
+    public DrillRuntimeException(Throwable cause) {
+        super(cause);
+    }
+
+    public static void format(String format, Object... args) {
+        format(null, format, args);
+    }
+
+    public static void format(Throwable cause, String format, Object... args) {
+        throw new DrillRuntimeException(String.format(format, args), cause);
+    }
+
+    /**
+     * This method can be called within loops to check whether the current thread has been
+     * interrupted; it ensures that operator implementation can respond to query cancellation
+     * in a timely manner.
+     *
+     * <p>Calling this method will result in the following behavior:
+     * <ul>
+     * <li>Throws a runtime exception if current thread interrupt flag has been set
+     * <li>Clears current thread interrupt flag
+     * </ul>
+     */
+    public static void checkInterrupted() {
+        if (Thread.interrupted()) {
+            // This exception will ensure the control layer will immediately get back control
+            throw new DrillRuntimeException("Interrupt received; aborting current operation");
+        }
+    }
 }

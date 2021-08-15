@@ -19,9 +19,6 @@ package org.lealone.hansql.common.config;
 
 import java.util.Set;
 
-import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
-
-import org.lealone.hansql.common.config.DrillConfig;
 import org.lealone.hansql.common.expression.LogicalExpression;
 import org.lealone.hansql.common.expression.SchemaPath;
 import org.lealone.hansql.common.logical.FormatPluginConfigBase;
@@ -34,40 +31,40 @@ import com.fasterxml.jackson.core.JsonParser.Feature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-
+import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 
 public class LogicalPlanPersistence {
-  private final ObjectMapper mapper;
+    private final ObjectMapper mapper;
 
-  public LogicalPlanPersistence(DrillConfig conf, ScanResult scanResult) {
-    this(conf, scanResult, new ObjectMapper());
-  }
-
-  public LogicalPlanPersistence(DrillConfig conf, ScanResult scanResult, ObjectMapper mapper) {
-    this.mapper = mapper;
-
-    SimpleModule deserModule = new SimpleModule("LogicalExpressionDeserializationModule")
-        .addDeserializer(LogicalExpression.class, new LogicalExpression.De(conf))
-        .addDeserializer(SchemaPath.class, new SchemaPath.De());
-
-    mapper.registerModule(deserModule);
-    mapper.enable(SerializationFeature.INDENT_OUTPUT);
-    mapper.configure(Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
-    mapper.configure(JsonGenerator.Feature.QUOTE_FIELD_NAMES, true);
-    mapper.configure(Feature.ALLOW_COMMENTS, true);
-    mapper.setFilterProvider(new SimpleFilterProvider().setFailOnUnknownId(false));
-    registerSubtypes(LogicalOperatorBase.getSubTypes(scanResult));
-    registerSubtypes(StoragePluginConfigBase.getSubTypes(scanResult));
-    registerSubtypes(FormatPluginConfigBase.getSubTypes(scanResult));
-  }
-
-  public ObjectMapper getMapper() {
-    return mapper;
-  }
-
-  private <T> void registerSubtypes(Set<Class<? extends T>> types) {
-    for (Class<? extends T> type : types) {
-      mapper.registerSubtypes(type);
+    public LogicalPlanPersistence(DrillConfig conf, ScanResult scanResult) {
+        this(conf, scanResult, new ObjectMapper());
     }
-  }
+
+    public LogicalPlanPersistence(DrillConfig conf, ScanResult scanResult, ObjectMapper mapper) {
+        this.mapper = mapper;
+
+        SimpleModule deserModule = new SimpleModule("LogicalExpressionDeserializationModule")
+                .addDeserializer(LogicalExpression.class, new LogicalExpression.De(conf))
+                .addDeserializer(SchemaPath.class, new SchemaPath.De());
+
+        mapper.registerModule(deserModule);
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        mapper.configure(Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
+        mapper.configure(JsonGenerator.Feature.QUOTE_FIELD_NAMES, true);
+        mapper.configure(Feature.ALLOW_COMMENTS, true);
+        mapper.setFilterProvider(new SimpleFilterProvider().setFailOnUnknownId(false));
+        registerSubtypes(LogicalOperatorBase.getSubTypes(scanResult));
+        registerSubtypes(StoragePluginConfigBase.getSubTypes(scanResult));
+        registerSubtypes(FormatPluginConfigBase.getSubTypes(scanResult));
+    }
+
+    public ObjectMapper getMapper() {
+        return mapper;
+    }
+
+    private <T> void registerSubtypes(Set<Class<? extends T>> types) {
+        for (Class<? extends T> type : types) {
+            mapper.registerSubtypes(type);
+        }
+    }
 }

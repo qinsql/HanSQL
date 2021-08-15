@@ -18,26 +18,24 @@
 package org.lealone.hansql.common.exceptions;
 
 public class DrillConfigurationException extends DrillException {
-  public DrillConfigurationException() {
-    super();
-  }
+    public DrillConfigurationException() {
+        super();
+    }
 
-  public DrillConfigurationException(String message, Throwable cause, boolean enableSuppression,
-      boolean writableStackTrace) {
-    super(message, cause, enableSuppression, writableStackTrace);
-  }
+    public DrillConfigurationException(String message, Throwable cause, boolean enableSuppression,
+            boolean writableStackTrace) {
+        super(message, cause, enableSuppression, writableStackTrace);
+    }
 
-  public DrillConfigurationException(String message, Throwable cause) {
-    super(message, cause);
-  }
+    public DrillConfigurationException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
-  public DrillConfigurationException(String message) {
-    super(message);
-  }
+    public DrillConfigurationException(String message) {
+        super(message);
+    }
 
-  public DrillConfigurationException(Throwable cause) {
-    super(cause);
-  }
-
-  static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(DrillConfigurationException.class);
+    public DrillConfigurationException(Throwable cause) {
+        super(cause);
+    }
 }

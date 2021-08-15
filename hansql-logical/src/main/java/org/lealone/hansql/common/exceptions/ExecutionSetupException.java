@@ -19,8 +19,6 @@ package org.lealone.hansql.common.exceptions;
 
 import java.lang.reflect.InvocationTargetException;
 
-import org.lealone.hansql.common.exceptions.DrillException;
-
 public class ExecutionSetupException extends DrillException {
 
     public static ExecutionSetupException fromThrowable(String message, Throwable cause) {
@@ -35,27 +33,22 @@ public class ExecutionSetupException extends DrillException {
 
     public ExecutionSetupException() {
         super();
-
     }
 
     public ExecutionSetupException(String message, Throwable cause, boolean enableSuppression,
             boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
-
     }
 
     public ExecutionSetupException(String message, Throwable cause) {
         super(message, cause);
-
     }
 
     public ExecutionSetupException(String message) {
         super(message);
-
     }
 
     public ExecutionSetupException(Throwable cause) {
         super(cause);
-
     }
 }

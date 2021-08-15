@@ -24,10 +24,10 @@ import java.util.Iterator;
 
 import org.apache.drill.shaded.guava.com.google.common.collect.ImmutableList;
 import org.lealone.hansql.common.expression.visitors.ExprVisitor;
-import org.lealone.hansql.common.types.Types;
 import org.lealone.hansql.common.types.TypeProtos.DataMode;
 import org.lealone.hansql.common.types.TypeProtos.MajorType;
 import org.lealone.hansql.common.types.TypeProtos.MinorType;
+import org.lealone.hansql.common.types.Types;
 
 public class ValueExpressions {
 
@@ -241,7 +241,6 @@ public class ValueExpressions {
         private int scale;
         private int precision;
 
-        @SuppressWarnings("deprecation")
         public Decimal9Expression(BigDecimal input, ExpressionPosition pos) {
             super(pos);
             this.scale = input.scale();
@@ -284,7 +283,6 @@ public class ValueExpressions {
         private int scale;
         private int precision;
 
-        @SuppressWarnings("deprecation")
         public Decimal18Expression(BigDecimal input, ExpressionPosition pos) {
             super(pos);
             this.scale = input.scale();
