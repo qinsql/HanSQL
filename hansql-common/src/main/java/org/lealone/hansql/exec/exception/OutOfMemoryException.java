@@ -18,35 +18,35 @@
 package org.lealone.hansql.exec.exception;
 
 /**
- * This is thrown in various cases when Drill cannot allocate Direct Memory. <b>Note: </b> This does <b>NOT</b> get thrown when we run out of heap memory.
+ * This is thrown in various cases when Drill cannot allocate Direct Memory.
+ * <b>Note: </b> This does <b>NOT</b> get thrown when we run out of heap memory.
  */
 public class OutOfMemoryException extends RuntimeException {
-  private static final long serialVersionUID = -6858052345185793382L;
 
-  static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(OutOfMemoryException.class);
+    private static final long serialVersionUID = -6858052345185793382L;
 
-  public OutOfMemoryException() {
-    super();
-  }
+    public OutOfMemoryException() {
+        super();
+    }
 
-  public OutOfMemoryException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-    super(message, cause, enableSuppression, writableStackTrace);
-  }
+    public OutOfMemoryException(String message, Throwable cause, boolean enableSuppression,
+            boolean writableStackTrace) {
+        super(message, cause, enableSuppression, writableStackTrace);
+    }
 
-  public OutOfMemoryException(String message, Throwable cause) {
-    super(message, cause);
+    public OutOfMemoryException(String message, Throwable cause) {
+        super(message, cause);
 
-  }
+    }
 
-  public OutOfMemoryException(String message) {
-    super(message);
+    public OutOfMemoryException(String message) {
+        super(message);
 
-  }
+    }
 
-  public OutOfMemoryException(Throwable cause) {
-    super(cause);
+    public OutOfMemoryException(Throwable cause) {
+        super(cause);
 
-  }
-
+    }
 
 }
