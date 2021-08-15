@@ -33,7 +33,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.TimeZone;
 
-import org.apache.calcite.DataContext;
 import org.apache.calcite.rel.metadata.BuiltInMetadata.AllPredicates;
 import org.apache.calcite.rel.metadata.BuiltInMetadata.Collation;
 import org.apache.calcite.rel.metadata.BuiltInMetadata.ColumnOrigin;
@@ -72,6 +71,7 @@ import org.apache.calcite.sql.SqlJsonConstructorNullClause;
 import org.apache.calcite.sql.SqlJsonQueryEmptyOrErrorBehavior;
 import org.apache.calcite.sql.SqlJsonQueryWrapperBehavior;
 import org.apache.calcite.sql.SqlJsonValueEmptyOrErrorBehavior;
+import org.apache.calcite.sql.util.DataContext;
 import org.apache.calcite.util.function.Function1;
 
 import com.google.common.collect.ImmutableMap;

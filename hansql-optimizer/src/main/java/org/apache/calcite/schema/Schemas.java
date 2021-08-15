@@ -18,17 +18,16 @@ package org.apache.calcite.schema;
 
 import java.util.AbstractList;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
-import org.apache.calcite.DataContext;
 import org.apache.calcite.rel.type.RelDataType;
 import org.apache.calcite.rel.type.RelDataTypeFactory;
 import org.apache.calcite.rel.type.RelProtoDataType;
 import org.apache.calcite.sql.type.SqlTypeUtil;
+import org.apache.calcite.sql.util.DataContext;
 import org.apache.calcite.util.Enumerable;
 import org.apache.calcite.util.Pair;
 
@@ -93,22 +92,6 @@ public final class Schemas {
      * array. */
     public static Enumerable<Object[]> enumerable(final FilterableTable table, final DataContext root) {
         return table.scan(root, ImmutableList.of());
-    }
-
-    /** Returns an {@link org.apache.calcite.util.Enumerable} over object
-     * arrays, given a fully-qualified table name which leads to a
-     * {@link ScannableTable}. */
-    public static Table table(DataContext root, String... names) {
-        SchemaPlus schema = root.getRootSchema();
-        final List<String> nameList = Arrays.asList(names);
-        for (Iterator<? extends String> iterator = nameList.iterator();;) {
-            String name = iterator.next();
-            if (iterator.hasNext()) {
-                schema = schema.getSubSchema(name);
-            } else {
-                return schema.getTable(name);
-            }
-        }
     }
 
     /** Returns an implementation of

@@ -16,7 +16,7 @@
  */
 package org.apache.calcite.rex;
 
-import org.apache.calcite.DataContext;
+import org.apache.calcite.sql.util.DataContext;
 import org.apache.calcite.util.Hook;
 import org.apache.calcite.util.Pair;
 import org.apache.calcite.util.Utilities;

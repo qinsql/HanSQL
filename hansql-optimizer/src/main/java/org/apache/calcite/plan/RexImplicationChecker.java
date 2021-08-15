@@ -16,7 +16,6 @@
  */
 package org.apache.calcite.plan;
 
-import org.apache.calcite.DataContext;
 import org.apache.calcite.rel.type.RelDataType;
 import org.apache.calcite.rex.RexBuilder;
 import org.apache.calcite.rex.RexCall;
@@ -29,6 +28,7 @@ import org.apache.calcite.rex.RexVisitorImpl;
 import org.apache.calcite.sql.SqlKind;
 import org.apache.calcite.sql.SqlOperator;
 import org.apache.calcite.sql.fun.SqlCastFunction;
+import org.apache.calcite.sql.util.DataContext;
 import org.apache.calcite.util.Pair;
 import org.apache.calcite.util.trace.CalciteLogger;
 

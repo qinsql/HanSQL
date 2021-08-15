@@ -16,8 +16,8 @@
  */
 package org.apache.calcite.schema;
 
-import org.apache.calcite.DataContext;
 import org.apache.calcite.rex.RexNode;
+import org.apache.calcite.sql.util.DataContext;
 import org.apache.calcite.util.Enumerable;
 
 import java.util.List;

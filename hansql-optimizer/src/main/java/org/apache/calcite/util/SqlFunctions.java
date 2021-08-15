@@ -16,13 +16,13 @@
  */
 package org.apache.calcite.util;
 
-import org.apache.calcite.DataContext;
 import org.apache.calcite.rel.type.java.Primitive;
 import org.apache.calcite.sql.SqlJsonConstructorNullClause;
 import org.apache.calcite.sql.SqlJsonExistsErrorBehavior;
 import org.apache.calcite.sql.SqlJsonQueryEmptyOrErrorBehavior;
 import org.apache.calcite.sql.SqlJsonQueryWrapperBehavior;
 import org.apache.calcite.sql.SqlJsonValueEmptyOrErrorBehavior;
+import org.apache.calcite.sql.util.DataContext;
 import org.apache.calcite.util.annotations.Experimental;
 import org.apache.calcite.util.annotations.NonDeterministic;
 

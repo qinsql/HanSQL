@@ -14,15 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.calcite;
+package org.apache.calcite.sql.util;
 
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.TimeZone;
-import java.util.concurrent.atomic.AtomicBoolean;
-
-import org.apache.calcite.rel.type.java.JavaTypeFactory;
-import org.apache.calcite.schema.SchemaPlus;
 
 import com.google.common.base.CaseFormat;
 
@@ -30,16 +24,6 @@ import com.google.common.base.CaseFormat;
  * Runtime context allowing access to the tables in a database.
  */
 public interface DataContext {
-
-    /**
-     * Returns a sub-schema with a given name, or null.
-     */
-    SchemaPlus getRootSchema();
-
-    /**
-     * Returns the type factory.
-     */
-    JavaTypeFactory getTypeFactory();
 
     /**
      * Returns a context variable.
@@ -53,7 +37,6 @@ public interface DataContext {
 
     /** Variable that may be asked for in a call to {@link DataContext#get}. */
     enum Variable {
-        UTC_TIMESTAMP("utcTimestamp", Long.class),
 
         /** The time at which the current statement started executing. In
          * milliseconds after 1970-01-01 00:00:00, UTC. Required. */
@@ -63,28 +46,6 @@ public interface DataContext {
          * milliseconds after 1970-01-01 00:00:00, in the time zone of the current
          * statement. Required. */
         LOCAL_TIMESTAMP("localTimestamp", Long.class),
-
-        /** The Spark engine. Available if Spark is on the class path. */
-        SPARK_CONTEXT("sparkContext", Object.class),
-
-        /** A mutable flag that indicates whether user has requested that the
-         * current statement be canceled. Cancellation may not be immediate, but
-         * implementations of relational operators should check the flag fairly
-         * frequently and cease execution (e.g. by returning end of data). */
-        CANCEL_FLAG("cancelFlag", AtomicBoolean.class),
-
-        /** Query timeout in milliseconds.
-         * When no timeout is set, the value is 0 or not present. */
-        TIMEOUT("timeout", Long.class),
-
-        /** Writer to the standard error (stderr). */
-        STDERR("stderr", OutputStream.class),
-
-        /** Reader on the standard input (stdin). */
-        STDIN("stdin", InputStream.class),
-
-        /** Writer to the standard output (stdout). */
-        STDOUT("stdout", OutputStream.class),
 
         /** Time zone in which the current statement is executing. Required;
          * defaults to the time zone of the JVM if the connection does not specify a

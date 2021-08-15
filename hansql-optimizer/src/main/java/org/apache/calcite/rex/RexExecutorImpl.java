@@ -16,8 +16,9 @@
  */
 package org.apache.calcite.rex;
 
-import org.apache.calcite.DataContext;
 import org.apache.calcite.rel.type.RelDataType;
+import org.apache.calcite.sql.util.DataContext;
+
 import java.util.List;
 
 /**
