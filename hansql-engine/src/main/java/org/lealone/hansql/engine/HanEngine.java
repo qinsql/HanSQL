@@ -40,8 +40,8 @@ import org.apache.drill.exec.context.DrillbitContext;
 import org.apache.drill.exec.context.options.OptionDefinition;
 import org.apache.drill.exec.context.options.OptionManager;
 import org.apache.drill.exec.context.options.OptionValue;
-import org.apache.drill.exec.context.options.SystemOptionManager;
 import org.apache.drill.exec.context.options.OptionValue.OptionScope;
+import org.apache.drill.exec.context.options.SystemOptionManager;
 import org.apache.drill.exec.coord.ClusterCoordinator;
 import org.apache.drill.exec.coord.ClusterCoordinator.RegistrationHandle;
 import org.apache.drill.exec.coord.local.LocalClusterCoordinator;
@@ -57,7 +57,6 @@ import org.apache.drill.exec.store.sys.store.provider.CachingPersistentStoreProv
 import org.apache.drill.exec.store.sys.store.provider.InMemoryStoreProvider;
 import org.apache.drill.exec.store.sys.store.provider.LocalPersistentStoreProvider;
 import org.apache.drill.shaded.guava.com.google.common.base.Stopwatch;
-import org.slf4j.bridge.SLF4JBridgeHandler;
 
 /**
  * Starts, tracks and stops all the required services for a Drillbit daemon to work.
@@ -79,9 +78,6 @@ public class HanEngine implements AutoCloseable {
 
     static {
         // Environment.logEnv("Drillbit environment: ", logger);
-        // Jersey uses java.util.logging - create bridge: jul to slf4j
-        SLF4JBridgeHandler.removeHandlersForRootLogger();
-        SLF4JBridgeHandler.install();
     }
 
     private final static String SYSTEM_OPTIONS_NAME = "org.apache.drill.exec.server.Drillbit.system_options";
