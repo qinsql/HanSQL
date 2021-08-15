@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import org.apache.drill.exec.expr.annotations.Workspace;
+import org.lealone.hansql.exec.expr.annotations.Workspace;
 
 <@pp.dropOutputFile />
 
@@ -77,7 +77,7 @@ import org.apache.drill.exec.expr.annotations.Workspace;
           {
             <@compareNullsSubblock leftType=leftType rightType=rightType output=output breakTarget="outside" nullCompare=nullCompare nullComparesHigh=nullComparesHigh />
 
-            ${output} = org.apache.drill.exec.util.DecimalUtility.compareSparseBytes(left.buffer, left.start, left.getSign(left.start, left.buffer),
+            ${output} = org.lealone.hansql.exec.util.DecimalUtility.compareSparseBytes(left.buffer, left.start, left.getSign(left.start, left.buffer),
                             left.scale, left.precision, right.buffer,
                             right.start, right.getSign(right.start, right.buffer), right.precision,
                             right.scale, left.WIDTH, left.nDecimalDigits, ${absCompare});
@@ -90,7 +90,7 @@ import org.apache.drill.exec.expr.annotations.Workspace;
       {
         <@compareNullsSubblock leftType = leftType rightType=rightType output = output breakTarget = "outside" nullCompare = nullCompare nullComparesHigh=nullComparesHigh />
 
-        ${output} = org.apache.drill.exec.util.DecimalUtility.compareVarLenBytes(left.buffer, left.start, left.end, left.scale, right.buffer, right.start, right.end, right.scale, ${absCompare});
+        ${output} = org.lealone.hansql.exec.util.DecimalUtility.compareVarLenBytes(left.buffer, left.start, left.end, left.scale, right.buffer, right.start, right.end, right.scale, ${absCompare});
       } // outside
 </#macro>
 
@@ -99,23 +99,23 @@ import org.apache.drill.exec.expr.annotations.Workspace;
 
 <#if type.name.endsWith("VarDecimal")>
 
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/fn/impl/${type.name}Functions.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/fn/impl/${type.name}Functions.java" />
 
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.expr.fn.impl;
+package org.lealone.hansql.exec.expr.fn.impl;
 
 <#include "/@includes/vv_imports.ftl" />
 
-import org.apache.drill.exec.expr.DrillSimpleFunc;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.NullHandling;
-import org.apache.drill.exec.expr.annotations.Output;
-import org.apache.drill.exec.expr.annotations.Param;
-import org.apache.drill.exec.expr.annotations.Workspace;
-import org.apache.drill.exec.expr.fn.FunctionGenerationHelper;
-import org.apache.drill.exec.expr.holders.*;
-import org.apache.drill.exec.record.RecordBatch;
+import org.lealone.hansql.exec.expr.DrillSimpleFunc;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.NullHandling;
+import org.lealone.hansql.exec.expr.annotations.Output;
+import org.lealone.hansql.exec.expr.annotations.Param;
+import org.lealone.hansql.exec.expr.annotations.Workspace;
+import org.lealone.hansql.exec.expr.fn.FunctionGenerationHelper;
+import org.lealone.hansql.exec.expr.holders.*;
+import org.lealone.hansql.exec.record.RecordBatch;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.DrillBuf;
@@ -152,20 +152,20 @@ public class ${type.name}Functions {
       result.start = 0;
 
       java.math.BigDecimal leftInput =
-          org.apache.drill.exec.util.DecimalUtility
+          org.lealone.hansql.exec.util.DecimalUtility
               .getBigDecimalFromDrillBuf(left.buffer, left.start, left.end - left.start, left.scale);
       java.math.BigDecimal rightInput =
-          org.apache.drill.exec.util.DecimalUtility
+          org.lealone.hansql.exec.util.DecimalUtility
               .getBigDecimalFromDrillBuf(right.buffer, right.start, right.end - right.start, right.scale);
-      org.apache.drill.exec.planner.types.decimal.DrillBaseComputeScalePrecision typeInference =
+      org.lealone.hansql.exec.planner.types.decimal.DrillBaseComputeScalePrecision typeInference =
       <#if functionName == "Subtract" || functionName == "Add">
-          new org.apache.drill.exec.planner.types.decimal.DecimalScalePrecisionAddFunction(
+          new org.lealone.hansql.exec.planner.types.decimal.DecimalScalePrecisionAddFunction(
       <#elseif functionName == "Multiply">
-          new org.apache.drill.exec.planner.types.decimal.DecimalScalePrecisionMulFunction(
+          new org.lealone.hansql.exec.planner.types.decimal.DecimalScalePrecisionMulFunction(
       <#elseif functionName == "Divide">
-          new org.apache.drill.exec.planner.types.decimal.DecimalScalePrecisionDivideFunction(
+          new org.lealone.hansql.exec.planner.types.decimal.DecimalScalePrecisionDivideFunction(
       <#elseif functionName == "Mod">
-          new org.apache.drill.exec.planner.types.decimal.DecimalScalePrecisionModFunction(
+          new org.lealone.hansql.exec.planner.types.decimal.DecimalScalePrecisionModFunction(
       </#if>
               left.precision, left.scale,
               right.precision, right.scale);
@@ -183,7 +183,7 @@ public class ${type.name}Functions {
               new java.math.MathContext(result.precision, java.math.RoundingMode.HALF_UP))
             .setScale(result.scale, java.math.BigDecimal.ROUND_HALF_UP);
 
-      org.apache.drill.exec.util.DecimalUtility.checkValueOverflow(opResult, result.precision, result.scale);
+      org.lealone.hansql.exec.util.DecimalUtility.checkValueOverflow(opResult, result.precision, result.scale);
 
       byte[] bytes = opResult.unscaledValue().toByteArray();
       int len = bytes.length;
@@ -226,7 +226,7 @@ public class ${type.name}Functions {
       result.precision = in.precision;
 
       java.math.BigDecimal opResult =
-          org.apache.drill.exec.util.DecimalUtility
+          org.lealone.hansql.exec.util.DecimalUtility
               .getBigDecimalFromDrillBuf(in.buffer, in.start, in.end - in.start, in.scale)
           <#if functionName == "Abs">
                   .abs();
@@ -266,7 +266,7 @@ public class ${type.name}Functions {
       // TODO: optimize to get only bytes that corresponds to sign.
       // Should be taken into account case when leading zero bytes are stored in buff.
       java.math.BigDecimal bd =
-          org.apache.drill.exec.util.DecimalUtility
+          org.lealone.hansql.exec.util.DecimalUtility
               .getBigDecimalFromDrillBuf(in.buffer, in.start, in.end - in.start, in.scale);
       out.value = bd.signum();
     }
@@ -290,7 +290,7 @@ public class ${type.name}Functions {
       result.scale = Math.max(right.value, 0);
       result.precision = left.precision;
       java.math.BigDecimal opResult =
-          org.apache.drill.exec.util.DecimalUtility
+          org.lealone.hansql.exec.util.DecimalUtility
               .getBigDecimalFromDrillBuf(left.buffer, left.start, left.end - left.start, left.scale)
                   .setScale(result.scale, java.math.BigDecimal.ROUND_DOWN);
       byte[] bytes = opResult.unscaledValue().toByteArray();
@@ -319,7 +319,7 @@ public class ${type.name}Functions {
       result.precision = left.precision;
       result.start = 0;
       java.math.BigDecimal bd =
-          org.apache.drill.exec.util.DecimalUtility
+          org.lealone.hansql.exec.util.DecimalUtility
               .getBigDecimalFromDrillBuf(left.buffer, left.start, left.end - left.start, left.scale)
                   .setScale(result.scale, java.math.BigDecimal.ROUND_HALF_UP);
       byte[] bytes = bd.unscaledValue().toByteArray();

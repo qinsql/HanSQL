@@ -15,28 +15,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import org.apache.drill.exec.expr.annotations.Workspace;
+import org.lealone.hansql.exec.expr.annotations.Workspace;
 
 <@pp.dropOutputFile />
 
 <#list numericTypes.numeric as type>
 
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/fn/impl/G${type}ToChar.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/fn/impl/G${type}ToChar.java" />
 
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.expr.fn.impl;
+package org.lealone.hansql.exec.expr.fn.impl;
 
 <#include "/@includes/vv_imports.ftl" />
 
-import org.apache.drill.exec.expr.DrillSimpleFunc;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.NullHandling;
-import org.apache.drill.exec.expr.annotations.Output;
-import org.apache.drill.exec.expr.annotations.Workspace;
-import org.apache.drill.exec.expr.annotations.Param;
-import org.apache.drill.exec.expr.holders.*;
-import org.apache.drill.exec.record.RecordBatch;
+import org.lealone.hansql.exec.expr.DrillSimpleFunc;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.NullHandling;
+import org.lealone.hansql.exec.expr.annotations.Output;
+import org.lealone.hansql.exec.expr.annotations.Workspace;
+import org.lealone.hansql.exec.expr.annotations.Param;
+import org.lealone.hansql.exec.expr.holders.*;
+import org.lealone.hansql.exec.record.RecordBatch;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.DrillBuf;
@@ -69,7 +69,7 @@ public class G${type}ToChar implements DrillSimpleFunc {
 
   public void eval() {
     <#if type == "VarDecimal">
-    java.math.BigDecimal bigDecimal = org.apache.drill.exec.util.DecimalUtility.getBigDecimalFromDrillBuf(left.buffer, left.start, left.end - left.start, left.scale);
+    java.math.BigDecimal bigDecimal = org.lealone.hansql.exec.util.DecimalUtility.getBigDecimalFromDrillBuf(left.buffer, left.start, left.end - left.start, left.scale);
     String str = outputFormat.format(bigDecimal);
     <#else>
     String str =  outputFormat.format(left.value);

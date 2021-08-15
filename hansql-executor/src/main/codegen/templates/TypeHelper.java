@@ -15,24 +15,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import org.apache.drill.exec.vector.complex.UnionVector;
+import org.lealone.hansql.exec.vector.complex.UnionVector;
 
 <@pp.dropOutputFile />
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/TypeHelper.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/TypeHelper.java" />
 
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.expr;
+package org.lealone.hansql.exec.expr;
 
 <#include "/@includes/vv_imports.ftl" />
-import org.apache.drill.common.expression.SchemaPath;
-import org.apache.drill.common.types.TypeProtos.DataMode;
-import org.apache.drill.common.types.TypeProtos.MinorType;
-import org.apache.drill.common.types.TypeProtos.MajorType;
-import org.apache.drill.exec.record.MaterializedField;
-import org.apache.drill.exec.vector.accessor.*;
-import org.apache.drill.exec.vector.complex.RepeatedMapVector;
-import org.apache.drill.exec.util.CallBack;
+import org.lealone.hansql.common.expression.SchemaPath;
+import org.lealone.hansql.common.types.TypeProtos.DataMode;
+import org.lealone.hansql.common.types.TypeProtos.MinorType;
+import org.lealone.hansql.common.types.TypeProtos.MajorType;
+import org.lealone.hansql.exec.record.MaterializedField;
+import org.lealone.hansql.exec.vector.accessor.*;
+import org.lealone.hansql.exec.vector.complex.RepeatedMapVector;
+import org.lealone.hansql.exec.util.CallBack;
 
 /*
  * This class is generated using freemarker and the ${.template_name} template.

@@ -15,29 +15,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import org.apache.drill.common.types.TypeProtos.MinorType;
-import org.apache.drill.exec.vector.ValueVector;
+import org.lealone.hansql.common.types.TypeProtos.MinorType;
+import org.lealone.hansql.exec.vector.ValueVector;
 
 <@pp.dropOutputFile />
-<@pp.changeOutputFile name="/org/apache/drill/exec/vector/complex/UnionVector.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/vector/complex/UnionVector.java" />
 
 
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.vector.complex;
+package org.lealone.hansql.exec.vector.complex;
 
 <#include "/@includes/vv_imports.ftl" />
 import java.util.Iterator;
 import java.util.Set;
 
-import org.apache.drill.exec.vector.complex.impl.ComplexCopier;
+import org.lealone.hansql.exec.vector.complex.impl.ComplexCopier;
 
 import org.apache.drill.shaded.guava.com.google.common.base.Preconditions;
 
-import org.apache.drill.exec.util.CallBack;
-import org.apache.drill.exec.expr.BasicTypeHelper;
-import org.apache.drill.exec.memory.AllocationManager.BufferLedger;
-import org.apache.drill.exec.record.MaterializedField;
+import org.lealone.hansql.exec.util.CallBack;
+import org.lealone.hansql.exec.expr.BasicTypeHelper;
+import org.lealone.hansql.exec.memory.AllocationManager.BufferLedger;
+import org.lealone.hansql.exec.record.MaterializedField;
 
 import org.apache.drill.shaded.guava.com.google.common.annotations.VisibleForTesting;
 

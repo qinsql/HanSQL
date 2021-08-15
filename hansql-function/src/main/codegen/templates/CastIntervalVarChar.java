@@ -21,26 +21,26 @@
 
 <#if type.major == "IntervalVarChar">  <#-- Template to convert from Interval, IntervalYear, IntervalDay to VarChar -->
 
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/fn/impl/gcast/Cast${type.from}To${type.to}.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/fn/impl/gcast/Cast${type.from}To${type.to}.java" />
 
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.expr.fn.impl.gcast;
+package org.lealone.hansql.exec.expr.fn.impl.gcast;
 
 <#include "/@includes/vv_imports.ftl" />
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.DrillBuf;
 
-import org.apache.drill.exec.expr.DrillSimpleFunc;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.FunctionCostCategory;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.NullHandling;
-import org.apache.drill.exec.expr.annotations.Output;
-import org.apache.drill.exec.expr.annotations.Param;
-import org.apache.drill.exec.expr.annotations.Workspace;
-import org.apache.drill.exec.expr.holders.*;
-import org.apache.drill.exec.record.RecordBatch;
+import org.lealone.hansql.exec.expr.DrillSimpleFunc;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.FunctionCostCategory;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.NullHandling;
+import org.lealone.hansql.exec.expr.annotations.Output;
+import org.lealone.hansql.exec.expr.annotations.Param;
+import org.lealone.hansql.exec.expr.annotations.Workspace;
+import org.lealone.hansql.exec.expr.holders.*;
+import org.lealone.hansql.exec.record.RecordBatch;
 import org.joda.time.MutableDateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.DateMidnight;
@@ -66,19 +66,19 @@ public class Cast${type.from}To${type.to} implements DrillSimpleFunc {
 
   public void eval() {
 
-      int years  = (in.months / org.apache.drill.exec.vector.DateUtilities.yearsToMonths);
-      int months = (in.months % org.apache.drill.exec.vector.DateUtilities.yearsToMonths);
+      int years  = (in.months / org.lealone.hansql.exec.vector.DateUtilities.yearsToMonths);
+      int months = (in.months % org.lealone.hansql.exec.vector.DateUtilities.yearsToMonths);
 
       long millis = in.milliseconds;
 
-      long hours  = millis / (org.apache.drill.exec.vector.DateUtilities.hoursToMillis);
-      millis     = millis % (org.apache.drill.exec.vector.DateUtilities.hoursToMillis);
+      long hours  = millis / (org.lealone.hansql.exec.vector.DateUtilities.hoursToMillis);
+      millis     = millis % (org.lealone.hansql.exec.vector.DateUtilities.hoursToMillis);
 
-      long minutes = millis / (org.apache.drill.exec.vector.DateUtilities.minutesToMillis);
-      millis      = millis % (org.apache.drill.exec.vector.DateUtilities.minutesToMillis);
+      long minutes = millis / (org.lealone.hansql.exec.vector.DateUtilities.minutesToMillis);
+      millis      = millis % (org.lealone.hansql.exec.vector.DateUtilities.minutesToMillis);
 
-      long seconds = millis / (org.apache.drill.exec.vector.DateUtilities.secondsToMillis);
-      millis      = millis % (org.apache.drill.exec.vector.DateUtilities.secondsToMillis);
+      long seconds = millis / (org.lealone.hansql.exec.vector.DateUtilities.secondsToMillis);
+      millis      = millis % (org.lealone.hansql.exec.vector.DateUtilities.secondsToMillis);
 
       String yearString = (Math.abs(years) == 1) ? " year " : " years ";
       String monthString = (Math.abs(months) == 1) ? " month " : " months ";
@@ -101,25 +101,25 @@ public class Cast${type.from}To${type.to} implements DrillSimpleFunc {
 }
 
 <#elseif type.major == "IntervalYearVarChar">
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/fn/impl/gcast/Cast${type.from}To${type.to}.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/fn/impl/gcast/Cast${type.from}To${type.to}.java" />
 
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.expr.fn.impl.gcast;
+package org.lealone.hansql.exec.expr.fn.impl.gcast;
 
 <#include "/@includes/vv_imports.ftl" />
 
 import io.netty.buffer.ByteBuf;
 
-import org.apache.drill.exec.expr.DrillSimpleFunc;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.FunctionCostCategory;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.NullHandling;
-import org.apache.drill.exec.expr.annotations.Output;
-import org.apache.drill.exec.expr.annotations.Param;
-import org.apache.drill.exec.expr.annotations.Workspace;
-import org.apache.drill.exec.expr.holders.*;
-import org.apache.drill.exec.record.RecordBatch;
+import org.lealone.hansql.exec.expr.DrillSimpleFunc;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.FunctionCostCategory;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.NullHandling;
+import org.lealone.hansql.exec.expr.annotations.Output;
+import org.lealone.hansql.exec.expr.annotations.Param;
+import org.lealone.hansql.exec.expr.annotations.Workspace;
+import org.lealone.hansql.exec.expr.holders.*;
+import org.lealone.hansql.exec.record.RecordBatch;
 import org.joda.time.MutableDateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.DateMidnight;
@@ -141,8 +141,8 @@ public class Cast${type.from}To${type.to} implements DrillSimpleFunc {
   }
 
   public void eval() {
-      int years  = (in.value / org.apache.drill.exec.vector.DateUtilities.yearsToMonths);
-      int months = (in.value % org.apache.drill.exec.vector.DateUtilities.yearsToMonths);
+      int years  = (in.value / org.lealone.hansql.exec.vector.DateUtilities.yearsToMonths);
+      int months = (in.value % org.lealone.hansql.exec.vector.DateUtilities.yearsToMonths);
 
       String yearString = (Math.abs(years) == 1) ? " year " : " years ";
       String monthString = (Math.abs(months) == 1) ? " month " : " months ";
@@ -158,11 +158,11 @@ public class Cast${type.from}To${type.to} implements DrillSimpleFunc {
 }
 
 <#elseif type.major == "IntervalDayVarChar">
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/fn/impl/gcast/Cast${type.from}To${type.to}.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/fn/impl/gcast/Cast${type.from}To${type.to}.java" />
 
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.expr.fn.impl.gcast;
+package org.lealone.hansql.exec.expr.fn.impl.gcast;
 
 
 
@@ -170,15 +170,15 @@ package org.apache.drill.exec.expr.fn.impl.gcast;
 
 import io.netty.buffer.ByteBuf;
 
-import org.apache.drill.exec.expr.DrillSimpleFunc;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.FunctionCostCategory;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.NullHandling;
-import org.apache.drill.exec.expr.annotations.Output;
-import org.apache.drill.exec.expr.annotations.Param;
-import org.apache.drill.exec.expr.annotations.Workspace;
-import org.apache.drill.exec.expr.holders.*;
-import org.apache.drill.exec.record.RecordBatch;
+import org.lealone.hansql.exec.expr.DrillSimpleFunc;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.FunctionCostCategory;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.NullHandling;
+import org.lealone.hansql.exec.expr.annotations.Output;
+import org.lealone.hansql.exec.expr.annotations.Param;
+import org.lealone.hansql.exec.expr.annotations.Workspace;
+import org.lealone.hansql.exec.expr.holders.*;
+import org.lealone.hansql.exec.record.RecordBatch;
 import org.joda.time.MutableDateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.DateMidnight;
@@ -205,14 +205,14 @@ public class Cast${type.from}To${type.to} implements DrillSimpleFunc {
   public void eval() {
       long millis = in.milliseconds;
 
-      long hours  = millis / (org.apache.drill.exec.vector.DateUtilities.hoursToMillis);
-      millis     = millis % (org.apache.drill.exec.vector.DateUtilities.hoursToMillis);
+      long hours  = millis / (org.lealone.hansql.exec.vector.DateUtilities.hoursToMillis);
+      millis     = millis % (org.lealone.hansql.exec.vector.DateUtilities.hoursToMillis);
 
-      long minutes = millis / (org.apache.drill.exec.vector.DateUtilities.minutesToMillis);
-      millis      = millis % (org.apache.drill.exec.vector.DateUtilities.minutesToMillis);
+      long minutes = millis / (org.lealone.hansql.exec.vector.DateUtilities.minutesToMillis);
+      millis      = millis % (org.lealone.hansql.exec.vector.DateUtilities.minutesToMillis);
 
-      long seconds = millis / (org.apache.drill.exec.vector.DateUtilities.secondsToMillis);
-      millis      = millis % (org.apache.drill.exec.vector.DateUtilities.secondsToMillis);
+      long seconds = millis / (org.lealone.hansql.exec.vector.DateUtilities.secondsToMillis);
+      millis      = millis % (org.lealone.hansql.exec.vector.DateUtilities.secondsToMillis);
 
       String dayString = (Math.abs(in.days) == 1) ? " day " : " days ";
 

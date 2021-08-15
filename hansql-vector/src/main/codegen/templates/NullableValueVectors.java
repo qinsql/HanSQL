@@ -15,12 +15,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import org.apache.drill.common.types.TypeProtos.DataMode;
-import org.apache.drill.exec.memory.AllocationManager.BufferLedger;
-import org.apache.drill.exec.record.MaterializedField;
-import org.apache.drill.exec.util.DecimalUtility;
-import org.apache.drill.exec.vector.BaseDataValueVector;
-import org.apache.drill.exec.vector.NullableVectorDefinitionSetter;
+import org.lealone.hansql.common.types.TypeProtos.DataMode;
+import org.lealone.hansql.exec.memory.AllocationManager.BufferLedger;
+import org.lealone.hansql.exec.record.MaterializedField;
+import org.lealone.hansql.exec.util.DecimalUtility;
+import org.lealone.hansql.exec.vector.BaseDataValueVector;
+import org.lealone.hansql.exec.vector.NullableVectorDefinitionSetter;
 
 import java.lang.Override;
 import java.lang.UnsupportedOperationException;
@@ -34,11 +34,11 @@ import java.util.Set;
 <#assign valuesName = "${minor.class}Vector" />
 <#assign friendlyType = (minor.friendlyType!minor.boxedType!type.boxedType) />
 
-<@pp.changeOutputFile name="/org/apache/drill/exec/vector/${className}.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/vector/${className}.java" />
 
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.vector;
+package org.lealone.hansql.exec.vector;
 
 <#include "/@includes/vv_imports.ftl" />
 

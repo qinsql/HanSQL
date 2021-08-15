@@ -20,17 +20,17 @@
 <#list cast.types as type>
 <#if type.major == "UntypedNull">
 
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/fn/impl/gcast/Cast${type.from}${type.to}.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/fn/impl/gcast/Cast${type.from}${type.to}.java" />
 
 <#include "/@includes/license.ftl" />
-package org.apache.drill.exec.expr.fn.impl.gcast;
+package org.lealone.hansql.exec.expr.fn.impl.gcast;
 
-import org.apache.drill.exec.expr.DrillSimpleFunc;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate;
-import org.apache.drill.exec.expr.annotations.Output;
-import org.apache.drill.exec.expr.annotations.Param;
-import org.apache.drill.exec.expr.holders.*;
-import org.apache.drill.exec.vector.UntypedNullHolder;
+import org.lealone.hansql.exec.expr.DrillSimpleFunc;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate;
+import org.lealone.hansql.exec.expr.annotations.Output;
+import org.lealone.hansql.exec.expr.annotations.Param;
+import org.lealone.hansql.exec.expr.holders.*;
+import org.lealone.hansql.exec.vector.UntypedNullHolder;
 
 /*
  * This class is generated using freemarker and the ${.template_name} template.

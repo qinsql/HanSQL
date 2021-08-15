@@ -18,10 +18,10 @@
 import java.lang.Override;
 import java.util.Vector;
 
-import org.apache.drill.exec.vector.AllocationHelper;
-import org.apache.drill.exec.vector.ValueVector.Mutator;
-import org.apache.drill.exec.vector.complex.IndexHolder;
-import org.apache.drill.exec.vector.complex.reader.FieldReader;
+import org.lealone.hansql.exec.vector.AllocationHelper;
+import org.lealone.hansql.exec.vector.ValueVector.Mutator;
+import org.lealone.hansql.exec.vector.complex.IndexHolder;
+import org.lealone.hansql.exec.vector.complex.reader.FieldReader;
 
 <@pp.dropOutputFile />
 <#list vv.types as type>
@@ -32,10 +32,10 @@ import org.apache.drill.exec.vector.complex.reader.FieldReader;
 <#assign javaType = (minor.javaType!type.javaType) />
 <#assign fields = minor.fields!type.fields />
 
-<@pp.changeOutputFile name="/org/apache/drill/exec/vector/complex/impl/${eName}WriterImpl.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/vector/complex/impl/${eName}WriterImpl.java" />
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.vector.complex.impl;
+package org.lealone.hansql.exec.vector.complex.impl;
 
 <#include "/@includes/vv_imports.ftl" />
 
@@ -144,10 +144,10 @@ public class ${eName}WriterImpl extends AbstractFieldWriter {
   </#if>
 }
 
-<@pp.changeOutputFile name="/org/apache/drill/exec/vector/complex/writer/${eName}Writer.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/vector/complex/writer/${eName}Writer.java" />
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.vector.complex.writer;
+package org.lealone.hansql.exec.vector.complex.writer;
 
 <#include "/@includes/vv_imports.ftl" />
 @SuppressWarnings("unused")

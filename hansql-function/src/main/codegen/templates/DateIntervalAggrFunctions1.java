@@ -20,7 +20,7 @@
 
 
 <#list aggrtypes1.aggrtypes as aggrtype>
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/fn/impl/gaggr/${aggrtype.className}DateTypeFunctions.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/fn/impl/gaggr/${aggrtype.className}DateTypeFunctions.java" />
 
 <#include "/@includes/license.ftl" />
 
@@ -28,15 +28,15 @@
 <#-- A utility class that is used to generate java code for aggr functions for Date, Time, Interval types -->
 <#--  that maintain a single running counter to hold the result.  This includes: MIN, MAX, SUM, COUNT. -->
 
-package org.apache.drill.exec.expr.fn.impl.gaggr;
+package org.lealone.hansql.exec.expr.fn.impl.gaggr;
 
-import org.apache.drill.exec.expr.DrillAggFunc;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.FunctionScope;
-import org.apache.drill.exec.expr.annotations.Output;
-import org.apache.drill.exec.expr.annotations.Param;
-import org.apache.drill.exec.expr.annotations.Workspace;
-import org.apache.drill.exec.expr.holders.*;
+import org.lealone.hansql.exec.expr.DrillAggFunc;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.FunctionScope;
+import org.lealone.hansql.exec.expr.annotations.Output;
+import org.lealone.hansql.exec.expr.annotations.Param;
+import org.lealone.hansql.exec.expr.annotations.Workspace;
+import org.lealone.hansql.exec.expr.holders.*;
 
 /*
  * This class is generated using freemarker and the ${.template_name} template.
@@ -86,14 +86,14 @@ public static class ${type.inputType}${aggrtype.className} implements DrillAggFu
 
     <#if type.outputType?ends_with("Interval")>
 
-    long inMS = (long) in.months * org.apache.drill.exec.vector.DateUtilities.monthsToMillis+
-                       in.days * (org.apache.drill.exec.vector.DateUtilities.daysToStandardMillis) +
+    long inMS = (long) in.months * org.lealone.hansql.exec.vector.DateUtilities.monthsToMillis+
+                       in.days * (org.lealone.hansql.exec.vector.DateUtilities.daysToStandardMillis) +
                        in.milliseconds;
 
     value.value = Math.min(value.value, inMS);
 
     <#elseif type.outputType?ends_with("IntervalDay")>
-    long inMS = (long) in.days * (org.apache.drill.exec.vector.DateUtilities.daysToStandardMillis) +
+    long inMS = (long) in.days * (org.lealone.hansql.exec.vector.DateUtilities.daysToStandardMillis) +
                        in.milliseconds;
 
     value.value = Math.min(value.value, inMS);
@@ -104,13 +104,13 @@ public static class ${type.inputType}${aggrtype.className} implements DrillAggFu
     </#if>
 	  <#elseif aggrtype.funcName == "max">
     <#if type.outputType?ends_with("Interval")>
-    long inMS = (long) in.months * org.apache.drill.exec.vector.DateUtilities.monthsToMillis+
-                       in.days * (org.apache.drill.exec.vector.DateUtilities.daysToStandardMillis) +
+    long inMS = (long) in.months * org.lealone.hansql.exec.vector.DateUtilities.monthsToMillis+
+                       in.days * (org.lealone.hansql.exec.vector.DateUtilities.daysToStandardMillis) +
                        in.milliseconds;
 
     value.value = Math.max(value.value, inMS);
     <#elseif type.outputType?ends_with("IntervalDay")>
-    long inMS = (long) in.days * (org.apache.drill.exec.vector.DateUtilities.daysToStandardMillis) +
+    long inMS = (long) in.days * (org.lealone.hansql.exec.vector.DateUtilities.daysToStandardMillis) +
                        in.milliseconds;
 
     value.value = Math.max(value.value, inMS);
@@ -154,13 +154,13 @@ public static class ${type.inputType}${aggrtype.className} implements DrillAggFu
       out.isSet = 1;
       <#if aggrtype.funcName == "max" || aggrtype.funcName == "min">
       <#if type.outputType?ends_with("Interval")>
-      out.months = (int) (value.value / org.apache.drill.exec.vector.DateUtilities.monthsToMillis);
-      value.value = value.value % org.apache.drill.exec.vector.DateUtilities.monthsToMillis;
-      out.days = (int) (value.value / org.apache.drill.exec.vector.DateUtilities.daysToStandardMillis);
-      out.milliseconds = (int) (value.value % org.apache.drill.exec.vector.DateUtilities.daysToStandardMillis);
+      out.months = (int) (value.value / org.lealone.hansql.exec.vector.DateUtilities.monthsToMillis);
+      value.value = value.value % org.lealone.hansql.exec.vector.DateUtilities.monthsToMillis;
+      out.days = (int) (value.value / org.lealone.hansql.exec.vector.DateUtilities.daysToStandardMillis);
+      out.milliseconds = (int) (value.value % org.lealone.hansql.exec.vector.DateUtilities.daysToStandardMillis);
       <#elseif type.outputType?ends_with("IntervalDay")>
-      out.days = (int) (value.value / org.apache.drill.exec.vector.DateUtilities.daysToStandardMillis);
-      out.milliseconds = (int) (value.value % org.apache.drill.exec.vector.DateUtilities.daysToStandardMillis);
+      out.days = (int) (value.value / org.lealone.hansql.exec.vector.DateUtilities.daysToStandardMillis);
+      out.milliseconds = (int) (value.value % org.lealone.hansql.exec.vector.DateUtilities.daysToStandardMillis);
       <#else>
       out.value = value.value;
       </#if>

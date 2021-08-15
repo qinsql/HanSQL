@@ -18,7 +18,7 @@
 <@pp.dropOutputFile />
 
 <#list decimalaggrtypes1.aggrtypes as aggrtype>
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/fn/impl/gaggr/Decimal${aggrtype.className}Functions.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/fn/impl/gaggr/Decimal${aggrtype.className}Functions.java" />
 
 <#include "/@includes/license.ftl" />
 
@@ -29,22 +29,22 @@
  * This class is automatically generated from AggrTypeFunctions1.tdd using FreeMarker.
  */
 
-package org.apache.drill.exec.expr.fn.impl.gaggr;
+package org.lealone.hansql.exec.expr.fn.impl.gaggr;
 
 <#include "/@includes/vv_imports.ftl" />
 
-import org.apache.drill.exec.expr.DrillAggFunc;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.FunctionScope;
-import org.apache.drill.exec.expr.annotations.Output;
-import org.apache.drill.exec.expr.annotations.Param;
-import org.apache.drill.exec.expr.annotations.Workspace;
-import org.apache.drill.exec.vector.complex.writer.*;
-import org.apache.drill.exec.vector.complex.writer.BaseWriter.*;
+import org.lealone.hansql.exec.expr.DrillAggFunc;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.FunctionScope;
+import org.lealone.hansql.exec.expr.annotations.Output;
+import org.lealone.hansql.exec.expr.annotations.Param;
+import org.lealone.hansql.exec.expr.annotations.Workspace;
+import org.lealone.hansql.exec.vector.complex.writer.*;
+import org.lealone.hansql.exec.vector.complex.writer.BaseWriter.*;
 import javax.inject.Inject;
 import io.netty.buffer.DrillBuf;
-import org.apache.drill.exec.expr.holders.*;
-import org.apache.drill.exec.record.RecordBatch;
+import org.lealone.hansql.exec.expr.holders.*;
+import org.lealone.hansql.exec.record.RecordBatch;
 import io.netty.buffer.ByteBuf;
 
 /*
@@ -86,14 +86,14 @@ public class Decimal${aggrtype.className}Functions {
         }
       </#if>
       nonNullCount.value = 1;
-      java.math.BigDecimal currentValue = org.apache.drill.exec.util.DecimalUtility
+      java.math.BigDecimal currentValue = org.lealone.hansql.exec.util.DecimalUtility
           .getBigDecimalFromDrillBuf(in.buffer, in.start, in.end - in.start, in.scale);
       value.obj = ((java.math.BigDecimal) value.obj).add(currentValue);
       if (outputScale.value == Integer.MIN_VALUE) {
         outputScale.value = in.scale;
       }
-      org.apache.drill.exec.util.DecimalUtility.checkValueOverflow((java.math.BigDecimal) value.obj,
-          org.apache.drill.exec.planner.types.DrillRelDataTypeSystem.DRILL_REL_DATATYPE_SYSTEM.getMaxNumericPrecision(), outputScale.value);
+      org.lealone.hansql.exec.util.DecimalUtility.checkValueOverflow((java.math.BigDecimal) value.obj,
+          org.lealone.hansql.exec.planner.types.DrillRelDataTypeSystem.DRILL_REL_DATATYPE_SYSTEM.getMaxNumericPrecision(), outputScale.value);
       <#if type.inputType?starts_with("Nullable")>
       } // end of sout block
       </#if>
@@ -106,7 +106,7 @@ public class Decimal${aggrtype.className}Functions {
         out.start  = 0;
         out.scale = outputScale.value;
         out.precision =
-            org.apache.drill.exec.planner.types.DrillRelDataTypeSystem.DRILL_REL_DATATYPE_SYSTEM.getMaxNumericPrecision();
+            org.lealone.hansql.exec.planner.types.DrillRelDataTypeSystem.DRILL_REL_DATATYPE_SYSTEM.getMaxNumericPrecision();
         value.obj = ((java.math.BigDecimal) value.obj).setScale(out.scale, java.math.BigDecimal.ROUND_HALF_UP);
         byte[] bytes = ((java.math.BigDecimal) value.obj).unscaledValue().toByteArray();
         int len = bytes.length;
@@ -143,7 +143,7 @@ public class Decimal${aggrtype.className}Functions {
     @Override
     public void add() {
       if (nonNullCount.value == 0) {
-        org.apache.drill.exec.expr.fn.impl.MappifyUtility.createList(in.reader, writer, "any_value");
+        org.lealone.hansql.exec.expr.fn.impl.MappifyUtility.createList(in.reader, writer, "any_value");
       }
       nonNullCount.value = 1;
     }
@@ -186,7 +186,7 @@ public class Decimal${aggrtype.className}Functions {
       }
       </#if>
       if (nonNullCount.value == 0) {
-        value.obj=org.apache.drill.exec.util.DecimalUtility
+        value.obj=org.lealone.hansql.exec.util.DecimalUtility
             .getBigDecimalFromDrillBuf(in.buffer,in.start,in.end-in.start,in.scale);
         scale.value = in.scale;
         precision.value = in.precision;
@@ -252,16 +252,16 @@ public class Decimal${aggrtype.className}Functions {
       }
       </#if>
       nonNullCount.value = 1;
-      org.apache.drill.exec.expr.fn.impl.DrillByteArray tmp = (org.apache.drill.exec.expr.fn.impl.DrillByteArray) tempResult.obj;
+      org.lealone.hansql.exec.expr.fn.impl.DrillByteArray tmp = (org.lealone.hansql.exec.expr.fn.impl.DrillByteArray) tempResult.obj;
       <#if aggrtype.funcName == "max">
       int cmp = 0;
       if (tmp != null) {
-        cmp = org.apache.drill.exec.util.DecimalUtility
+        cmp = org.lealone.hansql.exec.util.DecimalUtility
             .compareVarLenBytes(in.buffer, in.start, in.end, in.scale,
                 tmp.getBytes(), scale.value, false);
       } else {
         cmp = 1;
-        tmp = new org.apache.drill.exec.expr.fn.impl.DrillByteArray();
+        tmp = new org.lealone.hansql.exec.expr.fn.impl.DrillByteArray();
         tempResult.obj = tmp;
       }
 
@@ -281,12 +281,12 @@ public class Decimal${aggrtype.className}Functions {
       <#elseif aggrtype.funcName == "min">
       int cmp = 0;
       if (tmp != null) {
-        cmp = org.apache.drill.exec.util.DecimalUtility
+        cmp = org.lealone.hansql.exec.util.DecimalUtility
             .compareVarLenBytes(in.buffer, in.start, in.end, in.scale,
                 tmp.getBytes(), scale.value, false);
       } else {
         cmp = -1;
-        tmp = new org.apache.drill.exec.expr.fn.impl.DrillByteArray();
+        tmp = new org.lealone.hansql.exec.expr.fn.impl.DrillByteArray();
         tempResult.obj = tmp;
       }
 
@@ -313,7 +313,7 @@ public class Decimal${aggrtype.className}Functions {
     public void output() {
       if (nonNullCount.value > 0) {
         out.isSet = 1;
-        org.apache.drill.exec.expr.fn.impl.DrillByteArray tmp = (org.apache.drill.exec.expr.fn.impl.DrillByteArray) tempResult.obj;
+        org.lealone.hansql.exec.expr.fn.impl.DrillByteArray tmp = (org.lealone.hansql.exec.expr.fn.impl.DrillByteArray) tempResult.obj;
         buf = buf.reallocIfNeeded(tmp.getLength());
         buf.setBytes(0, tmp.getBytes(), 0, tmp.getLength());
         out.start = 0;

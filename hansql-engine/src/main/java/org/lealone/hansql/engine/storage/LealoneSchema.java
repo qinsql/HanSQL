@@ -20,7 +20,7 @@ package org.lealone.hansql.engine.storage;
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.drill.exec.store.AbstractSchema;
+import org.lealone.hansql.exec.store.AbstractSchema;
 import org.lealone.hansql.optimizer.schema.SchemaPlus;
 
 public class LealoneSchema extends AbstractSchema {

@@ -21,25 +21,25 @@
 <#if type.major == "VarCharInterval" || type.major == "NullableVarCharInterval">  <#-- Template to convert from VarChar to Interval, IntervalYear, IntervalDay -->
 
 <#if type.major == "VarCharInterval">
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/fn/impl/gcast/Cast${type.from}To${type.to}.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/fn/impl/gcast/Cast${type.from}To${type.to}.java" />
 <#elseif type.major == "NullableVarCharInterval">
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/fn/impl/gcast/CastEmptyString${type.from}To${type.to}.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/fn/impl/gcast/CastEmptyString${type.from}To${type.to}.java" />
 </#if>
 
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.expr.fn.impl.gcast;
+package org.lealone.hansql.exec.expr.fn.impl.gcast;
 
 import io.netty.buffer.ByteBuf;
 
-import org.apache.drill.exec.expr.DrillSimpleFunc;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.NullHandling;
-import org.apache.drill.exec.expr.annotations.Output;
-import org.apache.drill.exec.expr.annotations.Param;
-import org.apache.drill.exec.expr.annotations.Workspace;
-import org.apache.drill.exec.expr.holders.*;
-import org.apache.drill.exec.record.RecordBatch;
+import org.lealone.hansql.exec.expr.DrillSimpleFunc;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.NullHandling;
+import org.lealone.hansql.exec.expr.annotations.Output;
+import org.lealone.hansql.exec.expr.annotations.Param;
+import org.lealone.hansql.exec.expr.annotations.Workspace;
+import org.lealone.hansql.exec.expr.holders.*;
+import org.lealone.hansql.exec.record.RecordBatch;
 import org.joda.time.MutableDateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.DateMidnight;
@@ -86,24 +86,24 @@ public class CastEmptyString${type.from}To${type.to} implements DrillSimpleFunc 
     org.joda.time.Period period = org.joda.time.Period.parse(input);
 
     <#if type.to == "Interval" || type.to == "NullableInterval">
-    out.months       = (period.getYears() * org.apache.drill.exec.vector.DateUtilities.yearsToMonths) + period.getMonths();
+    out.months       = (period.getYears() * org.lealone.hansql.exec.vector.DateUtilities.yearsToMonths) + period.getMonths();
 
     out.days         = period.getDays();
 
-    out.milliseconds = (period.getHours() * org.apache.drill.exec.vector.DateUtilities.hoursToMillis) +
-                       (period.getMinutes() * org.apache.drill.exec.vector.DateUtilities.minutesToMillis) +
-                       (period.getSeconds() * org.apache.drill.exec.vector.DateUtilities.secondsToMillis) +
+    out.milliseconds = (period.getHours() * org.lealone.hansql.exec.vector.DateUtilities.hoursToMillis) +
+                       (period.getMinutes() * org.lealone.hansql.exec.vector.DateUtilities.minutesToMillis) +
+                       (period.getSeconds() * org.lealone.hansql.exec.vector.DateUtilities.secondsToMillis) +
                        (period.getMillis());
 
     <#elseif type.to == "IntervalDay" || type.to == "NullableIntervalDay">
     out.days         = period.getDays();
 
-    out.milliseconds = (period.getHours() * org.apache.drill.exec.vector.DateUtilities.hoursToMillis) +
-                       (period.getMinutes() * org.apache.drill.exec.vector.DateUtilities.minutesToMillis) +
-                       (period.getSeconds() * org.apache.drill.exec.vector.DateUtilities.secondsToMillis) +
+    out.milliseconds = (period.getHours() * org.lealone.hansql.exec.vector.DateUtilities.hoursToMillis) +
+                       (period.getMinutes() * org.lealone.hansql.exec.vector.DateUtilities.minutesToMillis) +
+                       (period.getSeconds() * org.lealone.hansql.exec.vector.DateUtilities.secondsToMillis) +
                        (period.getMillis());
     <#elseif type.to == "IntervalYear" || type.to == "NullableIntervalYear">
-    out.value = (period.getYears() * org.apache.drill.exec.vector.DateUtilities.yearsToMonths) + period.getMonths();
+    out.value = (period.getYears() * org.lealone.hansql.exec.vector.DateUtilities.yearsToMonths) + period.getMonths();
     </#if>
   }
 }

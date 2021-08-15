@@ -17,13 +17,13 @@
  */
 <@pp.dropOutputFile />
 
-<@pp.changeOutputFile name="/org/apache/drill/common/util/DrillVersionInfo.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/common/util/DrillVersionInfo.java" />
 
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.common.util;
+package org.lealone.hansql.common.util;
 
-import org.apache.drill.common.Version;
+import org.lealone.hansql.common.Version;
 
 /*
  * This file is generated with Freemarker using the template src/main/codegen/templates/DrillVersionInfo.java

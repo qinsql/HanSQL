@@ -23,7 +23,7 @@ import java.lang.reflect.Field;
 import java.nio.ByteBuffer;
 import java.util.concurrent.atomic.AtomicLong;
 
-import org.apache.drill.exec.exception.OutOfMemoryException;
+import org.lealone.hansql.exec.exception.OutOfMemoryException;
 
 import com.codahale.metrics.Gauge;
 import com.codahale.metrics.Histogram;

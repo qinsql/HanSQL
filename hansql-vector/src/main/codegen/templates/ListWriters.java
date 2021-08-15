@@ -18,12 +18,12 @@
 <@pp.dropOutputFile />
 
 <#list ["Single", "Repeated"] as mode>
-<@pp.changeOutputFile name="/org/apache/drill/exec/vector/complex/impl/${mode}ListWriter.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/vector/complex/impl/${mode}ListWriter.java" />
 
 
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.vector.complex.impl;
+package org.lealone.hansql.exec.vector.complex.impl;
 <#if mode == "Single">
   <#assign containerClass = "AbstractContainerVector" />
   <#assign index = "idx()">

@@ -22,16 +22,16 @@
 
 <#assign className="GNullOp${mode.prefix}${minor.class}Holder" />
 
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/fn/impl/${className}.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/fn/impl/${className}.java" />
 
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.expr.fn.impl;
+package org.lealone.hansql.exec.expr.fn.impl;
 
-import org.apache.drill.exec.expr.DrillSimpleFunc;
-import org.apache.drill.exec.expr.annotations.*;
-import org.apache.drill.exec.expr.holders.*;
-import org.apache.drill.exec.record.RecordBatch;
+import org.lealone.hansql.exec.expr.DrillSimpleFunc;
+import org.lealone.hansql.exec.expr.annotations.*;
+import org.lealone.hansql.exec.expr.holders.*;
+import org.lealone.hansql.exec.record.RecordBatch;
 
 /*
  * This class is generated using freemarker and the ${.template_name} template.

@@ -22,22 +22,22 @@
 <#list cast.types as type>
 <#if type.major == "SrcVarlenTargetVarlen">
 
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/fn/impl/gcast/Cast${type.from}${type.to}.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/fn/impl/gcast/Cast${type.from}${type.to}.java" />
 
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.expr.fn.impl.gcast;
+package org.lealone.hansql.exec.expr.fn.impl.gcast;
 
 import io.netty.buffer.ByteBuf;
 
-import org.apache.drill.exec.expr.DrillSimpleFunc;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.NullHandling;
-import org.apache.drill.exec.expr.annotations.Output;
-import org.apache.drill.exec.expr.annotations.Param;
-import org.apache.drill.exec.expr.annotations.Workspace;
-import org.apache.drill.exec.expr.holders.*;
-import org.apache.drill.exec.record.RecordBatch;
+import org.lealone.hansql.exec.expr.DrillSimpleFunc;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.NullHandling;
+import org.lealone.hansql.exec.expr.annotations.Output;
+import org.lealone.hansql.exec.expr.annotations.Param;
+import org.lealone.hansql.exec.expr.annotations.Workspace;
+import org.lealone.hansql.exec.expr.holders.*;
+import org.lealone.hansql.exec.record.RecordBatch;
 import javax.inject.Inject;
 import io.netty.buffer.DrillBuf;
 
@@ -64,7 +64,7 @@ public class Cast${type.from}${type.to} implements DrillSimpleFunc{
   <#if type.to == 'VarChar'>
 
     //Do 1st scan to counter # of character in string.
-    int charCount = org.apache.drill.exec.expr.fn.impl.StringFunctionUtil.getUTF8CharLength(in.buffer, in.start, in.end);
+    int charCount = org.lealone.hansql.exec.expr.fn.impl.StringFunctionUtil.getUTF8CharLength(in.buffer, in.start, in.end);
 
     //if input length <= target_type length, do nothing
     //else if target length = 0, it means cast wants all the characters in the input. Do nothing.
@@ -74,7 +74,7 @@ public class Cast${type.from}${type.to} implements DrillSimpleFunc{
     if (charCount <= length.value || length.value == 0 ) {
       out.end = in.end;
     } else {
-      out.end = org.apache.drill.exec.expr.fn.impl.StringFunctionUtil.getUTF8CharPosition(in.buffer, in.start, in.end, (int)length.value);
+      out.end = org.lealone.hansql.exec.expr.fn.impl.StringFunctionUtil.getUTF8CharPosition(in.buffer, in.start, in.end, (int)length.value);
     }
 
   <#elseif type.to == 'VarBinary'>

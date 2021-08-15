@@ -20,22 +20,22 @@
 <#list cast.types as type>
 <#if type.major == "VarDecimalToDecimal">
 
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/fn/impl/gcast/Cast${type.from}${type.to}.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/fn/impl/gcast/Cast${type.from}${type.to}.java" />
 
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.expr.fn.impl.gcast;
+package org.lealone.hansql.exec.expr.fn.impl.gcast;
 
 <#include "/@includes/vv_imports.ftl" />
 
-import org.apache.drill.exec.expr.DrillSimpleFunc;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.NullHandling;
-import org.apache.drill.exec.expr.annotations.Output;
-import org.apache.drill.exec.expr.annotations.Param;
-import org.apache.drill.exec.expr.holders.*;
-import org.apache.drill.exec.record.RecordBatch;
-import org.apache.drill.exec.expr.annotations.Workspace;
+import org.lealone.hansql.exec.expr.DrillSimpleFunc;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.NullHandling;
+import org.lealone.hansql.exec.expr.annotations.Output;
+import org.lealone.hansql.exec.expr.annotations.Param;
+import org.lealone.hansql.exec.expr.holders.*;
+import org.lealone.hansql.exec.record.RecordBatch;
+import org.lealone.hansql.exec.expr.annotations.Workspace;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.DrillBuf;
@@ -62,7 +62,7 @@ public class Cast${type.from}${type.to} implements DrillSimpleFunc {
 
   public void setup() {
   <#if type.to.endsWith("Sparse") || type.to.endsWith("Dense")>
-    int size = ${type.arraySize} * (org.apache.drill.exec.util.DecimalUtility.INTEGER_SIZE);
+    int size = ${type.arraySize} * (org.lealone.hansql.exec.util.DecimalUtility.INTEGER_SIZE);
     buffer = buffer.reallocIfNeeded(size);
   </#if>
   }
@@ -71,19 +71,19 @@ public class Cast${type.from}${type.to} implements DrillSimpleFunc {
     out.scale = scale.value;
     out.precision = precision.value;
     java.math.BigDecimal bd =
-        org.apache.drill.exec.util.DecimalUtility
+        org.lealone.hansql.exec.util.DecimalUtility
             .getBigDecimalFromDrillBuf(in.buffer, in.start, in.end - in.start, in.scale)
                 .setScale(scale.value, java.math.RoundingMode.HALF_UP)
                 .round(new java.math.MathContext(precision.value, java.math.RoundingMode.HALF_UP));
 
   <#if type.to.endsWith("Decimal9")>
-    out.value = org.apache.drill.exec.util.DecimalUtility.getDecimal9FromBigDecimal(bd, out.scale);
+    out.value = org.lealone.hansql.exec.util.DecimalUtility.getDecimal9FromBigDecimal(bd, out.scale);
   <#elseif type.to.endsWith("Decimal18")>
-    out.value = org.apache.drill.exec.util.DecimalUtility.getDecimal18FromBigDecimal(bd, out.scale);
+    out.value = org.lealone.hansql.exec.util.DecimalUtility.getDecimal18FromBigDecimal(bd, out.scale);
   <#elseif type.to.endsWith("Sparse")>
     out.start = 0;
     out.buffer = buffer;
-    org.apache.drill.exec.util.DecimalUtility
+    org.lealone.hansql.exec.util.DecimalUtility
         .getSparseFromBigDecimal(bd, out.buffer, out.start, out.scale, out.nDecimalDigits);
   </#if>
   }

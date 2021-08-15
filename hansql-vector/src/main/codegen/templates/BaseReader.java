@@ -16,12 +16,12 @@
  * limitations under the License.
  */
 <@pp.dropOutputFile />
-<@pp.changeOutputFile name="/org/apache/drill/exec/vector/complex/reader/BaseReader.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/vector/complex/reader/BaseReader.java" />
 
 
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.vector.complex.reader;
+package org.lealone.hansql.exec.vector.complex.reader;
 
 <#include "/@includes/vv_imports.ftl" />
 

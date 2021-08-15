@@ -15,25 +15,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import org.apache.drill.exec.expr.annotations.Workspace;
+import org.lealone.hansql.exec.expr.annotations.Workspace;
 
 <@pp.dropOutputFile/>
 
 <#list dateIntervalFunc.varCharToDate as convert>
 
-<@pp.changeOutputFile name = "/org/apache/drill/exec/expr/fn/impl/G${convert.from}SqlTo${convert.to}.java"/>
+<@pp.changeOutputFile name = "/org/lealone/hansql/exec/expr/fn/impl/G${convert.from}SqlTo${convert.to}.java"/>
 
 <#include "/@includes/license.ftl"/>
 
-package org.apache.drill.exec.expr.fn.impl;
+package org.lealone.hansql.exec.expr.fn.impl;
 
-import org.apache.drill.exec.expr.DrillSimpleFunc;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.NullHandling;
-import org.apache.drill.exec.expr.annotations.Output;
-import org.apache.drill.exec.expr.annotations.Workspace;
-import org.apache.drill.exec.expr.annotations.Param;
-import org.apache.drill.exec.expr.holders.*;
+import org.lealone.hansql.exec.expr.DrillSimpleFunc;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.NullHandling;
+import org.lealone.hansql.exec.expr.annotations.Output;
+import org.lealone.hansql.exec.expr.annotations.Workspace;
+import org.lealone.hansql.exec.expr.annotations.Param;
+import org.lealone.hansql.exec.expr.holders.*;
 
 /*
  * This class is generated using freemarker and the ${.template_name} template.
@@ -57,12 +57,12 @@ public class G${convert.from}SqlTo${convert.to} implements DrillSimpleFunc {
 
   public void setup() {
     // Get the desired output format
-    String formatString = org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.getStringFromVarCharHolder(right);
-    String pattern = org.apache.drill.common.expression.fn.JodaDateValidator.toJodaFormat(formatString);
+    String formatString = org.lealone.hansql.exec.expr.fn.impl.StringFunctionHelpers.getStringFromVarCharHolder(right);
+    String pattern = org.lealone.hansql.common.expression.fn.JodaDateValidator.toJodaFormat(formatString);
     try {
       format = org.joda.time.format.DateTimeFormat.forPattern(pattern);
     } catch (IllegalArgumentException e) {
-      throw org.apache.drill.common.exceptions.UserException.functionError(e)
+      throw org.lealone.hansql.common.exceptions.UserException.functionError(e)
         .message("Error parsing formatter %s in %s function", formatString, "sql_to_${convert.to?lower_case}")
         .build();
     }
@@ -78,7 +78,7 @@ public class G${convert.from}SqlTo${convert.to} implements DrillSimpleFunc {
 
     </#if>
     // Get the input
-    String input = org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.getStringFromVarCharHolder(left);
+    String input = org.lealone.hansql.exec.expr.fn.impl.StringFunctionHelpers.getStringFromVarCharHolder(left);
     try {
       <#if convert.to == "Date" || convert.to == "NullableDate">
       out.value = org.joda.time.DateMidnight.parse(input, format).withZoneRetainFields(org.joda.time.DateTimeZone.UTC).getMillis();
@@ -88,7 +88,7 @@ public class G${convert.from}SqlTo${convert.to} implements DrillSimpleFunc {
       out.value = (int) format.parseDateTime(input).withZoneRetainFields(org.joda.time.DateTimeZone.UTC).getMillis();
       </#if>
     } catch (IllegalArgumentException e) {
-      throw org.apache.drill.common.exceptions.UserException.functionError(e)
+      throw org.lealone.hansql.common.exceptions.UserException.functionError(e)
         .message("Error parsing date-time %s in %s function", input, "sql_to_${convert.to?lower_case}")
         .build();
     }

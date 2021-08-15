@@ -19,7 +19,7 @@ package org.lealone.hansql.engine.index;
 
 import java.util.List;
 
-import org.apache.drill.common.expression.SchemaPath;
+import org.lealone.hansql.common.expression.SchemaPath;
 import org.lealone.hansql.engine.storage.LealoneStoragePlugin;
 import org.lealone.hansql.engine.storage.LealoneSubScan;
 

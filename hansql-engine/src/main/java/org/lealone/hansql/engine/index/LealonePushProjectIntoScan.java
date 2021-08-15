@@ -19,15 +19,15 @@ package org.lealone.hansql.engine.index;
 
 import java.util.List;
 
-import org.apache.drill.common.exceptions.DrillRuntimeException;
-import org.apache.drill.exec.planner.common.DrillRelOptUtil;
-import org.apache.drill.exec.planner.logical.RelOptHelper;
-import org.apache.drill.exec.planner.physical.Prel;
-import org.apache.drill.exec.planner.physical.ProjectPrel;
-import org.apache.drill.exec.planner.physical.ScanPrel;
-import org.apache.drill.exec.store.StoragePluginOptimizerRule;
-import org.apache.drill.exec.util.Utilities;
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
+import org.lealone.hansql.common.exceptions.DrillRuntimeException;
+import org.lealone.hansql.exec.planner.common.DrillRelOptUtil;
+import org.lealone.hansql.exec.planner.logical.RelOptHelper;
+import org.lealone.hansql.exec.planner.physical.Prel;
+import org.lealone.hansql.exec.planner.physical.ProjectPrel;
+import org.lealone.hansql.exec.planner.physical.ScanPrel;
+import org.lealone.hansql.exec.store.StoragePluginOptimizerRule;
+import org.lealone.hansql.exec.util.Utilities;
 import org.lealone.hansql.optimizer.plan.RelOptRuleCall;
 import org.lealone.hansql.optimizer.plan.RelOptRuleOperand;
 import org.lealone.hansql.optimizer.plan.RelTrait;

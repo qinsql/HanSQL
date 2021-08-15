@@ -21,16 +21,16 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.drill.common.exceptions.ExecutionSetupException;
-import org.apache.drill.common.expression.SchemaPath;
-import org.apache.drill.exec.physical.base.AbstractBase;
-import org.apache.drill.exec.physical.base.PhysicalOperator;
-import org.apache.drill.exec.physical.base.PhysicalVisitor;
-import org.apache.drill.exec.physical.base.SubScan;
-import org.apache.drill.exec.proto.UserBitShared.CoreOperatorType;
-import org.apache.drill.exec.store.StoragePluginRegistry;
 import org.apache.drill.shaded.guava.com.google.common.base.Preconditions;
 import org.apache.drill.shaded.guava.com.google.common.collect.ImmutableSet;
+import org.lealone.hansql.common.exceptions.ExecutionSetupException;
+import org.lealone.hansql.common.expression.SchemaPath;
+import org.lealone.hansql.exec.physical.base.AbstractBase;
+import org.lealone.hansql.exec.physical.base.PhysicalOperator;
+import org.lealone.hansql.exec.physical.base.PhysicalVisitor;
+import org.lealone.hansql.exec.physical.base.SubScan;
+import org.lealone.hansql.exec.proto.UserBitShared.CoreOperatorType;
+import org.lealone.hansql.exec.store.StoragePluginRegistry;
 
 import com.fasterxml.jackson.annotation.JacksonInject;
 import com.fasterxml.jackson.annotation.JsonCreator;

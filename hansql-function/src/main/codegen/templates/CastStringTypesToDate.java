@@ -21,25 +21,25 @@
 <#if type.major == "VarCharDate" || type.major == "VarBinaryDate" || type.major == "NullableVarCharDate">  <#-- Template to convert from VarChar/ VarBinary to Date, Time, TimeStamp -->
 
 <#if type.major == "VarCharDate" || type.major == "VarBinaryDate">
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/fn/impl/gcast/Cast${type.from}To${type.to}.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/fn/impl/gcast/Cast${type.from}To${type.to}.java" />
 <#elseif type.major == "NullableVarCharDate">
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/fn/impl/gcast/GCast${type.from}To${type.to}.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/fn/impl/gcast/GCast${type.from}To${type.to}.java" />
 </#if>
 
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.expr.fn.impl.gcast;
+package org.lealone.hansql.exec.expr.fn.impl.gcast;
 
 import io.netty.buffer.ByteBuf;
 
-import org.apache.drill.exec.expr.DrillSimpleFunc;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.FunctionCostCategory;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.NullHandling;
-import org.apache.drill.exec.expr.annotations.Output;
-import org.apache.drill.exec.expr.annotations.Param;
-import org.apache.drill.exec.expr.holders.*;
-import org.apache.drill.exec.record.RecordBatch;
+import org.lealone.hansql.exec.expr.DrillSimpleFunc;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.FunctionCostCategory;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.NullHandling;
+import org.lealone.hansql.exec.expr.annotations.Output;
+import org.lealone.hansql.exec.expr.annotations.Param;
+import org.lealone.hansql.exec.expr.holders.*;
+import org.lealone.hansql.exec.record.RecordBatch;
 import org.joda.time.MutableDateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.DateMidnight;
@@ -83,14 +83,14 @@ public class GCast${type.from}To${type.to} implements DrillSimpleFunc {
     </#if>
 
     <#if type.to == "Date" || type.to == "NullableDate">
-    out.value = org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.getDate(in.buffer, in.start, in.end);
+    out.value = org.lealone.hansql.exec.expr.fn.impl.StringFunctionHelpers.getDate(in.buffer, in.start, in.end);
 
     <#elseif type.to == "TimeStamp" || type.to == "NullableTimeStamp">
-    java.time.LocalDateTime parsedDateTime = org.apache.drill.exec.expr.fn.impl.DateUtility.parseBest(input);
+    java.time.LocalDateTime parsedDateTime = org.lealone.hansql.exec.expr.fn.impl.DateUtility.parseBest(input);
     out.value = parsedDateTime.toInstant(java.time.ZoneOffset.UTC).toEpochMilli();
 
     <#elseif type.to == "Time" || type.to == "NullableTime">
-    java.time.format.DateTimeFormatter f = org.apache.drill.exec.expr.fn.impl.DateUtility.getTimeFormatter();
+    java.time.format.DateTimeFormatter f = org.lealone.hansql.exec.expr.fn.impl.DateUtility.getTimeFormatter();
     out.value = (int) (java.time.LocalTime.parse(input, f).atDate(java.time.LocalDate.ofEpochDay(0)).toInstant(java.time.ZoneOffset.UTC).toEpochMilli());
     </#if>
   }

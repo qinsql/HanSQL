@@ -22,36 +22,36 @@ import java.lang.RuntimeException;
 import java.util.Arrays;
 
 <@pp.dropOutputFile />
-<@pp.changeOutputFile name="org/apache/drill/exec/store/parquet/ParquetOutputRecordWriter.java" />
+<@pp.changeOutputFile name="org/lealone/hansql/exec/store/parquet/ParquetOutputRecordWriter.java" />
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.store.parquet;
+package org.lealone.hansql.exec.store.parquet;
 
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
 import org.apache.drill.shaded.guava.com.google.common.primitives.Ints;
 import org.apache.drill.shaded.guava.com.google.common.primitives.Longs;
-import org.apache.drill.common.types.TypeProtos.MinorType;
-import org.apache.drill.exec.expr.TypeHelper;
-import org.apache.drill.exec.expr.holders.*;
-import org.apache.drill.exec.record.BatchSchema;
-import org.apache.drill.exec.store.AbstractRecordWriter;
-import org.apache.drill.exec.store.EventBasedRecordWriter.FieldConverter;
-import org.apache.drill.exec.store.RecordWriter;
-import org.apache.drill.exec.store.parquet.ParquetTypeHelper;
-import org.apache.drill.exec.store.parquet.decimal.DecimalValueWriter;
-import org.apache.drill.exec.vector.*;
-import org.apache.drill.exec.util.DecimalUtility;
-import org.apache.drill.exec.vector.complex.reader.FieldReader;
+import org.lealone.hansql.common.types.TypeProtos.MinorType;
+import org.lealone.hansql.exec.expr.TypeHelper;
+import org.lealone.hansql.exec.expr.holders.*;
+import org.lealone.hansql.exec.record.BatchSchema;
+import org.lealone.hansql.exec.store.AbstractRecordWriter;
+import org.lealone.hansql.exec.store.EventBasedRecordWriter.FieldConverter;
+import org.lealone.hansql.exec.store.RecordWriter;
+import org.lealone.hansql.exec.store.parquet.ParquetTypeHelper;
+import org.lealone.hansql.exec.store.parquet.decimal.DecimalValueWriter;
+import org.lealone.hansql.exec.vector.*;
+import org.lealone.hansql.exec.util.DecimalUtility;
+import org.lealone.hansql.exec.vector.complex.reader.FieldReader;
 import org.apache.parquet.io.api.RecordConsumer;
 import org.apache.parquet.schema.MessageType;
 import org.apache.parquet.schema.PrimitiveType;
 import org.apache.parquet.io.api.Binary;
 import io.netty.buffer.DrillBuf;
-import org.apache.drill.exec.record.BatchSchema;
-import org.apache.drill.exec.record.MaterializedField;
+import org.lealone.hansql.exec.record.BatchSchema;
+import org.lealone.hansql.exec.record.MaterializedField;
 
 
-import org.apache.drill.common.types.TypeProtos;
+import org.lealone.hansql.common.types.TypeProtos;
 
 import org.joda.time.DateTimeConstants;
 

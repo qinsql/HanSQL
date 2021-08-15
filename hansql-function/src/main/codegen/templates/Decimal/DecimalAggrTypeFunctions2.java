@@ -15,14 +15,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import org.apache.drill.exec.expr.annotations.Workspace;
+import org.lealone.hansql.exec.expr.annotations.Workspace;
 
 <@pp.dropOutputFile />
 
 
 
 <#list decimalaggrtypes2.aggrtypes as aggrtype>
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/fn/impl/gaggr/Decimal${aggrtype.className}Functions.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/fn/impl/gaggr/Decimal${aggrtype.className}Functions.java" />
 
 <#include "/@includes/license.ftl" />
 
@@ -33,20 +33,20 @@ import org.apache.drill.exec.expr.annotations.Workspace;
  * This class is automatically generated from AggrTypeFunctions1.tdd using FreeMarker.
  */
 
-package org.apache.drill.exec.expr.fn.impl.gaggr;
+package org.lealone.hansql.exec.expr.fn.impl.gaggr;
 
 <#include "/@includes/vv_imports.ftl" />
 
-import org.apache.drill.exec.expr.DrillAggFunc;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.FunctionScope;
-import org.apache.drill.exec.expr.annotations.Output;
-import org.apache.drill.exec.expr.annotations.Param;
-import org.apache.drill.exec.expr.annotations.Workspace;
-import org.apache.drill.exec.expr.holders.*;
+import org.lealone.hansql.exec.expr.DrillAggFunc;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.FunctionScope;
+import org.lealone.hansql.exec.expr.annotations.Output;
+import org.lealone.hansql.exec.expr.annotations.Param;
+import org.lealone.hansql.exec.expr.annotations.Workspace;
+import org.lealone.hansql.exec.expr.holders.*;
 import javax.inject.Inject;
 import io.netty.buffer.DrillBuf;
-import org.apache.drill.exec.record.RecordBatch;
+import org.lealone.hansql.exec.record.RecordBatch;
 import io.netty.buffer.ByteBuf;
 
 /*
@@ -89,7 +89,7 @@ public static class ${type.inputType}${aggrtype.className} implements DrillAggFu
 	    }
 	  </#if>
     count.value++;
-    java.math.BigDecimal currentValue = org.apache.drill.exec.util.DecimalUtility
+    java.math.BigDecimal currentValue = org.lealone.hansql.exec.util.DecimalUtility
         .getBigDecimalFromDrillBuf(in.buffer, in.start, in.end - in.start, in.scale);
     value.obj = ((java.math.BigDecimal)(value.obj)).add(currentValue);
     if (outputScale.value == Integer.MIN_VALUE) {
@@ -108,7 +108,7 @@ public static class ${type.inputType}${aggrtype.className} implements DrillAggFu
       out.scale = Math.max(outputScale.value, 6);
       java.math.BigDecimal average = ((java.math.BigDecimal) value.obj)
             .divide(java.math.BigDecimal.valueOf(count.value), out.scale, java.math.BigDecimal.ROUND_HALF_UP);
-      out.precision = org.apache.drill.exec.planner.types.DrillRelDataTypeSystem.DRILL_REL_DATATYPE_SYSTEM.getMaxNumericPrecision();
+      out.precision = org.lealone.hansql.exec.planner.types.DrillRelDataTypeSystem.DRILL_REL_DATATYPE_SYSTEM.getMaxNumericPrecision();
       byte[] bytes = average.unscaledValue().toByteArray();
       int len = bytes.length;
       out.buffer = buffer.reallocIfNeeded(len);

@@ -26,9 +26,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.drill.common.exceptions.DrillRuntimeException;
-import org.apache.drill.exec.exception.OutOfMemoryException;
-import org.apache.drill.exec.memory.BufferAllocator;
 import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
@@ -47,6 +44,9 @@ import org.apache.parquet.format.converter.ParquetMetadataConverter;
 import org.apache.parquet.hadoop.CodecFactory.BytesDecompressor;
 import org.apache.parquet.hadoop.metadata.ColumnChunkMetaData;
 import org.apache.parquet.hadoop.util.HadoopStreams;
+import org.lealone.hansql.common.exceptions.DrillRuntimeException;
+import org.lealone.hansql.exec.exception.OutOfMemoryException;
+import org.lealone.hansql.exec.memory.BufferAllocator;
 
 import io.netty.buffer.ByteBuf;
 

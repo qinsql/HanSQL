@@ -20,8 +20,8 @@ package org.lealone.hansql.engine.storage;
 import java.io.IOException;
 import java.util.Collections;
 
-import org.apache.drill.exec.store.AbstractSchemaFactory;
-import org.apache.drill.exec.store.SchemaConfig;
+import org.lealone.hansql.exec.store.AbstractSchemaFactory;
+import org.lealone.hansql.exec.store.SchemaConfig;
 import org.lealone.hansql.optimizer.schema.SchemaPlus;
 
 public class LealoneSchemaFactory extends AbstractSchemaFactory {

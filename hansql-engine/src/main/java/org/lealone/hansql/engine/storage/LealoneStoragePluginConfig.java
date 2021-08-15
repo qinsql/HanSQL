@@ -17,7 +17,7 @@
  */
 package org.lealone.hansql.engine.storage;
 
-import org.apache.drill.common.logical.StoragePluginConfigBase;
+import org.lealone.hansql.common.logical.StoragePluginConfigBase;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;

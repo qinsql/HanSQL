@@ -21,11 +21,11 @@
 <#list type.minor as minor>
 
 <#assign className="${mode.prefix}${minor.class}Holder" />
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/holders/${className}.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/holders/${className}.java" />
 
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.expr.holders;
+package org.lealone.hansql.exec.expr.holders;
 
 <#include "/@includes/vv_imports.ftl" />
 

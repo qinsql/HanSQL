@@ -16,23 +16,23 @@
  * limitations under the License.
  */
 <@pp.dropOutputFile />
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/fn/impl/GUnionFunctions.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/fn/impl/GUnionFunctions.java" />
 
 
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.expr.fn.impl;
+package org.lealone.hansql.exec.expr.fn.impl;
 
 <#include "/@includes/vv_imports.ftl" />
-import org.apache.drill.exec.expr.DrillSimpleFunc;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.NullHandling;
-import org.apache.drill.exec.expr.annotations.Output;
-import org.apache.drill.exec.expr.annotations.Param;
-import org.apache.drill.exec.expr.holders.*;
+import org.lealone.hansql.exec.expr.DrillSimpleFunc;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.NullHandling;
+import org.lealone.hansql.exec.expr.annotations.Output;
+import org.lealone.hansql.exec.expr.annotations.Param;
+import org.lealone.hansql.exec.expr.holders.*;
 import javax.inject.Inject;
 import io.netty.buffer.DrillBuf;
-import org.apache.drill.exec.record.RecordBatch;
+import org.lealone.hansql.exec.record.RecordBatch;
 
 /*
  * This class is generated using freemarker and the ${.template_name} template.
@@ -61,7 +61,7 @@ public class GUnionFunctions {
 
     public void eval() {
       if (in.isSet == 1) {
-        out.value = in.getType().getMinorType() == org.apache.drill.common.types.TypeProtos.MinorType.${name?upper_case} ? 1 : 0;
+        out.value = in.getType().getMinorType() == org.lealone.hansql.common.types.TypeProtos.MinorType.${name?upper_case} ? 1 : 0;
       } else {
         out.value = 0;
       }

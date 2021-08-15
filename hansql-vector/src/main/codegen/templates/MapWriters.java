@@ -17,7 +17,7 @@
  */
 <@pp.dropOutputFile />
 <#list ["Single", "Repeated"] as mode>
-<@pp.changeOutputFile name="/org/apache/drill/exec/vector/complex/impl/${mode}MapWriter.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/vector/complex/impl/${mode}MapWriter.java" />
 <#if mode == "Single">
 <#assign containerClass = "MapVector" />
 <#assign index = "idx()">
@@ -28,16 +28,16 @@
 
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.vector.complex.impl;
+package org.lealone.hansql.exec.vector.complex.impl;
 
 <#include "/@includes/vv_imports.ftl" />
 import java.util.Map;
 
-import org.apache.drill.common.types.TypeProtos.DataMode;
-import org.apache.drill.exec.expr.holders.RepeatedMapHolder;
-import org.apache.drill.exec.vector.AllocationHelper;
-import org.apache.drill.exec.vector.complex.reader.FieldReader;
-import org.apache.drill.exec.vector.complex.writer.FieldWriter;
+import org.lealone.hansql.common.types.TypeProtos.DataMode;
+import org.lealone.hansql.exec.expr.holders.RepeatedMapHolder;
+import org.lealone.hansql.exec.vector.AllocationHelper;
+import org.lealone.hansql.exec.vector.complex.reader.FieldReader;
+import org.lealone.hansql.exec.vector.complex.writer.FieldWriter;
 
 import org.apache.drill.shaded.guava.com.google.common.collect.Maps;
 

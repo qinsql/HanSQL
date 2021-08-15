@@ -21,20 +21,20 @@ import java.lang.Override;
 
 <#-- A utility class that is used to generate java code for count aggregate functions -->
 
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/fn/impl/gaggr/CountFunctions.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/fn/impl/gaggr/CountFunctions.java" />
 
 <#include "/@includes/license.ftl" />
 
 
-package org.apache.drill.exec.expr.fn.impl.gaggr;
+package org.lealone.hansql.exec.expr.fn.impl.gaggr;
 
-import org.apache.drill.exec.expr.DrillAggFunc;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.FunctionScope;
-import org.apache.drill.exec.expr.annotations.Output;
-import org.apache.drill.exec.expr.annotations.Param;
-import org.apache.drill.exec.expr.annotations.Workspace;
-import org.apache.drill.exec.expr.holders.*;
+import org.lealone.hansql.exec.expr.DrillAggFunc;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.FunctionScope;
+import org.lealone.hansql.exec.expr.annotations.Output;
+import org.lealone.hansql.exec.expr.annotations.Param;
+import org.lealone.hansql.exec.expr.annotations.Workspace;
+import org.lealone.hansql.exec.expr.holders.*;
 
 /*
  * This class is generated using freemarker and the ${.template_name} template.

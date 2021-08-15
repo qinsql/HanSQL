@@ -17,11 +17,11 @@
  */
 import java.lang.Override;
 
-import org.apache.drill.common.types.DataMode;
-import org.apache.drill.common.types.TypeProtos.MajorType;
-import org.apache.drill.exec.record.MaterializedField;
-import org.apache.drill.exec.record.TransferPair;
-import org.apache.drill.exec.vector.complex.BaseRepeatedValueVector;
+import org.lealone.hansql.common.types.DataMode;
+import org.lealone.hansql.common.types.TypeProtos.MajorType;
+import org.lealone.hansql.exec.record.MaterializedField;
+import org.lealone.hansql.exec.record.TransferPair;
+import org.lealone.hansql.exec.vector.complex.BaseRepeatedValueVector;
 import org.mortbay.jetty.servlet.Holder;
 
 <@pp.dropOutputFile />
@@ -30,10 +30,10 @@ import org.mortbay.jetty.servlet.Holder;
 <#assign friendlyType = (minor.friendlyType!minor.boxedType!type.boxedType) />
 <#assign fields = minor.fields!type.fields />
 
-<@pp.changeOutputFile name="/org/apache/drill/exec/vector/Repeated${minor.class}Vector.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/vector/Repeated${minor.class}Vector.java" />
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.vector;
+package org.lealone.hansql.exec.vector;
 
 <#include "/@includes/vv_imports.ftl" />
 

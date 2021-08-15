@@ -16,17 +16,17 @@
  * limitations under the License.
  */
 <@pp.dropOutputFile />
-<@pp.changeOutputFile name="org/apache/drill/exec/record/RecordValueAccessor.java" />
+<@pp.changeOutputFile name="org/lealone/hansql/exec/record/RecordValueAccessor.java" />
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.record;
+package org.lealone.hansql.exec.record;
 
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
 
-import org.apache.drill.common.types.TypeProtos;
-import org.apache.drill.exec.expr.TypeHelper;
-import org.apache.drill.exec.expr.holders.*;
-import org.apache.drill.exec.vector.*;
+import org.lealone.hansql.common.types.TypeProtos;
+import org.lealone.hansql.exec.expr.TypeHelper;
+import org.lealone.hansql.exec.expr.holders.*;
+import org.lealone.hansql.exec.vector.*;
 
 /*
  * This class is generated using freemarker and the ${.template_name} template.

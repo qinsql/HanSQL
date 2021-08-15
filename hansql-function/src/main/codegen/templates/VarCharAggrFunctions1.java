@@ -20,7 +20,7 @@
 
 
 <#list aggrtypes1.aggrtypes as aggrtype>
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/fn/impl/gaggr/${aggrtype.className}VarBytesFunctions.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/fn/impl/gaggr/${aggrtype.className}VarBytesFunctions.java" />
 
 <#include "/@includes/license.ftl" />
 
@@ -28,21 +28,21 @@
 <#-- A utility class that is used to generate java code for aggr functions that maintain a single -->
 <#-- running counter to hold the result.  This includes: MIN, MAX, COUNT. -->
 
-package org.apache.drill.exec.expr.fn.impl.gaggr;
+package org.lealone.hansql.exec.expr.fn.impl.gaggr;
 
 <#include "/@includes/vv_imports.ftl" />
 
-import org.apache.drill.exec.expr.DrillAggFunc;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.FunctionScope;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.ReturnType;
-import org.apache.drill.exec.expr.annotations.Output;
-import org.apache.drill.exec.expr.annotations.Param;
-import org.apache.drill.exec.expr.annotations.Workspace;
-import org.apache.drill.exec.expr.fn.impl.ByteFunctionHelpers;
-import org.apache.drill.exec.expr.holders.*;
+import org.lealone.hansql.exec.expr.DrillAggFunc;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.FunctionScope;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.ReturnType;
+import org.lealone.hansql.exec.expr.annotations.Output;
+import org.lealone.hansql.exec.expr.annotations.Param;
+import org.lealone.hansql.exec.expr.annotations.Workspace;
+import org.lealone.hansql.exec.expr.fn.impl.ByteFunctionHelpers;
+import org.lealone.hansql.exec.expr.holders.*;
 import javax.inject.Inject;
-import org.apache.drill.exec.record.RecordBatch;
+import org.lealone.hansql.exec.record.RecordBatch;
 
 import io.netty.buffer.ByteBuf;
 
@@ -77,7 +77,7 @@ public static class ${type.inputType}${aggrtype.className} implements DrillAggFu
     nonNullCount.value = 0;
     init.value = 0;
     value = new ObjectHolder();
-    org.apache.drill.exec.expr.fn.impl.DrillByteArray tmp = new org.apache.drill.exec.expr.fn.impl.DrillByteArray();
+    org.lealone.hansql.exec.expr.fn.impl.DrillByteArray tmp = new org.lealone.hansql.exec.expr.fn.impl.DrillByteArray();
     value.obj = tmp;
   }
 
@@ -94,14 +94,14 @@ public static class ${type.inputType}${aggrtype.className} implements DrillAggFu
       if (nonNullCount.value == 0) {
         nonNullCount.value = 1;
         int inputLength = in.end - in.start;
-        org.apache.drill.exec.expr.fn.impl.DrillByteArray tmp = (org.apache.drill.exec.expr.fn.impl.DrillByteArray) value.obj;
+        org.lealone.hansql.exec.expr.fn.impl.DrillByteArray tmp = (org.lealone.hansql.exec.expr.fn.impl.DrillByteArray) value.obj;
         byte[] tempArray = new byte[inputLength];
         in.buffer.getBytes(in.start, tempArray, 0, inputLength);
         tmp.setBytes(tempArray);
       }
     <#else>
     nonNullCount.value = 1;
-    org.apache.drill.exec.expr.fn.impl.DrillByteArray tmp = (org.apache.drill.exec.expr.fn.impl.DrillByteArray) value.obj;
+    org.lealone.hansql.exec.expr.fn.impl.DrillByteArray tmp = (org.lealone.hansql.exec.expr.fn.impl.DrillByteArray) value.obj;
     int cmp = 0;
     boolean swap = false;
 
@@ -111,7 +111,7 @@ public static class ${type.inputType}${aggrtype.className} implements DrillAggFu
       swap = true;
     } else {
       // Compare the bytes
-      cmp = org.apache.drill.exec.expr.fn.impl.ByteFunctionHelpers.compare(in.buffer, in.start, in.end, tmp.getBytes(), 0, tmp.getLength());
+      cmp = org.lealone.hansql.exec.expr.fn.impl.ByteFunctionHelpers.compare(in.buffer, in.start, in.end, tmp.getBytes(), 0, tmp.getLength());
 
 
       <#if aggrtype.className == "Min">
@@ -141,7 +141,7 @@ public static class ${type.inputType}${aggrtype.className} implements DrillAggFu
   public void output() {
     if (nonNullCount.value > 0) {
       out.isSet = 1;
-      org.apache.drill.exec.expr.fn.impl.DrillByteArray tmp = (org.apache.drill.exec.expr.fn.impl.DrillByteArray) value.obj;
+      org.lealone.hansql.exec.expr.fn.impl.DrillByteArray tmp = (org.lealone.hansql.exec.expr.fn.impl.DrillByteArray) value.obj;
       buf = buf.reallocIfNeeded(tmp.getLength());
       buf.setBytes(0, tmp.getBytes(), 0, tmp.getLength());
       out.start  = 0;
@@ -155,7 +155,7 @@ public static class ${type.inputType}${aggrtype.className} implements DrillAggFu
   @Override
   public void reset() {
     value = new ObjectHolder();
-    value.obj = new org.apache.drill.exec.expr.fn.impl.DrillByteArray();
+    value.obj = new org.lealone.hansql.exec.expr.fn.impl.DrillByteArray();
     init.value = 0;
     nonNullCount.value = 0;
   }

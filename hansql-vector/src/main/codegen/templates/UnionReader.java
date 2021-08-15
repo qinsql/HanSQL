@@ -15,16 +15,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import org.apache.drill.common.types.TypeProtos.MinorType;
-import org.apache.drill.exec.vector.complex.impl.NullReader;
+import org.lealone.hansql.common.types.TypeProtos.MinorType;
+import org.lealone.hansql.exec.vector.complex.impl.NullReader;
 
 <@pp.dropOutputFile />
-<@pp.changeOutputFile name="/org/apache/drill/exec/vector/complex/impl/UnionReader.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/vector/complex/impl/UnionReader.java" />
 
 
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.vector.complex.impl;
+package org.lealone.hansql.exec.vector.complex.impl;
 
 <#include "/@includes/vv_imports.ftl" />
 

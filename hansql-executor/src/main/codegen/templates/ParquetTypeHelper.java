@@ -17,15 +17,15 @@
  */
 
 <@pp.dropOutputFile />
-<@pp.changeOutputFile name="org/apache/drill/exec/store/parquet/ParquetTypeHelper.java" />
+<@pp.changeOutputFile name="org/lealone/hansql/exec/store/parquet/ParquetTypeHelper.java" />
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.store.parquet;
+package org.lealone.hansql.exec.store.parquet;
 
-import org.apache.drill.common.types.TypeProtos.DataMode;
-import org.apache.drill.common.types.TypeProtos.MinorType;
-import org.apache.drill.exec.planner.types.DrillRelDataTypeSystem;
-import org.apache.drill.exec.record.MaterializedField;
+import org.lealone.hansql.common.types.TypeProtos.DataMode;
+import org.lealone.hansql.common.types.TypeProtos.MinorType;
+import org.lealone.hansql.exec.planner.types.DrillRelDataTypeSystem;
+import org.lealone.hansql.exec.record.MaterializedField;
 import org.apache.parquet.schema.OriginalType;
 import org.apache.parquet.schema.DecimalMetadata;
 import org.apache.parquet.schema.PrimitiveType.PrimitiveTypeName;

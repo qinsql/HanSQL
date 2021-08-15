@@ -23,16 +23,6 @@ import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
-import org.apache.drill.common.types.TypeProtos;
-import org.apache.drill.common.types.TypeProtos.MajorType;
-import org.apache.drill.common.types.Types;
-import org.apache.drill.exec.record.BatchSchema;
-import org.apache.drill.exec.record.RecordBatch;
-import org.apache.drill.exec.record.VectorWrapper;
-import org.apache.drill.exec.vector.ValueVector;
-import org.apache.drill.exec.vector.ValueVector.Accessor;
-import org.apache.drill.exec.vector.accessor.InvalidAccessException;
-import org.apache.drill.exec.vector.accessor.SqlAccessor;
 import org.lealone.db.result.Result;
 import org.lealone.db.value.DataType;
 import org.lealone.db.value.Value;
@@ -50,6 +40,16 @@ import org.lealone.db.value.ValueShort;
 import org.lealone.db.value.ValueString;
 import org.lealone.db.value.ValueTime;
 import org.lealone.db.value.ValueTimestamp;
+import org.lealone.hansql.common.types.TypeProtos;
+import org.lealone.hansql.common.types.Types;
+import org.lealone.hansql.common.types.TypeProtos.MajorType;
+import org.lealone.hansql.exec.record.BatchSchema;
+import org.lealone.hansql.exec.record.RecordBatch;
+import org.lealone.hansql.exec.record.VectorWrapper;
+import org.lealone.hansql.exec.vector.ValueVector;
+import org.lealone.hansql.exec.vector.ValueVector.Accessor;
+import org.lealone.hansql.exec.vector.accessor.InvalidAccessException;
+import org.lealone.hansql.exec.vector.accessor.SqlAccessor;
 
 public class HanResult implements Result {
 

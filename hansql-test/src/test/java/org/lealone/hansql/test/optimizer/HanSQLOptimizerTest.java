@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import org.lealone.hansql.exec.planner.sql.parser.impl.DrillParserImpl;
 import org.lealone.hansql.optimizer.config.CalciteConnectionConfig;
 import org.lealone.hansql.optimizer.config.CalciteConnectionConfigImpl;
 import org.lealone.hansql.optimizer.plan.Context;
@@ -222,8 +223,9 @@ public class HanSQLOptimizerTest {
     }
 
     static SqlParser createSqlParser(String sql) throws Exception {
-        SqlParser.Config config = SqlParser.configBuilder().setUnquotedCasing(org.lealone.hansql.optimizer.util.Casing.TO_LOWER)
-                .setParserFactory(org.apache.drill.exec.planner.sql.parser.impl.DrillParserImpl.FACTORY).build();
+        SqlParser.Config config = SqlParser.configBuilder()
+                .setUnquotedCasing(org.lealone.hansql.optimizer.util.Casing.TO_LOWER)
+                .setParserFactory(DrillParserImpl.FACTORY).build();
         SqlParser sqlParser = SqlParser.create(sql, config);
         return sqlParser;
     }

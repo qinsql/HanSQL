@@ -22,10 +22,10 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.apache.drill.common.config.DrillConfig;
-import org.apache.drill.exec.memory.BufferAllocator;
-import org.apache.drill.exec.memory.RootAllocatorFactory;
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
+import org.lealone.hansql.common.config.DrillConfig;
+import org.lealone.hansql.exec.memory.BufferAllocator;
+import org.lealone.hansql.exec.memory.RootAllocatorFactory;
 
 import io.netty.buffer.DrillBuf;
 

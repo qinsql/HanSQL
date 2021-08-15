@@ -17,18 +17,18 @@
  */
 <@pp.dropOutputFile />
 
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/fn/impl/DirectoryExplorers.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/fn/impl/DirectoryExplorers.java" />
 
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.expr.fn.impl;
+package org.lealone.hansql.exec.expr.fn.impl;
 
 import io.netty.buffer.DrillBuf;
-import org.apache.drill.exec.expr.DrillSimpleFunc;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate;
-import org.apache.drill.exec.expr.annotations.Output;
-import org.apache.drill.exec.expr.annotations.Param;
-import org.apache.drill.exec.expr.holders.VarCharHolder;
+import org.lealone.hansql.exec.expr.DrillSimpleFunc;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate;
+import org.lealone.hansql.exec.expr.annotations.Output;
+import org.lealone.hansql.exec.expr.annotations.Param;
+import org.lealone.hansql.exec.expr.holders.VarCharHolder;
 
 import javax.inject.Inject;
 
@@ -59,7 +59,7 @@ public class DirectoryExplorers {
   </#if>
     @Output VarCharHolder out;
     @Inject DrillBuf buffer;
-    @Inject org.apache.drill.exec.store.PartitionExplorer partitionExplorer;
+    @Inject org.lealone.hansql.exec.store.PartitionExplorer partitionExplorer;
 
     public void setup() {
     }
@@ -68,15 +68,15 @@ public class DirectoryExplorers {
       Iterable<String> subPartitions;
       try {
         subPartitions = partitionExplorer.getSubPartitions(
-            org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.getStringFromVarCharHolder(schema),
+            org.lealone.hansql.exec.expr.fn.impl.StringFunctionHelpers.getStringFromVarCharHolder(schema),
           <#if dirAggrProps.functionClassName?ends_with("TwoArg")>
-            org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.getStringFromVarCharHolder(table),
+            org.lealone.hansql.exec.expr.fn.impl.StringFunctionHelpers.getStringFromVarCharHolder(table),
           <#else>
             ".",
           </#if>
             new java.util.ArrayList<String>(),
             new java.util.ArrayList<String>());
-      } catch (org.apache.drill.exec.store.PartitionNotFoundException e) {
+      } catch (org.lealone.hansql.exec.store.PartitionNotFoundException e) {
         throw new RuntimeException(
           <#if dirAggrProps.functionClassName?ends_with("TwoArg")>
             String.format("Error in %s function: Table %s does not exist in schema %s ",
@@ -85,9 +85,9 @@ public class DirectoryExplorers {
           </#if>
                 ${dirAggrProps.name},
           <#if dirAggrProps.functionClassName?ends_with("TwoArg")>
-                org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.getStringFromVarCharHolder(table),
+                org.lealone.hansql.exec.expr.fn.impl.StringFunctionHelpers.getStringFromVarCharHolder(table),
           </#if>
-                org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.getStringFromVarCharHolder(schema))
+                org.lealone.hansql.exec.expr.fn.impl.StringFunctionHelpers.getStringFromVarCharHolder(schema))
         );
       }
       java.util.Iterator partitionIterator = subPartitions.iterator();
@@ -100,9 +100,9 @@ public class DirectoryExplorers {
           </#if>
                 ${dirAggrProps.name},
           <#if dirAggrProps.functionClassName?ends_with("TwoArg")>
-                org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.getStringFromVarCharHolder(table),
+                org.lealone.hansql.exec.expr.fn.impl.StringFunctionHelpers.getStringFromVarCharHolder(table),
           </#if>
-                org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.getStringFromVarCharHolder(schema)
+                org.lealone.hansql.exec.expr.fn.impl.StringFunctionHelpers.getStringFromVarCharHolder(schema)
             )
         );
       }

@@ -17,7 +17,7 @@
  */
 package io.netty.buffer;
 
-import org.apache.drill.exec.memory.BufferAllocator;
+import org.lealone.hansql.exec.memory.BufferAllocator;
 
 /**
  * Allows us to decorate DrillBuf to make it expandable so that we can use them in the context of the Netty framework

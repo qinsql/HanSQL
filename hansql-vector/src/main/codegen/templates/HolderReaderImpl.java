@@ -31,18 +31,18 @@
 <#if safeType=="byte[]"><#assign safeType="ByteArray" /></#if>
 <#assign fields = minor.fields!type.fields />
 
-<@pp.changeOutputFile name="/org/apache/drill/exec/vector/complex/impl/${holderMode}${name}HolderReaderImpl.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/vector/complex/impl/${holderMode}${name}HolderReaderImpl.java" />
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.vector.complex.impl;
+package org.lealone.hansql.exec.vector.complex.impl;
 
 <#include "/@includes/vv_imports.ftl" />
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-import org.apache.drill.exec.expr.holders.*;
-import org.apache.drill.exec.expr.BasicTypeHelper;
+import org.lealone.hansql.exec.expr.holders.*;
+import org.lealone.hansql.exec.expr.BasicTypeHelper;
 import org.joda.time.Period;
 
 // Source code generated using FreeMarker template ${.template_name}
@@ -166,7 +166,7 @@ public class ${holderMode}${name}HolderReaderImpl extends AbstractFieldReader {
 <#if minor.class == "VarBinary">
       return value;
 <#elseif minor.class == "VarDecimal">
-      return org.apache.drill.exec.util.DecimalUtility.getBigDecimalFromDrillBuf(holder.buffer, holder.start, holder.end - holder.start, holder.scale);
+      return org.lealone.hansql.exec.util.DecimalUtility.getBigDecimalFromDrillBuf(holder.buffer, holder.start, holder.end - holder.start, holder.scale);
 <#elseif minor.class == "Var16Char">
       return new String(value);
 <#elseif minor.class == "VarChar">
@@ -190,7 +190,7 @@ public class ${holderMode}${name}HolderReaderImpl extends AbstractFieldReader {
 
 <#elseif minor.class == "Decimal28Dense" ||
          minor.class == "Decimal38Dense">
-      return org.apache.drill.exec.util.DecimalUtility.getBigDecimalFromDense(holder.buffer,
+      return org.lealone.hansql.exec.util.DecimalUtility.getBigDecimalFromDense(holder.buffer,
                                                                                 holder.start,
                                                                                 holder.nDecimalDigits,
                                                                                 holder.scale,
@@ -199,7 +199,7 @@ public class ${holderMode}${name}HolderReaderImpl extends AbstractFieldReader {
 
 <#elseif minor.class == "Decimal28Sparse" ||
          minor.class == "Decimal38Sparse">
-      return org.apache.drill.exec.util.DecimalUtility.getBigDecimalFromSparse(holder.buffer,
+      return org.lealone.hansql.exec.util.DecimalUtility.getBigDecimalFromSparse(holder.buffer,
                                                                                  holder.start,
                                                                                  holder.nDecimalDigits,
                                                                                  holder.scale);
@@ -247,7 +247,7 @@ public class ${holderMode}${name}HolderReaderImpl extends AbstractFieldReader {
 <#if minor.class == "VarBinary">
       return value;
 <#elseif minor.class == "VarDecimal">
-      return org.apache.drill.exec.util.DecimalUtility.getBigDecimalFromDrillBuf(holder.buffer, holder.start, holder.end - holder.start, holder.scale);
+      return org.lealone.hansql.exec.util.DecimalUtility.getBigDecimalFromDrillBuf(holder.buffer, holder.start, holder.end - holder.start, holder.scale);
 <#elseif minor.class == "Var16Char">
       return new String(value);
 <#elseif minor.class == "VarChar">
@@ -271,7 +271,7 @@ public class ${holderMode}${name}HolderReaderImpl extends AbstractFieldReader {
 
 <#elseif minor.class == "Decimal28Dense" ||
          minor.class == "Decimal38Dense">
-      return org.apache.drill.exec.util.DecimalUtility.getBigDecimalFromDense(holder.buffer,
+      return org.lealone.hansql.exec.util.DecimalUtility.getBigDecimalFromDense(holder.buffer,
                                                                                 holder.start,
                                                                                 holder.nDecimalDigits,
                                                                                 holder.scale,
@@ -280,7 +280,7 @@ public class ${holderMode}${name}HolderReaderImpl extends AbstractFieldReader {
 
 <#elseif minor.class == "Decimal28Sparse" ||
          minor.class == "Decimal38Sparse">
-      return org.apache.drill.exec.util.DecimalUtility.getBigDecimalFromSparse(holder.buffer,
+      return org.lealone.hansql.exec.util.DecimalUtility.getBigDecimalFromSparse(holder.buffer,
                                                                                  holder.start,
                                                                                  holder.nDecimalDigits,
                                                                                  holder.scale);

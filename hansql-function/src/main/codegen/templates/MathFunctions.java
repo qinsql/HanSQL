@@ -18,7 +18,7 @@
 <@pp.dropOutputFile />
 
 
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/fn/impl/GMathFunctions.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/fn/impl/GMathFunctions.java" />
 
 <#include "/@includes/license.ftl" />
 
@@ -27,23 +27,23 @@
  */
 
 
-package org.apache.drill.exec.expr.fn.impl;
+package org.lealone.hansql.exec.expr.fn.impl;
 
 
-import org.apache.drill.common.types.TypeProtos;
-import org.apache.drill.common.types.Types;
-import org.apache.drill.common.types.TypeProtos.MinorType;
-import org.apache.drill.exec.expr.DrillSimpleFunc;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.FunctionScope;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.FunctionScope;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.NullHandling;
-import org.apache.drill.exec.expr.annotations.Output;
-import org.apache.drill.exec.expr.annotations.Param;
-import org.apache.drill.exec.expr.annotations.Workspace;
-import org.apache.drill.exec.expr.fn.impl.StringFunctions;
-import org.apache.drill.exec.expr.holders.*;
-import org.apache.drill.exec.record.RecordBatch;
+import org.lealone.hansql.common.types.TypeProtos;
+import org.lealone.hansql.common.types.Types;
+import org.lealone.hansql.common.types.TypeProtos.MinorType;
+import org.lealone.hansql.exec.expr.DrillSimpleFunc;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.FunctionScope;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.FunctionScope;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.NullHandling;
+import org.lealone.hansql.exec.expr.annotations.Output;
+import org.lealone.hansql.exec.expr.annotations.Param;
+import org.lealone.hansql.exec.expr.annotations.Workspace;
+import org.lealone.hansql.exec.expr.fn.impl.StringFunctions;
+import org.lealone.hansql.exec.expr.holders.*;
+import org.lealone.hansql.exec.record.RecordBatch;
 
 /*
  * This class is generated using freemarker and the ${.template_name} template.
@@ -174,7 +174,7 @@ public class GMathFunctions{
 
 
 
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/fn/impl/ExtendedMathFunctions.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/fn/impl/ExtendedMathFunctions.java" />
 <#include "/@includes/license.ftl" />
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -182,22 +182,22 @@ public class GMathFunctions{
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-package org.apache.drill.exec.expr.fn.impl;
+package org.lealone.hansql.exec.expr.fn.impl;
 
-import org.apache.drill.common.types.TypeProtos;
-import org.apache.drill.common.types.Types;
-import org.apache.drill.common.types.TypeProtos.MinorType;
-import org.apache.drill.exec.expr.DrillSimpleFunc;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.FunctionScope;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.FunctionScope;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.NullHandling;
-import org.apache.drill.exec.expr.annotations.Output;
-import org.apache.drill.exec.expr.annotations.Param;
-import org.apache.drill.exec.expr.annotations.Workspace;
-import org.apache.drill.exec.expr.fn.impl.StringFunctions;
-import org.apache.drill.exec.expr.holders.*;
-import org.apache.drill.exec.record.RecordBatch;
+import org.lealone.hansql.common.types.TypeProtos;
+import org.lealone.hansql.common.types.Types;
+import org.lealone.hansql.common.types.TypeProtos.MinorType;
+import org.lealone.hansql.exec.expr.DrillSimpleFunc;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.FunctionScope;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.FunctionScope;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.NullHandling;
+import org.lealone.hansql.exec.expr.annotations.Output;
+import org.lealone.hansql.exec.expr.annotations.Param;
+import org.lealone.hansql.exec.expr.annotations.Workspace;
+import org.lealone.hansql.exec.expr.fn.impl.StringFunctions;
+import org.lealone.hansql.exec.expr.holders.*;
+import org.lealone.hansql.exec.record.RecordBatch;
 /*
  * This class is automatically generated from MathFunc.tdd using FreeMarker.
  */
@@ -266,7 +266,7 @@ public static class ${func.className}${type.input} implements DrillSimpleFunc {
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/fn/impl/TrigoMathFunctions.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/fn/impl/TrigoMathFunctions.java" />
 <#include "/@includes/license.ftl" />
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -274,22 +274,22 @@ public static class ${func.className}${type.input} implements DrillSimpleFunc {
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-package org.apache.drill.exec.expr.fn.impl;
+package org.lealone.hansql.exec.expr.fn.impl;
 
-import org.apache.drill.common.types.TypeProtos;
-import org.apache.drill.common.types.Types;
-import org.apache.drill.common.types.TypeProtos.MinorType;
-import org.apache.drill.exec.expr.DrillSimpleFunc;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.FunctionScope;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.FunctionScope;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.NullHandling;
-import org.apache.drill.exec.expr.annotations.Output;
-import org.apache.drill.exec.expr.annotations.Param;
-import org.apache.drill.exec.expr.annotations.Workspace;
-import org.apache.drill.exec.expr.fn.impl.StringFunctions;
-import org.apache.drill.exec.expr.holders.*;
-import org.apache.drill.exec.record.RecordBatch;
+import org.lealone.hansql.common.types.TypeProtos;
+import org.lealone.hansql.common.types.Types;
+import org.lealone.hansql.common.types.TypeProtos.MinorType;
+import org.lealone.hansql.exec.expr.DrillSimpleFunc;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.FunctionScope;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.FunctionScope;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.NullHandling;
+import org.lealone.hansql.exec.expr.annotations.Output;
+import org.lealone.hansql.exec.expr.annotations.Param;
+import org.lealone.hansql.exec.expr.annotations.Workspace;
+import org.lealone.hansql.exec.expr.fn.impl.StringFunctions;
+import org.lealone.hansql.exec.expr.holders.*;
+import org.lealone.hansql.exec.record.RecordBatch;
 
 /*
  * This class is automatically generated from MathFunc.tdd using FreeMarker.

@@ -20,7 +20,7 @@
 // This class is generated using Freemarker and the ${.template_name} template.
 </#macro>
 <@pp.dropOutputFile />
-<@pp.changeOutputFile name="/org/apache/drill/exec/vector/accessor/ColumnAccessors.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/vector/accessor/ColumnAccessors.java" />
 <#macro getType drillType label>
     @Override
     public ValueType valueType() {
@@ -119,24 +119,24 @@
 </#macro>
 <@copyright />
 
-package org.apache.drill.exec.vector.accessor;
+package org.lealone.hansql.exec.vector.accessor;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
 
-import org.apache.drill.common.types.TypeProtos.MajorType;
-import org.apache.drill.common.types.Types;
-import org.apache.drill.exec.vector.DateUtilities;
-import org.apache.drill.exec.record.metadata.ColumnMetadata;
-import org.apache.drill.exec.vector.*;
-import org.apache.drill.exec.util.DecimalUtility;
-import org.apache.drill.exec.vector.accessor.reader.BaseScalarReader.BaseVarWidthReader;
-import org.apache.drill.exec.vector.accessor.reader.BaseScalarReader.BaseFixedWidthReader;
-import org.apache.drill.exec.vector.accessor.reader.VectorAccessor;
-import org.apache.drill.exec.vector.accessor.writer.AbstractFixedWidthWriter.BaseFixedWidthWriter;
-import org.apache.drill.exec.vector.accessor.writer.AbstractFixedWidthWriter.BaseIntWriter;
-import org.apache.drill.exec.vector.accessor.writer.BaseVarWidthWriter;
+import org.lealone.hansql.common.types.TypeProtos.MajorType;
+import org.lealone.hansql.common.types.Types;
+import org.lealone.hansql.exec.vector.DateUtilities;
+import org.lealone.hansql.exec.record.metadata.ColumnMetadata;
+import org.lealone.hansql.exec.vector.*;
+import org.lealone.hansql.exec.util.DecimalUtility;
+import org.lealone.hansql.exec.vector.accessor.reader.BaseScalarReader.BaseVarWidthReader;
+import org.lealone.hansql.exec.vector.accessor.reader.BaseScalarReader.BaseFixedWidthReader;
+import org.lealone.hansql.exec.vector.accessor.reader.VectorAccessor;
+import org.lealone.hansql.exec.vector.accessor.writer.AbstractFixedWidthWriter.BaseFixedWidthWriter;
+import org.lealone.hansql.exec.vector.accessor.writer.AbstractFixedWidthWriter.BaseIntWriter;
+import org.lealone.hansql.exec.vector.accessor.writer.BaseVarWidthWriter;
 
 import org.apache.drill.shaded.guava.com.google.common.base.Charsets;
 
@@ -586,17 +586,17 @@ public class ColumnAccessors {
   </#list>
 </#list>
 }
-<@pp.changeOutputFile name="/org/apache/drill/exec/vector/accessor/ColumnAccessorUtils.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/vector/accessor/ColumnAccessorUtils.java" />
 <@copyright />
 
-package org.apache.drill.exec.vector.accessor;
+package org.lealone.hansql.exec.vector.accessor;
 
-import org.apache.drill.common.types.TypeProtos.MinorType;
-import org.apache.drill.exec.vector.accessor.ColumnAccessors.*;
-import org.apache.drill.exec.vector.accessor.reader.BaseScalarReader;
-import org.apache.drill.exec.vector.accessor.reader.BitColumnReader;
-import org.apache.drill.exec.vector.accessor.writer.BaseScalarWriter;
-import org.apache.drill.exec.vector.accessor.writer.BitColumnWriter;
+import org.lealone.hansql.common.types.TypeProtos.MinorType;
+import org.lealone.hansql.exec.vector.accessor.ColumnAccessors.*;
+import org.lealone.hansql.exec.vector.accessor.reader.BaseScalarReader;
+import org.lealone.hansql.exec.vector.accessor.reader.BitColumnReader;
+import org.lealone.hansql.exec.vector.accessor.writer.BaseScalarWriter;
+import org.lealone.hansql.exec.vector.accessor.writer.BitColumnWriter;
 
 public class ColumnAccessorUtils {
 

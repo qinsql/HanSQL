@@ -15,24 +15,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import org.apache.drill.exec.expr.annotations.Workspace;
+import org.lealone.hansql.exec.expr.annotations.Workspace;
 
 <@pp.dropOutputFile />
 
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/fn/impl/GDateTimeTruncateFunctions.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/fn/impl/GDateTimeTruncateFunctions.java" />
 
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.expr.fn.impl;
+package org.lealone.hansql.exec.expr.fn.impl;
 
-import org.apache.drill.exec.expr.DrillSimpleFunc;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.NullHandling;
-import org.apache.drill.exec.expr.annotations.Output;
-import org.apache.drill.exec.expr.annotations.Workspace;
-import org.apache.drill.exec.expr.annotations.Param;
-import org.apache.drill.exec.expr.holders.*;
-import org.apache.drill.exec.record.RecordBatch;
+import org.lealone.hansql.exec.expr.DrillSimpleFunc;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.NullHandling;
+import org.lealone.hansql.exec.expr.annotations.Output;
+import org.lealone.hansql.exec.expr.annotations.Workspace;
+import org.lealone.hansql.exec.expr.annotations.Param;
+import org.lealone.hansql.exec.expr.holders.*;
+import org.lealone.hansql.exec.record.RecordBatch;
 
 import io.netty.buffer.ByteBuf;
 
@@ -212,19 +212,19 @@ public class GDateTimeTruncateFunctions {
         <#if toUnit == "Second"> <#--  Start UnitType -->
       out.months = right.months;
       out.days = right.days;
-      out.milliseconds = (right.milliseconds/(org.apache.drill.exec.vector.DateUtilities.secondsToMillis))*
-          (org.apache.drill.exec.vector.DateUtilities.secondsToMillis);
+      out.milliseconds = (right.milliseconds/(org.lealone.hansql.exec.vector.DateUtilities.secondsToMillis))*
+          (org.lealone.hansql.exec.vector.DateUtilities.secondsToMillis);
         <#elseif toUnit == "Minute">
       out.months = right.months;
       out.days = right.days;
-      out.milliseconds = (right.milliseconds/(org.apache.drill.exec.vector.DateUtilities.minutesToMillis))*
-          (org.apache.drill.exec.vector.DateUtilities.minutesToMillis);
+      out.milliseconds = (right.milliseconds/(org.lealone.hansql.exec.vector.DateUtilities.minutesToMillis))*
+          (org.lealone.hansql.exec.vector.DateUtilities.minutesToMillis);
         <#elseif toUnit == "Hour">
       out.months = right.months;
       out.days = right.days;
       out.milliseconds =
-          (right.milliseconds/(org.apache.drill.exec.vector.DateUtilities.hoursToMillis))*
-              (org.apache.drill.exec.vector.DateUtilities.hoursToMillis);
+          (right.milliseconds/(org.lealone.hansql.exec.vector.DateUtilities.hoursToMillis))*
+              (org.lealone.hansql.exec.vector.DateUtilities.hoursToMillis);
         <#elseif toUnit == "Day">
       out.months = right.months;
       out.days = right.days;
@@ -257,17 +257,17 @@ public class GDateTimeTruncateFunctions {
       <#elseif type == "IntervalDay">
         <#if toUnit == "Second"> <#--  Start UnitType -->
       out.days = right.days;
-      out.milliseconds = (right.milliseconds/(org.apache.drill.exec.vector.DateUtilities.secondsToMillis))*
-        (org.apache.drill.exec.vector.DateUtilities.secondsToMillis);
+      out.milliseconds = (right.milliseconds/(org.lealone.hansql.exec.vector.DateUtilities.secondsToMillis))*
+        (org.lealone.hansql.exec.vector.DateUtilities.secondsToMillis);
         <#elseif toUnit == "Minute">
       out.days = right.days;
-      out.milliseconds = (right.milliseconds/(org.apache.drill.exec.vector.DateUtilities.minutesToMillis))*
-          (org.apache.drill.exec.vector.DateUtilities.minutesToMillis);
+      out.milliseconds = (right.milliseconds/(org.lealone.hansql.exec.vector.DateUtilities.minutesToMillis))*
+          (org.lealone.hansql.exec.vector.DateUtilities.minutesToMillis);
         <#elseif toUnit == "Hour">
       out.days = right.days;
       out.milliseconds =
-          (right.milliseconds/(org.apache.drill.exec.vector.DateUtilities.hoursToMillis))*
-              (org.apache.drill.exec.vector.DateUtilities.hoursToMillis);
+          (right.milliseconds/(org.lealone.hansql.exec.vector.DateUtilities.hoursToMillis))*
+              (org.lealone.hansql.exec.vector.DateUtilities.hoursToMillis);
         <#elseif toUnit == "Day">
       out.days = right.days;
       out.milliseconds = 0;

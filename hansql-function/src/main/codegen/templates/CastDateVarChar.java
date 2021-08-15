@@ -22,30 +22,30 @@
 <#list cast.types as type>
 <#if type.major == "DateVarChar">  <#-- Template to convert functions from Date, Time, TimeStamp to VarChar -->
 
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/fn/impl/gcast/Cast${type.from}To${type.to}.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/fn/impl/gcast/Cast${type.from}To${type.to}.java" />
 
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.expr.fn.impl.gcast;
+package org.lealone.hansql.exec.expr.fn.impl.gcast;
 
 <#include "/@includes/vv_imports.ftl" />
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.DrillBuf;
 
-import org.apache.drill.exec.expr.DrillSimpleFunc;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.FunctionCostCategory;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.NullHandling;
-import org.apache.drill.exec.expr.annotations.Output;
-import org.apache.drill.exec.expr.annotations.Param;
-import org.apache.drill.exec.expr.annotations.Workspace;
-import org.apache.drill.exec.expr.holders.*;
-import org.apache.drill.exec.record.RecordBatch;
+import org.lealone.hansql.exec.expr.DrillSimpleFunc;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.FunctionCostCategory;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.NullHandling;
+import org.lealone.hansql.exec.expr.annotations.Output;
+import org.lealone.hansql.exec.expr.annotations.Param;
+import org.lealone.hansql.exec.expr.annotations.Workspace;
+import org.lealone.hansql.exec.expr.holders.*;
+import org.lealone.hansql.exec.record.RecordBatch;
 import org.joda.time.MutableDateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.DateMidnight;
-import org.apache.drill.exec.expr.fn.impl.DateUtility;
+import org.lealone.hansql.exec.expr.fn.impl.DateUtility;
 
 /*
  * This class is generated using freemarker and the ${.template_name} template.
@@ -72,10 +72,10 @@ public class Cast${type.from}To${type.to} implements DrillSimpleFunc {
 
       <#if type.from == "Time">
       java.time.LocalDateTime temp = java.time.Instant.ofEpochMilli(in.value).atZone(java.time.ZoneOffset.UTC).toLocalDateTime();
-      String str = org.apache.drill.exec.expr.fn.impl.DateUtility.format${type.from}.format(temp);
+      String str = org.lealone.hansql.exec.expr.fn.impl.DateUtility.format${type.from}.format(temp);
       <#else>
       java.time.LocalDateTime temp = java.time.Instant.ofEpochMilli(in.value).atZone(java.time.ZoneOffset.UTC).toLocalDateTime();
-      String str = org.apache.drill.exec.expr.fn.impl.DateUtility.format${type.from}.format(temp);
+      String str = org.lealone.hansql.exec.expr.fn.impl.DateUtility.format${type.from}.format(temp);
       </#if>
       out.buffer = buffer;
       out.start = 0;

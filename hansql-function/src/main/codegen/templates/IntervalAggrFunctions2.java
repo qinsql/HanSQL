@@ -20,7 +20,7 @@
 
 
 <#list aggrtypes2.aggrtypes as aggrtype>
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/fn/impl/gaggr/${aggrtype.className}IntervalTypeFunctions.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/fn/impl/gaggr/${aggrtype.className}IntervalTypeFunctions.java" />
 
 <#include "/@includes/license.ftl" />
 
@@ -29,15 +29,15 @@
 <#-- A utility class that is used to generate java code for aggr functions for the interval data types. It maintains a running sum  -->
 <#-- and a running count.  For now, this includes: AVG. -->
 
-package org.apache.drill.exec.expr.fn.impl.gaggr;
+package org.lealone.hansql.exec.expr.fn.impl.gaggr;
 
-import org.apache.drill.exec.expr.DrillAggFunc;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.FunctionScope;
-import org.apache.drill.exec.expr.annotations.Output;
-import org.apache.drill.exec.expr.annotations.Param;
-import org.apache.drill.exec.expr.annotations.Workspace;
-import org.apache.drill.exec.expr.holders.*;
+import org.lealone.hansql.exec.expr.DrillAggFunc;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.FunctionScope;
+import org.lealone.hansql.exec.expr.annotations.Output;
+import org.lealone.hansql.exec.expr.annotations.Param;
+import org.lealone.hansql.exec.expr.annotations.Workspace;
+import org.lealone.hansql.exec.expr.holders.*;
 
 /*
  * This class is generated using freemarker and the ${.template_name} template.
@@ -82,11 +82,11 @@ public static class ${type.inputType}${aggrtype.className} implements DrillAggFu
     nonNullCount.value = 1;
 	  <#if aggrtype.funcName == "avg">
     <#if type.inputType.endsWith("Interval")>
-    sum.value += (long) in.months * org.apache.drill.exec.vector.DateUtilities.monthToStandardDays +
-                          in.days * (org.apache.drill.exec.vector.DateUtilities.daysToStandardMillis) +
+    sum.value += (long) in.months * org.lealone.hansql.exec.vector.DateUtilities.monthToStandardDays +
+                          in.days * (org.lealone.hansql.exec.vector.DateUtilities.daysToStandardMillis) +
                           in.milliseconds;
     <#elseif type.inputType.endsWith("IntervalDay")>
-    sum.value += (long) in.days * (org.apache.drill.exec.vector.DateUtilities.daysToStandardMillis) +
+    sum.value += (long) in.days * (org.lealone.hansql.exec.vector.DateUtilities.daysToStandardMillis) +
                         in.milliseconds;
     <#else>
     sum.value += in.value;
@@ -107,14 +107,14 @@ public static class ${type.inputType}${aggrtype.className} implements DrillAggFu
       out.isSet = 1;
       double millis = sum.value / ((double) count.value);
       <#if type.inputType.endsWith("Interval") || type.inputType.endsWith("IntervalYear")>
-      out.months = (int) (millis / org.apache.drill.exec.vector.DateUtilities.monthsToMillis);
-      millis = millis % org.apache.drill.exec.vector.DateUtilities.monthsToMillis;
-      out.days =(int) (millis / org.apache.drill.exec.vector.DateUtilities.daysToStandardMillis);
-      out.milliseconds = (int) (millis % org.apache.drill.exec.vector.DateUtilities.daysToStandardMillis);
+      out.months = (int) (millis / org.lealone.hansql.exec.vector.DateUtilities.monthsToMillis);
+      millis = millis % org.lealone.hansql.exec.vector.DateUtilities.monthsToMillis;
+      out.days =(int) (millis / org.lealone.hansql.exec.vector.DateUtilities.daysToStandardMillis);
+      out.milliseconds = (int) (millis % org.lealone.hansql.exec.vector.DateUtilities.daysToStandardMillis);
       <#elseif type.inputType.endsWith("IntervalDay")>
       out.months = 0;
-      out.days = (int) (millis / org.apache.drill.exec.vector.DateUtilities.daysToStandardMillis);
-      out.milliseconds = (int) (millis % org.apache.drill.exec.vector.DateUtilities.daysToStandardMillis);
+      out.days = (int) (millis / org.lealone.hansql.exec.vector.DateUtilities.daysToStandardMillis);
+      out.milliseconds = (int) (millis % org.lealone.hansql.exec.vector.DateUtilities.daysToStandardMillis);
       </#if>
     } else {
       out.isSet = 0;

@@ -28,18 +28,18 @@
 <#list cast.types as type>
 <#if type.major == "EmptyString">
 
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/fn/impl/gcast/CastEmptyString${type.from}To${type.to}.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/fn/impl/gcast/CastEmptyString${type.from}To${type.to}.java" />
 <#include "/@includes/license.ftl" />
 
-    package org.apache.drill.exec.expr.fn.impl.gcast;
+    package org.lealone.hansql.exec.expr.fn.impl.gcast;
 
-    import org.apache.drill.exec.expr.DrillSimpleFunc;
-    import org.apache.drill.exec.expr.annotations.FunctionTemplate;
-    import org.apache.drill.exec.expr.annotations.FunctionTemplate.NullHandling;
-    import org.apache.drill.exec.expr.annotations.Output;
-    import org.apache.drill.exec.expr.annotations.Param;
-    import org.apache.drill.exec.expr.holders.*;
-    import org.apache.drill.exec.record.RecordBatch;
+    import org.lealone.hansql.exec.expr.DrillSimpleFunc;
+    import org.lealone.hansql.exec.expr.annotations.FunctionTemplate;
+    import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.NullHandling;
+    import org.lealone.hansql.exec.expr.annotations.Output;
+    import org.lealone.hansql.exec.expr.annotations.Param;
+    import org.lealone.hansql.exec.expr.holders.*;
+    import org.lealone.hansql.exec.record.RecordBatch;
     import javax.inject.Inject;
     import io.netty.buffer.DrillBuf;
 
@@ -73,7 +73,7 @@ public class CastEmptyString${type.from}To${type.to} implements DrillSimpleFunc{
             out.isSet = 0;
         } else {
             out.isSet = 1;
-            out.value = org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.varTypesToInt(in.start, in.end, in.buffer);
+            out.value = org.lealone.hansql.exec.expr.fn.impl.StringFunctionHelpers.varTypesToInt(in.start, in.end, in.buffer);
         }
     <#elseif type.to == "NullableBigInt">
         if(<#if type.from == "NullableVarChar" || type.from == "NullableVar16Char" ||
@@ -82,7 +82,7 @@ public class CastEmptyString${type.from}To${type.to} implements DrillSimpleFunc{
             out.isSet = 0;
         } else {
             out.isSet = 1;
-            out.value = org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.varTypesToLong(in.start, in.end, in.buffer);
+            out.value = org.lealone.hansql.exec.expr.fn.impl.StringFunctionHelpers.varTypesToLong(in.start, in.end, in.buffer);
         }
     </#if>
         }

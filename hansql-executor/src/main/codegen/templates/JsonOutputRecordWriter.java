@@ -16,14 +16,14 @@
  * limitations under the License.
  */
 <@pp.dropOutputFile />
-<@pp.changeOutputFile name="org/apache/drill/exec/store/JSONOutputRecordWriter.java" />
+<@pp.changeOutputFile name="org/lealone/hansql/exec/store/JSONOutputRecordWriter.java" />
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.store;
+package org.lealone.hansql.exec.store;
 
-import org.apache.drill.exec.store.EventBasedRecordWriter.FieldConverter;
-import org.apache.drill.exec.vector.complex.reader.FieldReader;
-import org.apache.drill.exec.vector.complex.fn.JsonOutput;
+import org.lealone.hansql.exec.store.EventBasedRecordWriter.FieldConverter;
+import org.lealone.hansql.exec.vector.complex.reader.FieldReader;
+import org.lealone.hansql.exec.vector.complex.fn.JsonOutput;
 
 import java.io.IOException;
 import java.lang.UnsupportedOperationException;

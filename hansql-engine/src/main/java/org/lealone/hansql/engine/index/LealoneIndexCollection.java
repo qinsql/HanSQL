@@ -19,10 +19,10 @@ package org.lealone.hansql.engine.index;
 
 import java.util.Set;
 
-import org.apache.drill.exec.physical.base.IndexGroupScan;
-import org.apache.drill.exec.planner.index.AbstractIndexCollection;
-import org.apache.drill.exec.planner.index.IndexCollection;
-import org.apache.drill.exec.planner.index.IndexDescriptor;
+import org.lealone.hansql.exec.physical.base.IndexGroupScan;
+import org.lealone.hansql.exec.planner.index.AbstractIndexCollection;
+import org.lealone.hansql.exec.planner.index.IndexCollection;
+import org.lealone.hansql.exec.planner.index.IndexDescriptor;
 import org.lealone.hansql.optimizer.rel.RelNode;
 import org.lealone.hansql.optimizer.rex.RexNode;
 

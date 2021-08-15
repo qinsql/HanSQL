@@ -20,7 +20,7 @@
 
 
 <#list aggrtypes1.aggrtypes as aggrtype>
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/fn/impl/gaggr/${aggrtype.className}ComplexFunctions.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/fn/impl/gaggr/${aggrtype.className}ComplexFunctions.java" />
 
 <#include "/@includes/license.ftl" />
 
@@ -31,19 +31,19 @@
 <#-- A utility class that is used to generate java code for aggr functions that maintain a single -->
 <#-- running counter to hold the result.  This includes: ANY_VALUE. -->
 
-package org.apache.drill.exec.expr.fn.impl.gaggr;
+package org.lealone.hansql.exec.expr.fn.impl.gaggr;
 
-import org.apache.drill.exec.expr.DrillAggFunc;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.FunctionScope;
-import org.apache.drill.exec.expr.annotations.Output;
-import org.apache.drill.exec.expr.annotations.Param;
-import org.apache.drill.exec.expr.annotations.Workspace;
-import org.apache.drill.exec.expr.holders.*;
-import org.apache.drill.exec.vector.complex.reader.FieldReader;
-import org.apache.drill.exec.vector.complex.MapUtility;
-import org.apache.drill.exec.vector.complex.writer.*;
-import org.apache.drill.exec.vector.complex.writer.BaseWriter.*;
+import org.lealone.hansql.exec.expr.DrillAggFunc;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.FunctionScope;
+import org.lealone.hansql.exec.expr.annotations.Output;
+import org.lealone.hansql.exec.expr.annotations.Param;
+import org.lealone.hansql.exec.expr.annotations.Workspace;
+import org.lealone.hansql.exec.expr.holders.*;
+import org.lealone.hansql.exec.vector.complex.reader.FieldReader;
+import org.lealone.hansql.exec.vector.complex.MapUtility;
+import org.lealone.hansql.exec.vector.complex.writer.*;
+import org.lealone.hansql.exec.vector.complex.writer.BaseWriter.*;
 
 @SuppressWarnings("unused")
 
@@ -76,23 +76,23 @@ public static class ${type.inputType}${aggrtype.className} implements DrillAggFu
   <#if aggrtype.funcName == "any_value">
     <#if type.runningType?starts_with("Map")>
     if (nonNullCount.value == 0) {
-      org.apache.drill.exec.expr.fn.impl.MappifyUtility.createMap(inHolder.reader, writer, "any_value");
+      org.lealone.hansql.exec.expr.fn.impl.MappifyUtility.createMap(inHolder.reader, writer, "any_value");
     }
     <#elseif type.runningType?starts_with("RepeatedMap")>
     if (nonNullCount.value == 0) {
-      org.apache.drill.exec.expr.fn.impl.MappifyUtility.createRepeatedMapOrList(inHolder.reader, writer, "any_value");
+      org.lealone.hansql.exec.expr.fn.impl.MappifyUtility.createRepeatedMapOrList(inHolder.reader, writer, "any_value");
     }
     <#elseif type.runningType?starts_with("List")>
     if (nonNullCount.value == 0) {
-      org.apache.drill.exec.expr.fn.impl.MappifyUtility.createList(inHolder.reader, writer, "any_value");
+      org.lealone.hansql.exec.expr.fn.impl.MappifyUtility.createList(inHolder.reader, writer, "any_value");
     }
     <#elseif type.runningType?starts_with("RepeatedList")>
     if (nonNullCount.value == 0) {
-      org.apache.drill.exec.expr.fn.impl.MappifyUtility.createRepeatedMapOrList(inHolder.reader, writer, "any_value");
+      org.lealone.hansql.exec.expr.fn.impl.MappifyUtility.createRepeatedMapOrList(inHolder.reader, writer, "any_value");
     }
     <#elseif type.runningType?starts_with("Repeated")>
     if (nonNullCount.value == 0) {
-      org.apache.drill.exec.expr.fn.impl.MappifyUtility.createList(inHolder.reader, writer, "any_value");
+      org.lealone.hansql.exec.expr.fn.impl.MappifyUtility.createList(inHolder.reader, writer, "any_value");
     }
     </#if>
   </#if>

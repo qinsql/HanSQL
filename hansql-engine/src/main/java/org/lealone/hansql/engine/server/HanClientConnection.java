@@ -19,19 +19,19 @@ package org.lealone.hansql.engine.server;
 
 import java.net.SocketAddress;
 
-import org.apache.drill.exec.physical.impl.materialize.QueryWritableBatch;
-import org.apache.drill.exec.proto.UserBitShared.QueryResult;
-import org.apache.drill.exec.proto.UserBitShared.UserCredentials;
-import org.apache.drill.exec.record.RecordBatch;
-import org.apache.drill.exec.session.UserSession;
 import org.lealone.db.async.AsyncHandler;
 import org.lealone.db.async.AsyncResult;
 import org.lealone.db.result.Result;
 import org.lealone.db.session.ServerSession;
 import org.lealone.hansql.engine.HanEngine;
+import org.lealone.hansql.exec.physical.impl.materialize.QueryWritableBatch;
+import org.lealone.hansql.exec.proto.UserBitShared.QueryResult;
+import org.lealone.hansql.exec.proto.UserBitShared.UserCredentials;
+import org.lealone.hansql.exec.record.RecordBatch;
+import org.lealone.hansql.exec.session.UserSession;
 import org.lealone.hansql.optimizer.schema.SchemaPlus;
 
-public class HanClientConnection implements org.apache.drill.exec.session.UserClientConnection {
+public class HanClientConnection implements org.lealone.hansql.exec.session.UserClientConnection {
 
     private final HanBatchResult batchResult = new HanBatchResult();
     private final ServerSession serverSession;

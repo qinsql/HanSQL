@@ -17,9 +17,9 @@
  */
 package org.lealone.hansql.test.executor;
 
-import org.apache.drill.exec.expr.fn.impl.GMathFunctions;
-import org.apache.drill.exec.expr.fn.interpreter.InterpreterEvaluator;
-import org.apache.drill.exec.expr.holders.IntHolder;
+import org.lealone.hansql.exec.expr.fn.impl.GMathFunctions;
+import org.lealone.hansql.exec.expr.fn.interpreter.InterpreterEvaluator;
+import org.lealone.hansql.exec.expr.holders.IntHolder;
 
 public class DrillFuncTest {
 

@@ -27,10 +27,10 @@ import java.lang.Override;
 <#-- Class returned by ResultSet.getObject(...): -->
 <#assign jdbcObjectClass = minor.jdbcObjectClass ! friendlyType />
 
-<@pp.changeOutputFile name="/org/apache/drill/exec/vector/accessor/${name}Accessor.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/vector/accessor/${name}Accessor.java" />
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.vector.accessor;
+package org.lealone.hansql.exec.vector.accessor;
 
 <#include "/@includes/vv_imports.ftl" />
 

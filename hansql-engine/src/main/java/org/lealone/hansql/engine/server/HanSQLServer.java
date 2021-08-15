@@ -19,12 +19,12 @@ package org.lealone.hansql.engine.server;
 
 import java.util.Map;
 
-import org.apache.drill.common.config.DrillConfig;
-import org.apache.drill.exec.store.StoragePlugin;
 import org.lealone.common.logging.Logger;
 import org.lealone.common.logging.LoggerFactory;
 import org.lealone.db.LealoneDatabase;
+import org.lealone.hansql.common.config.DrillConfig;
 import org.lealone.hansql.engine.HanEngine;
+import org.lealone.hansql.exec.store.StoragePlugin;
 import org.lealone.net.AsyncConnectionManager;
 import org.lealone.server.TcpServer;
 

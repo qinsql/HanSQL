@@ -15,26 +15,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import org.apache.drill.exec.store.AbstractRecordWriter;
+import org.lealone.hansql.exec.store.AbstractRecordWriter;
 
 import java.lang.Override;
 import java.lang.UnsupportedOperationException;
 
 <@pp.dropOutputFile />
-<@pp.changeOutputFile name="org/apache/drill/exec/store/StringOutputRecordWriter.java" />
+<@pp.changeOutputFile name="org/lealone/hansql/exec/store/StringOutputRecordWriter.java" />
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.store;
+package org.lealone.hansql.exec.store;
 
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
-import org.apache.drill.exec.expr.TypeHelper;
-import org.apache.drill.exec.expr.holders.*;
-import org.apache.drill.exec.memory.BufferAllocator;
-import org.apache.drill.exec.record.BatchSchema;
-import org.apache.drill.exec.record.VectorAccessible;
-import org.apache.drill.exec.store.EventBasedRecordWriter.FieldConverter;
-import org.apache.drill.exec.vector.*;
-import org.apache.drill.exec.vector.complex.reader.FieldReader;
+import org.lealone.hansql.exec.expr.TypeHelper;
+import org.lealone.hansql.exec.expr.holders.*;
+import org.lealone.hansql.exec.memory.BufferAllocator;
+import org.lealone.hansql.exec.record.BatchSchema;
+import org.lealone.hansql.exec.record.VectorAccessible;
+import org.lealone.hansql.exec.store.EventBasedRecordWriter.FieldConverter;
+import org.lealone.hansql.exec.vector.*;
+import org.lealone.hansql.exec.vector.complex.reader.FieldReader;
 
 import java.io.IOException;
 import java.lang.UnsupportedOperationException;

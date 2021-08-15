@@ -28,15 +28,14 @@ import java.nio.charset.Charset;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
-import org.apache.drill.common.HistoricalLog;
-import org.apache.drill.exec.memory.AllocationManager.BufferLedger;
-import org.apache.drill.exec.memory.BaseAllocator;
-import org.apache.drill.exec.memory.BaseAllocator.Verbosity;
-import org.apache.drill.exec.memory.BoundsChecking;
-import org.apache.drill.exec.memory.BufferAllocator;
-import org.apache.drill.exec.ops.BufferManager;
-
 import org.apache.drill.shaded.guava.com.google.common.base.Preconditions;
+import org.lealone.hansql.common.HistoricalLog;
+import org.lealone.hansql.exec.memory.BaseAllocator;
+import org.lealone.hansql.exec.memory.BoundsChecking;
+import org.lealone.hansql.exec.memory.BufferAllocator;
+import org.lealone.hansql.exec.memory.AllocationManager.BufferLedger;
+import org.lealone.hansql.exec.memory.BaseAllocator.Verbosity;
+import org.lealone.hansql.exec.ops.BufferManager;
 
 import io.netty.util.internal.PlatformDependent;
 

@@ -18,20 +18,20 @@
 <@pp.dropOutputFile />
 <#assign className="GTimestampDiff"/>
 
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/fn/impl/${className}.java"/>
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/fn/impl/${className}.java"/>
 
 <#include "/@includes/license.ftl"/>
 
-package org.apache.drill.exec.expr.fn.impl;
+package org.lealone.hansql.exec.expr.fn.impl;
 
-import org.apache.drill.exec.expr.DrillSimpleFunc;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.NullHandling;
-import org.apache.drill.exec.expr.annotations.Output;
-import org.apache.drill.exec.expr.annotations.Workspace;
-import org.apache.drill.exec.expr.annotations.Param;
-import org.apache.drill.exec.expr.holders.*;
-import org.apache.drill.exec.record.RecordBatch;
+import org.lealone.hansql.exec.expr.DrillSimpleFunc;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.NullHandling;
+import org.lealone.hansql.exec.expr.annotations.Output;
+import org.lealone.hansql.exec.expr.annotations.Workspace;
+import org.lealone.hansql.exec.expr.annotations.Param;
+import org.lealone.hansql.exec.expr.holders.*;
+import org.lealone.hansql.exec.record.RecordBatch;
 
 /*
  * This class is generated using freemarker and the ${.template_name} template.
@@ -62,18 +62,18 @@ public class ${className} {
     <#elseif unit == "Microsecond">
       out.value = (right.value - left.value) * 1000;
     <#elseif unit == "Second">
-      out.value = (right.value - left.value) / org.apache.drill.exec.vector.DateUtilities.secondsToMillis;
+      out.value = (right.value - left.value) / org.lealone.hansql.exec.vector.DateUtilities.secondsToMillis;
     <#elseif unit == "Minute">
-      out.value = (right.value - left.value) / org.apache.drill.exec.vector.DateUtilities.minutesToMillis;
+      out.value = (right.value - left.value) / org.lealone.hansql.exec.vector.DateUtilities.minutesToMillis;
     <#elseif unit == "Hour">
-      out.value = (right.value - left.value) / org.apache.drill.exec.vector.DateUtilities.hoursToMillis;
+      out.value = (right.value - left.value) / org.lealone.hansql.exec.vector.DateUtilities.hoursToMillis;
     <#elseif unit == "Day">
-      out.value = (right.value - left.value) / org.apache.drill.exec.vector.DateUtilities.daysToStandardMillis;
+      out.value = (right.value - left.value) / org.lealone.hansql.exec.vector.DateUtilities.daysToStandardMillis;
     <#elseif unit == "Week">
       out.value = (right.value - left.value) / 604800000; // 7 * 24 * 60 * 60 * 1000
     <#elseif unit == "Month" || unit == "Quarter" || unit == "Year">
-      long timeMilliseconds = left.value % org.apache.drill.exec.vector.DateUtilities.daysToStandardMillis
-          - right.value % org.apache.drill.exec.vector.DateUtilities.daysToStandardMillis;
+      long timeMilliseconds = left.value % org.lealone.hansql.exec.vector.DateUtilities.daysToStandardMillis
+          - right.value % org.lealone.hansql.exec.vector.DateUtilities.daysToStandardMillis;
 
       java.time.Period between = java.time.Period.between(
           java.time.Instant.ofEpochMilli(left.value).atZone(java.time.ZoneOffset.UTC).toLocalDate(),
@@ -82,15 +82,15 @@ public class ${className} {
       if (timeMilliseconds < 0 && days > 0) {
         // in the case of negative time value increases left operand days value
         between = java.time.Period.between(
-            java.time.Instant.ofEpochMilli(left.value + org.apache.drill.exec.vector.DateUtilities.daysToStandardMillis).atZone(java.time.ZoneOffset.UTC).toLocalDate(),
+            java.time.Instant.ofEpochMilli(left.value + org.lealone.hansql.exec.vector.DateUtilities.daysToStandardMillis).atZone(java.time.ZoneOffset.UTC).toLocalDate(),
             java.time.Instant.ofEpochMilli(right.value).atZone(java.time.ZoneOffset.UTC).toLocalDate());
       } else if (timeMilliseconds > 0 && days < 0) {
         // in the case of negative days value decreases it for the right operand
         between = java.time.Period.between(
-            java.time.Instant.ofEpochMilli(left.value - org.apache.drill.exec.vector.DateUtilities.daysToStandardMillis).atZone(java.time.ZoneOffset.UTC).toLocalDate(),
+            java.time.Instant.ofEpochMilli(left.value - org.lealone.hansql.exec.vector.DateUtilities.daysToStandardMillis).atZone(java.time.ZoneOffset.UTC).toLocalDate(),
             java.time.Instant.ofEpochMilli(right.value).atZone(java.time.ZoneOffset.UTC).toLocalDate());
       }
-      int months = between.getMonths() + between.getYears() * org.apache.drill.exec.vector.DateUtilities.yearsToMonths;
+      int months = between.getMonths() + between.getYears() * org.lealone.hansql.exec.vector.DateUtilities.yearsToMonths;
 
         <#if unit == "Month">
       out.value = months;
@@ -98,7 +98,7 @@ public class ${className} {
       // Quarter has 3 month
       out.value = months / 3;
         <#elseif unit == "Year">
-      out.value = months / org.apache.drill.exec.vector.DateUtilities.yearsToMonths;
+      out.value = months / org.lealone.hansql.exec.vector.DateUtilities.yearsToMonths;
         </#if>
     </#if>
     }

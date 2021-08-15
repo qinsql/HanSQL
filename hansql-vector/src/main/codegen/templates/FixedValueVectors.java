@@ -21,10 +21,10 @@
 <#assign friendlyType = (minor.friendlyType!minor.boxedType!type.boxedType) />
 
 <#if type.major == "Fixed">
-  <@pp.changeOutputFile name="/org/apache/drill/exec/vector/${minor.class}Vector.java" />
+  <@pp.changeOutputFile name="/org/lealone/hansql/exec/vector/${minor.class}Vector.java" />
   <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.vector;
+package org.lealone.hansql.exec.vector;
 
 <#include "/@includes/vv_imports.ftl" />
 <#if minor.class == "Int" || minor.class == "UInt4" || minor.class == "UInt1">
@@ -32,7 +32,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 </#if>
 
-import org.apache.drill.exec.util.DecimalUtility;
+import org.lealone.hansql.exec.util.DecimalUtility;
 
 /**
  * ${minor.class} implements a vector of fixed width values. Elements in the
@@ -200,7 +200,7 @@ public final class ${minor.class}Vector extends BaseDataValueVector implements F
    * Allocate new buffer with double capacity, and copy data into the new
    * buffer. Replace vector's buffer with new buffer, and release old one
    *
-   * @throws org.apache.drill.exec.memory.OutOfMemoryException
+   * @throws org.lealone.hansql.exec.memory.OutOfMemoryException
    *           if it can't allocate the new buffer
    */
 

@@ -21,17 +21,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 
-import org.apache.drill.common.expression.LogicalExpression;
-import org.apache.drill.common.expression.SchemaPath;
-import org.apache.drill.exec.physical.base.AbstractDbGroupScan;
-import org.apache.drill.exec.physical.base.GroupScan;
-import org.apache.drill.exec.planner.common.DrillScanRelBase;
-import org.apache.drill.exec.planner.index.CollationContext;
-import org.apache.drill.exec.planner.index.IndexCollection;
-import org.apache.drill.exec.planner.index.IndexDefinition.IndexType;
-import org.apache.drill.exec.planner.index.IndexDescriptor;
-import org.apache.drill.exec.planner.index.IndexDiscoverBase;
-import org.apache.drill.exec.planner.logical.DrillTable;
 import org.lealone.db.Database;
 import org.lealone.db.LealoneDatabase;
 import org.lealone.db.index.Index;
@@ -39,8 +28,19 @@ import org.lealone.db.index.standard.StandardSecondaryIndex;
 import org.lealone.db.schema.Schema;
 import org.lealone.db.table.Column;
 import org.lealone.db.table.Table;
+import org.lealone.hansql.common.expression.LogicalExpression;
+import org.lealone.hansql.common.expression.SchemaPath;
 import org.lealone.hansql.engine.storage.LealoneGroupScan;
 import org.lealone.hansql.engine.storage.LealoneScanSpec;
+import org.lealone.hansql.exec.physical.base.AbstractDbGroupScan;
+import org.lealone.hansql.exec.physical.base.GroupScan;
+import org.lealone.hansql.exec.planner.common.DrillScanRelBase;
+import org.lealone.hansql.exec.planner.index.CollationContext;
+import org.lealone.hansql.exec.planner.index.IndexCollection;
+import org.lealone.hansql.exec.planner.index.IndexDescriptor;
+import org.lealone.hansql.exec.planner.index.IndexDiscoverBase;
+import org.lealone.hansql.exec.planner.index.IndexDefinition.IndexType;
+import org.lealone.hansql.exec.planner.logical.DrillTable;
 import org.lealone.hansql.optimizer.rel.RelFieldCollation.NullDirection;
 
 public class LealoneIndexDiscover extends IndexDiscoverBase {

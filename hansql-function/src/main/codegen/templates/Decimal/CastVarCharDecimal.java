@@ -22,26 +22,26 @@
 <#if type.major == "VarCharDecimalComplex" || type.major == "NullableVarCharDecimalComplex">  <#-- Cast function template for conversion from VarChar to VarDecimal -->
 
 <#if type.major == "VarCharDecimalComplex">
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/fn/impl/gcast/Cast${type.from}${type.to}.java"/>
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/fn/impl/gcast/Cast${type.from}${type.to}.java"/>
 <#elseif type.major == "NullableVarCharDecimalComplex">
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/fn/impl/gcast/CastEmptyString${type.from}To${type.to}.java"/>
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/fn/impl/gcast/CastEmptyString${type.from}To${type.to}.java"/>
 </#if>
 
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.expr.fn.impl.gcast;
+package org.lealone.hansql.exec.expr.fn.impl.gcast;
 
 <#include "/@includes/vv_imports.ftl" />
 
-import org.apache.drill.exec.expr.DrillSimpleFunc;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.NullHandling;
-import org.apache.drill.exec.expr.annotations.Output;
-import org.apache.drill.exec.expr.annotations.Param;
-import org.apache.drill.exec.expr.holders.*;
-import org.apache.drill.exec.record.RecordBatch;
-import org.apache.drill.exec.util.DecimalUtility;
-import org.apache.drill.exec.expr.annotations.Workspace;
+import org.lealone.hansql.exec.expr.DrillSimpleFunc;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.NullHandling;
+import org.lealone.hansql.exec.expr.annotations.Output;
+import org.lealone.hansql.exec.expr.annotations.Param;
+import org.lealone.hansql.exec.expr.holders.*;
+import org.lealone.hansql.exec.record.RecordBatch;
+import org.lealone.hansql.exec.util.DecimalUtility;
+import org.lealone.hansql.exec.expr.annotations.Workspace;
 
 import io.netty.buffer.ByteBuf;
 
@@ -95,7 +95,7 @@ public class CastEmptyString${type.from}To${type.to} implements DrillSimpleFunc 
     String s = new String(buf, com.google.common.base.Charsets.UTF_8);
     java.math.BigDecimal bd = new java.math.BigDecimal(s);
 
-    org.apache.drill.exec.util.DecimalUtility.checkValueOverflow(bd, precision.value, scale.value);
+    org.lealone.hansql.exec.util.DecimalUtility.checkValueOverflow(bd, precision.value, scale.value);
 
     bd = bd.setScale(scale.value, java.math.RoundingMode.HALF_UP);
 

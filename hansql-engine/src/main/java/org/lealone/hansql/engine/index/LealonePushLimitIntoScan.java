@@ -17,14 +17,14 @@
  */
 package org.lealone.hansql.engine.index;
 
-import org.apache.drill.exec.physical.base.GroupScan;
-import org.apache.drill.exec.planner.common.DrillRelOptUtil;
-import org.apache.drill.exec.planner.logical.RelOptHelper;
-import org.apache.drill.exec.planner.physical.LimitPrel;
-import org.apache.drill.exec.planner.physical.ProjectPrel;
-import org.apache.drill.exec.planner.physical.RowKeyJoinPrel;
-import org.apache.drill.exec.planner.physical.ScanPrel;
-import org.apache.drill.exec.store.StoragePluginOptimizerRule;
+import org.lealone.hansql.exec.physical.base.GroupScan;
+import org.lealone.hansql.exec.planner.common.DrillRelOptUtil;
+import org.lealone.hansql.exec.planner.logical.RelOptHelper;
+import org.lealone.hansql.exec.planner.physical.LimitPrel;
+import org.lealone.hansql.exec.planner.physical.ProjectPrel;
+import org.lealone.hansql.exec.planner.physical.RowKeyJoinPrel;
+import org.lealone.hansql.exec.planner.physical.ScanPrel;
+import org.lealone.hansql.exec.store.StoragePluginOptimizerRule;
 import org.lealone.hansql.optimizer.plan.RelOptRuleCall;
 import org.lealone.hansql.optimizer.plan.RelOptRuleOperand;
 import org.lealone.hansql.optimizer.rel.RelNode;

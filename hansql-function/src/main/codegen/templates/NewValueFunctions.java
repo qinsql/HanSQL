@@ -24,21 +24,21 @@
 </#macro>
 
 
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/fn/impl/GNewValueFunctions.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/fn/impl/GNewValueFunctions.java" />
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.expr.fn.impl;
+package org.lealone.hansql.exec.expr.fn.impl;
 
-import org.apache.drill.exec.expr.DrillSimpleFunc;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.NullHandling;
-import org.apache.drill.exec.expr.annotations.Output;
-import org.apache.drill.exec.expr.annotations.Param;
-import org.apache.drill.exec.expr.annotations.Workspace;
-import org.apache.drill.exec.expr.holders.*;
+import org.lealone.hansql.exec.expr.DrillSimpleFunc;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.NullHandling;
+import org.lealone.hansql.exec.expr.annotations.Output;
+import org.lealone.hansql.exec.expr.annotations.Param;
+import org.lealone.hansql.exec.expr.annotations.Workspace;
+import org.lealone.hansql.exec.expr.holders.*;
 import javax.inject.Inject;
 import io.netty.buffer.DrillBuf;
-import org.apache.drill.exec.record.RecordBatch;
+import org.lealone.hansql.exec.record.RecordBatch;
 
 /*
  * This class is generated using freemarker and the ${.template_name} template.
@@ -76,7 +76,7 @@ public static class NewValue${minor.class}${mode.prefix} implements DrillSimpleF
     int length = in.end - in.start;
 
     if (initialized) {
-      if (org.apache.drill.exec.expr.fn.impl.ByteFunctionHelpers.compare(
+      if (org.lealone.hansql.exec.expr.fn.impl.ByteFunctionHelpers.compare(
           previous.buffer, 0, previous.end, in.buffer, in.start, in.end) == 0) {
         out.value = 0;
       } else {
@@ -112,7 +112,7 @@ public static class NewValue${minor.class}${mode.prefix} implements DrillSimpleF
     if (initialized) {
       if (previous.isSet == 0 && in.isSet == 0) {
         out.value = 0;
-      } else if (previous.isSet != 0 && in.isSet != 0 && org.apache.drill.exec.expr.fn.impl.ByteFunctionHelpers.compare(
+      } else if (previous.isSet != 0 && in.isSet != 0 && org.lealone.hansql.exec.expr.fn.impl.ByteFunctionHelpers.compare(
           previous.buffer, 0, previous.end, in.buffer, in.start, in.end) == 0) {
         out.value = 0;
       } else {

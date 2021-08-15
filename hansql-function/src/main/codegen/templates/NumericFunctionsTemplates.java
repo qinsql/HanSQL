@@ -20,7 +20,7 @@
 
 
 <#list numericTypes.numericFunctions as numericFunc>
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/fn/impl/${numericFunc.className}Functions.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/fn/impl/${numericFunc.className}Functions.java" />
 
 <#include "/@includes/license.ftl" />
 
@@ -30,34 +30,34 @@
  * This class is automatically generated from NumericTypes.tdd using FreeMarker.
  */
 
-package org.apache.drill.exec.expr.fn.impl;
+package org.lealone.hansql.exec.expr.fn.impl;
 
-import org.apache.drill.exec.expr.DrillSimpleFunc;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.NullHandling;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.FunctionScope;
-import org.apache.drill.exec.expr.annotations.Output;
-import org.apache.drill.exec.expr.annotations.Param;
-import org.apache.drill.exec.expr.annotations.Workspace;
-import org.apache.drill.exec.expr.holders.BigIntHolder;
-import org.apache.drill.exec.expr.holders.NullableBigIntHolder;
-import org.apache.drill.exec.expr.holders.IntHolder;
-import org.apache.drill.exec.expr.holders.NullableIntHolder;
-import org.apache.drill.exec.expr.holders.SmallIntHolder;
-import org.apache.drill.exec.expr.holders.NullableSmallIntHolder;
-import org.apache.drill.exec.expr.holders.TinyIntHolder;
-import org.apache.drill.exec.expr.holders.NullableTinyIntHolder;
-import org.apache.drill.exec.expr.holders.UInt1Holder;
-import org.apache.drill.exec.expr.holders.NullableUInt1Holder;
-import org.apache.drill.exec.expr.holders.UInt2Holder;
-import org.apache.drill.exec.expr.holders.NullableUInt2Holder;
-import org.apache.drill.exec.expr.holders.UInt4Holder;
-import org.apache.drill.exec.expr.holders.NullableUInt4Holder;
-import org.apache.drill.exec.expr.holders.UInt8Holder;
-import org.apache.drill.exec.expr.holders.NullableUInt8Holder;
-import org.apache.drill.exec.expr.holders.VarCharHolder;
-import org.apache.drill.exec.expr.holders.NullableVarCharHolder;
-import org.apache.drill.exec.record.RecordBatch;
+import org.lealone.hansql.exec.expr.DrillSimpleFunc;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.NullHandling;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.FunctionScope;
+import org.lealone.hansql.exec.expr.annotations.Output;
+import org.lealone.hansql.exec.expr.annotations.Param;
+import org.lealone.hansql.exec.expr.annotations.Workspace;
+import org.lealone.hansql.exec.expr.holders.BigIntHolder;
+import org.lealone.hansql.exec.expr.holders.NullableBigIntHolder;
+import org.lealone.hansql.exec.expr.holders.IntHolder;
+import org.lealone.hansql.exec.expr.holders.NullableIntHolder;
+import org.lealone.hansql.exec.expr.holders.SmallIntHolder;
+import org.lealone.hansql.exec.expr.holders.NullableSmallIntHolder;
+import org.lealone.hansql.exec.expr.holders.TinyIntHolder;
+import org.lealone.hansql.exec.expr.holders.NullableTinyIntHolder;
+import org.lealone.hansql.exec.expr.holders.UInt1Holder;
+import org.lealone.hansql.exec.expr.holders.NullableUInt1Holder;
+import org.lealone.hansql.exec.expr.holders.UInt2Holder;
+import org.lealone.hansql.exec.expr.holders.NullableUInt2Holder;
+import org.lealone.hansql.exec.expr.holders.UInt4Holder;
+import org.lealone.hansql.exec.expr.holders.NullableUInt4Holder;
+import org.lealone.hansql.exec.expr.holders.UInt8Holder;
+import org.lealone.hansql.exec.expr.holders.NullableUInt8Holder;
+import org.lealone.hansql.exec.expr.holders.VarCharHolder;
+import org.lealone.hansql.exec.expr.holders.NullableVarCharHolder;
+import org.lealone.hansql.exec.record.RecordBatch;
 
 /*
  * This class is generated using freemarker and the ${.template_name} template.
@@ -99,7 +99,7 @@ public static class ${type.inputType}${numericFunc.className} implements DrillSi
       return;
     }
   </#if>
-    String s = org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.toStringFromUTF8(in.start, in.end, in.buffer);
+    String s = org.lealone.hansql.exec.expr.fn.impl.StringFunctionHelpers.toStringFromUTF8(in.start, in.end, in.buffer);
     out.value = matcher.reset(s).matches() ? 1 : 0;
 
 

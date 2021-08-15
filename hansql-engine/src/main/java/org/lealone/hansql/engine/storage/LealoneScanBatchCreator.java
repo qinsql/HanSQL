@@ -20,14 +20,14 @@ package org.lealone.hansql.engine.storage;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.drill.common.exceptions.ExecutionSetupException;
-import org.apache.drill.exec.ops.ExecutorFragmentContext;
-import org.apache.drill.exec.physical.impl.BatchCreator;
-import org.apache.drill.exec.physical.impl.ScanBatch;
-import org.apache.drill.exec.record.RecordBatch;
-import org.apache.drill.exec.store.RecordReader;
 import org.apache.drill.shaded.guava.com.google.common.base.Preconditions;
+import org.lealone.hansql.common.exceptions.ExecutionSetupException;
 import org.lealone.hansql.engine.storage.LealoneSubScan.LealoneSubScanSpec;
+import org.lealone.hansql.exec.ops.ExecutorFragmentContext;
+import org.lealone.hansql.exec.physical.impl.BatchCreator;
+import org.lealone.hansql.exec.physical.impl.ScanBatch;
+import org.lealone.hansql.exec.record.RecordBatch;
+import org.lealone.hansql.exec.store.RecordReader;
 
 public class LealoneScanBatchCreator implements BatchCreator<LealoneSubScan> {
     @Override

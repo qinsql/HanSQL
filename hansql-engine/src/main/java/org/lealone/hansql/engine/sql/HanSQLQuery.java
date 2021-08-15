@@ -19,9 +19,6 @@ package org.lealone.hansql.engine.sql;
 
 import java.util.ArrayList;
 
-import org.apache.drill.common.exceptions.ExecutionSetupException;
-import org.apache.drill.exec.proto.UserProtos;
-import org.apache.drill.exec.store.SchemaTreeProvider;
 import org.lealone.common.exceptions.DbException;
 import org.lealone.db.Constants;
 import org.lealone.db.async.AsyncHandler;
@@ -30,11 +27,14 @@ import org.lealone.db.result.Result;
 import org.lealone.db.result.ResultTarget;
 import org.lealone.db.session.ServerSession;
 import org.lealone.db.session.SessionStatus;
+import org.lealone.hansql.common.exceptions.ExecutionSetupException;
 import org.lealone.hansql.engine.HanEngine;
 import org.lealone.hansql.engine.server.HanClientConnection;
 import org.lealone.hansql.engine.server.HanSQLServer;
 import org.lealone.hansql.engine.storage.LealoneStoragePlugin;
 import org.lealone.hansql.engine.storage.LealoneStoragePluginConfig;
+import org.lealone.hansql.exec.proto.UserProtos;
+import org.lealone.hansql.exec.store.SchemaTreeProvider;
 import org.lealone.hansql.optimizer.schema.CalciteSchema;
 import org.lealone.hansql.optimizer.schema.SchemaPlus;
 import org.lealone.net.NetNode;
@@ -110,7 +110,7 @@ public class HanSQLQuery extends StatementBase {
             HanEngine hanEngine = ((HanSQLServer) ProtocolServerEngineManager.getInstance()
                     .getEngine(HanSQLEngine.NAME).getProtocolServer()).getHanEngine();
             UserProtos.RunQuery runQuery = UserProtos.RunQuery.newBuilder().setPlan(sql)
-                    .setType(org.apache.drill.exec.proto.UserBitShared.QueryType.SQL).build();
+                    .setType(org.lealone.hansql.exec.proto.UserBitShared.QueryType.SQL).build();
             SchemaTreeProvider schemaTreeProvider = new SchemaTreeProvider(hanEngine.getDrillbitContext());
             SchemaPlus rootSchema = schemaTreeProvider.createRootSchema(hanEngine.getOptionManager());
             if (useDefaultSchema && sql.contains(LealoneStoragePluginConfig.NAME)) {

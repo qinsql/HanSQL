@@ -16,21 +16,21 @@
  * limitations under the License.
  */
 
-import org.apache.drill.exec.planner.physical.WriterPrel;
+import org.lealone.hansql.exec.planner.physical.WriterPrel;
 
 <@pp.dropOutputFile />
-<@pp.changeOutputFile name="org/apache/drill/exec/store/StatisticsRecordWriterImpl.java" />
+<@pp.changeOutputFile name="org/lealone/hansql/exec/store/StatisticsRecordWriterImpl.java" />
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.store;
+package org.lealone.hansql.exec.store;
 
 import com.google.common.collect.Lists;
 
-import org.apache.drill.exec.planner.physical.WriterPrel;
-import org.apache.drill.exec.record.VectorAccessible;
-import org.apache.drill.exec.record.VectorWrapper;
-import org.apache.drill.exec.store.EventBasedRecordWriter.FieldConverter;
-import org.apache.drill.exec.vector.complex.reader.FieldReader;
+import org.lealone.hansql.exec.planner.physical.WriterPrel;
+import org.lealone.hansql.exec.record.VectorAccessible;
+import org.lealone.hansql.exec.record.VectorWrapper;
+import org.lealone.hansql.exec.store.EventBasedRecordWriter.FieldConverter;
+import org.lealone.hansql.exec.vector.complex.reader.FieldReader;
 
 import java.io.IOException;
 import java.util.List;

@@ -15,15 +15,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import org.apache.drill.common.types.TypeProtos.MinorType;
+import org.lealone.hansql.common.types.TypeProtos.MinorType;
 
 <@pp.dropOutputFile />
-<@pp.changeOutputFile name="/org/apache/drill/exec/vector/complex/impl/AbstractPromotableFieldWriter.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/vector/complex/impl/AbstractPromotableFieldWriter.java" />
 
 
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.vector.complex.impl;
+package org.lealone.hansql.exec.vector.complex.impl;
 
 <#include "/@includes/vv_imports.ftl" />
 

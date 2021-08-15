@@ -19,12 +19,12 @@ import java.lang.Override;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.Set;
-import org.apache.drill.common.exceptions.DrillRuntimeException;
-import org.apache.drill.exec.exception.OutOfMemoryException;
-import org.apache.drill.exec.memory.AllocationManager.BufferLedger;
-import org.apache.drill.exec.vector.BaseDataValueVector;
-import org.apache.drill.exec.vector.BaseValueVector;
-import org.apache.drill.exec.vector.VariableWidthVector;
+import org.lealone.hansql.common.exceptions.DrillRuntimeException;
+import org.lealone.hansql.exec.exception.OutOfMemoryException;
+import org.lealone.hansql.exec.memory.AllocationManager.BufferLedger;
+import org.lealone.hansql.exec.vector.BaseDataValueVector;
+import org.lealone.hansql.exec.vector.BaseValueVector;
+import org.lealone.hansql.exec.vector.VariableWidthVector;
 
 <@pp.dropOutputFile />
 <#list vv.types as type>
@@ -33,11 +33,11 @@ import org.apache.drill.exec.vector.VariableWidthVector;
 <#assign friendlyType = (minor.friendlyType!minor.boxedType!type.boxedType) />
 
 <#if type.major == "VarLen">
-<@pp.changeOutputFile name="/org/apache/drill/exec/vector/${minor.class}Vector.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/vector/${minor.class}Vector.java" />
 
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.vector;
+package org.lealone.hansql.exec.vector;
 
 <#include "/@includes/vv_imports.ftl" />
 
@@ -548,7 +548,7 @@ public final class ${minor.class}Vector extends BaseDataValueVector implements V
    * <p>
    *   <ol>
    *     <li>
-   *       <b>Supported Writes:</b> {@link VariableWidthVector}s do not support random writes. In contrast {@link org.apache.drill.exec.vector.FixedWidthVector}s do
+   *       <b>Supported Writes:</b> {@link VariableWidthVector}s do not support random writes. In contrast {@link org.lealone.hansql.exec.vector.FixedWidthVector}s do
    *       allow random writes but special care is needed.
    *       </li>
    *     <li>
@@ -812,7 +812,7 @@ public final class ${minor.class}Vector extends BaseDataValueVector implements V
      * </p>
      * <h4>Caveats</h4>
      * <p>
-     *   It is important to note that for {@link org.apache.drill.exec.vector.FixedWidthVector}s this method can also be used to expand the vector.
+     *   It is important to note that for {@link org.lealone.hansql.exec.vector.FixedWidthVector}s this method can also be used to expand the vector.
      *   However, {@link VariableWidthVector} do not support this usage and this method will throw an {@link IndexOutOfBoundsException} if you attempt
      *   to use it in this way. Expansion of valueCounts is not supported mainly because there is no benefit, since you would still have to rely on the setSafe
      *   methods to appropriatly expand the data buffer and populate the vector anyway (since by definition we do not know the width of elements). See DRILL-6234 for details.

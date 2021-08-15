@@ -129,7 +129,7 @@
       }
 
     <#elseif mode == "varString">
-      ${output} = org.apache.drill.exec.expr.fn.impl.ByteFunctionHelpers.compare(
+      ${output} = org.lealone.hansql.exec.expr.fn.impl.ByteFunctionHelpers.compare(
           left.buffer, left.start, left.end, right.buffer, right.start, right.end );
     <#elseif mode == "intervalNameThis">
       <@intervalCompareBlock leftType=leftType rightType=rightType
@@ -158,21 +158,21 @@
 <#list typeGroup.comparables as rightTypeBase>
 
 <#-- Generate one file for each pair of base types (includes Nullable cases). -->
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/fn/impl/GCompare${leftTypeBase}Vs${rightTypeBase}.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/fn/impl/GCompare${leftTypeBase}Vs${rightTypeBase}.java" />
 
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.expr.fn.impl;
+package org.lealone.hansql.exec.expr.fn.impl;
 
-import org.apache.drill.exec.expr.DrillSimpleFunc;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.NullHandling;
-import org.apache.drill.exec.expr.annotations.Output;
-import org.apache.drill.exec.expr.annotations.Param;
-import org.apache.drill.exec.expr.fn.FunctionGenerationHelper;
-import org.apache.drill.exec.expr.fn.impl.ByteFunctionHelpers;
-import org.apache.drill.exec.expr.holders.*;
-import org.apache.drill.exec.record.RecordBatch;
+import org.lealone.hansql.exec.expr.DrillSimpleFunc;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.NullHandling;
+import org.lealone.hansql.exec.expr.annotations.Output;
+import org.lealone.hansql.exec.expr.annotations.Param;
+import org.lealone.hansql.exec.expr.fn.FunctionGenerationHelper;
+import org.lealone.hansql.exec.expr.fn.impl.ByteFunctionHelpers;
+import org.lealone.hansql.exec.expr.holders.*;
+import org.lealone.hansql.exec.record.RecordBatch;
 import javax.inject.Inject;
 import io.netty.buffer.DrillBuf;
 
@@ -407,7 +407,7 @@ public class GCompare${leftTypeBase}Vs${rightTypeBase} {
           out.value = left.value == right.value ? 1 : 0;
         }
         <#elseif typeGroup.mode == "varString" >
-          out.value = org.apache.drill.exec.expr.fn.impl.ByteFunctionHelpers.equal(
+          out.value = org.lealone.hansql.exec.expr.fn.impl.ByteFunctionHelpers.equal(
               left.buffer, left.start, left.end, right.buffer, right.start, right.end);
         <#elseif typeGroup.mode == "intervalNameThis" || typeGroup.mode == "intervalDay" >
           int cmp;

@@ -22,15 +22,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-import org.apache.drill.common.exceptions.ExecutionSetupException;
-import org.apache.drill.common.logical.FormatPluginConfig;
-import org.apache.drill.exec.store.SchemaFactory;
-import org.apache.drill.exec.store.StoragePluginRegistry;
-import org.apache.drill.exec.store.dfs.FileSystemConfig;
-import org.apache.drill.exec.store.dfs.FileSystemPlugin;
-import org.apache.drill.exec.store.dfs.WorkspaceConfig;
-import org.apache.drill.exec.store.dfs.text.TextFormatPlugin;
 import org.apache.drill.shaded.guava.com.google.common.collect.ImmutableList;
+import org.lealone.hansql.common.exceptions.ExecutionSetupException;
+import org.lealone.hansql.common.logical.FormatPluginConfig;
+import org.lealone.hansql.exec.store.SchemaFactory;
+import org.lealone.hansql.exec.store.StoragePluginRegistry;
+import org.lealone.hansql.exec.store.dfs.FileSystemConfig;
+import org.lealone.hansql.exec.store.dfs.FileSystemPlugin;
+import org.lealone.hansql.exec.store.dfs.WorkspaceConfig;
+import org.lealone.hansql.exec.store.dfs.text.TextFormatPlugin;
 
 /**
  * This class contains utility methods to speed up tests. Some of the production code currently calls this method

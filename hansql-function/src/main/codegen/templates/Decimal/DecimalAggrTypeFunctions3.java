@@ -18,7 +18,7 @@
 <@pp.dropOutputFile />
 
 <#list decimalaggrtypes3.aggrtypes as aggrtype>
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/fn/impl/gaggr/Decimal${aggrtype.className}Functions.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/fn/impl/gaggr/Decimal${aggrtype.className}Functions.java" />
 
 <#include "/@includes/license.ftl" />
 
@@ -28,16 +28,16 @@
 
 <#-- A utility class that is used to generate java code for aggr functions such as stddev, variance -->
 
-package org.apache.drill.exec.expr.fn.impl.gaggr;
+package org.lealone.hansql.exec.expr.fn.impl.gaggr;
 
-import org.apache.drill.exec.expr.DrillAggFunc;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.NullHandling;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.FunctionScope;
-import org.apache.drill.exec.expr.annotations.Output;
-import org.apache.drill.exec.expr.annotations.Param;
-import org.apache.drill.exec.expr.annotations.Workspace;
-import org.apache.drill.exec.expr.holders.*;
+import org.lealone.hansql.exec.expr.DrillAggFunc;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.NullHandling;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.FunctionScope;
+import org.lealone.hansql.exec.expr.annotations.Output;
+import org.lealone.hansql.exec.expr.annotations.Param;
+import org.lealone.hansql.exec.expr.annotations.Workspace;
+import org.lealone.hansql.exec.expr.holders.*;
 import javax.inject.Inject;
 import io.netty.buffer.DrillBuf;
 
@@ -96,13 +96,13 @@ public class Decimal${aggrtype.className}Functions {
       // avg.value += ((in.value - temp) / count.value);
       // dev.value += (in.value - temp) * (in.value - avg.value);
       java.math.BigDecimal temp = (java.math.BigDecimal) avg.obj;
-      java.math.BigDecimal input = org.apache.drill.exec.util.DecimalUtility
+      java.math.BigDecimal input = org.lealone.hansql.exec.util.DecimalUtility
           .getBigDecimalFromDrillBuf(in.buffer, in.start, in.end - in.start, in.scale);
       avg.obj = ((java.math.BigDecimal) avg.obj)
           .add(input.subtract(temp)
                   .divide(java.math.BigDecimal.valueOf(count.value),
                       new java.math.MathContext(
-                          org.apache.drill.exec.planner.types.DrillRelDataTypeSystem.DRILL_REL_DATATYPE_SYSTEM.getMaxNumericPrecision(),
+                          org.lealone.hansql.exec.planner.types.DrillRelDataTypeSystem.DRILL_REL_DATATYPE_SYSTEM.getMaxNumericPrecision(),
                           java.math.RoundingMode.HALF_UP)));
       dev.obj = ((java.math.BigDecimal) dev.obj)
           .add(input.subtract(temp).multiply(input.subtract(((java.math.BigDecimal) avg.obj))));
@@ -120,7 +120,7 @@ public class Decimal${aggrtype.className}Functions {
         if (count.value > 1) {
           // out.value = Math.sqrt((dev.value / (count.value - 1)));
           java.math.BigDecimal result =
-              org.apache.drill.exec.util.DecimalUtility.sqrt(((java.math.BigDecimal) dev.obj)
+              org.lealone.hansql.exec.util.DecimalUtility.sqrt(((java.math.BigDecimal) dev.obj)
                   .setScale(scale.value, java.math.RoundingMode.HALF_UP)
                   .divide(java.math.BigDecimal.valueOf(count.value - 1),
                       java.math.RoundingMode.HALF_UP),
@@ -137,7 +137,7 @@ public class Decimal${aggrtype.className}Functions {
         if (count.value  > 2) {
           // out.value = Math.sqrt((dev.value / (count.value - 2)));
           java.math.BigDecimal result =
-              org.apache.drill.exec.util.DecimalUtility.sqrt(((java.math.BigDecimal) dev.obj)
+              org.lealone.hansql.exec.util.DecimalUtility.sqrt(((java.math.BigDecimal) dev.obj)
                   .setScale(scale.value, java.math.RoundingMode.HALF_UP)
                   .divide(java.math.BigDecimal.valueOf(count.value - 2),
                       java.math.RoundingMode.HALF_UP),
@@ -154,8 +154,8 @@ public class Decimal${aggrtype.className}Functions {
           out.scale = scale.value;
           result = result.setScale(out.scale, java.math.RoundingMode.HALF_UP);
           out.start  = 0;
-          out.precision = org.apache.drill.exec.planner.types.DrillRelDataTypeSystem.DRILL_REL_DATATYPE_SYSTEM.getMaxNumericPrecision();
-          org.apache.drill.exec.util.DecimalUtility.checkValueOverflow(result, out.precision, out.scale);
+          out.precision = org.lealone.hansql.exec.planner.types.DrillRelDataTypeSystem.DRILL_REL_DATATYPE_SYSTEM.getMaxNumericPrecision();
+          org.lealone.hansql.exec.util.DecimalUtility.checkValueOverflow(result, out.precision, out.scale);
           byte[] bytes = result.unscaledValue().toByteArray();
           int len = bytes.length;
           out.buffer = buffer.reallocIfNeeded(len);

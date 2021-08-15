@@ -15,26 +15,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import org.apache.drill.exec.expr.annotations.Workspace;
+import org.lealone.hansql.exec.expr.annotations.Workspace;
 
 <@pp.dropOutputFile />
 
 <#list dateIntervalFunc.dates as type>
 
-<@pp.changeOutputFile name="/org/apache/drill/exec/expr/fn/impl/G${type}Arithmetic.java" />
+<@pp.changeOutputFile name="/org/lealone/hansql/exec/expr/fn/impl/G${type}Arithmetic.java" />
 
 <#include "/@includes/license.ftl" />
 
-package org.apache.drill.exec.expr.fn.impl;
+package org.lealone.hansql.exec.expr.fn.impl;
 
-import org.apache.drill.exec.expr.DrillSimpleFunc;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate;
-import org.apache.drill.exec.expr.annotations.FunctionTemplate.NullHandling;
-import org.apache.drill.exec.expr.annotations.Output;
-import org.apache.drill.exec.expr.annotations.Workspace;
-import org.apache.drill.exec.expr.annotations.Param;
-import org.apache.drill.exec.expr.holders.*;
-import org.apache.drill.exec.record.RecordBatch;
+import org.lealone.hansql.exec.expr.DrillSimpleFunc;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate;
+import org.lealone.hansql.exec.expr.annotations.FunctionTemplate.NullHandling;
+import org.lealone.hansql.exec.expr.annotations.Output;
+import org.lealone.hansql.exec.expr.annotations.Workspace;
+import org.lealone.hansql.exec.expr.annotations.Param;
+import org.lealone.hansql.exec.expr.holders.*;
+import org.lealone.hansql.exec.record.RecordBatch;
 
 import io.netty.buffer.ByteBuf;
 
@@ -60,11 +60,11 @@ public static class G${type}Difference implements DrillSimpleFunc {
         <#if type == "Time">
         out.milliseconds = left.value - right.value;
         <#elseif type == "Date">
-        out.days = (int) ((left.value - right.value) / org.apache.drill.exec.vector.DateUtilities.daysToStandardMillis);
+        out.days = (int) ((left.value - right.value) / org.lealone.hansql.exec.vector.DateUtilities.daysToStandardMillis);
         <#elseif type == "TimeStamp">
         long difference = (left.value - right.value);
-        out.milliseconds = (int) (difference % org.apache.drill.exec.vector.DateUtilities.daysToStandardMillis);
-        out.days = (int) (difference / org.apache.drill.exec.vector.DateUtilities.daysToStandardMillis);
+        out.milliseconds = (int) (difference % org.lealone.hansql.exec.vector.DateUtilities.daysToStandardMillis);
+        out.days = (int) (difference / org.lealone.hansql.exec.vector.DateUtilities.daysToStandardMillis);
         </#if>
     }
 }
