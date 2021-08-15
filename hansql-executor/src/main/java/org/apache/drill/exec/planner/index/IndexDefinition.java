@@ -17,10 +17,10 @@
  */
 package org.apache.drill.exec.planner.index;
 
-import org.apache.calcite.rel.RelCollation;
-import org.apache.calcite.rel.RelFieldCollation;
-import org.apache.calcite.rel.RelFieldCollation.NullDirection;
 import org.apache.drill.common.expression.LogicalExpression;
+import org.lealone.hansql.optimizer.rel.RelCollation;
+import org.lealone.hansql.optimizer.rel.RelFieldCollation;
+import org.lealone.hansql.optimizer.rel.RelFieldCollation.NullDirection;
 
 import java.util.Collection;
 import java.util.List;

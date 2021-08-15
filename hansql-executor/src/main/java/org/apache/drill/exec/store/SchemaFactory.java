@@ -17,9 +17,9 @@
  */
 package org.apache.drill.exec.store;
 
-import org.apache.calcite.schema.SchemaPlus;
-
 import java.io.IOException;
+
+import org.lealone.hansql.optimizer.schema.SchemaPlus;
 
 /**
  * StoragePlugins implements this interface to register the schemas they provide.

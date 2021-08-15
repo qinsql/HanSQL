@@ -17,38 +17,38 @@
  */
 package org.apache.drill.exec.planner;
 
-import org.apache.calcite.plan.RelOptRule;
-import org.apache.calcite.plan.RelOptRuleCall;
-import org.apache.calcite.plan.volcano.AbstractConverter;
-import org.apache.calcite.rel.core.Aggregate;
-import org.apache.calcite.rel.core.Join;
-import org.apache.calcite.rel.core.Project;
-import org.apache.calcite.rel.logical.LogicalAggregate;
-import org.apache.calcite.rel.logical.LogicalCalc;
-import org.apache.calcite.rel.logical.LogicalJoin;
-import org.apache.calcite.rel.logical.LogicalProject;
-import org.apache.calcite.rel.logical.LogicalUnion;
-import org.apache.calcite.rel.rules.AggregateExpandDistinctAggregatesRule;
-import org.apache.calcite.rel.rules.AggregateRemoveRule;
-import org.apache.calcite.rel.rules.FilterCorrelateRule;
-import org.apache.calcite.rel.rules.FilterMergeRule;
-import org.apache.calcite.rel.rules.FilterRemoveIsNotDistinctFromRule;
-import org.apache.calcite.rel.rules.FilterSetOpTransposeRule;
-import org.apache.calcite.rel.rules.JoinPushExpressionsRule;
-import org.apache.calcite.rel.rules.JoinPushThroughJoinRule;
-import org.apache.calcite.rel.rules.JoinPushTransitivePredicatesRule;
-import org.apache.calcite.rel.rules.ProjectRemoveRule;
-import org.apache.calcite.rel.rules.ProjectSetOpTransposeRule;
-import org.apache.calcite.rel.rules.ProjectToWindowRule;
-import org.apache.calcite.rel.rules.ProjectWindowTransposeRule;
-import org.apache.calcite.rel.rules.ReduceExpressionsRule;
-import org.apache.calcite.rel.rules.SemiJoinRule;
-import org.apache.calcite.rel.rules.SortRemoveRule;
-import org.apache.calcite.rel.rules.SubQueryRemoveRule;
-import org.apache.calcite.rel.rules.UnionToDistinctRule;
 import org.apache.drill.exec.planner.logical.DrillConditions;
 import org.apache.drill.exec.planner.logical.DrillRelFactories;
 import org.apache.drill.shaded.guava.com.google.common.base.Preconditions;
+import org.lealone.hansql.optimizer.plan.RelOptRule;
+import org.lealone.hansql.optimizer.plan.RelOptRuleCall;
+import org.lealone.hansql.optimizer.plan.volcano.AbstractConverter;
+import org.lealone.hansql.optimizer.rel.core.Aggregate;
+import org.lealone.hansql.optimizer.rel.core.Join;
+import org.lealone.hansql.optimizer.rel.core.Project;
+import org.lealone.hansql.optimizer.rel.logical.LogicalAggregate;
+import org.lealone.hansql.optimizer.rel.logical.LogicalCalc;
+import org.lealone.hansql.optimizer.rel.logical.LogicalJoin;
+import org.lealone.hansql.optimizer.rel.logical.LogicalProject;
+import org.lealone.hansql.optimizer.rel.logical.LogicalUnion;
+import org.lealone.hansql.optimizer.rel.rules.AggregateExpandDistinctAggregatesRule;
+import org.lealone.hansql.optimizer.rel.rules.AggregateRemoveRule;
+import org.lealone.hansql.optimizer.rel.rules.FilterCorrelateRule;
+import org.lealone.hansql.optimizer.rel.rules.FilterMergeRule;
+import org.lealone.hansql.optimizer.rel.rules.FilterRemoveIsNotDistinctFromRule;
+import org.lealone.hansql.optimizer.rel.rules.FilterSetOpTransposeRule;
+import org.lealone.hansql.optimizer.rel.rules.JoinPushExpressionsRule;
+import org.lealone.hansql.optimizer.rel.rules.JoinPushThroughJoinRule;
+import org.lealone.hansql.optimizer.rel.rules.JoinPushTransitivePredicatesRule;
+import org.lealone.hansql.optimizer.rel.rules.ProjectRemoveRule;
+import org.lealone.hansql.optimizer.rel.rules.ProjectSetOpTransposeRule;
+import org.lealone.hansql.optimizer.rel.rules.ProjectToWindowRule;
+import org.lealone.hansql.optimizer.rel.rules.ProjectWindowTransposeRule;
+import org.lealone.hansql.optimizer.rel.rules.ReduceExpressionsRule;
+import org.lealone.hansql.optimizer.rel.rules.SemiJoinRule;
+import org.lealone.hansql.optimizer.rel.rules.SortRemoveRule;
+import org.lealone.hansql.optimizer.rel.rules.SubQueryRemoveRule;
+import org.lealone.hansql.optimizer.rel.rules.UnionToDistinctRule;
 
 /**
  * Contains rule instances which use custom RelBuilder.
@@ -135,8 +135,8 @@ public interface RuleInstance {
 
   /**
    * Instance of the rule that infers predicates from on a
-   * {@link org.apache.calcite.rel.core.Join} and creates
-   * {@link org.apache.calcite.rel.core.Filter}s if those predicates can be pushed
+   * {@link org.lealone.hansql.optimizer.rel.core.Join} and creates
+   * {@link org.lealone.hansql.optimizer.rel.core.Filter}s if those predicates can be pushed
    * to its inputs.
    */
   JoinPushTransitivePredicatesRule DRILL_JOIN_PUSH_TRANSITIVE_PREDICATES_RULE =

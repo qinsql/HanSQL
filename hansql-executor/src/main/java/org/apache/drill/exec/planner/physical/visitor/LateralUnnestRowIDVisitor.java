@@ -18,12 +18,12 @@
 package org.apache.drill.exec.planner.physical.visitor;
 
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.rel.core.CorrelationId;
-import org.apache.calcite.rel.rules.ProjectCorrelateTransposeRule;
-import org.apache.calcite.rex.RexCorrelVariable;
-import org.apache.calcite.rex.RexShuttle;
-import org.apache.calcite.util.ImmutableBitSet;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.core.CorrelationId;
+import org.lealone.hansql.optimizer.rel.rules.ProjectCorrelateTransposeRule;
+import org.lealone.hansql.optimizer.rex.RexCorrelVariable;
+import org.lealone.hansql.optimizer.rex.RexShuttle;
+import org.lealone.hansql.optimizer.util.ImmutableBitSet;
 import org.apache.drill.exec.planner.physical.LateralJoinPrel;
 import org.apache.drill.exec.planner.physical.Prel;
 import org.apache.drill.exec.planner.physical.UnnestPrel;

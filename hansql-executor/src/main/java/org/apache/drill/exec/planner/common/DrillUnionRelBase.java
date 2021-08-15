@@ -19,12 +19,12 @@ package org.apache.drill.exec.planner.common;
 
 import java.util.List;
 
-import org.apache.calcite.rel.InvalidRelException;
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.rel.core.Union;
-import org.apache.calcite.plan.RelOptCluster;
-import org.apache.calcite.plan.RelTraitSet;
-import org.apache.calcite.rel.type.RelDataType;
+import org.lealone.hansql.optimizer.plan.RelOptCluster;
+import org.lealone.hansql.optimizer.plan.RelTraitSet;
+import org.lealone.hansql.optimizer.rel.InvalidRelException;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.core.Union;
+import org.lealone.hansql.optimizer.rel.type.RelDataType;
 
 /**
  * Base class for logical and physical Union implemented in Drill

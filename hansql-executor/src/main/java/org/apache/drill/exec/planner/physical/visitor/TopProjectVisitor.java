@@ -17,18 +17,18 @@
  */
 package org.apache.drill.exec.planner.physical.visitor;
 
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.rel.core.Project;
-import org.apache.calcite.rel.type.RelDataType;
-import org.apache.calcite.rex.RexBuilder;
-import org.apache.calcite.rex.RexNode;
-import org.apache.calcite.rex.RexUtil;
-import org.apache.calcite.sql.validate.SqlValidatorUtil;
 import org.apache.drill.exec.planner.common.DrillRelOptUtil;
 import org.apache.drill.exec.planner.physical.Prel;
 import org.apache.drill.exec.planner.physical.ProjectPrel;
 import org.apache.drill.exec.planner.physical.ScreenPrel;
 import org.apache.drill.exec.planner.physical.WriterPrel;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.core.Project;
+import org.lealone.hansql.optimizer.rel.type.RelDataType;
+import org.lealone.hansql.optimizer.rex.RexBuilder;
+import org.lealone.hansql.optimizer.rex.RexNode;
+import org.lealone.hansql.optimizer.rex.RexUtil;
+import org.lealone.hansql.optimizer.sql.validate.SqlValidatorUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;

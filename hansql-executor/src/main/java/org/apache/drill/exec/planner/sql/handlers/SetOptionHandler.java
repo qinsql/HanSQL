@@ -19,12 +19,6 @@ package org.apache.drill.exec.planner.sql.handlers;
 
 import java.math.BigDecimal;
 
-import org.apache.calcite.sql.SqlLiteral;
-import org.apache.calcite.sql.SqlNode;
-import org.apache.calcite.sql.SqlSetOption;
-import org.apache.calcite.sql.type.SqlTypeName;
-import org.apache.calcite.tools.ValidationException;
-import org.apache.calcite.util.NlsString;
 import org.apache.drill.common.exceptions.UserException;
 import org.apache.drill.exec.ExecConstants;
 import org.apache.drill.exec.context.options.OptionManager;
@@ -36,6 +30,12 @@ import org.apache.drill.exec.physical.PhysicalPlan;
 import org.apache.drill.exec.planner.SqlPlanner;
 import org.apache.drill.exec.util.ImpersonationUtil;
 import org.apache.drill.exec.work.exception.SqlExecutorSetupException;
+import org.lealone.hansql.optimizer.sql.SqlLiteral;
+import org.lealone.hansql.optimizer.sql.SqlNode;
+import org.lealone.hansql.optimizer.sql.SqlSetOption;
+import org.lealone.hansql.optimizer.sql.type.SqlTypeName;
+import org.lealone.hansql.optimizer.tools.ValidationException;
+import org.lealone.hansql.optimizer.util.NlsString;
 
 /**
  * Converts a {@link SqlNode} representing "ALTER .. SET option = value" and "ALTER ... RESET ..." statements to a

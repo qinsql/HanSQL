@@ -17,15 +17,15 @@
  */
 package org.apache.drill.exec.planner.logical;
 
-import org.apache.calcite.plan.Contexts;
-import org.apache.calcite.plan.ConventionTraitDef;
-import org.apache.calcite.plan.RelOptRuleCall;
-import org.apache.calcite.rel.core.Aggregate;
-import org.apache.calcite.rel.core.Filter;
-import org.apache.calcite.rel.core.RelFactories;
-import org.apache.calcite.rel.rules.FilterAggregateTransposeRule;
-import org.apache.calcite.tools.RelBuilderFactory;
 import org.apache.drill.exec.planner.DrillRelBuilder;
+import org.lealone.hansql.optimizer.plan.Contexts;
+import org.lealone.hansql.optimizer.plan.ConventionTraitDef;
+import org.lealone.hansql.optimizer.plan.RelOptRuleCall;
+import org.lealone.hansql.optimizer.rel.core.Aggregate;
+import org.lealone.hansql.optimizer.rel.core.Filter;
+import org.lealone.hansql.optimizer.rel.core.RelFactories;
+import org.lealone.hansql.optimizer.rel.rules.FilterAggregateTransposeRule;
+import org.lealone.hansql.optimizer.tools.RelBuilderFactory;
 
 public class DrillFilterAggregateTransposeRule extends FilterAggregateTransposeRule{
 

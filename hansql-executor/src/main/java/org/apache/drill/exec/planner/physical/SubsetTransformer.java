@@ -18,13 +18,13 @@
 package org.apache.drill.exec.planner.physical;
 
 import org.apache.drill.shaded.guava.com.google.common.collect.Sets;
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.plan.ConventionTraitDef;
-import org.apache.calcite.plan.RelOptRule;
-import org.apache.calcite.plan.RelOptRuleCall;
-import org.apache.calcite.plan.RelTrait;
-import org.apache.calcite.plan.RelTraitSet;
-import org.apache.calcite.plan.volcano.RelSubset;
+import org.lealone.hansql.optimizer.plan.ConventionTraitDef;
+import org.lealone.hansql.optimizer.plan.RelOptRule;
+import org.lealone.hansql.optimizer.plan.RelOptRuleCall;
+import org.lealone.hansql.optimizer.plan.RelTrait;
+import org.lealone.hansql.optimizer.plan.RelTraitSet;
+import org.lealone.hansql.optimizer.plan.volcano.RelSubset;
+import org.lealone.hansql.optimizer.rel.RelNode;
 
 import java.util.Set;
 

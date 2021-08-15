@@ -19,14 +19,13 @@ package org.apache.drill.exec.planner.index.rules;
 
 import org.apache.drill.shaded.guava.com.google.common.base.Stopwatch;
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
-
-import org.apache.calcite.plan.RelOptRule;
-import org.apache.calcite.plan.RelOptRuleCall;
-import org.apache.calcite.plan.RelOptRuleOperand;
-import org.apache.calcite.plan.RelOptUtil;
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.rex.RexBuilder;
-import org.apache.calcite.rex.RexNode;
+import org.lealone.hansql.optimizer.plan.RelOptRule;
+import org.lealone.hansql.optimizer.plan.RelOptRuleCall;
+import org.lealone.hansql.optimizer.plan.RelOptRuleOperand;
+import org.lealone.hansql.optimizer.plan.RelOptUtil;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rex.RexBuilder;
+import org.lealone.hansql.optimizer.rex.RexNode;
 import org.apache.drill.exec.physical.base.DbGroupScan;
 import org.apache.drill.exec.physical.base.GroupScan;
 import org.apache.drill.exec.physical.base.IndexGroupScan;

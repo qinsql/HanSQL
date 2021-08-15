@@ -17,11 +17,10 @@
  */
 package org.apache.drill.exec.planner.index;
 
-import org.apache.calcite.rel.RelCollation;
-import org.apache.calcite.rel.RelDistribution;
-
-
 import java.util.List;
+
+import org.lealone.hansql.optimizer.rel.RelCollation;
+import org.lealone.hansql.optimizer.rel.RelDistribution;
 
 public interface IndexStatistics {
     /** Returns the approximate number of rows in the table. */

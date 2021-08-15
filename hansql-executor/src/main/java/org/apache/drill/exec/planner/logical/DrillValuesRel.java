@@ -21,14 +21,13 @@ import java.util.List;
 
 import org.apache.drill.common.JSONOptions;
 import org.apache.drill.common.logical.data.LogicalOperator;
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.plan.RelOptCluster;
-import org.apache.calcite.plan.RelTraitSet;
-import org.apache.calcite.rel.type.RelDataType;
-import org.apache.calcite.rex.RexLiteral;
-
 import org.apache.drill.common.logical.data.Values;
 import org.apache.drill.exec.planner.common.DrillValuesRelBase;
+import org.lealone.hansql.optimizer.plan.RelOptCluster;
+import org.lealone.hansql.optimizer.plan.RelTraitSet;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.type.RelDataType;
+import org.lealone.hansql.optimizer.rex.RexLiteral;
 
 /**
  * Logical Values implementation in Drill.

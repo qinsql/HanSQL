@@ -17,7 +17,6 @@
  */
 package org.apache.drill.exec.planner.physical;
 
-import org.apache.calcite.rel.RelWriter;
 import org.apache.drill.exec.physical.base.PhysicalOperator;
 import org.apache.drill.exec.physical.config.Limit;
 import org.apache.drill.exec.physical.config.PartitionLimit;
@@ -25,11 +24,12 @@ import org.apache.drill.exec.planner.common.DrillLimitRelBase;
 import org.apache.drill.exec.planner.common.DrillRelOptUtil;
 import org.apache.drill.exec.planner.physical.visitor.PrelVisitor;
 import org.apache.drill.exec.record.BatchSchema.SelectionVectorMode;
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.plan.RelOptCluster;
-import org.apache.calcite.plan.RelTraitSet;
-import org.apache.calcite.rex.RexLiteral;
-import org.apache.calcite.rex.RexNode;
+import org.lealone.hansql.optimizer.plan.RelOptCluster;
+import org.lealone.hansql.optimizer.plan.RelTraitSet;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.RelWriter;
+import org.lealone.hansql.optimizer.rex.RexLiteral;
+import org.lealone.hansql.optimizer.rex.RexNode;
 
 import java.io.IOException;
 import java.util.Iterator;

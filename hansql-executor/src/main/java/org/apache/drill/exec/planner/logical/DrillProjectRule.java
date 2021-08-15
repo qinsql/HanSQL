@@ -17,16 +17,16 @@
  */
 package org.apache.drill.exec.planner.logical;
 
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.plan.Convention;
-import org.apache.calcite.plan.RelOptRule;
-import org.apache.calcite.plan.RelOptRuleCall;
-import org.apache.calcite.plan.RelTraitSet;
-import org.apache.calcite.rel.core.Project;
-import org.apache.calcite.rel.logical.LogicalProject;
+import org.lealone.hansql.optimizer.plan.Convention;
+import org.lealone.hansql.optimizer.plan.RelOptRule;
+import org.lealone.hansql.optimizer.plan.RelOptRuleCall;
+import org.lealone.hansql.optimizer.plan.RelTraitSet;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.core.Project;
+import org.lealone.hansql.optimizer.rel.logical.LogicalProject;
 
 /**
- * Rule that converts a {@link org.apache.calcite.rel.logical.LogicalProject} to a Drill "project" operation.
+ * Rule that converts a {@link org.lealone.hansql.optimizer.rel.logical.LogicalProject} to a Drill "project" operation.
  */
 public class DrillProjectRule extends RelOptRule {
   public static final RelOptRule INSTANCE = new DrillProjectRule();

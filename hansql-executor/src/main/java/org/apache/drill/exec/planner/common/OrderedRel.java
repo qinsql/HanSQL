@@ -17,8 +17,8 @@
  */
 package org.apache.drill.exec.planner.common;
 
-import org.apache.calcite.rel.RelCollation;
-import org.apache.calcite.rex.RexNode;
+import org.lealone.hansql.optimizer.rel.RelCollation;
+import org.lealone.hansql.optimizer.rex.RexNode;
 
 /**
  * Class implementing OrderedPrel interface guarantees to provide ordered

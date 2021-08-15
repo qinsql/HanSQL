@@ -19,14 +19,6 @@ package org.apache.drill.exec.planner.sql.handlers;
 
 import java.io.IOException;
 
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.rel.type.RelDataType;
-import org.apache.calcite.schema.Schema;
-import org.apache.calcite.schema.SchemaPlus;
-import org.apache.calcite.schema.Table;
-import org.apache.calcite.sql.SqlNode;
-import org.apache.calcite.tools.RelConversionException;
-import org.apache.calcite.tools.ValidationException;
 import org.apache.drill.common.exceptions.UserException;
 import org.apache.drill.exec.dotdrill.View;
 import org.apache.drill.exec.ops.QueryContext;
@@ -38,6 +30,14 @@ import org.apache.drill.exec.planner.sql.parser.SqlDropView;
 import org.apache.drill.exec.store.AbstractSchema;
 import org.apache.drill.exec.store.dfs.FileSelection;
 import org.apache.drill.exec.work.exception.SqlExecutorSetupException;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.type.RelDataType;
+import org.lealone.hansql.optimizer.schema.Schema;
+import org.lealone.hansql.optimizer.schema.SchemaPlus;
+import org.lealone.hansql.optimizer.schema.Table;
+import org.lealone.hansql.optimizer.sql.SqlNode;
+import org.lealone.hansql.optimizer.tools.RelConversionException;
+import org.lealone.hansql.optimizer.tools.ValidationException;
 
 public abstract class ViewHandler extends DefaultSqlHandler {
     private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(ViewHandler.class);

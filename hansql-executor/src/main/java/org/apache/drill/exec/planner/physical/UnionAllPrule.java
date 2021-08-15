@@ -19,13 +19,6 @@ package org.apache.drill.exec.planner.physical;
 
 import java.util.List;
 
-import org.apache.calcite.plan.RelOptRule;
-import org.apache.calcite.plan.RelOptRuleCall;
-import org.apache.calcite.plan.RelTraitSet;
-import org.apache.calcite.rel.InvalidRelException;
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.rel.type.RelDataTypeField;
-import org.apache.calcite.util.trace.CalciteTrace;
 import org.apache.drill.exec.planner.logical.DrillUnionRel;
 import org.apache.drill.exec.planner.logical.RelOptHelper;
 import org.apache.drill.exec.planner.physical.DrillDistributionTrait.DistributionField;
@@ -33,6 +26,13 @@ import org.apache.drill.exec.planner.physical.DrillDistributionTrait.Distributio
 import org.apache.drill.shaded.guava.com.google.common.base.Preconditions;
 import org.apache.drill.shaded.guava.com.google.common.collect.ImmutableList;
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
+import org.lealone.hansql.optimizer.plan.RelOptRule;
+import org.lealone.hansql.optimizer.plan.RelOptRuleCall;
+import org.lealone.hansql.optimizer.plan.RelTraitSet;
+import org.lealone.hansql.optimizer.rel.InvalidRelException;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeField;
+import org.lealone.hansql.optimizer.util.trace.CalciteTrace;
 import org.slf4j.Logger;
 
 public class UnionAllPrule extends Prule {

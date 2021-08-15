@@ -22,8 +22,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
-
-import org.apache.calcite.rex.RexNode;
+import org.lealone.hansql.optimizer.rex.RexNode;
 import org.apache.drill.common.expression.SchemaPath;
 
 /**

@@ -18,15 +18,15 @@
 package org.apache.drill.exec.planner.logical;
 
 import org.apache.drill.shaded.guava.com.google.common.collect.ImmutableList;
-import org.apache.calcite.plan.RelOptCluster;
-import org.apache.calcite.plan.RelOptTable;
-import org.apache.calcite.plan.RelTraitSet;
-import org.apache.calcite.rel.RelCollationTraitDef;
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.rel.RelWriter;
-import org.apache.calcite.rel.enumerable.EnumerableConvention;
-import org.apache.calcite.rel.enumerable.EnumerableTableScan;
-import org.apache.calcite.schema.Table;
+import org.lealone.hansql.optimizer.plan.RelOptCluster;
+import org.lealone.hansql.optimizer.plan.RelOptTable;
+import org.lealone.hansql.optimizer.plan.RelTraitSet;
+import org.lealone.hansql.optimizer.rel.RelCollationTraitDef;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.RelWriter;
+import org.lealone.hansql.optimizer.rel.enumerable.EnumerableConvention;
+import org.lealone.hansql.optimizer.rel.enumerable.EnumerableTableScan;
+import org.lealone.hansql.optimizer.schema.Table;
 
 import java.util.List;
 

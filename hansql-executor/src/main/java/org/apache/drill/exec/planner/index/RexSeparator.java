@@ -18,11 +18,11 @@
 package org.apache.drill.exec.planner.index;
 
 import org.apache.drill.shaded.guava.com.google.common.collect.Maps;
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.rex.RexBuilder;
-import org.apache.calcite.rex.RexCall;
-import org.apache.calcite.rex.RexInputRef;
-import org.apache.calcite.rex.RexNode;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rex.RexBuilder;
+import org.lealone.hansql.optimizer.rex.RexCall;
+import org.lealone.hansql.optimizer.rex.RexInputRef;
+import org.lealone.hansql.optimizer.rex.RexNode;
 import org.apache.drill.common.expression.CastExpression;
 import org.apache.drill.common.expression.LogicalExpression;
 import org.apache.drill.common.expression.SchemaPath;

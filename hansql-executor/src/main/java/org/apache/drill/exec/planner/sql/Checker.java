@@ -18,11 +18,11 @@
 package org.apache.drill.exec.planner.sql;
 
 import org.apache.drill.shaded.guava.com.google.common.collect.Maps;
-import org.apache.calcite.sql.SqlCallBinding;
-import org.apache.calcite.sql.SqlOperandCountRange;
-import org.apache.calcite.sql.SqlOperator;
-import org.apache.calcite.sql.type.SqlOperandCountRanges;
-import org.apache.calcite.sql.type.SqlOperandTypeChecker;
+import org.lealone.hansql.optimizer.sql.SqlCallBinding;
+import org.lealone.hansql.optimizer.sql.SqlOperandCountRange;
+import org.lealone.hansql.optimizer.sql.SqlOperator;
+import org.lealone.hansql.optimizer.sql.type.SqlOperandCountRanges;
+import org.lealone.hansql.optimizer.sql.type.SqlOperandTypeChecker;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.Map;

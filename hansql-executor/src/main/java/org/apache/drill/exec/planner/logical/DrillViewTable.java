@@ -19,23 +19,22 @@ package org.apache.drill.exec.planner.logical;
 
 import java.util.List;
 
-import org.apache.calcite.schema.SchemaPlus;
 import org.apache.drill.shaded.guava.com.google.common.collect.ImmutableList;
-import org.apache.calcite.config.CalciteConnectionConfig;
-import org.apache.calcite.schema.Schema.TableType;
-import org.apache.calcite.schema.Statistic;
-import org.apache.calcite.schema.Statistics;
-import org.apache.calcite.schema.TranslatableTable;
-
-import org.apache.calcite.sql.SqlCall;
-import org.apache.calcite.sql.SqlNode;
+import org.lealone.hansql.optimizer.config.CalciteConnectionConfig;
+import org.lealone.hansql.optimizer.plan.RelOptTable;
+import org.lealone.hansql.optimizer.plan.RelOptUtil;
+import org.lealone.hansql.optimizer.plan.RelOptTable.ToRelContext;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.type.RelDataType;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeFactory;
+import org.lealone.hansql.optimizer.schema.SchemaPlus;
+import org.lealone.hansql.optimizer.schema.Statistic;
+import org.lealone.hansql.optimizer.schema.Statistics;
+import org.lealone.hansql.optimizer.schema.TranslatableTable;
+import org.lealone.hansql.optimizer.schema.Schema.TableType;
+import org.lealone.hansql.optimizer.sql.SqlCall;
+import org.lealone.hansql.optimizer.sql.SqlNode;
 import org.apache.drill.exec.dotdrill.View;
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.plan.RelOptTable;
-import org.apache.calcite.plan.RelOptTable.ToRelContext;
-import org.apache.calcite.plan.RelOptUtil;
-import org.apache.calcite.rel.type.RelDataType;
-import org.apache.calcite.rel.type.RelDataTypeFactory;
 import org.apache.drill.exec.ops.ViewExpansionContext;
 
 public class DrillViewTable implements TranslatableTable, DrillViewInfoProvider {

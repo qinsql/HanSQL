@@ -23,9 +23,6 @@ import java.util.concurrent.TimeUnit;
 
 import javax.tools.ToolProvider;
 
-import org.apache.calcite.sql.SqlNode;
-import org.apache.calcite.sql.parser.SqlParseException;
-import org.apache.calcite.sql.parser.SqlParser;
 import org.apache.drill.common.AutoCloseables;
 import org.apache.drill.common.concurrent.ExtendedLatch;
 import org.apache.drill.common.config.DrillConfig;
@@ -57,6 +54,9 @@ import org.apache.drill.exec.store.sys.store.provider.CachingPersistentStoreProv
 import org.apache.drill.exec.store.sys.store.provider.InMemoryStoreProvider;
 import org.apache.drill.exec.store.sys.store.provider.LocalPersistentStoreProvider;
 import org.apache.drill.shaded.guava.com.google.common.base.Stopwatch;
+import org.lealone.hansql.optimizer.sql.SqlNode;
+import org.lealone.hansql.optimizer.sql.parser.SqlParseException;
+import org.lealone.hansql.optimizer.sql.parser.SqlParser;
 
 /**
  * Starts, tracks and stops all the required services for a Drillbit daemon to work.
@@ -64,7 +64,7 @@ import org.apache.drill.shaded.guava.com.google.common.base.Stopwatch;
 public class HanEngine implements AutoCloseable {
 
     public static SqlNode parse(String sql) throws SqlParseException {
-        SqlParser.Config config = SqlParser.configBuilder().setUnquotedCasing(org.apache.calcite.util.Casing.TO_LOWER)
+        SqlParser.Config config = SqlParser.configBuilder().setUnquotedCasing(org.lealone.hansql.optimizer.util.Casing.TO_LOWER)
                 .build();
         return parse(sql, config);
     }

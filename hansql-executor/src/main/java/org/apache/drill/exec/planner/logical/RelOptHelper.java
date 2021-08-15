@@ -17,10 +17,10 @@
  */
 package org.apache.drill.exec.planner.logical;
 
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.plan.RelOptRule;
-import org.apache.calcite.plan.RelOptRuleOperand;
-import org.apache.calcite.plan.RelTrait;
+import org.lealone.hansql.optimizer.plan.RelOptRule;
+import org.lealone.hansql.optimizer.plan.RelOptRuleOperand;
+import org.lealone.hansql.optimizer.plan.RelTrait;
+import org.lealone.hansql.optimizer.rel.RelNode;
 
 public class RelOptHelper {
   static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(RelOptHelper.class);

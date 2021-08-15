@@ -17,16 +17,6 @@
  */
 package org.apache.drill.exec.planner.logical;
 
-import org.apache.calcite.plan.RelOptRule;
-import org.apache.calcite.plan.RelOptRuleCall;
-import org.apache.calcite.plan.RelOptTable;
-import org.apache.calcite.rel.core.Project;
-import org.apache.calcite.rel.core.TableScan;
-import org.apache.calcite.rel.enumerable.EnumerableTableScan;
-import org.apache.calcite.rel.logical.LogicalProject;
-import org.apache.calcite.rel.rules.ProjectRemoveRule;
-import org.apache.calcite.rel.type.RelDataType;
-import org.apache.calcite.rex.RexNode;
 import org.apache.drill.common.exceptions.DrillRuntimeException;
 import org.apache.drill.exec.planner.common.DrillProjectRelBase;
 import org.apache.drill.exec.planner.common.DrillRelOptUtil;
@@ -36,6 +26,16 @@ import org.apache.drill.exec.planner.physical.Prel;
 import org.apache.drill.exec.planner.physical.ProjectPrel;
 import org.apache.drill.exec.planner.physical.ScanPrel;
 import org.apache.drill.exec.util.Utilities;
+import org.lealone.hansql.optimizer.plan.RelOptRule;
+import org.lealone.hansql.optimizer.plan.RelOptRuleCall;
+import org.lealone.hansql.optimizer.plan.RelOptTable;
+import org.lealone.hansql.optimizer.rel.core.Project;
+import org.lealone.hansql.optimizer.rel.core.TableScan;
+import org.lealone.hansql.optimizer.rel.enumerable.EnumerableTableScan;
+import org.lealone.hansql.optimizer.rel.logical.LogicalProject;
+import org.lealone.hansql.optimizer.rel.rules.ProjectRemoveRule;
+import org.lealone.hansql.optimizer.rel.type.RelDataType;
+import org.lealone.hansql.optimizer.rex.RexNode;
 
 import java.io.IOException;
 import java.util.ArrayList;

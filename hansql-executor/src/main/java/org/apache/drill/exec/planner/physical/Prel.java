@@ -19,13 +19,14 @@ package org.apache.drill.exec.planner.physical;
 
 import java.io.IOException;
 import java.util.List;
-import org.apache.calcite.plan.Convention;
-import org.apache.calcite.plan.RelTraitSet;
-import org.apache.calcite.rel.RelNode;
+
 import org.apache.drill.exec.physical.base.PhysicalOperator;
 import org.apache.drill.exec.planner.common.DrillRelNode;
 import org.apache.drill.exec.planner.physical.visitor.PrelVisitor;
 import org.apache.drill.exec.record.BatchSchema.SelectionVectorMode;
+import org.lealone.hansql.optimizer.plan.Convention;
+import org.lealone.hansql.optimizer.plan.RelTraitSet;
+import org.lealone.hansql.optimizer.rel.RelNode;
 
 public interface Prel extends DrillRelNode, Iterable<Prel> {
   org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(Prel.class);

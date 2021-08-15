@@ -18,19 +18,19 @@
 package org.apache.drill.exec.planner.logical;
 
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
-import org.apache.calcite.plan.RelOptRule;
-import org.apache.calcite.plan.RelOptRuleCall;
-import org.apache.calcite.plan.RelOptUtil;
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.rel.core.Filter;
-import org.apache.calcite.rel.core.Project;
-import org.apache.calcite.rel.logical.LogicalFilter;
-import org.apache.calcite.rel.logical.LogicalProject;
-import org.apache.calcite.rex.RexNode;
-import org.apache.calcite.rex.RexUtil;
-import org.apache.calcite.tools.RelBuilder;
-import org.apache.calcite.tools.RelBuilderFactory;
-import org.apache.calcite.util.Pair;
+import org.lealone.hansql.optimizer.plan.RelOptRule;
+import org.lealone.hansql.optimizer.plan.RelOptRuleCall;
+import org.lealone.hansql.optimizer.plan.RelOptUtil;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.core.Filter;
+import org.lealone.hansql.optimizer.rel.core.Project;
+import org.lealone.hansql.optimizer.rel.logical.LogicalFilter;
+import org.lealone.hansql.optimizer.rel.logical.LogicalProject;
+import org.lealone.hansql.optimizer.rex.RexNode;
+import org.lealone.hansql.optimizer.rex.RexUtil;
+import org.lealone.hansql.optimizer.tools.RelBuilder;
+import org.lealone.hansql.optimizer.tools.RelBuilderFactory;
+import org.lealone.hansql.optimizer.util.Pair;
 import org.apache.drill.exec.planner.common.DrillRelOptUtil;
 
 import java.util.ArrayList;

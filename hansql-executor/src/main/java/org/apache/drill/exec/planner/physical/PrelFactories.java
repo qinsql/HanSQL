@@ -19,13 +19,12 @@ package org.apache.drill.exec.planner.physical;
 
 
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
-import org.apache.calcite.plan.RelOptCluster;
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.rel.core.RelFactories;
-import org.apache.calcite.rel.type.RelDataType;
-import org.apache.calcite.rex.RexNode;
-import org.apache.calcite.rex.RexUtil;
-
+import org.lealone.hansql.optimizer.plan.RelOptCluster;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.core.RelFactories;
+import org.lealone.hansql.optimizer.rel.type.RelDataType;
+import org.lealone.hansql.optimizer.rex.RexNode;
+import org.lealone.hansql.optimizer.rex.RexUtil;
 
 import java.util.List;
 
@@ -35,7 +34,7 @@ public class PrelFactories {
 
   /**
    * Implementation of {@link RelFactories.ProjectFactory} that returns a vanilla
-   * {@link org.apache.calcite.rel.logical.LogicalProject}.
+   * {@link org.lealone.hansql.optimizer.rel.logical.LogicalProject}.
    */
   private static class DrillProjectPrelFactory implements RelFactories.ProjectFactory {
     @Override

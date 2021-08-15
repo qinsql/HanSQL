@@ -22,11 +22,11 @@ import java.util.List;
 import org.apache.drill.common.expression.FieldReference;
 import org.apache.drill.common.expression.SchemaPath;
 import org.apache.drill.common.logical.StoragePluginConfig;
-import org.apache.calcite.rel.RelNode;
 import org.apache.drill.exec.planner.index.IndexCollection;
 import org.apache.drill.exec.planner.cost.PluginCost;
 import org.apache.drill.exec.planner.physical.PartitionFunction;
 import org.apache.drill.exec.store.AbstractStoragePlugin;
+import org.lealone.hansql.optimizer.rel.RelNode;
 
 public abstract class AbstractDbGroupScan extends AbstractGroupScan implements DbGroupScan {
   static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(AbstractDbGroupScan.class);

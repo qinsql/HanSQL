@@ -21,14 +21,7 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.apache.calcite.plan.RelOptRule;
-import org.apache.calcite.plan.RelOptRuleCall;
-import org.apache.calcite.plan.RelTraitSet;
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.rel.SingleRel;
-import org.apache.calcite.rex.RexBuilder;
-import org.apache.calcite.rex.RexNode;
-import org.apache.calcite.sql.fun.SqlStdOperatorTable;
+
 import org.apache.drill.exec.ExecConstants;
 import org.apache.drill.exec.physical.impl.statistics.Statistic;
 import org.apache.drill.exec.planner.logical.DrillAnalyzeRel;
@@ -37,6 +30,14 @@ import org.apache.drill.exec.planner.logical.RelOptHelper;
 import org.apache.drill.shaded.guava.com.google.common.collect.ImmutableList;
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
 import org.apache.drill.shaded.guava.com.google.common.collect.Maps;
+import org.lealone.hansql.optimizer.plan.RelOptRule;
+import org.lealone.hansql.optimizer.plan.RelOptRuleCall;
+import org.lealone.hansql.optimizer.plan.RelTraitSet;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.SingleRel;
+import org.lealone.hansql.optimizer.rex.RexBuilder;
+import org.lealone.hansql.optimizer.rex.RexNode;
+import org.lealone.hansql.optimizer.sql.fun.SqlStdOperatorTable;
 
 public class AnalyzePrule extends Prule {
 

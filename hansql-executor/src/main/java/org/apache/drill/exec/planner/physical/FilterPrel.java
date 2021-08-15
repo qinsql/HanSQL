@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.calcite.rex.RexBuilder;
 import org.apache.drill.exec.physical.base.PhysicalOperator;
 import org.apache.drill.exec.physical.config.Filter;
 import org.apache.drill.exec.planner.common.DrillFilterRelBase;
@@ -29,10 +28,11 @@ import org.apache.drill.exec.planner.common.DrillRelOptUtil;
 import org.apache.drill.exec.planner.logical.DrillParseContext;
 import org.apache.drill.exec.planner.physical.visitor.PrelVisitor;
 import org.apache.drill.exec.record.BatchSchema.SelectionVectorMode;
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.plan.RelOptCluster;
-import org.apache.calcite.plan.RelTraitSet;
-import org.apache.calcite.rex.RexNode;
+import org.lealone.hansql.optimizer.plan.RelOptCluster;
+import org.lealone.hansql.optimizer.plan.RelTraitSet;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rex.RexBuilder;
+import org.lealone.hansql.optimizer.rex.RexNode;
 
 
 public class FilterPrel extends DrillFilterRelBase implements Prel {
@@ -41,7 +41,7 @@ public class FilterPrel extends DrillFilterRelBase implements Prel {
   }
 
   @Override
-  public org.apache.calcite.rel.core.Filter copy(RelTraitSet traitSet, RelNode input, RexNode condition) {
+  public org.lealone.hansql.optimizer.rel.core.Filter copy(RelTraitSet traitSet, RelNode input, RexNode condition) {
     return new FilterPrel(getCluster(), traitSet, input, condition);
   }
 

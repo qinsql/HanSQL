@@ -19,8 +19,6 @@ package org.lealone.hansql.engine.sql;
 
 import java.util.ArrayList;
 
-import org.apache.calcite.schema.CalciteSchema;
-import org.apache.calcite.schema.SchemaPlus;
 import org.apache.drill.common.exceptions.ExecutionSetupException;
 import org.apache.drill.exec.proto.UserProtos;
 import org.apache.drill.exec.store.SchemaTreeProvider;
@@ -37,6 +35,8 @@ import org.lealone.hansql.engine.server.HanClientConnection;
 import org.lealone.hansql.engine.server.HanSQLServer;
 import org.lealone.hansql.engine.storage.LealoneStoragePlugin;
 import org.lealone.hansql.engine.storage.LealoneStoragePluginConfig;
+import org.lealone.hansql.optimizer.schema.CalciteSchema;
+import org.lealone.hansql.optimizer.schema.SchemaPlus;
 import org.lealone.net.NetNode;
 import org.lealone.server.ProtocolServerEngineManager;
 import org.lealone.sql.SQLStatement;

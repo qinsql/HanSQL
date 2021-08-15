@@ -17,8 +17,8 @@
  */
 package org.apache.drill.exec.planner.logical;
 
-import org.apache.calcite.rel.rules.PushProjector;
-import org.apache.calcite.rex.RexCall;
+import org.lealone.hansql.optimizer.rel.rules.PushProjector;
+import org.lealone.hansql.optimizer.rex.RexCall;
 
 public final class DrillConditions {
 

@@ -17,8 +17,8 @@
  */
 package org.apache.drill.exec.planner.types;
 
-import org.apache.calcite.rel.type.RelDataTypeSystem;
-import org.apache.calcite.rel.type.RelDataTypeSystemImpl;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeSystem;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeSystemImpl;
 
 public class DrillRelDataTypeSystem extends RelDataTypeSystemImpl {
 

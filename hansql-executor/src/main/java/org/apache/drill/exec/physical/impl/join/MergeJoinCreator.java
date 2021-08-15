@@ -24,9 +24,8 @@ import org.apache.drill.exec.ops.ExecutorFragmentContext;
 import org.apache.drill.exec.physical.config.MergeJoinPOP;
 import org.apache.drill.exec.physical.impl.BatchCreator;
 import org.apache.drill.exec.record.RecordBatch;
-import org.apache.calcite.rel.core.JoinRelType;
-
 import org.apache.drill.shaded.guava.com.google.common.base.Preconditions;
+import org.lealone.hansql.optimizer.rel.core.JoinRelType;
 
 public class MergeJoinCreator implements BatchCreator<MergeJoinPOP> {
   @Override

@@ -24,21 +24,6 @@ import static org.apache.drill.exec.store.ischema.InfoSchemaConstants.SHRD_COL_T
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.calcite.rel.type.RelDataType;
-import org.apache.calcite.schema.SchemaPlus;
-import org.apache.calcite.sql.SqlCharStringLiteral;
-import org.apache.calcite.sql.SqlIdentifier;
-import org.apache.calcite.sql.SqlLiteral;
-import org.apache.calcite.sql.SqlNode;
-import org.apache.calcite.sql.SqlNodeList;
-import org.apache.calcite.sql.SqlSelect;
-import org.apache.calcite.sql.fun.SqlStdOperatorTable;
-import org.apache.calcite.sql.parser.SqlParserPos;
-import org.apache.calcite.tools.RelConversionException;
-import org.apache.calcite.tools.ValidationException;
-import org.apache.calcite.util.NlsString;
-import org.apache.calcite.util.Pair;
-import org.apache.calcite.util.Util;
 import org.apache.drill.common.exceptions.UserException;
 import org.apache.drill.exec.planner.sql.SchemaUtilites;
 import org.apache.drill.exec.planner.sql.SqlConverter;
@@ -47,6 +32,21 @@ import org.apache.drill.exec.planner.sql.parser.SqlShowTables;
 import org.apache.drill.exec.store.AbstractSchema;
 import org.apache.drill.exec.store.ischema.InfoSchemaTableType;
 import org.apache.drill.exec.work.exception.SqlExecutorSetupException;
+import org.lealone.hansql.optimizer.rel.type.RelDataType;
+import org.lealone.hansql.optimizer.schema.SchemaPlus;
+import org.lealone.hansql.optimizer.sql.SqlCharStringLiteral;
+import org.lealone.hansql.optimizer.sql.SqlIdentifier;
+import org.lealone.hansql.optimizer.sql.SqlLiteral;
+import org.lealone.hansql.optimizer.sql.SqlNode;
+import org.lealone.hansql.optimizer.sql.SqlNodeList;
+import org.lealone.hansql.optimizer.sql.SqlSelect;
+import org.lealone.hansql.optimizer.sql.fun.SqlStdOperatorTable;
+import org.lealone.hansql.optimizer.sql.parser.SqlParserPos;
+import org.lealone.hansql.optimizer.tools.RelConversionException;
+import org.lealone.hansql.optimizer.tools.ValidationException;
+import org.lealone.hansql.optimizer.util.NlsString;
+import org.lealone.hansql.optimizer.util.Pair;
+import org.lealone.hansql.optimizer.util.Util;
 
 public class ShowTablesHandler extends DefaultSqlHandler {
   private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(ShowTablesHandler.class);

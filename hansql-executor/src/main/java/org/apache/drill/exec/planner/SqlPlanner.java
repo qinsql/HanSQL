@@ -21,16 +21,6 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.calcite.sql.SqlDescribeSchema;
-import org.apache.calcite.sql.SqlKind;
-import org.apache.calcite.sql.SqlLiteral;
-import org.apache.calcite.sql.SqlNode;
-import org.apache.calcite.sql.SqlNodeList;
-import org.apache.calcite.sql.SqlNumericLiteral;
-import org.apache.calcite.sql.SqlOrderBy;
-import org.apache.calcite.sql.parser.SqlParserPos;
-import org.apache.calcite.tools.RelConversionException;
-import org.apache.calcite.tools.ValidationException;
 import org.apache.drill.common.exceptions.UserException;
 import org.apache.drill.common.logical.PlanProperties;
 import org.apache.drill.common.logical.PlanProperties.Generator.ResultMode;
@@ -67,6 +57,16 @@ import org.apache.drill.exec.util.Pointer;
 import org.apache.drill.exec.work.exception.SqlExecutorSetupException;
 import org.apache.drill.exec.work.exception.SqlUnsupportedException;
 import org.apache.hadoop.security.AccessControlException;
+import org.lealone.hansql.optimizer.sql.SqlDescribeSchema;
+import org.lealone.hansql.optimizer.sql.SqlKind;
+import org.lealone.hansql.optimizer.sql.SqlLiteral;
+import org.lealone.hansql.optimizer.sql.SqlNode;
+import org.lealone.hansql.optimizer.sql.SqlNodeList;
+import org.lealone.hansql.optimizer.sql.SqlNumericLiteral;
+import org.lealone.hansql.optimizer.sql.SqlOrderBy;
+import org.lealone.hansql.optimizer.sql.parser.SqlParserPos;
+import org.lealone.hansql.optimizer.tools.RelConversionException;
+import org.lealone.hansql.optimizer.tools.ValidationException;
 
 public class SqlPlanner {
 

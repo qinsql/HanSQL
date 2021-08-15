@@ -21,7 +21,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.calcite.schema.SchemaPlus;
 import org.apache.drill.common.AutoCloseables;
 import org.apache.drill.common.config.DrillConfig;
 import org.apache.drill.common.config.LogicalPlanPersistence;
@@ -55,6 +54,7 @@ import org.apache.drill.exec.util.Utilities;
 import org.apache.drill.shaded.guava.com.google.common.base.Function;
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
 import org.apache.drill.shaded.guava.com.google.common.collect.Maps;
+import org.lealone.hansql.optimizer.schema.SchemaPlus;
 
 import io.netty.buffer.DrillBuf;
 
@@ -152,7 +152,7 @@ public class QueryContext implements AutoCloseable, OptimizerRulesContext, Schem
   public QueryId getQueryId( ) { return queryId; }
 
   /**
-   * Return reference to default schema instance in a schema tree. Each {@link org.apache.calcite.schema.SchemaPlus}
+   * Return reference to default schema instance in a schema tree. Each {@link org.lealone.hansql.optimizer.schema.SchemaPlus}
    * instance can refer to its parent and its children. From the returned reference to default schema instance,
    * clients can traverse the entire schema tree and know the default schema where to look up the tables first.
    *
@@ -188,10 +188,10 @@ public class QueryContext implements AutoCloseable, OptimizerRulesContext, Schem
   }
 
   /**
-   *  Create and return a {@link org.apache.calcite.schema.SchemaPlus} with given <i>schemaConfig</i> but some schemas (from storage plugins)
+   *  Create and return a {@link org.lealone.hansql.optimizer.schema.SchemaPlus} with given <i>schemaConfig</i> but some schemas (from storage plugins)
    *  could be initialized later.
    * @param schemaConfig
-   * @return A {@link org.apache.calcite.schema.SchemaPlus} with given <i>schemaConfig</i>.
+   * @return A {@link org.lealone.hansql.optimizer.schema.SchemaPlus} with given <i>schemaConfig</i>.
    */
   public SchemaPlus getRootSchema(SchemaConfig schemaConfig) {
     return schemaTreeProvider.createRootSchema(schemaConfig);

@@ -17,14 +17,6 @@
  */
 package org.apache.drill.exec.planner.physical.visitor;
 
-import org.apache.calcite.plan.volcano.RelSubset;
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.rel.core.JoinInfo;
-import org.apache.calcite.rel.core.JoinRelType;
-import org.apache.calcite.rel.metadata.RelMetadataQuery;
-import org.apache.calcite.rel.type.RelDataType;
-import org.apache.calcite.rel.type.RelDataTypeField;
-import org.apache.calcite.util.ImmutableBitSet;
 import org.apache.drill.exec.ExecConstants;
 import org.apache.drill.exec.ops.QueryContext;
 import org.apache.drill.exec.planner.physical.BroadcastExchangePrel;
@@ -43,6 +35,15 @@ import org.apache.drill.exec.work.filter.BloomFilterDef;
 import org.apache.drill.exec.work.filter.RuntimeFilterDef;
 import org.apache.drill.shaded.guava.com.google.common.collect.HashMultimap;
 import org.apache.drill.shaded.guava.com.google.common.collect.Multimap;
+import org.lealone.hansql.optimizer.plan.volcano.RelSubset;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.core.JoinInfo;
+import org.lealone.hansql.optimizer.rel.core.JoinRelType;
+import org.lealone.hansql.optimizer.rel.metadata.RelMetadataQuery;
+import org.lealone.hansql.optimizer.rel.type.RelDataType;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeField;
+import org.lealone.hansql.optimizer.util.ImmutableBitSet;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;

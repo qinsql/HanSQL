@@ -20,9 +20,9 @@ package org.apache.drill.exec.planner;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.calcite.rel.core.TableScan;
 import org.apache.drill.exec.store.dfs.MetadataContext;
 import org.apache.hadoop.fs.Path;
+import org.lealone.hansql.optimizer.rel.core.TableScan;
 
 /**
  * Abstract base class for file system based partition descriptors and Hive partition descriptors.

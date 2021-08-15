@@ -19,14 +19,14 @@ package org.apache.drill.exec.store.ischema;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
-import org.apache.calcite.rel.type.RelDataType;
-import org.apache.calcite.rel.type.RelDataTypeField;
-import org.apache.calcite.sql.type.SqlTypeName;
-import org.apache.calcite.util.TimeUnit;
 import org.apache.drill.exec.planner.types.DrillRelDataTypeSystem;
 import org.apache.drill.exec.store.dfs.WorkspaceSchemaFactory;
 import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.Path;
+import org.lealone.hansql.optimizer.rel.type.RelDataType;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeField;
+import org.lealone.hansql.optimizer.sql.type.SqlTypeName;
+import org.lealone.hansql.optimizer.util.TimeUnit;
 import org.slf4j.Logger;
 
 import org.apache.drill.shaded.guava.com.google.common.base.MoreObjects;

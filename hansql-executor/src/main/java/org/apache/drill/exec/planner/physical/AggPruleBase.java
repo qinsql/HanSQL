@@ -19,17 +19,15 @@ package org.apache.drill.exec.planner.physical;
 
 import java.util.List;
 
-import org.apache.calcite.sql.SqlKind;
-
-import org.apache.calcite.util.ImmutableBitSet;
 import org.apache.drill.exec.planner.logical.DrillAggregateRel;
 import org.apache.drill.exec.planner.physical.DrillDistributionTrait.DistributionField;
-import org.apache.calcite.rel.core.AggregateCall;
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.plan.RelOptRuleCall;
-import org.apache.calcite.plan.RelOptRuleOperand;
-
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
+import org.lealone.hansql.optimizer.plan.RelOptRuleCall;
+import org.lealone.hansql.optimizer.plan.RelOptRuleOperand;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.core.AggregateCall;
+import org.lealone.hansql.optimizer.sql.SqlKind;
+import org.lealone.hansql.optimizer.util.ImmutableBitSet;
 
 // abstract base class for the aggregation physical rules
 public abstract class AggPruleBase extends Prule {

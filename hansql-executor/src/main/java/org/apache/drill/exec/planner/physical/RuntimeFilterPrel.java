@@ -17,12 +17,12 @@
  */
 package org.apache.drill.exec.planner.physical;
 
-import org.apache.calcite.plan.RelOptCluster;
-import org.apache.calcite.plan.RelTraitSet;
-import org.apache.calcite.rel.RelNode;
 import org.apache.drill.exec.physical.base.PhysicalOperator;
 import org.apache.drill.exec.physical.config.RuntimeFilterPOP;
 import org.apache.drill.exec.record.BatchSchema.SelectionVectorMode;
+import org.lealone.hansql.optimizer.plan.RelOptCluster;
+import org.lealone.hansql.optimizer.plan.RelTraitSet;
+import org.lealone.hansql.optimizer.rel.RelNode;
 
 import java.io.IOException;
 import java.util.List;

@@ -24,14 +24,14 @@ import org.apache.drill.exec.physical.base.GroupScan;
 import org.apache.drill.exec.planner.logical.DrillTable;
 import org.apache.drill.exec.planner.logical.DrillTranslatableTable;
 import org.apache.drill.common.exceptions.DrillRuntimeException;
-import org.apache.calcite.rel.core.TableScan;
-import org.apache.calcite.plan.RelOptCluster;
-import org.apache.calcite.plan.RelOptCost;
-import org.apache.calcite.plan.RelOptPlanner;
-import org.apache.calcite.plan.RelOptTable;
-import org.apache.calcite.plan.RelTraitSet;
 import org.apache.drill.exec.util.Utilities;
-import org.apache.calcite.rel.metadata.RelMetadataQuery;
+import org.lealone.hansql.optimizer.plan.RelOptCluster;
+import org.lealone.hansql.optimizer.plan.RelOptCost;
+import org.lealone.hansql.optimizer.plan.RelOptPlanner;
+import org.lealone.hansql.optimizer.plan.RelOptTable;
+import org.lealone.hansql.optimizer.plan.RelTraitSet;
+import org.lealone.hansql.optimizer.rel.core.TableScan;
+import org.lealone.hansql.optimizer.rel.metadata.RelMetadataQuery;
 
 /**
  * Base class for logical/physical scan rel implemented in Drill.

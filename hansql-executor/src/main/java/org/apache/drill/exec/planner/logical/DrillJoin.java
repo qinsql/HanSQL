@@ -17,10 +17,11 @@
  */
 package org.apache.drill.exec.planner.logical;
 
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.rel.core.JoinRelType;
-import org.apache.calcite.rex.RexNode;
 import org.apache.drill.exec.planner.common.DrillRelNode;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.core.JoinRelType;
+import org.lealone.hansql.optimizer.rex.RexNode;
+
 import java.util.List;
 
 /**

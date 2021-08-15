@@ -23,9 +23,6 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.apache.calcite.schema.SchemaPlus;
-import org.apache.calcite.sql.SqlIdentifier;
-import org.apache.calcite.sql.SqlNode;
 import org.apache.drill.common.exceptions.UserException;
 import org.apache.drill.exec.physical.PhysicalPlan;
 import org.apache.drill.exec.planner.SqlPlanner;
@@ -37,6 +34,9 @@ import org.apache.drill.exec.store.ischema.Records;
 import org.apache.drill.exec.util.FileSystemUtil;
 import org.apache.drill.exec.work.exception.SqlExecutorSetupException;
 import org.apache.hadoop.fs.Path;
+import org.lealone.hansql.optimizer.schema.SchemaPlus;
+import org.lealone.hansql.optimizer.sql.SqlIdentifier;
+import org.lealone.hansql.optimizer.sql.SqlNode;
 import org.slf4j.Logger;
 
 public class ShowFilesHandler extends DefaultSqlHandler {

@@ -18,11 +18,12 @@
 package org.apache.drill.exec.planner.physical.visitor;
 
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
+import org.lealone.hansql.optimizer.rel.RelNode;
 import org.apache.drill.exec.context.options.OptionManager;
 import org.apache.drill.exec.planner.physical.ExchangePrel;
 import org.apache.drill.exec.planner.physical.PlannerSettings;
 import org.apache.drill.exec.planner.physical.Prel;
-import org.apache.calcite.rel.RelNode;
+
 import java.util.List;
 
 public class InsertLocalExchangeVisitor extends BasePrelVisitor<Prel, Void, RuntimeException> {

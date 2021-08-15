@@ -23,7 +23,6 @@ import java.util.List;
 import org.apache.drill.common.exceptions.ExpressionParsingException;
 import org.apache.drill.common.expression.LogicalExpression;
 import org.apache.drill.common.logical.data.visitors.LogicalVisitor;
-import org.apache.calcite.rel.core.JoinRelType;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -32,6 +31,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.apache.drill.shaded.guava.com.google.common.base.Preconditions;
 import org.apache.drill.shaded.guava.com.google.common.collect.Iterators;
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
+import org.lealone.hansql.optimizer.rel.core.JoinRelType;
 
 @JsonTypeName("join")
 public class Join extends LogicalOperatorBase {

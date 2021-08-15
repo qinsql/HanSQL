@@ -17,13 +17,13 @@
  */
 package org.apache.drill.exec.planner.logical;
 
-import org.apache.calcite.schema.Schema;
 import org.apache.drill.exec.physical.base.MetadataProviderManager;
 import org.apache.drill.exec.planner.types.RelDataTypeDrillImpl;
 import org.apache.drill.exec.planner.types.RelDataTypeHolder;
 import org.apache.drill.exec.store.StoragePlugin;
-import org.apache.calcite.rel.type.RelDataType;
-import org.apache.calcite.rel.type.RelDataTypeFactory;
+import org.lealone.hansql.optimizer.rel.type.RelDataType;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeFactory;
+import org.lealone.hansql.optimizer.schema.Schema;
 
 public class DynamicDrillTable extends DrillTable{
   static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(DynamicDrillTable.class);

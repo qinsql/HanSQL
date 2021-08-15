@@ -17,9 +17,9 @@
  */
 package org.apache.drill.exec.planner.index;
 
-import org.apache.calcite.rex.RexNode;
 import org.apache.drill.common.expression.SchemaPath;
 import org.apache.drill.exec.physical.base.IndexGroupScan;
+import org.lealone.hansql.optimizer.rex.RexNode;
 
 /**
  *  Interface used to describe an index collection

@@ -22,9 +22,8 @@ import java.util.List;
 import org.apache.drill.exec.planner.physical.Prel;
 import org.apache.drill.exec.planner.physical.ProducerConsumerPrel;
 import org.apache.drill.exec.planner.physical.ScanPrel;
-import org.apache.calcite.rel.RelNode;
-
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
+import org.lealone.hansql.optimizer.rel.RelNode;
 
 
 public class ProducerConsumerPrelVisitor extends BasePrelVisitor<Prel, Void, RuntimeException>{

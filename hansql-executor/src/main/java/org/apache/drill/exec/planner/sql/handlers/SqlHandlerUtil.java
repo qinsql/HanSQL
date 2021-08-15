@@ -22,18 +22,6 @@ import java.util.AbstractList;
 import java.util.HashSet;
 import java.util.List;
 
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.rel.type.RelDataType;
-import org.apache.calcite.rel.type.RelDataTypeField;
-import org.apache.calcite.rex.RexBuilder;
-import org.apache.calcite.rex.RexInputRef;
-import org.apache.calcite.rex.RexNode;
-import org.apache.calcite.schema.Table;
-import org.apache.calcite.sql.SqlNodeList;
-import org.apache.calcite.sql.SqlWriter;
-import org.apache.calcite.sql.fun.SqlStdOperatorTable;
-import org.apache.calcite.tools.RelConversionException;
-import org.apache.calcite.tools.ValidationException;
 import org.apache.drill.common.exceptions.DrillRuntimeException;
 import org.apache.drill.common.exceptions.UserException;
 import org.apache.drill.common.expression.SchemaPath;
@@ -42,6 +30,18 @@ import org.apache.drill.exec.planner.logical.DrillRelFactories;
 import org.apache.drill.exec.store.AbstractSchema;
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
 import org.apache.drill.shaded.guava.com.google.common.collect.Sets;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.type.RelDataType;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeField;
+import org.lealone.hansql.optimizer.rex.RexBuilder;
+import org.lealone.hansql.optimizer.rex.RexInputRef;
+import org.lealone.hansql.optimizer.rex.RexNode;
+import org.lealone.hansql.optimizer.schema.Table;
+import org.lealone.hansql.optimizer.sql.SqlNodeList;
+import org.lealone.hansql.optimizer.sql.SqlWriter;
+import org.lealone.hansql.optimizer.sql.fun.SqlStdOperatorTable;
+import org.lealone.hansql.optimizer.tools.RelConversionException;
+import org.lealone.hansql.optimizer.tools.ValidationException;
 
 public class SqlHandlerUtil {
     private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(SqlHandlerUtil.class);

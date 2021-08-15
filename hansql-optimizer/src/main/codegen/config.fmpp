@@ -35,11 +35,11 @@
 data: {
   parser: {
     # Generated parser implementation package and class name.
-    package: "org.apache.calcite.sql.parser.impl",
+    package: "org.lealone.hansql.optimizer.sql.parser.impl",
     class: "SqlParserImpl",
 
     # List of additional classes and packages to import.
-    # Example. "org.apache.calcite.sql.*", "java.util.List".
+    # Example. "org.lealone.hansql.optimizer.sql.*", "java.util.List".
     imports: [
     ]
 

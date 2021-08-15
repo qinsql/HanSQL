@@ -20,18 +20,17 @@ package org.apache.drill.exec.planner.sql.parser;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.calcite.sql.SqlCall;
-import org.apache.calcite.sql.SqlIdentifier;
-import org.apache.calcite.sql.SqlJoin;
-import org.apache.calcite.sql.SqlKind;
-import org.apache.calcite.sql.SqlNode;
-import org.apache.calcite.sql.SqlOrderBy;
-import org.apache.calcite.sql.SqlSelect;
-import org.apache.calcite.sql.SqlSetOption;
-import org.apache.calcite.sql.util.SqlShuttle;
-import org.apache.calcite.sql.util.SqlVisitor;
-
 import org.apache.drill.shaded.guava.com.google.common.collect.ImmutableMap;
+import org.lealone.hansql.optimizer.sql.SqlCall;
+import org.lealone.hansql.optimizer.sql.SqlIdentifier;
+import org.lealone.hansql.optimizer.sql.SqlJoin;
+import org.lealone.hansql.optimizer.sql.SqlKind;
+import org.lealone.hansql.optimizer.sql.SqlNode;
+import org.lealone.hansql.optimizer.sql.SqlOrderBy;
+import org.lealone.hansql.optimizer.sql.SqlSelect;
+import org.lealone.hansql.optimizer.sql.SqlSetOption;
+import org.lealone.hansql.optimizer.sql.util.SqlShuttle;
+import org.lealone.hansql.optimizer.sql.util.SqlVisitor;
 
 /**
  * Implementation of {@link SqlVisitor} that converts bracketed compound {@link SqlIdentifier}

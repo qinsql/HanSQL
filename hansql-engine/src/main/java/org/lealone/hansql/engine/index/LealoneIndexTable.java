@@ -21,9 +21,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.calcite.rel.type.RelDataType;
-import org.apache.calcite.rel.type.RelDataTypeFactory;
-import org.apache.calcite.sql.type.SqlTypeName;
 import org.apache.drill.common.expression.LogicalExpression;
 import org.apache.drill.common.expression.SchemaPath;
 import org.apache.drill.exec.physical.base.GroupScan;
@@ -35,6 +32,9 @@ import org.lealone.db.table.Column;
 import org.lealone.db.value.DataType;
 import org.lealone.hansql.engine.storage.LealoneScanSpec;
 import org.lealone.hansql.engine.storage.LealoneStoragePlugin;
+import org.lealone.hansql.optimizer.rel.type.RelDataType;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeFactory;
+import org.lealone.hansql.optimizer.sql.type.SqlTypeName;
 
 public class LealoneIndexTable extends DynamicDrillTable {
     // private final Schema schema;

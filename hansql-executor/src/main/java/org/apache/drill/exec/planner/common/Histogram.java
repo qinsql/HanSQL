@@ -18,9 +18,10 @@
 package org.apache.drill.exec.planner.common;
 
 
+import org.lealone.hansql.optimizer.rex.RexNode;
+
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import org.apache.calcite.rex.RexNode;
 
 /**
  * A column specific histogram

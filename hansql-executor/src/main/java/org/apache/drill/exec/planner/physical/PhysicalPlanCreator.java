@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.calcite.rel.metadata.RelMetadataQuery;
 import org.apache.drill.common.logical.PlanProperties;
 import org.apache.drill.common.logical.PlanProperties.Generator.ResultMode;
 import org.apache.drill.common.logical.PlanProperties.PlanPropertiesBuilder;
@@ -35,6 +34,7 @@ import org.apache.drill.exec.planner.cost.PrelCostEstimates;
 import org.apache.drill.exec.planner.physical.explain.PrelSequencer.OpId;
 
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
+import org.lealone.hansql.optimizer.rel.metadata.RelMetadataQuery;
 
 
 public class PhysicalPlanCreator {

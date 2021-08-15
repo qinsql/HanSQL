@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 
-import org.apache.calcite.plan.RelOptRule;
 import org.apache.drill.common.JSONOptions;
 import org.apache.drill.common.expression.SchemaPath;
 import org.apache.drill.common.logical.FormatPluginConfig;
@@ -31,6 +30,7 @@ import org.apache.drill.exec.ops.OptimizerRulesContext;
 import org.apache.drill.exec.physical.base.AbstractGroupScan;
 import org.apache.drill.exec.physical.base.MetadataProviderManager;
 import org.apache.drill.exec.store.dfs.FormatPlugin;
+import org.lealone.hansql.optimizer.plan.RelOptRule;
 
 /** Interface for all implementations of the storage plugins. Different implementations of the storage
  * formats will implement methods that indicate if Drill can write or read its tables from that format,

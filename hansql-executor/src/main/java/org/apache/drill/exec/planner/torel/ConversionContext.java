@@ -20,7 +20,6 @@ package org.apache.drill.exec.planner.torel;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.calcite.rel.RelRoot;
 import org.apache.drill.common.expression.LogicalExpression;
 import org.apache.drill.common.logical.LogicalPlan;
 import org.apache.drill.common.logical.data.Filter;
@@ -41,17 +40,18 @@ import org.apache.drill.exec.planner.logical.DrillSortRel;
 import org.apache.drill.exec.planner.logical.DrillUnionRel;
 import org.apache.drill.exec.planner.logical.ScanFieldDeterminer;
 import org.apache.drill.exec.planner.logical.ScanFieldDeterminer.FieldList;
-import org.apache.calcite.rel.InvalidRelException;
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.plan.RelOptCluster;
-import org.apache.calcite.plan.RelOptTable;
-import org.apache.calcite.plan.RelOptTable.ToRelContext;
-import org.apache.calcite.plan.RelTraitSet;
-import org.apache.calcite.rel.type.RelDataType;
-import org.apache.calcite.rel.type.RelDataTypeFactory;
-import org.apache.calcite.rex.RexBuilder;
-import org.apache.calcite.rex.RexNode;
-import org.apache.calcite.schema.SchemaPlus;
+import org.lealone.hansql.optimizer.plan.RelOptCluster;
+import org.lealone.hansql.optimizer.plan.RelOptTable;
+import org.lealone.hansql.optimizer.plan.RelTraitSet;
+import org.lealone.hansql.optimizer.plan.RelOptTable.ToRelContext;
+import org.lealone.hansql.optimizer.rel.InvalidRelException;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.RelRoot;
+import org.lealone.hansql.optimizer.rel.type.RelDataType;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeFactory;
+import org.lealone.hansql.optimizer.rex.RexBuilder;
+import org.lealone.hansql.optimizer.rex.RexNode;
+import org.lealone.hansql.optimizer.schema.SchemaPlus;
 
 public class ConversionContext implements ToRelContext {
   static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(ConversionContext.class);

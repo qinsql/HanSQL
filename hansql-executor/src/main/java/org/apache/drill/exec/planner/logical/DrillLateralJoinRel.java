@@ -17,16 +17,16 @@
  */
 package org.apache.drill.exec.planner.logical;
 
-import org.apache.calcite.plan.RelOptCluster;
-import org.apache.calcite.plan.RelTraitSet;
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.rel.core.Correlate;
-import org.apache.calcite.rel.core.CorrelationId;
-import org.apache.calcite.sql.SemiJoinType;
-import org.apache.calcite.util.ImmutableBitSet;
 import org.apache.drill.common.logical.data.LateralJoin;
 import org.apache.drill.common.logical.data.LogicalOperator;
 import org.apache.drill.exec.planner.common.DrillLateralJoinRelBase;
+import org.lealone.hansql.optimizer.plan.RelOptCluster;
+import org.lealone.hansql.optimizer.plan.RelTraitSet;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.core.Correlate;
+import org.lealone.hansql.optimizer.rel.core.CorrelationId;
+import org.lealone.hansql.optimizer.sql.SemiJoinType;
+import org.lealone.hansql.optimizer.util.ImmutableBitSet;
 
 import java.util.ArrayList;
 import java.util.List;

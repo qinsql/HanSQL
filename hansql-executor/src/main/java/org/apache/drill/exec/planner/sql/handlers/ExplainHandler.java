@@ -19,15 +19,6 @@ package org.apache.drill.exec.planner.sql.handlers;
 
 import java.io.IOException;
 
-import org.apache.calcite.plan.RelOptUtil;
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.rel.type.RelDataType;
-import org.apache.calcite.sql.SqlExplain;
-import org.apache.calcite.sql.SqlExplainLevel;
-import org.apache.calcite.sql.SqlLiteral;
-import org.apache.calcite.sql.SqlNode;
-import org.apache.calcite.tools.RelConversionException;
-import org.apache.calcite.tools.ValidationException;
 import org.apache.drill.common.logical.LogicalPlan;
 import org.apache.drill.common.logical.PlanProperties.Generator.ResultMode;
 import org.apache.drill.exec.ops.QueryContext;
@@ -41,6 +32,15 @@ import org.apache.drill.exec.planner.physical.Prel;
 import org.apache.drill.exec.planner.physical.explain.PrelSequencer;
 import org.apache.drill.exec.util.Pointer;
 import org.apache.drill.exec.work.exception.SqlExecutorSetupException;
+import org.lealone.hansql.optimizer.plan.RelOptUtil;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.type.RelDataType;
+import org.lealone.hansql.optimizer.sql.SqlExplain;
+import org.lealone.hansql.optimizer.sql.SqlExplainLevel;
+import org.lealone.hansql.optimizer.sql.SqlLiteral;
+import org.lealone.hansql.optimizer.sql.SqlNode;
+import org.lealone.hansql.optimizer.tools.RelConversionException;
+import org.lealone.hansql.optimizer.tools.ValidationException;
 
 public class ExplainHandler extends DefaultSqlHandler {
     private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(ExplainHandler.class);

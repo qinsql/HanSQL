@@ -17,13 +17,13 @@
  */
 package org.apache.drill.exec.planner.physical;
 
-import org.apache.calcite.plan.RelOptRule;
-import org.apache.calcite.plan.RelOptRuleCall;
-import org.apache.calcite.plan.RelOptRuleOperand;
-import org.apache.calcite.plan.RelTraitSet;
-import org.apache.calcite.rel.RelNode;
 import org.apache.drill.exec.planner.logical.DrillLateralJoinRel;
 import org.apache.drill.exec.planner.logical.RelOptHelper;
+import org.lealone.hansql.optimizer.plan.RelOptRule;
+import org.lealone.hansql.optimizer.plan.RelOptRuleCall;
+import org.lealone.hansql.optimizer.plan.RelOptRuleOperand;
+import org.lealone.hansql.optimizer.plan.RelTraitSet;
+import org.lealone.hansql.optimizer.rel.RelNode;
 
 public class LateralJoinPrule extends Prule {
   public static final RelOptRule INSTANCE = new LateralJoinPrule("Prel.LateralJoinPrule",

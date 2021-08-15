@@ -17,16 +17,16 @@
  */
 package org.apache.drill.exec.planner.logical;
 
-import org.apache.calcite.plan.RelOptRule;
-import org.apache.calcite.plan.RelOptRuleCall;
-import org.apache.calcite.plan.RelTraitSet;
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.rel.core.RelFactories;
-import org.apache.calcite.rex.RexInputRef;
-import org.apache.calcite.rex.RexNode;
-import org.apache.calcite.tools.RelBuilderFactory;
 import org.apache.drill.exec.planner.StarColumnHelper;
 import org.apache.drill.exec.planner.common.DrillRelOptUtil;
+import org.lealone.hansql.optimizer.plan.RelOptRule;
+import org.lealone.hansql.optimizer.plan.RelOptRuleCall;
+import org.lealone.hansql.optimizer.plan.RelTraitSet;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.core.RelFactories;
+import org.lealone.hansql.optimizer.rex.RexInputRef;
+import org.lealone.hansql.optimizer.rex.RexNode;
+import org.lealone.hansql.optimizer.tools.RelBuilderFactory;
 
 import java.util.HashMap;
 import java.util.List;

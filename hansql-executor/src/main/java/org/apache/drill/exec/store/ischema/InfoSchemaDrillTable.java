@@ -17,12 +17,12 @@
  */
 package org.apache.drill.exec.store.ischema;
 
-import org.apache.calcite.rel.type.RelDataType;
-import org.apache.calcite.rel.type.RelDataTypeFactory;
-import org.apache.calcite.schema.Schema.TableType;
 import org.apache.drill.common.logical.StoragePluginConfig;
 import org.apache.drill.exec.planner.logical.DrillTable;
 import org.apache.drill.exec.util.ImpersonationUtil;
+import org.lealone.hansql.optimizer.rel.type.RelDataType;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeFactory;
+import org.lealone.hansql.optimizer.schema.Schema.TableType;
 
 public class InfoSchemaDrillTable extends DrillTable {
   static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(InfoSchemaDrillTable.class);

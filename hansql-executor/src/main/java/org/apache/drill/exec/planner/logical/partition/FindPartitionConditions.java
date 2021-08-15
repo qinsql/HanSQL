@@ -22,25 +22,24 @@ import java.util.BitSet;
 import java.util.Deque;
 import java.util.List;
 
-import org.apache.calcite.rex.RexBuilder;
-import org.apache.calcite.rex.RexCall;
-import org.apache.calcite.rex.RexCorrelVariable;
-import org.apache.calcite.rex.RexDynamicParam;
-import org.apache.calcite.rex.RexFieldAccess;
-import org.apache.calcite.rex.RexInputRef;
-import org.apache.calcite.rex.RexLiteral;
-import org.apache.calcite.rex.RexNode;
-import org.apache.calcite.rex.RexOver;
-import org.apache.calcite.rex.RexRangeRef;
-import org.apache.calcite.rex.RexVisitorImpl;
-import org.apache.calcite.sql.SqlBinaryOperator;
-import org.apache.calcite.sql.SqlKind;
-import org.apache.calcite.sql.SqlOperator;
-import org.apache.calcite.sql.SqlSyntax;
-import org.apache.calcite.sql.fun.SqlRowOperator;
-import org.apache.calcite.util.Util;
-
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
+import org.lealone.hansql.optimizer.rex.RexBuilder;
+import org.lealone.hansql.optimizer.rex.RexCall;
+import org.lealone.hansql.optimizer.rex.RexCorrelVariable;
+import org.lealone.hansql.optimizer.rex.RexDynamicParam;
+import org.lealone.hansql.optimizer.rex.RexFieldAccess;
+import org.lealone.hansql.optimizer.rex.RexInputRef;
+import org.lealone.hansql.optimizer.rex.RexLiteral;
+import org.lealone.hansql.optimizer.rex.RexNode;
+import org.lealone.hansql.optimizer.rex.RexOver;
+import org.lealone.hansql.optimizer.rex.RexRangeRef;
+import org.lealone.hansql.optimizer.rex.RexVisitorImpl;
+import org.lealone.hansql.optimizer.sql.SqlBinaryOperator;
+import org.lealone.hansql.optimizer.sql.SqlKind;
+import org.lealone.hansql.optimizer.sql.SqlOperator;
+import org.lealone.hansql.optimizer.sql.SqlSyntax;
+import org.lealone.hansql.optimizer.sql.fun.SqlRowOperator;
+import org.lealone.hansql.optimizer.util.Util;
 
 
 public class FindPartitionConditions extends RexVisitorImpl<Void> {

@@ -19,11 +19,11 @@ package org.apache.drill.exec.planner.sql.handlers;
 
 import java.io.IOException;
 
-import org.apache.calcite.sql.SqlNode;
-import org.apache.calcite.tools.RelConversionException;
-import org.apache.calcite.tools.ValidationException;
 import org.apache.drill.exec.physical.PhysicalPlan;
 import org.apache.drill.exec.work.exception.SqlExecutorSetupException;
+import org.lealone.hansql.optimizer.sql.SqlNode;
+import org.lealone.hansql.optimizer.tools.RelConversionException;
+import org.lealone.hansql.optimizer.tools.ValidationException;
 
 public abstract class AbstractSqlHandler {
 

@@ -29,10 +29,10 @@ import org.apache.drill.exec.record.RecordBatch;
 import org.apache.drill.exec.record.RecordBatch.IterOutcome;
 import org.apache.drill.exec.record.VectorContainer;
 import org.apache.drill.exec.record.VectorWrapper;
-import org.apache.calcite.rel.core.JoinRelType;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.drill.exec.vector.IntVector;
 import org.apache.drill.exec.vector.ValueVector;
+import org.lealone.hansql.optimizer.rel.core.JoinRelType;
 
 import static org.apache.drill.exec.record.JoinBatchMemoryManager.LEFT_INDEX;
 

@@ -17,11 +17,11 @@
  */
 package org.apache.drill.exec.planner.physical;
 
-import org.apache.calcite.plan.RelOptRule;
-import org.apache.calcite.plan.RelOptRuleCall;
-import org.apache.calcite.rex.RexNode;
 import org.apache.drill.exec.planner.logical.DrillUnnestRel;
 import org.apache.drill.exec.planner.logical.RelOptHelper;
+import org.lealone.hansql.optimizer.plan.RelOptRule;
+import org.lealone.hansql.optimizer.plan.RelOptRuleCall;
+import org.lealone.hansql.optimizer.rex.RexNode;
 
 public class UnnestPrule extends Prule {
   public static final RelOptRule INSTANCE = new UnnestPrule();

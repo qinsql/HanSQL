@@ -17,21 +17,21 @@
  */
 package org.apache.drill.exec.planner.logical;
 
-import org.apache.calcite.plan.RelOptCluster;
-import org.apache.calcite.plan.RelTraitSet;
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.rel.core.JoinInfo;
-import org.apache.calcite.rel.core.JoinRelType;
-import org.apache.calcite.rel.core.SemiJoin;
-import org.apache.calcite.rex.RexNode;
-import org.apache.calcite.util.ImmutableIntList;
-import org.apache.calcite.util.Pair;
 import org.apache.drill.common.expression.FieldReference;
 import org.apache.drill.common.logical.data.Join;
 import org.apache.drill.common.logical.data.JoinCondition;
 import org.apache.drill.common.logical.data.LogicalOperator;
 import org.apache.drill.common.logical.data.LogicalSemiJoin;
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
+import org.lealone.hansql.optimizer.plan.RelOptCluster;
+import org.lealone.hansql.optimizer.plan.RelTraitSet;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.core.JoinInfo;
+import org.lealone.hansql.optimizer.rel.core.JoinRelType;
+import org.lealone.hansql.optimizer.rel.core.SemiJoin;
+import org.lealone.hansql.optimizer.rex.RexNode;
+import org.lealone.hansql.optimizer.util.ImmutableIntList;
+import org.lealone.hansql.optimizer.util.Pair;
 import org.apache.drill.shaded.guava.com.google.common.base.Preconditions;
 
 import java.util.ArrayList;

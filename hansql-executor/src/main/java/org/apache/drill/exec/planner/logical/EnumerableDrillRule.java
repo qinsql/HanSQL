@@ -17,9 +17,9 @@
  */
 package org.apache.drill.exec.planner.logical;
 
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.rel.convert.ConverterRule;
-import org.apache.calcite.rel.enumerable.EnumerableConvention;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.convert.ConverterRule;
+import org.lealone.hansql.optimizer.rel.enumerable.EnumerableConvention;
 
 /**
  * Rule that converts any Drill relational expression to enumerable format by adding a {@link DrillScreenRelBase}.

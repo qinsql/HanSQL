@@ -19,7 +19,6 @@ package org.apache.drill.exec.ops;
 
 import static org.apache.drill.exec.ExecConstants.IMPERSONATION_MAX_CHAINED_USER_HOPS;
 
-import org.apache.calcite.schema.SchemaPlus;
 import org.apache.drill.common.config.DrillConfig;
 import org.apache.drill.common.exceptions.UserException;
 import org.apache.drill.exec.ExecConstants;
@@ -27,6 +26,7 @@ import org.apache.drill.exec.store.SchemaConfig.SchemaConfigInfoProvider;
 
 import com.carrotsearch.hppc.ObjectIntHashMap;
 import org.apache.drill.shaded.guava.com.google.common.base.Preconditions;
+import org.lealone.hansql.optimizer.schema.SchemaPlus;
 
 /**
  * Contains context information about view expansion(s) in a query. Part of {@link org.apache.drill.exec.ops

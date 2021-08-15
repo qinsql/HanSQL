@@ -17,19 +17,19 @@
  */
 package org.apache.drill.exec.planner.sql.parser;
 
-import org.apache.calcite.sql.SqlCall;
-import org.apache.calcite.sql.SqlDescribeTable;
-import org.apache.calcite.sql.SqlIdentifier;
-import org.apache.calcite.sql.SqlKind;
-import org.apache.calcite.sql.SqlLiteral;
-import org.apache.calcite.sql.SqlNode;
-import org.apache.calcite.sql.SqlOperator;
-import org.apache.calcite.sql.SqlSpecialOperator;
-import org.apache.calcite.sql.SqlWriter;
-import org.apache.calcite.sql.parser.SqlParserPos;
-import org.apache.calcite.util.ImmutableNullableList;
-
 import java.util.List;
+
+import org.lealone.hansql.optimizer.sql.SqlCall;
+import org.lealone.hansql.optimizer.sql.SqlDescribeTable;
+import org.lealone.hansql.optimizer.sql.SqlIdentifier;
+import org.lealone.hansql.optimizer.sql.SqlKind;
+import org.lealone.hansql.optimizer.sql.SqlLiteral;
+import org.lealone.hansql.optimizer.sql.SqlNode;
+import org.lealone.hansql.optimizer.sql.SqlOperator;
+import org.lealone.hansql.optimizer.sql.SqlSpecialOperator;
+import org.lealone.hansql.optimizer.sql.SqlWriter;
+import org.lealone.hansql.optimizer.sql.parser.SqlParserPos;
+import org.lealone.hansql.optimizer.util.ImmutableNullableList;
 
 /**
  * Sql parser tree node to represent statement:

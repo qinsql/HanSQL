@@ -23,7 +23,7 @@ import org.apache.drill.exec.exception.SchemaChangeException;
 import org.apache.drill.exec.ops.FragmentContext;
 import org.apache.drill.exec.physical.config.MergeJoinPOP;
 import org.apache.drill.exec.record.VectorContainer;
-import org.apache.calcite.rel.core.JoinRelType;
+import org.lealone.hansql.optimizer.rel.core.JoinRelType;
 
 /**
  * Merge Join implementation using RecordIterator.

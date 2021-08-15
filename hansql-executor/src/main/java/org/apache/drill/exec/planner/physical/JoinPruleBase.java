@@ -30,19 +30,18 @@ import org.apache.drill.exec.planner.logical.DrillJoin;
 import org.apache.drill.exec.planner.logical.DrillPushRowKeyJoinToScanRule;
 import org.apache.drill.exec.planner.logical.RowKeyJoinRel;
 import org.apache.drill.exec.planner.physical.DrillDistributionTrait.DistributionField;
-import org.apache.calcite.rel.InvalidRelException;
-import org.apache.calcite.rel.core.JoinRelType;
-import org.apache.calcite.rel.RelCollation;
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.rel.metadata.RelMetadataQuery;
-import org.apache.calcite.plan.RelOptPlanner;
-import org.apache.calcite.plan.RelOptRuleCall;
-import org.apache.calcite.plan.RelOptRuleOperand;
-import org.apache.calcite.plan.RelTraitSet;
-import org.apache.calcite.rex.RexNode;
-
 import org.apache.drill.shaded.guava.com.google.common.collect.ImmutableList;
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
+import org.lealone.hansql.optimizer.plan.RelOptPlanner;
+import org.lealone.hansql.optimizer.plan.RelOptRuleCall;
+import org.lealone.hansql.optimizer.plan.RelOptRuleOperand;
+import org.lealone.hansql.optimizer.plan.RelTraitSet;
+import org.lealone.hansql.optimizer.rel.InvalidRelException;
+import org.lealone.hansql.optimizer.rel.RelCollation;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.core.JoinRelType;
+import org.lealone.hansql.optimizer.rel.metadata.RelMetadataQuery;
+import org.lealone.hansql.optimizer.rex.RexNode;
 
 // abstract base class for the join physical rules
 public abstract class JoinPruleBase extends Prule {

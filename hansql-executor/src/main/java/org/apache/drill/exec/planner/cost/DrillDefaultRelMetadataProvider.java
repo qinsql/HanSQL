@@ -18,9 +18,9 @@
 package org.apache.drill.exec.planner.cost;
 
 import org.apache.drill.shaded.guava.com.google.common.collect.ImmutableList;
-import org.apache.calcite.rel.metadata.ChainedRelMetadataProvider;
-import org.apache.calcite.rel.metadata.DefaultRelMetadataProvider;
-import org.apache.calcite.rel.metadata.RelMetadataProvider;
+import org.lealone.hansql.optimizer.rel.metadata.ChainedRelMetadataProvider;
+import org.lealone.hansql.optimizer.rel.metadata.DefaultRelMetadataProvider;
+import org.lealone.hansql.optimizer.rel.metadata.RelMetadataProvider;
 
 public class DrillDefaultRelMetadataProvider {
   private DrillDefaultRelMetadataProvider() {

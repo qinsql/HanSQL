@@ -19,8 +19,6 @@ package org.apache.drill.exec.planner;
 
 import org.apache.drill.shaded.guava.com.google.common.primitives.Ints;
 import org.apache.drill.shaded.guava.com.google.common.primitives.Longs;
-import org.apache.calcite.rel.core.TableScan;
-import org.apache.calcite.util.BitSets;
 import org.apache.drill.common.expression.SchemaPath;
 import org.apache.drill.common.types.TypeProtos;
 import org.apache.drill.exec.physical.base.GroupScan;
@@ -53,6 +51,8 @@ import org.apache.drill.exec.vector.ValueVector;
 
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
 import org.apache.hadoop.fs.Path;
+import org.lealone.hansql.optimizer.rel.core.TableScan;
+import org.lealone.hansql.optimizer.util.BitSets;
 
 import java.io.IOException;
 import java.util.ArrayList;

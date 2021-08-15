@@ -30,8 +30,6 @@ import org.apache.drill.shaded.guava.com.google.common.base.Preconditions;
 import org.lealone.hansql.engine.storage.LealoneSubScan.LealoneSubScanSpec;
 
 public class LealoneScanBatchCreator implements BatchCreator<LealoneSubScan> {
-    static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(LealoneScanBatchCreator.class);
-
     @Override
     public ScanBatch getBatch(ExecutorFragmentContext context, LealoneSubScan config, List<RecordBatch> children)
             throws ExecutionSetupException {
@@ -52,10 +50,5 @@ public class LealoneScanBatchCreator implements BatchCreator<LealoneSubScan> {
             }
         }
         return new ScanBatch(config, context, readers);
-
-        // Preconditions.checkArgument(children.isEmpty());
-        // //LealoneStoragePlugin plugin = config.getPlugin();
-        // RecordReader reader = new LealoneRecordReader(config.get, config.getSql(), plugin.getName());
-        // return new ScanBatch(config, context, Collections.singletonList(reader));
     }
 }

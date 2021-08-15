@@ -17,7 +17,7 @@
  */
 package org.apache.drill.exec.planner.sql;
 
-import org.apache.calcite.sql.SqlOperator;
+import org.lealone.hansql.optimizer.sql.SqlOperator;
 /**
  * This interface is meant for the users of the wrappers, {@link DrillCalciteSqlOperatorWrapper},
  * {@link DrillCalciteSqlFunctionWrapper} and {@link DrillCalciteSqlAggFunctionWrapper}, to access the wrapped Calcite

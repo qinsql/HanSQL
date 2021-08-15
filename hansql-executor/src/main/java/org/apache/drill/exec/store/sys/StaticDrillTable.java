@@ -17,13 +17,13 @@
  */
 package org.apache.drill.exec.store.sys;
 
-import org.apache.calcite.rel.type.RelDataType;
-import org.apache.calcite.rel.type.RelDataTypeFactory;
-import org.apache.calcite.schema.Schema.TableType;
 import org.apache.drill.exec.planner.logical.DrillTable;
 import org.apache.drill.exec.store.RecordDataType;
 import org.apache.drill.exec.store.StoragePlugin;
 import org.apache.drill.exec.util.ImpersonationUtil;
+import org.lealone.hansql.optimizer.rel.type.RelDataType;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeFactory;
+import org.lealone.hansql.optimizer.schema.Schema.TableType;
 
 /**
  * A {@link org.apache.drill.exec.planner.logical.DrillTable} with a defined schema

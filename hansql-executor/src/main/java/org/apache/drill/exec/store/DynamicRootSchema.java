@@ -17,13 +17,13 @@
  */
 package org.apache.drill.exec.store;
 
-import org.apache.calcite.schema.CalciteSchema;
-import org.apache.calcite.schema.SchemaPlus;
-import org.apache.calcite.schema.impl.AbstractSchema;
 import org.apache.drill.common.exceptions.ExecutionSetupException;
 import org.apache.drill.common.exceptions.UserException;
 import org.apache.drill.common.exceptions.UserExceptionUtils;
 import org.apache.drill.exec.planner.sql.SchemaUtilites;
+import org.lealone.hansql.optimizer.schema.CalciteSchema;
+import org.lealone.hansql.optimizer.schema.SchemaPlus;
+import org.lealone.hansql.optimizer.schema.impl.AbstractSchema;
 
 import java.io.IOException;
 import java.util.ArrayList;

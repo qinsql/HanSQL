@@ -17,13 +17,13 @@
  */
 package org.apache.drill.exec.planner.sql;
 
-import org.apache.calcite.sql.parser.SqlParser;
-import org.apache.calcite.sql.parser.SqlParserImplFactory;
-import org.apache.calcite.sql.validate.SqlConformance;
-import org.apache.calcite.util.Casing;
-import org.apache.calcite.util.Quoting;
 import org.apache.drill.exec.planner.physical.PlannerSettings;
 import org.apache.drill.exec.planner.sql.parser.impl.DrillParserWithCompoundIdConverter;
+import org.lealone.hansql.optimizer.sql.parser.SqlParser;
+import org.lealone.hansql.optimizer.sql.parser.SqlParserImplFactory;
+import org.lealone.hansql.optimizer.sql.validate.SqlConformance;
+import org.lealone.hansql.optimizer.util.Casing;
+import org.lealone.hansql.optimizer.util.Quoting;
 
 public class DrillParserConfig implements SqlParser.Config {
 

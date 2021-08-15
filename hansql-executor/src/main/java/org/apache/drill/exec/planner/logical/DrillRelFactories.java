@@ -17,34 +17,34 @@
  */
 package org.apache.drill.exec.planner.logical;
 
-import org.apache.calcite.plan.Contexts;
-import org.apache.calcite.plan.RelOptCluster;
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.rel.core.AggregateCall;
-import org.apache.calcite.rel.core.CorrelationId;
-import org.apache.calcite.rel.core.JoinInfo;
-import org.apache.calcite.rel.core.JoinRelType;
-import org.apache.calcite.rel.core.RelFactories;
-import org.apache.calcite.rel.type.RelDataType;
-import org.apache.calcite.rex.RexNode;
-import org.apache.calcite.rex.RexUtil;
-import org.apache.calcite.tools.RelBuilderFactory;
-import org.apache.calcite.util.ImmutableBitSet;
 import org.apache.drill.exec.planner.DrillRelBuilder;
+import org.lealone.hansql.optimizer.plan.Contexts;
+import org.lealone.hansql.optimizer.plan.RelOptCluster;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.core.AggregateCall;
+import org.lealone.hansql.optimizer.rel.core.CorrelationId;
+import org.lealone.hansql.optimizer.rel.core.JoinInfo;
+import org.lealone.hansql.optimizer.rel.core.JoinRelType;
+import org.lealone.hansql.optimizer.rel.core.RelFactories;
+import org.lealone.hansql.optimizer.rel.type.RelDataType;
+import org.lealone.hansql.optimizer.rex.RexNode;
+import org.lealone.hansql.optimizer.rex.RexUtil;
+import org.lealone.hansql.optimizer.tools.RelBuilderFactory;
+import org.lealone.hansql.optimizer.util.ImmutableBitSet;
 
 import java.util.List;
 import java.util.Set;
 
-import static org.apache.calcite.rel.core.RelFactories.DEFAULT_AGGREGATE_FACTORY;
-import static org.apache.calcite.rel.core.RelFactories.DEFAULT_FILTER_FACTORY;
-import static org.apache.calcite.rel.core.RelFactories.DEFAULT_JOIN_FACTORY;
-import static org.apache.calcite.rel.core.RelFactories.DEFAULT_MATCH_FACTORY;
-import static org.apache.calcite.rel.core.RelFactories.DEFAULT_PROJECT_FACTORY;
-import static org.apache.calcite.rel.core.RelFactories.DEFAULT_SET_OP_FACTORY;
-import static org.apache.calcite.rel.core.RelFactories.DEFAULT_SORT_FACTORY;
-import static org.apache.calcite.rel.core.RelFactories.DEFAULT_TABLE_SCAN_FACTORY;
-import static org.apache.calcite.rel.core.RelFactories.DEFAULT_VALUES_FACTORY;
 import static org.apache.drill.exec.planner.logical.DrillRel.DRILL_LOGICAL;
+import static org.lealone.hansql.optimizer.rel.core.RelFactories.DEFAULT_AGGREGATE_FACTORY;
+import static org.lealone.hansql.optimizer.rel.core.RelFactories.DEFAULT_FILTER_FACTORY;
+import static org.lealone.hansql.optimizer.rel.core.RelFactories.DEFAULT_JOIN_FACTORY;
+import static org.lealone.hansql.optimizer.rel.core.RelFactories.DEFAULT_MATCH_FACTORY;
+import static org.lealone.hansql.optimizer.rel.core.RelFactories.DEFAULT_PROJECT_FACTORY;
+import static org.lealone.hansql.optimizer.rel.core.RelFactories.DEFAULT_SET_OP_FACTORY;
+import static org.lealone.hansql.optimizer.rel.core.RelFactories.DEFAULT_SORT_FACTORY;
+import static org.lealone.hansql.optimizer.rel.core.RelFactories.DEFAULT_TABLE_SCAN_FACTORY;
+import static org.lealone.hansql.optimizer.rel.core.RelFactories.DEFAULT_VALUES_FACTORY;
 
 /**
  * Contains factory implementation for creating various Drill Logical Rel nodes.

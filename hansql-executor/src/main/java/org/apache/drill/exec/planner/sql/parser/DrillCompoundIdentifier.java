@@ -21,15 +21,14 @@ import java.util.Collections;
 import java.util.List;
 
 import org.apache.drill.shaded.guava.com.google.common.base.Function;
-import org.apache.calcite.sql.SqlBasicCall;
-import org.apache.calcite.sql.SqlIdentifier;
-import org.apache.calcite.sql.SqlLiteral;
-import org.apache.calcite.sql.SqlNode;
-import org.apache.calcite.sql.fun.SqlStdOperatorTable;
-import org.apache.calcite.sql.parser.SqlParserPos;
-
 import org.apache.drill.shaded.guava.com.google.common.collect.ImmutableList;
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
+import org.lealone.hansql.optimizer.sql.SqlBasicCall;
+import org.lealone.hansql.optimizer.sql.SqlIdentifier;
+import org.lealone.hansql.optimizer.sql.SqlLiteral;
+import org.lealone.hansql.optimizer.sql.SqlNode;
+import org.lealone.hansql.optimizer.sql.fun.SqlStdOperatorTable;
+import org.lealone.hansql.optimizer.sql.parser.SqlParserPos;
 
 public class DrillCompoundIdentifier extends SqlIdentifier {
 

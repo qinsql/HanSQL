@@ -26,7 +26,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.calcite.plan.RelOptTable;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.drill.common.util.GuavaUtils;
 import org.apache.drill.shaded.guava.com.google.common.base.Charsets;
@@ -34,10 +33,6 @@ import org.apache.drill.shaded.guava.com.google.common.base.Preconditions;
 import org.apache.drill.shaded.guava.com.google.common.collect.ImmutableList;
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
 import org.apache.drill.shaded.guava.com.google.common.collect.Maps;
-import org.apache.calcite.rel.core.TableScan;
-import org.apache.calcite.rel.enumerable.EnumerableTableScan;
-import org.apache.calcite.schema.RelOptTableImpl;
-import org.apache.calcite.util.BitSets;
 import org.apache.drill.common.expression.SchemaPath;
 import org.apache.drill.common.types.TypeProtos;
 import org.apache.drill.common.types.Types;
@@ -55,6 +50,11 @@ import org.apache.drill.exec.store.dfs.MetadataContext;
 import org.apache.drill.exec.vector.NullableVarCharVector;
 import org.apache.drill.exec.vector.ValueVector;
 import org.apache.hadoop.fs.Path;
+import org.lealone.hansql.optimizer.plan.RelOptTable;
+import org.lealone.hansql.optimizer.rel.core.TableScan;
+import org.lealone.hansql.optimizer.rel.enumerable.EnumerableTableScan;
+import org.lealone.hansql.optimizer.schema.RelOptTableImpl;
+import org.lealone.hansql.optimizer.util.BitSets;
 
 
 // partition descriptor for file system based tables

@@ -17,8 +17,8 @@
  */
 package org.apache.drill.exec.planner.index;
 
-import org.apache.calcite.rel.RelFieldCollation;
 import org.apache.drill.common.expression.LogicalExpression;
+import org.lealone.hansql.optimizer.rel.RelFieldCollation;
 
 import java.util.List;
 import java.util.Map;

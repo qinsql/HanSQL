@@ -22,7 +22,7 @@
   # List of import statements.
   imports: [
     "org.apache.drill.exec.planner.sql.parser.*",
-    "org.apache.calcite.util.*",
+    "org.lealone.hansql.optimizer.util.*",
     "java.util.*"
   ]
 

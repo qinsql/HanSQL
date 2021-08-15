@@ -21,7 +21,7 @@ import org.apache.drill.exec.ExecConstants;
 import org.apache.drill.exec.context.options.OptionManager;
 import org.apache.drill.exec.planner.cost.DrillCostBase;
 import org.apache.drill.exec.planner.physical.Prel;
-import org.apache.calcite.rel.metadata.RelMetadataQuery;
+import org.lealone.hansql.optimizer.rel.metadata.RelMetadataQuery;
 
 public class MemoryEstimationVisitor extends BasePrelVisitor<Double, Void, RuntimeException> {
 

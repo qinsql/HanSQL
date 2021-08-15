@@ -17,16 +17,15 @@
  */
 package org.apache.drill.exec.planner.logical;
 
-import org.apache.calcite.plan.RelOptCluster;
-import org.apache.calcite.plan.RelTraitSet;
-
-import org.apache.calcite.rel.type.RelDataType;
-import org.apache.calcite.rex.RexFieldAccess;
-import org.apache.calcite.rex.RexNode;
 import org.apache.drill.common.expression.SchemaPath;
 import org.apache.drill.common.logical.data.LogicalOperator;
 import org.apache.drill.common.logical.data.Unnest;
 import org.apache.drill.exec.planner.common.DrillUnnestRelBase;
+import org.lealone.hansql.optimizer.plan.RelOptCluster;
+import org.lealone.hansql.optimizer.plan.RelTraitSet;
+import org.lealone.hansql.optimizer.rel.type.RelDataType;
+import org.lealone.hansql.optimizer.rex.RexFieldAccess;
+import org.lealone.hansql.optimizer.rex.RexNode;
 
 
 public class DrillUnnestRel extends DrillUnnestRelBase implements DrillRel {

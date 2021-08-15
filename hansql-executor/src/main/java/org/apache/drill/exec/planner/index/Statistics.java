@@ -17,9 +17,9 @@
  */
 package org.apache.drill.exec.planner.index;
 
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.rex.RexNode;
 import org.apache.drill.exec.planner.common.DrillScanRelBase;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rex.RexNode;
 
 public interface Statistics {
 

@@ -19,22 +19,23 @@ package org.apache.drill.exec.planner.logical;
 
 
 import java.util.List;
-import org.apache.calcite.plan.RelOptCluster;
-import org.apache.calcite.plan.RelTraitSet;
-import org.apache.calcite.rel.InvalidRelException;
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.rel.core.JoinRelType;
-import org.apache.calcite.rel.type.RelDataType;
-import org.apache.calcite.rex.RexChecker;
-import org.apache.calcite.rex.RexNode;
-import org.apache.calcite.sql.type.SqlTypeName;
-import org.apache.calcite.sql.validate.SqlValidatorUtil;
-import org.apache.calcite.util.Litmus;
-import org.apache.calcite.util.Pair;
+
 import org.apache.drill.common.logical.data.Join;
 import org.apache.drill.common.logical.data.LogicalOperator;
 import org.apache.drill.exec.planner.torel.ConversionContext;
 import org.apache.drill.shaded.guava.com.google.common.collect.ImmutableList;
+import org.lealone.hansql.optimizer.plan.RelOptCluster;
+import org.lealone.hansql.optimizer.plan.RelTraitSet;
+import org.lealone.hansql.optimizer.rel.InvalidRelException;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.core.JoinRelType;
+import org.lealone.hansql.optimizer.rel.type.RelDataType;
+import org.lealone.hansql.optimizer.rex.RexChecker;
+import org.lealone.hansql.optimizer.rex.RexNode;
+import org.lealone.hansql.optimizer.sql.type.SqlTypeName;
+import org.lealone.hansql.optimizer.sql.validate.SqlValidatorUtil;
+import org.lealone.hansql.optimizer.util.Litmus;
+import org.lealone.hansql.optimizer.util.Pair;
 
 public class RowKeyJoinRel extends DrillJoinRel implements DrillRel {
 
@@ -76,8 +77,8 @@ public class RowKeyJoinRel extends DrillJoinRel implements DrillRel {
   }
 
   /**
-   * Returns whether this RowKeyJoin represents a {@link org.apache.calcite.rel.core.SemiJoin}
-   * @return true if join represents a {@link org.apache.calcite.rel.core.SemiJoin}, false otherwise.
+   * Returns whether this RowKeyJoin represents a {@link org.lealone.hansql.optimizer.rel.core.SemiJoin}
+   * @return true if join represents a {@link org.lealone.hansql.optimizer.rel.core.SemiJoin}, false otherwise.
    */
   public boolean isSemiJoin() {
     return isSemiJoin;
@@ -102,7 +103,7 @@ public class RowKeyJoinRel extends DrillJoinRel implements DrillRel {
     return joinRel;
   }
 
-  /** The parent method relies the class being an instance of {@link org.apache.calcite.rel.core.SemiJoin}
+  /** The parent method relies the class being an instance of {@link org.lealone.hansql.optimizer.rel.core.SemiJoin}
    * in deciding row-type validity. We override this method to account for the RowKeyJoinRel logical rel
    * representing both regular and semi-joins */
   @Override public boolean isValid(Litmus litmus, Context context) {

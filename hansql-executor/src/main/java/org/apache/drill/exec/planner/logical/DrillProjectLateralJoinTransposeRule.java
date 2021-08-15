@@ -18,12 +18,12 @@
 package org.apache.drill.exec.planner.logical;
 
 
-import org.apache.calcite.plan.RelOptRuleCall;
-import org.apache.calcite.rel.core.Correlate;
-import org.apache.calcite.rel.core.RelFactories;
-import org.apache.calcite.rel.rules.ProjectCorrelateTransposeRule;
-import org.apache.calcite.rel.rules.PushProjector;
-import org.apache.calcite.tools.RelBuilderFactory;
+import org.lealone.hansql.optimizer.plan.RelOptRuleCall;
+import org.lealone.hansql.optimizer.rel.core.Correlate;
+import org.lealone.hansql.optimizer.rel.core.RelFactories;
+import org.lealone.hansql.optimizer.rel.rules.ProjectCorrelateTransposeRule;
+import org.lealone.hansql.optimizer.rel.rules.PushProjector;
+import org.lealone.hansql.optimizer.tools.RelBuilderFactory;
 
 public class DrillProjectLateralJoinTransposeRule extends ProjectCorrelateTransposeRule {
 

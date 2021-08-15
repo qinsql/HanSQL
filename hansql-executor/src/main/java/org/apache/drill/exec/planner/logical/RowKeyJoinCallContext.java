@@ -17,7 +17,7 @@
  */
 package org.apache.drill.exec.planner.logical;
 
-import org.apache.calcite.plan.RelOptRuleCall;
+import org.lealone.hansql.optimizer.plan.RelOptRuleCall;
 
 /*
  * Preserves the context to be used for transforming join to rowkey join in order

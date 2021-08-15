@@ -21,28 +21,28 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.calcite.rex.RexChecker;
-import org.apache.calcite.sql.type.SqlTypeName;
-import org.apache.calcite.sql.validate.SqlValidatorUtil;
-import org.apache.calcite.util.Litmus;
 import org.apache.drill.common.exceptions.UserException;
 import org.apache.drill.common.expression.FieldReference;
 import org.apache.drill.common.logical.data.JoinCondition;
 import org.apache.drill.exec.physical.impl.join.JoinUtils;
 import org.apache.drill.exec.planner.common.DrillJoinRelBase;
 import org.apache.drill.exec.planner.physical.visitor.PrelVisitor;
-import org.apache.calcite.rel.core.JoinRelType;
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.plan.RelOptCluster;
-import org.apache.calcite.plan.RelOptUtil;
-import org.apache.calcite.plan.RelTraitSet;
-import org.apache.calcite.rel.type.RelDataType;
-import org.apache.calcite.rel.type.RelDataTypeField;
-import org.apache.calcite.rex.RexNode;
-import org.apache.calcite.rex.RexUtil;
-import org.apache.calcite.sql.SqlKind;
-import org.apache.calcite.util.Pair;
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
+import org.lealone.hansql.optimizer.plan.RelOptCluster;
+import org.lealone.hansql.optimizer.plan.RelOptUtil;
+import org.lealone.hansql.optimizer.plan.RelTraitSet;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.core.JoinRelType;
+import org.lealone.hansql.optimizer.rel.type.RelDataType;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeField;
+import org.lealone.hansql.optimizer.rex.RexChecker;
+import org.lealone.hansql.optimizer.rex.RexNode;
+import org.lealone.hansql.optimizer.rex.RexUtil;
+import org.lealone.hansql.optimizer.sql.SqlKind;
+import org.lealone.hansql.optimizer.sql.type.SqlTypeName;
+import org.lealone.hansql.optimizer.sql.validate.SqlValidatorUtil;
+import org.lealone.hansql.optimizer.util.Litmus;
+import org.lealone.hansql.optimizer.util.Pair;
 
 /**
  *
@@ -130,7 +130,7 @@ public abstract class JoinPrel extends DrillJoinRelBase implements Prel {
    * A join condition is built only for equality and IS NOT DISTINCT FROM comparisons. The difference is:
    * null == null is FALSE whereas null IS NOT DISTINCT FROM null is TRUE
    * For a use case of the IS NOT DISTINCT FROM comparison, see
-   * {@link org.apache.calcite.rel.rules.AggregateRemoveRule}
+   * {@link org.lealone.hansql.optimizer.rel.rules.AggregateRemoveRule}
    * @param conditions populated list of join conditions
    * @param leftFields join fields from the left input
    * @param rightFields join fields from the right input

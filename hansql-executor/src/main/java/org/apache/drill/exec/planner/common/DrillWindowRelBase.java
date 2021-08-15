@@ -17,14 +17,14 @@
  */
 package org.apache.drill.exec.planner.common;
 
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.rel.core.Window;
-import org.apache.calcite.plan.RelOptCluster;
-import org.apache.calcite.plan.RelTraitSet;
-import org.apache.calcite.rel.type.RelDataType;
-import org.apache.calcite.rex.RexLiteral;
-
 import java.util.List;
+
+import org.lealone.hansql.optimizer.plan.RelOptCluster;
+import org.lealone.hansql.optimizer.plan.RelTraitSet;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.core.Window;
+import org.lealone.hansql.optimizer.rel.type.RelDataType;
+import org.lealone.hansql.optimizer.rex.RexLiteral;
 
 public class DrillWindowRelBase extends Window implements DrillRelNode {
 

@@ -19,11 +19,12 @@ package org.apache.drill.exec.physical.impl.common;
 
 import com.sun.codemodel.JVar;
 import io.netty.buffer.DrillBuf;
-import org.apache.calcite.util.Pair;
+
 import org.apache.drill.exec.expr.ClassGenerator;
 import org.apache.drill.exec.expr.holders.ValueHolder;
 import org.apache.drill.exec.ops.FragmentContext;
 import org.apache.drill.shaded.guava.com.google.common.base.Function;
+import org.lealone.hansql.optimizer.util.Pair;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;

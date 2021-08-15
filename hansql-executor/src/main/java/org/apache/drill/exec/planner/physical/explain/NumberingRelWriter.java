@@ -23,15 +23,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.rel.RelWriter;
-import org.apache.calcite.rel.metadata.RelMetadataQuery;
-import org.apache.calcite.rex.RexNode;
-import org.apache.calcite.sql.SqlExplainLevel;
-import org.apache.calcite.util.FlatLists;
-import org.apache.calcite.util.Ord;
-import org.apache.calcite.util.Pair;
-import org.apache.calcite.util.Spacer;
 import org.apache.drill.exec.planner.physical.LateralJoinPrel;
 import org.apache.drill.exec.planner.physical.HashJoinPrel;
 import org.apache.drill.exec.planner.physical.Prel;
@@ -39,6 +30,15 @@ import org.apache.drill.exec.planner.physical.UnnestPrel;
 import org.apache.drill.exec.planner.physical.explain.PrelSequencer.OpId;
 
 import org.apache.drill.shaded.guava.com.google.common.collect.ImmutableList;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.RelWriter;
+import org.lealone.hansql.optimizer.rel.metadata.RelMetadataQuery;
+import org.lealone.hansql.optimizer.rex.RexNode;
+import org.lealone.hansql.optimizer.sql.SqlExplainLevel;
+import org.lealone.hansql.optimizer.util.FlatLists;
+import org.lealone.hansql.optimizer.util.Ord;
+import org.lealone.hansql.optimizer.util.Pair;
+import org.lealone.hansql.optimizer.util.Spacer;
 
 /**
  * Copied mostly from RelWriterImpl but customized to create user useful ids.

@@ -22,14 +22,14 @@ import java.util.Collection;
 import java.util.List;
 
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
-import org.apache.calcite.rel.type.RelDataType;
-import org.apache.calcite.sql.SqlFunction;
-import org.apache.calcite.sql.SqlFunctionCategory;
-import org.apache.calcite.sql.SqlIdentifier;
-import org.apache.calcite.sql.SqlOperatorBinding;
-import org.apache.calcite.sql.SqlSyntax;
-import org.apache.calcite.sql.parser.SqlParserPos;
-import org.apache.calcite.sql.type.SqlReturnTypeInference;
+import org.lealone.hansql.optimizer.rel.type.RelDataType;
+import org.lealone.hansql.optimizer.sql.SqlFunction;
+import org.lealone.hansql.optimizer.sql.SqlFunctionCategory;
+import org.lealone.hansql.optimizer.sql.SqlIdentifier;
+import org.lealone.hansql.optimizer.sql.SqlOperatorBinding;
+import org.lealone.hansql.optimizer.sql.SqlSyntax;
+import org.lealone.hansql.optimizer.sql.parser.SqlParserPos;
+import org.lealone.hansql.optimizer.sql.type.SqlReturnTypeInference;
 import org.apache.drill.exec.expr.fn.DrillFuncHolder;
 
 public class DrillSqlOperator extends SqlFunction {

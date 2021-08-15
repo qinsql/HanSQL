@@ -20,23 +20,6 @@ package org.apache.drill.exec.planner.logical;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.rel.RelShuttleImpl;
-import org.apache.calcite.rel.logical.LogicalFilter;
-import org.apache.calcite.rel.logical.LogicalJoin;
-import org.apache.calcite.rel.logical.LogicalProject;
-import org.apache.calcite.rel.logical.LogicalUnion;
-import org.apache.calcite.rel.type.RelDataTypeFactory;
-import org.apache.calcite.rel.type.RelDataTypeField;
-import org.apache.calcite.rex.RexBuilder;
-import org.apache.calcite.rex.RexCall;
-import org.apache.calcite.rex.RexLiteral;
-import org.apache.calcite.rex.RexNode;
-import org.apache.calcite.rex.RexShuttle;
-import org.apache.calcite.rex.RexUtil;
-import org.apache.calcite.sql.SqlFunction;
-import org.apache.calcite.sql.SqlOperator;
-import org.apache.calcite.util.NlsString;
 import org.apache.drill.common.exceptions.UserException;
 import org.apache.drill.common.expression.SchemaPath;
 import org.apache.drill.exec.exception.UnsupportedOperatorCollector;
@@ -45,6 +28,23 @@ import org.apache.drill.exec.planner.sql.parser.DrillCalciteWrapperUtility;
 import org.apache.drill.exec.util.ApproximateStringMatcher;
 import org.apache.drill.exec.work.exception.SqlUnsupportedException;
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.RelShuttleImpl;
+import org.lealone.hansql.optimizer.rel.logical.LogicalFilter;
+import org.lealone.hansql.optimizer.rel.logical.LogicalJoin;
+import org.lealone.hansql.optimizer.rel.logical.LogicalProject;
+import org.lealone.hansql.optimizer.rel.logical.LogicalUnion;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeFactory;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeField;
+import org.lealone.hansql.optimizer.rex.RexBuilder;
+import org.lealone.hansql.optimizer.rex.RexCall;
+import org.lealone.hansql.optimizer.rex.RexLiteral;
+import org.lealone.hansql.optimizer.rex.RexNode;
+import org.lealone.hansql.optimizer.rex.RexShuttle;
+import org.lealone.hansql.optimizer.rex.RexUtil;
+import org.lealone.hansql.optimizer.sql.SqlFunction;
+import org.lealone.hansql.optimizer.sql.SqlOperator;
+import org.lealone.hansql.optimizer.util.NlsString;
 
 /**
  * This class rewrites all the project expression that contain convert_to/ convert_from

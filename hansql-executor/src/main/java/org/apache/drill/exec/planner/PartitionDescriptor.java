@@ -17,13 +17,13 @@
  */
 package org.apache.drill.exec.planner;
 
-import org.apache.calcite.rel.core.TableScan;
 import org.apache.drill.common.expression.SchemaPath;
 import org.apache.drill.common.types.TypeProtos;
 import org.apache.drill.exec.planner.physical.PlannerSettings;
 import org.apache.drill.exec.store.dfs.MetadataContext;
 import org.apache.drill.exec.vector.ValueVector;
 import org.apache.hadoop.fs.Path;
+import org.lealone.hansql.optimizer.rel.core.TableScan;
 
 import java.util.BitSet;
 import java.util.List;

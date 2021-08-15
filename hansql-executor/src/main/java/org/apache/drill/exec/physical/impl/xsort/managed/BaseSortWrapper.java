@@ -17,7 +17,6 @@
  */
 package org.apache.drill.exec.physical.impl.xsort.managed;
 
-import org.apache.calcite.rel.RelFieldCollation.Direction;
 import org.apache.drill.common.exceptions.UserException;
 import org.apache.drill.common.expression.ErrorCollector;
 import org.apache.drill.common.expression.ErrorCollectorImpl;
@@ -31,6 +30,7 @@ import org.apache.drill.exec.expr.fn.FunctionGenerationHelper;
 import org.apache.drill.exec.ops.OperatorContext;
 import org.apache.drill.exec.physical.config.Sort;
 import org.apache.drill.exec.record.VectorAccessible;
+import org.lealone.hansql.optimizer.rel.RelFieldCollation.Direction;
 
 import com.sun.codemodel.JConditional;
 import com.sun.codemodel.JExpr;

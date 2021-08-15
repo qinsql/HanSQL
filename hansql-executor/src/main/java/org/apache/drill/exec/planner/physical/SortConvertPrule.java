@@ -17,13 +17,13 @@
  */
 package org.apache.drill.exec.planner.physical;
 
-import org.apache.calcite.plan.RelTraitSet;
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.rel.core.Sort;
-import org.apache.calcite.rel.convert.ConverterRule;
-import org.apache.calcite.plan.Convention;
-import org.apache.calcite.plan.RelOptRule;
-import org.apache.calcite.plan.RelOptRuleCall;
+import org.lealone.hansql.optimizer.plan.Convention;
+import org.lealone.hansql.optimizer.plan.RelOptRule;
+import org.lealone.hansql.optimizer.plan.RelOptRuleCall;
+import org.lealone.hansql.optimizer.plan.RelTraitSet;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.convert.ConverterRule;
+import org.lealone.hansql.optimizer.rel.core.Sort;
 
 /**
  * Rule that converts an {@link Sort} to a physical {@link SortPrel}, implemented by a Drill "order" operation.

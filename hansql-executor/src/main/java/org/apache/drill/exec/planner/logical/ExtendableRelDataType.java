@@ -17,9 +17,9 @@
  */
 package org.apache.drill.exec.planner.logical;
 
-import org.apache.calcite.rel.type.RelDataTypeFactory;
 import org.apache.drill.exec.planner.types.ExtendableRelDataTypeHolder;
 import org.apache.drill.exec.planner.types.RelDataTypeDrillImpl;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeFactory;
 
 /**
  * RelDataType for non-dynamic table structure which

@@ -27,13 +27,13 @@ import org.apache.drill.exec.physical.base.PhysicalOperator;
 import org.apache.drill.exec.physical.base.SubScan;
 import org.apache.drill.exec.planner.common.JoinControl;
 import org.apache.drill.exec.proto.UserBitShared.CoreOperatorType;
-import org.apache.calcite.rel.core.JoinRelType;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.apache.drill.shaded.guava.com.google.common.base.Preconditions;
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
+import org.lealone.hansql.optimizer.rel.core.JoinRelType;
 import org.apache.drill.exec.physical.base.AbstractJoinPop;
 import org.apache.drill.exec.work.filter.RuntimeFilterDef;
 

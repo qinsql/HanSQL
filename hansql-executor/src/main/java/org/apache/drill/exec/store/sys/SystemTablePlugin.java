@@ -24,7 +24,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.apache.calcite.schema.SchemaPlus;
 import org.apache.drill.common.JSONOptions;
 import org.apache.drill.common.expression.SchemaPath;
 import org.apache.drill.common.logical.StoragePluginConfig;
@@ -37,6 +36,7 @@ import org.apache.drill.exec.store.AbstractStoragePlugin;
 import org.apache.drill.exec.store.SchemaConfig;
 import org.apache.drill.exec.store.SystemPlugin;
 import org.apache.drill.exec.store.pojo.PojoDataType;
+import org.lealone.hansql.optimizer.schema.SchemaPlus;
 
 /**
  * A "storage" plugin for system tables.

@@ -17,7 +17,7 @@
  */
 package org.apache.drill.exec.planner.common;
 
-import org.apache.calcite.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.RelNode;
 
 public interface DrillRelNode extends RelNode {
 

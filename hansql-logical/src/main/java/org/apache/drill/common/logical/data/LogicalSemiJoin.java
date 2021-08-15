@@ -21,8 +21,9 @@ package org.apache.drill.common.logical.data;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import org.apache.calcite.rel.core.JoinRelType;
+
 import org.apache.drill.shaded.guava.com.google.common.collect.Iterators;
+import org.lealone.hansql.optimizer.rel.core.JoinRelType;
 import org.apache.drill.common.logical.data.visitors.LogicalVisitor;
 
 import java.util.Iterator;

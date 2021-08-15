@@ -20,12 +20,11 @@ package org.apache.drill.exec.planner.types;
 import java.util.List;
 
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
-import org.apache.calcite.rel.type.DynamicRecordType;
-import org.apache.calcite.rel.type.RelDataTypeFactory;
-import org.apache.calcite.rel.type.RelDataTypeField;
-import org.apache.calcite.rel.type.RelDataTypeFieldImpl;
-import org.apache.calcite.sql.type.SqlTypeName;
-
+import org.lealone.hansql.optimizer.rel.type.DynamicRecordType;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeFactory;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeField;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeFieldImpl;
+import org.lealone.hansql.optimizer.sql.type.SqlTypeName;
 import org.apache.drill.common.expression.SchemaPath;
 
 public class RelDataTypeHolder extends AbstractRelDataTypeHolder {

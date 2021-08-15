@@ -19,15 +19,6 @@ package org.apache.drill.exec.planner.logical;
 
 import java.io.IOException;
 
-import org.apache.calcite.config.CalciteConnectionConfig;
-import org.apache.calcite.plan.RelOptTable;
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.schema.Schema.TableType;
-import org.apache.calcite.schema.Statistic;
-import org.apache.calcite.schema.Statistics;
-import org.apache.calcite.schema.Table;
-import org.apache.calcite.sql.SqlCall;
-import org.apache.calcite.sql.SqlNode;
 import org.apache.drill.common.JSONOptions;
 import org.apache.drill.common.logical.StoragePluginConfig;
 import org.apache.drill.exec.context.options.SessionOptionManager;
@@ -39,6 +30,15 @@ import org.apache.drill.exec.physical.base.GroupScan;
 import org.apache.drill.exec.store.StoragePlugin;
 import org.apache.drill.exec.store.dfs.FileSelection;
 import org.apache.drill.exec.util.ImpersonationUtil;
+import org.lealone.hansql.optimizer.config.CalciteConnectionConfig;
+import org.lealone.hansql.optimizer.plan.RelOptTable;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.schema.Statistic;
+import org.lealone.hansql.optimizer.schema.Statistics;
+import org.lealone.hansql.optimizer.schema.Table;
+import org.lealone.hansql.optimizer.schema.Schema.TableType;
+import org.lealone.hansql.optimizer.sql.SqlCall;
+import org.lealone.hansql.optimizer.sql.SqlNode;
 
 public abstract class DrillTable implements Table {
 

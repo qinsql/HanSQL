@@ -17,11 +17,11 @@
  */
 package org.apache.drill.exec.planner.logical;
 
-import org.apache.calcite.rel.logical.LogicalFilter;
-import org.apache.calcite.rel.logical.LogicalProject;
-import org.apache.calcite.rel.rules.ProjectFilterTransposeRule;
-import org.apache.calcite.rel.rules.PushProjector;
-import org.apache.calcite.plan.RelOptRule;
+import org.lealone.hansql.optimizer.plan.RelOptRule;
+import org.lealone.hansql.optimizer.rel.logical.LogicalFilter;
+import org.lealone.hansql.optimizer.rel.logical.LogicalProject;
+import org.lealone.hansql.optimizer.rel.rules.ProjectFilterTransposeRule;
+import org.lealone.hansql.optimizer.rel.rules.PushProjector;
 
 public class DrillPushProjectPastFilterRule extends ProjectFilterTransposeRule {
 

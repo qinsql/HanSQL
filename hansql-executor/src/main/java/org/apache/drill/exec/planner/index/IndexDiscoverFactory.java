@@ -21,7 +21,7 @@ import org.apache.drill.common.logical.StoragePluginConfig;
 import org.apache.drill.exec.physical.base.GroupScan;
 import org.apache.drill.exec.planner.common.DrillScanRelBase;
 import org.apache.drill.exec.planner.physical.ScanPrel;
-import org.apache.calcite.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.RelNode;
 
 import java.lang.reflect.Constructor;
 

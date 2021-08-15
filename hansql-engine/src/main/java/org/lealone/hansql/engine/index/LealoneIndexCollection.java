@@ -19,12 +19,12 @@ package org.lealone.hansql.engine.index;
 
 import java.util.Set;
 
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.rex.RexNode;
 import org.apache.drill.exec.physical.base.IndexGroupScan;
 import org.apache.drill.exec.planner.index.AbstractIndexCollection;
 import org.apache.drill.exec.planner.index.IndexCollection;
 import org.apache.drill.exec.planner.index.IndexDescriptor;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rex.RexNode;
 
 public class LealoneIndexCollection extends AbstractIndexCollection {
     private final RelNode scan; // physical scan rel corresponding to the primary table

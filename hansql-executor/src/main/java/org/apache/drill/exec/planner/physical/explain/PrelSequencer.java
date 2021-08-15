@@ -27,11 +27,10 @@ import java.util.Queue;
 import org.apache.drill.exec.planner.physical.ExchangePrel;
 import org.apache.drill.exec.planner.physical.Prel;
 import org.apache.drill.exec.planner.physical.visitor.BasePrelVisitor;
-import org.apache.calcite.rel.RelWriter;
-import org.apache.calcite.sql.SqlExplainLevel;
-
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
 import org.apache.drill.shaded.guava.com.google.common.collect.Maps;
+import org.lealone.hansql.optimizer.rel.RelWriter;
+import org.lealone.hansql.optimizer.sql.SqlExplainLevel;
 
 public class PrelSequencer extends BasePrelVisitor<Void, PrelSequencer.Frag, RuntimeException> {
 

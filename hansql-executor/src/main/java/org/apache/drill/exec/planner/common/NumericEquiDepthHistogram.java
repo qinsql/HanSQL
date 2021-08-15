@@ -23,13 +23,14 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import java.util.List;
 
-import org.apache.calcite.rex.RexCall;
-import org.apache.calcite.rex.RexNode;
-import org.apache.calcite.rex.RexLiteral;
 import com.clearspring.analytics.stream.quantile.TDigest;
-import org.apache.calcite.sql.SqlKind;
-import org.apache.calcite.sql.SqlOperator;
+
 import org.apache.drill.shaded.guava.com.google.common.base.Preconditions;
+import org.lealone.hansql.optimizer.rex.RexCall;
+import org.lealone.hansql.optimizer.rex.RexLiteral;
+import org.lealone.hansql.optimizer.rex.RexNode;
+import org.lealone.hansql.optimizer.sql.SqlKind;
+import org.lealone.hansql.optimizer.sql.SqlOperator;
 
 /**
  * A column specific equi-depth histogram which is meant for numeric data types

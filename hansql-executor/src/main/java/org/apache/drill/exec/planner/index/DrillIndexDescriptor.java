@@ -17,14 +17,14 @@
  */
 package org.apache.drill.exec.planner.index;
 
-import org.apache.calcite.rel.RelFieldCollation.NullDirection;
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.rex.RexNode;
 import org.apache.drill.common.expression.LogicalExpression;
 import org.apache.drill.exec.physical.base.GroupScan;
 import org.apache.drill.exec.physical.base.IndexGroupScan;
 import org.apache.drill.exec.planner.cost.PluginCost;
 import org.apache.drill.exec.planner.logical.DrillTable;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.RelFieldCollation.NullDirection;
+import org.lealone.hansql.optimizer.rex.RexNode;
 
 import java.io.IOException;
 import java.util.List;

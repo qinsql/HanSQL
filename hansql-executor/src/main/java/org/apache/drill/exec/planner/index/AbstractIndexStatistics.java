@@ -17,11 +17,11 @@
  */
 package org.apache.drill.exec.planner.index;
 
-import org.apache.calcite.rel.RelCollation;
-import org.apache.calcite.rel.RelDistribution;
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.rex.RexNode;
 import org.apache.drill.exec.planner.logical.DrillTable;
+import org.lealone.hansql.optimizer.rel.RelCollation;
+import org.lealone.hansql.optimizer.rel.RelDistribution;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rex.RexNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

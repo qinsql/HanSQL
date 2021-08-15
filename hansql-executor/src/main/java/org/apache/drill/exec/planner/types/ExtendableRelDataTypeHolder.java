@@ -17,12 +17,12 @@
  */
 package org.apache.drill.exec.planner.types;
 
-import org.apache.calcite.rel.type.RelDataTypeFactory;
-import org.apache.calcite.rel.type.RelDataTypeField;
-import org.apache.calcite.rel.type.RelDataTypeFieldImpl;
-import org.apache.calcite.sql.type.SqlTypeName;
-
 import java.util.List;
+
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeFactory;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeField;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeFieldImpl;
+import org.lealone.hansql.optimizer.sql.type.SqlTypeName;
 
 /**
  * Holder for list of RelDataTypeField which may be expanded by implicit columns.

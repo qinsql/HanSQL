@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 
-import org.apache.calcite.rel.RelFieldCollation.NullDirection;
 import org.apache.drill.common.expression.LogicalExpression;
 import org.apache.drill.common.expression.SchemaPath;
 import org.apache.drill.exec.physical.base.AbstractDbGroupScan;
@@ -42,6 +41,7 @@ import org.lealone.db.table.Column;
 import org.lealone.db.table.Table;
 import org.lealone.hansql.engine.storage.LealoneGroupScan;
 import org.lealone.hansql.engine.storage.LealoneScanSpec;
+import org.lealone.hansql.optimizer.rel.RelFieldCollation.NullDirection;
 
 public class LealoneIndexDiscover extends IndexDiscoverBase {
 

@@ -17,10 +17,10 @@
  */
 package org.apache.drill.exec.planner.sql.parser;
 
-import org.apache.calcite.sql.SqlAggFunction;
-import org.apache.calcite.sql.SqlFunction;
-import org.apache.calcite.sql.SqlOperator;
 import org.apache.drill.exec.planner.sql.DrillCalciteSqlWrapper;
+import org.lealone.hansql.optimizer.sql.SqlAggFunction;
+import org.lealone.hansql.optimizer.sql.SqlFunction;
+import org.lealone.hansql.optimizer.sql.SqlOperator;
 
 /**
  *

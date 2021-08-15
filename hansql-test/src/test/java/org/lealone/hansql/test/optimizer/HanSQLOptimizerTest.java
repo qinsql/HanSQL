@@ -21,52 +21,52 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import org.apache.calcite.config.CalciteConnectionConfig;
-import org.apache.calcite.config.CalciteConnectionConfigImpl;
-import org.apache.calcite.plan.Context;
-import org.apache.calcite.plan.ConventionTraitDef;
-import org.apache.calcite.plan.RelOptCluster;
-import org.apache.calcite.plan.RelOptCostFactory;
-import org.apache.calcite.plan.RelOptCostImpl;
-import org.apache.calcite.plan.RelOptPlanner;
-import org.apache.calcite.plan.RelOptTable;
-import org.apache.calcite.plan.RelOptUtil;
-import org.apache.calcite.plan.ViewExpanders;
-import org.apache.calcite.plan.hep.HepPlanner;
-import org.apache.calcite.plan.hep.HepProgramBuilder;
-import org.apache.calcite.plan.volcano.VolcanoPlanner;
-import org.apache.calcite.rel.RelCollationTraitDef;
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.rel.RelRoot;
-import org.apache.calcite.rel.rules.ReduceExpressionsRule;
-import org.apache.calcite.rel.type.RelDataType;
-import org.apache.calcite.rel.type.RelDataTypeFactory;
-import org.apache.calcite.rel.type.RelDataTypeSystem;
-import org.apache.calcite.rel.type.java.JavaTypeFactory;
-import org.apache.calcite.rel.type.java.JavaTypeFactoryImpl;
-import org.apache.calcite.rex.RexBuilder;
-import org.apache.calcite.schema.CalciteCatalogReader;
-import org.apache.calcite.schema.CalciteSchema;
-import org.apache.calcite.schema.CatalogReader;
-import org.apache.calcite.schema.SchemaPlus;
-import org.apache.calcite.schema.Table;
-import org.apache.calcite.schema.impl.AbstractTable;
-import org.apache.calcite.sql.SqlNode;
-import org.apache.calcite.sql.SqlOperatorTable;
-import org.apache.calcite.sql.fun.SqlStdOperatorTable;
-import org.apache.calcite.sql.parser.SqlParser;
-import org.apache.calcite.sql.type.SqlTypeName;
-import org.apache.calcite.sql.validate.SqlConformance;
-import org.apache.calcite.sql.validate.SqlConformanceEnum;
-import org.apache.calcite.sql.validate.SqlValidator;
-import org.apache.calcite.sql.validate.SqlValidatorCatalogReader;
-import org.apache.calcite.sql.validate.SqlValidatorUtil;
-import org.apache.calcite.sql2rel.SqlRexConvertletTable;
-import org.apache.calcite.sql2rel.SqlToRelConverter;
-import org.apache.calcite.sql2rel.StandardConvertletTable;
-import org.apache.calcite.tools.Program;
-import org.apache.calcite.tools.Programs;
-import org.apache.calcite.util.Pair;
+import org.lealone.hansql.optimizer.config.CalciteConnectionConfig;
+import org.lealone.hansql.optimizer.config.CalciteConnectionConfigImpl;
+import org.lealone.hansql.optimizer.plan.Context;
+import org.lealone.hansql.optimizer.plan.ConventionTraitDef;
+import org.lealone.hansql.optimizer.plan.RelOptCluster;
+import org.lealone.hansql.optimizer.plan.RelOptCostFactory;
+import org.lealone.hansql.optimizer.plan.RelOptCostImpl;
+import org.lealone.hansql.optimizer.plan.RelOptPlanner;
+import org.lealone.hansql.optimizer.plan.RelOptTable;
+import org.lealone.hansql.optimizer.plan.RelOptUtil;
+import org.lealone.hansql.optimizer.plan.ViewExpanders;
+import org.lealone.hansql.optimizer.plan.hep.HepPlanner;
+import org.lealone.hansql.optimizer.plan.hep.HepProgramBuilder;
+import org.lealone.hansql.optimizer.plan.volcano.VolcanoPlanner;
+import org.lealone.hansql.optimizer.rel.RelCollationTraitDef;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.RelRoot;
+import org.lealone.hansql.optimizer.rel.rules.ReduceExpressionsRule;
+import org.lealone.hansql.optimizer.rel.type.RelDataType;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeFactory;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeSystem;
+import org.lealone.hansql.optimizer.rel.type.java.JavaTypeFactory;
+import org.lealone.hansql.optimizer.rel.type.java.JavaTypeFactoryImpl;
+import org.lealone.hansql.optimizer.rex.RexBuilder;
+import org.lealone.hansql.optimizer.schema.CalciteCatalogReader;
+import org.lealone.hansql.optimizer.schema.CalciteSchema;
+import org.lealone.hansql.optimizer.schema.CatalogReader;
+import org.lealone.hansql.optimizer.schema.SchemaPlus;
+import org.lealone.hansql.optimizer.schema.Table;
+import org.lealone.hansql.optimizer.schema.impl.AbstractTable;
+import org.lealone.hansql.optimizer.sql.SqlNode;
+import org.lealone.hansql.optimizer.sql.SqlOperatorTable;
+import org.lealone.hansql.optimizer.sql.fun.SqlStdOperatorTable;
+import org.lealone.hansql.optimizer.sql.parser.SqlParser;
+import org.lealone.hansql.optimizer.sql.type.SqlTypeName;
+import org.lealone.hansql.optimizer.sql.validate.SqlConformance;
+import org.lealone.hansql.optimizer.sql.validate.SqlConformanceEnum;
+import org.lealone.hansql.optimizer.sql.validate.SqlValidator;
+import org.lealone.hansql.optimizer.sql.validate.SqlValidatorCatalogReader;
+import org.lealone.hansql.optimizer.sql.validate.SqlValidatorUtil;
+import org.lealone.hansql.optimizer.sql2rel.SqlRexConvertletTable;
+import org.lealone.hansql.optimizer.sql2rel.SqlToRelConverter;
+import org.lealone.hansql.optimizer.sql2rel.StandardConvertletTable;
+import org.lealone.hansql.optimizer.tools.Program;
+import org.lealone.hansql.optimizer.tools.Programs;
+import org.lealone.hansql.optimizer.util.Pair;
 
 public class HanSQLOptimizerTest {
 
@@ -222,7 +222,7 @@ public class HanSQLOptimizerTest {
     }
 
     static SqlParser createSqlParser(String sql) throws Exception {
-        SqlParser.Config config = SqlParser.configBuilder().setUnquotedCasing(org.apache.calcite.util.Casing.TO_LOWER)
+        SqlParser.Config config = SqlParser.configBuilder().setUnquotedCasing(org.lealone.hansql.optimizer.util.Casing.TO_LOWER)
                 .setParserFactory(org.apache.drill.exec.planner.sql.parser.impl.DrillParserImpl.FACTORY).build();
         SqlParser sqlParser = SqlParser.create(sql, config);
         return sqlParser;

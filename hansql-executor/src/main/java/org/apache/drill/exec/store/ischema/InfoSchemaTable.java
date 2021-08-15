@@ -59,15 +59,15 @@ import static org.apache.drill.exec.store.ischema.InfoSchemaConstants.VIEWS_COL_
 
 import java.util.List;
 
-import org.apache.calcite.rel.type.RelDataType;
-import org.apache.calcite.rel.type.RelDataTypeFactory;
-import org.apache.calcite.sql.type.SqlTypeName;
 import org.apache.drill.common.types.TypeProtos.MajorType;
 import org.apache.drill.common.types.TypeProtos.MinorType;
 import org.apache.drill.exec.context.options.OptionManager;
 import org.apache.drill.common.types.Types;
 import org.apache.drill.shaded.guava.com.google.common.collect.ImmutableList;
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
+import org.lealone.hansql.optimizer.rel.type.RelDataType;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeFactory;
+import org.lealone.hansql.optimizer.sql.type.SqlTypeName;
 
 /**
  * Base class for tables in INFORMATION_SCHEMA.  Defines the table (fields and types).

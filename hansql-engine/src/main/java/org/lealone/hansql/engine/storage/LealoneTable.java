@@ -19,14 +19,14 @@ package org.lealone.hansql.engine.storage;
 
 import java.util.List;
 
-import org.apache.calcite.rel.type.RelDataType;
-import org.apache.calcite.rel.type.RelDataTypeFactory;
-import org.apache.calcite.sql.type.SqlTypeName;
 import org.apache.drill.exec.planner.logical.DynamicDrillTable;
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
 import org.lealone.db.table.Column;
 import org.lealone.db.table.Table;
 import org.lealone.db.value.DataType;
+import org.lealone.hansql.optimizer.rel.type.RelDataType;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeFactory;
+import org.lealone.hansql.optimizer.sql.type.SqlTypeName;
 
 public class LealoneTable extends DynamicDrillTable {
 

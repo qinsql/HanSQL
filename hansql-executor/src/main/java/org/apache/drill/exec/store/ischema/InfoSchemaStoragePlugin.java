@@ -24,8 +24,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import org.apache.drill.shaded.guava.com.google.common.collect.ImmutableSet;
-import org.apache.calcite.schema.SchemaPlus;
-import org.apache.calcite.schema.Table;
+import org.lealone.hansql.optimizer.schema.SchemaPlus;
+import org.lealone.hansql.optimizer.schema.Table;
 
 import static org.apache.drill.exec.store.ischema.InfoSchemaConstants.IS_SCHEMA_NAME;
 

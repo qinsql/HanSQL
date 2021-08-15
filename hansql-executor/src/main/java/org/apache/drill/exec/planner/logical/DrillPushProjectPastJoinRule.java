@@ -17,9 +17,9 @@
  */
 package org.apache.drill.exec.planner.logical;
 
-import org.apache.calcite.rel.rules.ProjectJoinTransposeRule;
-import org.apache.calcite.rel.rules.PushProjector;
-import org.apache.calcite.plan.RelOptRule;
+import org.lealone.hansql.optimizer.plan.RelOptRule;
+import org.lealone.hansql.optimizer.rel.rules.ProjectJoinTransposeRule;
+import org.lealone.hansql.optimizer.rel.rules.PushProjector;
 
 public class DrillPushProjectPastJoinRule extends ProjectJoinTransposeRule {
 

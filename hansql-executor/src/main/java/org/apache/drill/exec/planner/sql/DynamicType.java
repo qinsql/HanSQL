@@ -17,10 +17,10 @@
  */
 package org.apache.drill.exec.planner.sql;
 
-import org.apache.calcite.rel.type.RelDataType;
-import org.apache.calcite.rel.type.RelDataTypeFactory;
-import org.apache.calcite.rel.type.RelProtoDataType;
-import org.apache.calcite.sql.type.SqlTypeName;
+import org.lealone.hansql.optimizer.rel.type.RelDataType;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeFactory;
+import org.lealone.hansql.optimizer.rel.type.RelProtoDataType;
+import org.lealone.hansql.optimizer.sql.type.SqlTypeName;
 
 class DynamicType implements RelProtoDataType {
 

@@ -19,7 +19,7 @@ package org.apache.drill.exec.planner.logical;
 
 import org.apache.drill.common.logical.data.LogicalOperator;
 import org.apache.drill.exec.planner.common.DrillRelNode;
-import org.apache.calcite.plan.Convention;
+import org.lealone.hansql.optimizer.plan.Convention;
 
 /**
  * Relational expression that is implemented in Drill.

@@ -18,21 +18,7 @@
 package org.apache.drill.exec.planner.cost;
 
 import java.io.IOException;
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.rel.SingleRel;
-import org.apache.calcite.rel.core.Aggregate;
-import org.apache.calcite.rel.core.Filter;
-import org.apache.calcite.rel.core.Join;
-import org.apache.calcite.rel.core.Project;
-import org.apache.calcite.rel.core.Sort;
-import org.apache.calcite.rel.core.TableScan;
-import org.apache.calcite.rel.core.Union;
-import org.apache.calcite.rel.metadata.ReflectiveRelMetadataProvider;
-import org.apache.calcite.rel.metadata.RelMdRowCount;
-import org.apache.calcite.rel.metadata.RelMetadataProvider;
-import org.apache.calcite.rel.metadata.RelMetadataQuery;
-import org.apache.calcite.util.BuiltInMethod;
-import org.apache.calcite.util.ImmutableBitSet;
+
 import org.apache.drill.exec.planner.common.DrillLimitRelBase;
 import org.apache.drill.exec.planner.common.DrillRelOptUtil;
 import org.apache.drill.exec.planner.logical.DrillTable;
@@ -40,6 +26,21 @@ import org.apache.drill.exec.planner.physical.PlannerSettings;
 import org.apache.drill.exec.planner.physical.PrelUtil;
 import org.apache.drill.exec.util.Utilities;
 import org.apache.drill.metastore.TableStatisticsKind;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.SingleRel;
+import org.lealone.hansql.optimizer.rel.core.Aggregate;
+import org.lealone.hansql.optimizer.rel.core.Filter;
+import org.lealone.hansql.optimizer.rel.core.Join;
+import org.lealone.hansql.optimizer.rel.core.Project;
+import org.lealone.hansql.optimizer.rel.core.Sort;
+import org.lealone.hansql.optimizer.rel.core.TableScan;
+import org.lealone.hansql.optimizer.rel.core.Union;
+import org.lealone.hansql.optimizer.rel.metadata.ReflectiveRelMetadataProvider;
+import org.lealone.hansql.optimizer.rel.metadata.RelMdRowCount;
+import org.lealone.hansql.optimizer.rel.metadata.RelMetadataProvider;
+import org.lealone.hansql.optimizer.rel.metadata.RelMetadataQuery;
+import org.lealone.hansql.optimizer.util.BuiltInMethod;
+import org.lealone.hansql.optimizer.util.ImmutableBitSet;
 
 
 public class DrillRelMdRowCount extends RelMdRowCount{

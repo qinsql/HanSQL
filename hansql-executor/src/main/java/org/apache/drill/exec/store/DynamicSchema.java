@@ -17,10 +17,10 @@
  */
 package org.apache.drill.exec.store;
 
-import org.apache.calcite.schema.CalciteSchema;
-import org.apache.calcite.schema.Schema;
-import org.apache.calcite.schema.SchemaPlus;
-import org.apache.calcite.schema.SimpleCalciteSchema;
+import org.lealone.hansql.optimizer.schema.CalciteSchema;
+import org.lealone.hansql.optimizer.schema.Schema;
+import org.lealone.hansql.optimizer.schema.SchemaPlus;
+import org.lealone.hansql.optimizer.schema.SimpleCalciteSchema;
 
 
 /**

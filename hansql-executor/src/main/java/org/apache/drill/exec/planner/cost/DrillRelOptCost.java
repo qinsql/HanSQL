@@ -17,7 +17,7 @@
  */
 package org.apache.drill.exec.planner.cost;
 
-import org.apache.calcite.plan.RelOptCost;
+import org.lealone.hansql.optimizer.plan.RelOptCost;
 
 
 public interface DrillRelOptCost extends RelOptCost {

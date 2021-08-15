@@ -19,7 +19,6 @@ package org.lealone.hansql.engine.server;
 
 import java.net.SocketAddress;
 
-import org.apache.calcite.schema.SchemaPlus;
 import org.apache.drill.exec.physical.impl.materialize.QueryWritableBatch;
 import org.apache.drill.exec.proto.UserBitShared.QueryResult;
 import org.apache.drill.exec.proto.UserBitShared.UserCredentials;
@@ -30,6 +29,7 @@ import org.lealone.db.async.AsyncResult;
 import org.lealone.db.result.Result;
 import org.lealone.db.session.ServerSession;
 import org.lealone.hansql.engine.HanEngine;
+import org.lealone.hansql.optimizer.schema.SchemaPlus;
 
 public class HanClientConnection implements org.apache.drill.exec.session.UserClientConnection {
 

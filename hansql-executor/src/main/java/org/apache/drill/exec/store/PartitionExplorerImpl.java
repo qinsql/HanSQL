@@ -17,9 +17,9 @@
  */
 package org.apache.drill.exec.store;
 
-import org.apache.calcite.schema.SchemaPlus;
-
 import java.util.List;
+
+import org.lealone.hansql.optimizer.schema.SchemaPlus;
 
 public class PartitionExplorerImpl implements PartitionExplorer {
 

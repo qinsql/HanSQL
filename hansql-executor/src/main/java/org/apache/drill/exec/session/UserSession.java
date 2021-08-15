@@ -24,10 +24,6 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.apache.calcite.schema.Schema;
-import org.apache.calcite.schema.SchemaPlus;
-import org.apache.calcite.schema.Table;
-import org.apache.calcite.tools.ValidationException;
 import org.apache.drill.common.config.DrillConfig;
 import org.apache.drill.common.config.DrillProperties;
 import org.apache.drill.exec.ExecConstants;
@@ -47,6 +43,10 @@ import org.apache.drill.shaded.guava.com.google.common.base.Strings;
 import org.apache.drill.shaded.guava.com.google.common.collect.Maps;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
+import org.lealone.hansql.optimizer.schema.Schema;
+import org.lealone.hansql.optimizer.schema.SchemaPlus;
+import org.lealone.hansql.optimizer.schema.Table;
+import org.lealone.hansql.optimizer.tools.ValidationException;
 
 public class UserSession implements AutoCloseable {
 
@@ -218,7 +218,7 @@ public class UserSession implements AutoCloseable {
     /**
      * Get default schema from current default schema path and given schema tree.
      * @param rootSchema root schema
-     * @return A {@link org.apache.calcite.schema.SchemaPlus} object.
+     * @return A {@link org.lealone.hansql.optimizer.schema.SchemaPlus} object.
      */
     public SchemaPlus getDefaultSchema(SchemaPlus rootSchema) {
         if (defaultSchema != null)

@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.calcite.rel.RelFieldCollation.Direction;
 import org.apache.drill.common.DrillAutoCloseables;
 import org.apache.drill.common.config.DrillConfig;
 import org.apache.drill.common.expression.ErrorCollector;
@@ -67,6 +66,8 @@ import org.apache.drill.exec.vector.ValueVector;
 import org.apache.drill.exec.vector.complex.AbstractContainerVector;
 
 import org.apache.drill.shaded.guava.com.google.common.base.Stopwatch;
+import org.lealone.hansql.optimizer.rel.RelFieldCollation.Direction;
+
 import com.sun.codemodel.JConditional;
 import com.sun.codemodel.JExpr;
 

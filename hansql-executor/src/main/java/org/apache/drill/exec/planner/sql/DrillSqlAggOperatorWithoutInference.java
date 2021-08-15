@@ -17,13 +17,13 @@
  */
 package org.apache.drill.exec.planner.sql;
 
-import org.apache.calcite.rel.type.RelDataType;
-import org.apache.calcite.rel.type.RelDataTypeFactory;
-import org.apache.calcite.sql.SqlCall;
-import org.apache.calcite.sql.type.SqlTypeName;
-import org.apache.calcite.sql.validate.SqlValidator;
-import org.apache.calcite.sql.validate.SqlValidatorScope;
 import org.apache.drill.exec.expr.fn.DrillFuncHolder;
+import org.lealone.hansql.optimizer.rel.type.RelDataType;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeFactory;
+import org.lealone.hansql.optimizer.sql.SqlCall;
+import org.lealone.hansql.optimizer.sql.type.SqlTypeName;
+import org.lealone.hansql.optimizer.sql.validate.SqlValidator;
+import org.lealone.hansql.optimizer.sql.validate.SqlValidatorScope;
 
 import java.util.ArrayList;
 

@@ -17,16 +17,16 @@
  */
 package org.apache.drill.exec.planner.logical;
 
-import org.apache.calcite.plan.RelOptRuleCall;
-import org.apache.calcite.rel.RelCollations;
-import org.apache.calcite.rel.core.Calc;
-import org.apache.calcite.rel.core.Filter;
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.rel.SingleRel;
-import org.apache.calcite.rel.logical.LogicalSort;
-import org.apache.calcite.rel.rules.ReduceExpressionsRule;
-
 import java.math.BigDecimal;
+
+import org.lealone.hansql.optimizer.plan.RelOptRuleCall;
+import org.lealone.hansql.optimizer.rel.RelCollations;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.SingleRel;
+import org.lealone.hansql.optimizer.rel.core.Calc;
+import org.lealone.hansql.optimizer.rel.core.Filter;
+import org.lealone.hansql.optimizer.rel.logical.LogicalSort;
+import org.lealone.hansql.optimizer.rel.rules.ReduceExpressionsRule;
 
 public class DrillReduceExpressionsRule {
 

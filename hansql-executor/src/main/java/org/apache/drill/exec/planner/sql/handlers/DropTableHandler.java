@@ -19,10 +19,6 @@ package org.apache.drill.exec.planner.sql.handlers;
 
 import java.util.List;
 
-import org.apache.calcite.schema.Schema;
-import org.apache.calcite.schema.SchemaPlus;
-import org.apache.calcite.schema.Table;
-import org.apache.calcite.sql.SqlNode;
 import org.apache.drill.common.config.DrillConfig;
 import org.apache.drill.common.exceptions.UserException;
 import org.apache.drill.exec.physical.PhysicalPlan;
@@ -32,6 +28,10 @@ import org.apache.drill.exec.planner.sql.parser.SqlDropTable;
 import org.apache.drill.exec.session.UserSession;
 import org.apache.drill.exec.store.AbstractSchema;
 import org.apache.drill.exec.store.dfs.FileSelection;
+import org.lealone.hansql.optimizer.schema.Schema;
+import org.lealone.hansql.optimizer.schema.SchemaPlus;
+import org.lealone.hansql.optimizer.schema.Table;
+import org.lealone.hansql.optimizer.sql.SqlNode;
 
 // SqlHandler for dropping a table.
 public class DropTableHandler extends DefaultSqlHandler {

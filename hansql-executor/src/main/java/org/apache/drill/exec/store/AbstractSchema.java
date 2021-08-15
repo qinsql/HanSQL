@@ -27,17 +27,17 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.apache.calcite.rel.type.RelProtoDataType;
-import org.apache.calcite.schema.Function;
-import org.apache.calcite.schema.Schema;
-import org.apache.calcite.schema.SchemaVersion;
-import org.apache.calcite.schema.Table;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.drill.common.exceptions.UserException;
 import org.apache.drill.exec.dotdrill.View;
 import org.apache.drill.exec.planner.logical.CreateTableEntry;
 import org.apache.drill.shaded.guava.com.google.common.base.Joiner;
 import org.apache.drill.shaded.guava.com.google.common.collect.ImmutableMap;
+import org.lealone.hansql.optimizer.rel.type.RelProtoDataType;
+import org.lealone.hansql.optimizer.schema.Function;
+import org.lealone.hansql.optimizer.schema.Schema;
+import org.lealone.hansql.optimizer.schema.SchemaVersion;
+import org.lealone.hansql.optimizer.schema.Table;
 
 public abstract class AbstractSchema implements Schema, SchemaPartitionExplorer, AutoCloseable {
     static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(AbstractSchema.class);

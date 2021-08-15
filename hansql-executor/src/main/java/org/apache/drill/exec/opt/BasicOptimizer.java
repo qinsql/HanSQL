@@ -55,8 +55,8 @@ import org.apache.drill.exec.physical.config.WindowPOP;
 import org.apache.drill.exec.planner.common.DrillUnnestRelBase;
 import org.apache.drill.exec.session.UserClientConnection;
 import org.apache.drill.exec.store.StoragePlugin;
-import org.apache.calcite.rel.RelFieldCollation.Direction;
-import org.apache.calcite.rel.RelFieldCollation.NullDirection;
+import org.lealone.hansql.optimizer.rel.RelFieldCollation.Direction;
+import org.lealone.hansql.optimizer.rel.RelFieldCollation.NullDirection;
 
 import java.io.IOException;
 import java.util.ArrayList;

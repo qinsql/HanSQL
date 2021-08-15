@@ -20,9 +20,9 @@ package org.apache.drill.exec.planner.sql.parser;
 import org.apache.drill.exec.planner.sql.handlers.AbstractSqlHandler;
 import org.apache.drill.exec.planner.sql.handlers.DefaultSqlHandler;
 import org.apache.drill.exec.planner.sql.handlers.SqlHandlerConfig;
-import org.apache.calcite.sql.SqlCall;
-import org.apache.calcite.sql.parser.SqlParserPos;
 import org.apache.drill.exec.util.Pointer;
+import org.lealone.hansql.optimizer.sql.SqlCall;
+import org.lealone.hansql.optimizer.sql.parser.SqlParserPos;
 
 /**
  * SqlCall interface with addition of method to get the handler.

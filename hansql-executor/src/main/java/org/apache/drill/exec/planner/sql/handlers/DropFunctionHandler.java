@@ -20,8 +20,6 @@ package org.apache.drill.exec.planner.sql.handlers;
 import java.io.IOException;
 import java.util.List;
 
-import org.apache.calcite.sql.SqlCharStringLiteral;
-import org.apache.calcite.sql.SqlNode;
 import org.apache.drill.common.exceptions.DrillRuntimeException;
 import org.apache.drill.common.exceptions.UserException;
 import org.apache.drill.exec.ExecConstants;
@@ -38,6 +36,8 @@ import org.apache.drill.exec.work.exception.SqlExecutorSetupException;
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
+import org.lealone.hansql.optimizer.sql.SqlCharStringLiteral;
+import org.lealone.hansql.optimizer.sql.SqlNode;
 
 public class DropFunctionHandler extends DefaultSqlHandler {
 

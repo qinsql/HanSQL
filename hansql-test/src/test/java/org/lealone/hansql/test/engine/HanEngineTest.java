@@ -17,9 +17,9 @@
  */
 package org.lealone.hansql.test.engine;
 
-import org.apache.calcite.sql.SqlNode;
-import org.apache.calcite.sql.parser.SqlParseException;
 import org.lealone.hansql.engine.HanEngine;
+import org.lealone.hansql.optimizer.sql.SqlNode;
+import org.lealone.hansql.optimizer.sql.parser.SqlParseException;
 
 public class HanEngineTest {
 

@@ -18,12 +18,13 @@
 package org.apache.drill.exec.store;
 
 import java.util.AbstractMap.SimpleImmutableEntry;
+
+import org.lealone.hansql.optimizer.rel.type.RelDataType;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeFactory;
+import org.lealone.hansql.optimizer.sql.type.SqlTypeName;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.calcite.rel.type.RelDataType;
-import org.apache.calcite.rel.type.RelDataTypeFactory;
-import org.apache.calcite.sql.type.SqlTypeName;
 
 /**
  * RecordDataType defines names and data types of columns in a static drill table.
@@ -31,7 +32,7 @@ import org.apache.calcite.sql.type.SqlTypeName;
 public abstract class RecordDataType {
 
   /**
-   * @return the {@link org.apache.calcite.sql.type.SqlTypeName} of columns in the table as a pair with its nullability
+   * @return the {@link org.lealone.hansql.optimizer.sql.type.SqlTypeName} of columns in the table as a pair with its nullability
    */
   public abstract List<SimpleImmutableEntry<SqlTypeName, Boolean>> getFieldSqlTypeNames();
 
@@ -41,10 +42,10 @@ public abstract class RecordDataType {
   public abstract List<String> getFieldNames();
 
   /**
-   * This method constructs a {@link org.apache.calcite.rel.type.RelDataType} based on the
+   * This method constructs a {@link org.lealone.hansql.optimizer.rel.type.RelDataType} based on the
    * {@link org.apache.drill.exec.store.RecordDataType}'s field sql types and field names.
    *
-   * @param factory helps construct a {@link org.apache.calcite.rel.type.RelDataType}
+   * @param factory helps construct a {@link org.lealone.hansql.optimizer.rel.type.RelDataType}
    * @return the constructed type
    */
   public final RelDataType getRowType(RelDataTypeFactory factory) {

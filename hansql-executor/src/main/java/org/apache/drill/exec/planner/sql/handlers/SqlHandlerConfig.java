@@ -20,13 +20,13 @@ package org.apache.drill.exec.planner.sql.handlers;
 import java.util.Collection;
 import java.util.Map.Entry;
 
-import org.apache.calcite.tools.RuleSet;
 import org.apache.drill.exec.ops.QueryContext;
 import org.apache.drill.exec.planner.PlannerPhase;
 import org.apache.drill.exec.planner.sql.SqlConverter;
 import org.apache.drill.exec.store.StoragePlugin;
 
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
+import org.lealone.hansql.optimizer.tools.RuleSet;
 
 public class SqlHandlerConfig {
 

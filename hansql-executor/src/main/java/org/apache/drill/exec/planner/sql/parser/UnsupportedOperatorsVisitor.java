@@ -17,32 +17,32 @@
  */
 package org.apache.drill.exec.planner.sql.parser;
 
-import org.apache.calcite.sql.SqlNumericLiteral;
-import org.apache.calcite.sql.SqlOperator;
-import org.apache.calcite.sql.fun.SqlStdOperatorTable;
-import org.apache.calcite.sql.util.SqlBasicVisitor;
-import org.apache.calcite.util.Litmus;
 import org.apache.drill.exec.ExecConstants;
 import org.apache.drill.exec.exception.UnsupportedOperatorCollector;
 import org.apache.drill.exec.ops.QueryContext;
 import org.apache.drill.exec.planner.physical.PlannerSettings;
 import org.apache.drill.exec.work.exception.SqlUnsupportedException;
-import org.apache.calcite.sql.SqlSelectKeyword;
-import org.apache.calcite.sql.SqlIdentifier;
-import org.apache.calcite.sql.SqlSelect;
-import org.apache.calcite.sql.SqlWindow;
-import org.apache.calcite.sql.fun.SqlCountAggFunction;
-import org.apache.calcite.sql.SqlCall;
-import org.apache.calcite.sql.SqlKind;
-import org.apache.calcite.sql.SqlJoin;
-import org.apache.calcite.sql.SqlNode;
-import org.apache.calcite.sql.type.SqlTypeName;
-import org.apache.calcite.sql.util.SqlShuttle;
-import org.apache.calcite.sql.SqlDataTypeSpec;
 
 import java.util.List;
 
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
+import org.lealone.hansql.optimizer.sql.SqlCall;
+import org.lealone.hansql.optimizer.sql.SqlDataTypeSpec;
+import org.lealone.hansql.optimizer.sql.SqlIdentifier;
+import org.lealone.hansql.optimizer.sql.SqlJoin;
+import org.lealone.hansql.optimizer.sql.SqlKind;
+import org.lealone.hansql.optimizer.sql.SqlNode;
+import org.lealone.hansql.optimizer.sql.SqlNumericLiteral;
+import org.lealone.hansql.optimizer.sql.SqlOperator;
+import org.lealone.hansql.optimizer.sql.SqlSelect;
+import org.lealone.hansql.optimizer.sql.SqlSelectKeyword;
+import org.lealone.hansql.optimizer.sql.SqlWindow;
+import org.lealone.hansql.optimizer.sql.fun.SqlCountAggFunction;
+import org.lealone.hansql.optimizer.sql.fun.SqlStdOperatorTable;
+import org.lealone.hansql.optimizer.sql.type.SqlTypeName;
+import org.lealone.hansql.optimizer.sql.util.SqlBasicVisitor;
+import org.lealone.hansql.optimizer.sql.util.SqlShuttle;
+import org.lealone.hansql.optimizer.util.Litmus;
 
 public class UnsupportedOperatorsVisitor extends SqlShuttle {
   private QueryContext context;
@@ -396,7 +396,7 @@ public class UnsupportedOperatorsVisitor extends SqlShuttle {
   /**
    * A function that replies true or false for a given expression.
    *
-   * @see org.apache.calcite.rel.rules.PushProjector.OperatorExprCondition
+   * @see org.lealone.hansql.optimizer.rel.rules.PushProjector.OperatorExprCondition
    */
   private interface SqlNodeCondition {
     /**

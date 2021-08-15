@@ -23,7 +23,7 @@ import java.util.LinkedList;
 import java.util.Map;
 
 import org.apache.drill.shaded.guava.com.google.common.collect.ImmutableMap;
-import org.apache.calcite.rel.core.JoinRelType;
+import org.lealone.hansql.optimizer.rel.core.JoinRelType;
 import org.apache.drill.common.exceptions.DrillRuntimeException;
 import org.apache.drill.common.expression.ErrorCollector;
 import org.apache.drill.common.expression.ErrorCollectorImpl;

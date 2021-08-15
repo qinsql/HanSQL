@@ -17,8 +17,8 @@
  */
 package org.apache.drill.exec.planner.sql;
 
-import org.apache.calcite.sql.validate.SqlConformanceEnum;
-import org.apache.calcite.sql.validate.SqlDelegatingConformance;
+import org.lealone.hansql.optimizer.sql.validate.SqlConformanceEnum;
+import org.lealone.hansql.optimizer.sql.validate.SqlDelegatingConformance;
 
 /**
  * Drill's SQL conformance is SqlConformanceEnum.DEFAULT with a couple of deviations.

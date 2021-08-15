@@ -17,11 +17,11 @@
  */
 package org.apache.drill.exec.store;
 
-import org.apache.calcite.schema.SchemaPlus;
 import org.apache.drill.exec.context.options.OptionValue;
 import org.apache.drill.exec.ops.ViewExpansionContext;
 import org.apache.drill.shaded.guava.com.google.common.base.Preconditions;
 import org.apache.drill.shaded.guava.com.google.common.base.Strings;
+import org.lealone.hansql.optimizer.schema.SchemaPlus;
 
 /**
  * Contains information needed by {@link org.apache.drill.exec.store.AbstractSchema} implementations.

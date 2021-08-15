@@ -17,14 +17,14 @@
  */
 package org.apache.drill.exec.planner.logical;
 
-import org.apache.calcite.plan.RelOptRule;
-import org.apache.calcite.plan.RelOptRuleCall;
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.plan.Convention;
-import org.apache.calcite.rel.logical.LogicalFilter;
+import org.lealone.hansql.optimizer.plan.Convention;
+import org.lealone.hansql.optimizer.plan.RelOptRule;
+import org.lealone.hansql.optimizer.plan.RelOptRuleCall;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.logical.LogicalFilter;
 
 /**
- * Rule that converts a {@link org.apache.calcite.rel.logical.LogicalFilter} to a Drill "filter" operation.
+ * Rule that converts a {@link org.lealone.hansql.optimizer.rel.logical.LogicalFilter} to a Drill "filter" operation.
  */
 public class DrillFilterRule extends RelOptRule {
   public static final RelOptRule INSTANCE = new DrillFilterRule();

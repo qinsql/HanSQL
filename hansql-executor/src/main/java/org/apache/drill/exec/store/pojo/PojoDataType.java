@@ -25,8 +25,8 @@ import java.util.AbstractMap.SimpleImmutableEntry;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.calcite.sql.type.SqlTypeName;
 import org.apache.drill.exec.store.RecordDataType;
+import org.lealone.hansql.optimizer.sql.type.SqlTypeName;
 
 /**
  * This class uses reflection of a Java class to construct a {@link org.apache.drill.exec.store.RecordDataType}.

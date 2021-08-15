@@ -22,12 +22,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-import org.apache.calcite.schema.Function;
-import org.apache.calcite.schema.Schema;
-import org.apache.calcite.schema.Table;
 import org.apache.drill.exec.planner.logical.CreateTableEntry;
 
 import org.apache.drill.shaded.guava.com.google.common.collect.ImmutableList;
+import org.lealone.hansql.optimizer.schema.Function;
+import org.lealone.hansql.optimizer.schema.Schema;
+import org.lealone.hansql.optimizer.schema.Table;
 
 public class SubSchemaWrapper extends AbstractSchema {
 

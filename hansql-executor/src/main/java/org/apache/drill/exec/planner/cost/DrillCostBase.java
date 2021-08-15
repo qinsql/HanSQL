@@ -17,9 +17,9 @@
  */
 package org.apache.drill.exec.planner.cost;
 
-import org.apache.calcite.plan.RelOptCost;
-import org.apache.calcite.plan.RelOptUtil;
-import org.apache.calcite.util.Utilities;
+import org.lealone.hansql.optimizer.plan.RelOptCost;
+import org.lealone.hansql.optimizer.plan.RelOptUtil;
+import org.lealone.hansql.optimizer.util.Utilities;
 
 /**
  * Implementation of the DrillRelOptCost, modeled similar to VolcanoCost

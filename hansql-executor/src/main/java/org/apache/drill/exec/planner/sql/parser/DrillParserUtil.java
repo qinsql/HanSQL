@@ -20,10 +20,10 @@ package org.apache.drill.exec.planner.sql.parser;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.calcite.sql.SqlNode;
-import org.apache.calcite.sql.SqlOperator;
-import org.apache.calcite.sql.parser.SqlParserPos;
-import org.apache.calcite.sql.parser.SqlParserUtil;
+import org.lealone.hansql.optimizer.sql.SqlNode;
+import org.lealone.hansql.optimizer.sql.SqlOperator;
+import org.lealone.hansql.optimizer.sql.parser.SqlParserPos;
+import org.lealone.hansql.optimizer.sql.parser.SqlParserUtil;
 
 /**
  * Helper methods or constants used in parsing a SQL query.

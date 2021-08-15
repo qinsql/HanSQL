@@ -17,17 +17,18 @@
  */
 package org.apache.drill.exec.planner.common;
 
-import org.apache.calcite.rel.core.AggregateCall;
-import org.apache.calcite.rel.core.Aggregate;
-import org.apache.calcite.rel.type.RelDataType;
-import org.apache.calcite.rel.type.RelDataTypeField;
-import org.apache.calcite.rel.type.RelDataTypeFieldImpl;
-import org.apache.calcite.rel.type.RelRecordType;
-import org.apache.calcite.rex.RexInputRef;
-import org.apache.calcite.rex.RexNode;
-import org.apache.calcite.sql.type.SqlTypeName;
-
 import java.util.List;
+
+import org.lealone.hansql.optimizer.rel.core.Aggregate;
+import org.lealone.hansql.optimizer.rel.core.AggregateCall;
+import org.lealone.hansql.optimizer.rel.type.RelDataType;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeField;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeFieldImpl;
+import org.lealone.hansql.optimizer.rel.type.RelRecordType;
+import org.lealone.hansql.optimizer.rex.RexInputRef;
+import org.lealone.hansql.optimizer.rex.RexNode;
+import org.lealone.hansql.optimizer.sql.type.SqlTypeName;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashMap;

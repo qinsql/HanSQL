@@ -42,7 +42,7 @@ import org.apache.drill.exec.record.VectorAccessible;
 import org.apache.drill.exec.record.WritableBatch;
 import org.apache.drill.exec.record.selection.SelectionVector2;
 import org.apache.drill.exec.record.selection.SelectionVector4;
-import org.apache.calcite.rel.RelFieldCollation.Direction;
+import org.lealone.hansql.optimizer.rel.RelFieldCollation.Direction;
 
 import com.sun.codemodel.JConditional;
 import com.sun.codemodel.JExpr;

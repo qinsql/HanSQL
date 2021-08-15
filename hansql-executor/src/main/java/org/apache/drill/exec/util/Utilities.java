@@ -18,8 +18,7 @@
 package org.apache.drill.exec.util;
 
 import java.util.Collection;
-import org.apache.calcite.plan.RelOptTable;
-import org.apache.calcite.rex.RexLiteral;
+
 import org.apache.drill.common.expression.PathSegment;
 import org.apache.drill.common.expression.SchemaPath;
 import org.apache.drill.exec.expr.fn.impl.DateUtility;
@@ -32,6 +31,8 @@ import org.apache.drill.exec.proto.helper.QueryIdHelper;
 import org.apache.drill.shaded.guava.com.google.common.base.Preconditions;
 import org.apache.drill.shaded.guava.com.google.common.base.Predicate;
 import org.apache.drill.shaded.guava.com.google.common.collect.Iterables;
+import org.lealone.hansql.optimizer.plan.RelOptTable;
+import org.lealone.hansql.optimizer.rex.RexLiteral;
 
 public class Utilities {
 

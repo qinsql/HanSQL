@@ -21,8 +21,8 @@ import org.apache.drill.exec.compile.TemplateClassDefinition;
 import org.apache.drill.exec.exception.SchemaChangeException;
 import org.apache.drill.exec.physical.impl.common.HashPartition;
 import org.apache.drill.exec.record.RecordBatch;
-import org.apache.calcite.rel.core.JoinRelType;
 import org.apache.drill.exec.record.VectorContainer;
+import org.lealone.hansql.optimizer.rel.core.JoinRelType;
 
 public interface HashJoinProbe {
   TemplateClassDefinition<HashJoinProbe> TEMPLATE_DEFINITION = new TemplateClassDefinition<HashJoinProbe>(HashJoinProbe.class, HashJoinProbeTemplate.class);

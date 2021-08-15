@@ -17,19 +17,19 @@
  */
 package org.apache.drill.exec.planner.sql;
 
-import org.apache.calcite.sql.SqlCall;
-import org.apache.calcite.sql.SqlCallBinding;
-import org.apache.calcite.sql.SqlLiteral;
-import org.apache.calcite.sql.SqlNode;
-import org.apache.calcite.sql.SqlOperator;
-import org.apache.calcite.sql.SqlOperatorBinding;
-import org.apache.calcite.sql.SqlSyntax;
-import org.apache.calcite.sql.SqlWriter;
-import org.apache.calcite.sql.parser.SqlParserPos;
-import org.apache.calcite.sql.validate.SqlMonotonicity;
-import org.apache.calcite.sql.validate.SqlValidator;
-import org.apache.calcite.util.Litmus;
 import org.apache.drill.exec.expr.fn.DrillFuncHolder;
+import org.lealone.hansql.optimizer.sql.SqlCall;
+import org.lealone.hansql.optimizer.sql.SqlCallBinding;
+import org.lealone.hansql.optimizer.sql.SqlLiteral;
+import org.lealone.hansql.optimizer.sql.SqlNode;
+import org.lealone.hansql.optimizer.sql.SqlOperator;
+import org.lealone.hansql.optimizer.sql.SqlOperatorBinding;
+import org.lealone.hansql.optimizer.sql.SqlSyntax;
+import org.lealone.hansql.optimizer.sql.SqlWriter;
+import org.lealone.hansql.optimizer.sql.parser.SqlParserPos;
+import org.lealone.hansql.optimizer.sql.validate.SqlMonotonicity;
+import org.lealone.hansql.optimizer.sql.validate.SqlValidator;
+import org.lealone.hansql.optimizer.util.Litmus;
 
 import java.util.List;
 

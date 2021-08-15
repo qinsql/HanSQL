@@ -20,8 +20,6 @@ package org.lealone.hansql.engine.storage;
 import java.io.IOException;
 import java.util.List;
 
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.rex.RexNode;
 import org.apache.drill.common.exceptions.ExecutionSetupException;
 import org.apache.drill.common.expression.SchemaPath;
 import org.apache.drill.common.logical.StoragePluginConfig;
@@ -55,6 +53,8 @@ import org.lealone.db.schema.Schema;
 import org.lealone.db.table.Table;
 import org.lealone.hansql.engine.index.LealoneIndexDiscover;
 import org.lealone.hansql.engine.storage.LealoneSubScan.LealoneSubScanSpec;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rex.RexNode;
 
 import com.fasterxml.jackson.annotation.JacksonInject;
 import com.fasterxml.jackson.annotation.JsonCreator;

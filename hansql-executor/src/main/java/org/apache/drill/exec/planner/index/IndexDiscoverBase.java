@@ -21,7 +21,8 @@ import org.apache.drill.exec.physical.base.AbstractDbGroupScan;
 import org.apache.drill.exec.planner.common.DrillScanRelBase;
 import org.apache.drill.exec.planner.logical.DrillTable;
 import org.apache.drill.exec.planner.physical.ScanPrel;
-import org.apache.calcite.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.RelNode;
+
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;

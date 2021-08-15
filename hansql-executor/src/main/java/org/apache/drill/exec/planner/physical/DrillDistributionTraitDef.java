@@ -17,10 +17,10 @@
  */
 package org.apache.drill.exec.planner.physical;
 
-import org.apache.calcite.plan.RelOptPlanner;
-import org.apache.calcite.plan.RelTraitDef;
-import org.apache.calcite.plan.volcano.RelSubset;
-import org.apache.calcite.rel.RelNode;
+import org.lealone.hansql.optimizer.plan.RelOptPlanner;
+import org.lealone.hansql.optimizer.plan.RelTraitDef;
+import org.lealone.hansql.optimizer.plan.volcano.RelSubset;
+import org.lealone.hansql.optimizer.rel.RelNode;
 
 public class DrillDistributionTraitDef extends RelTraitDef<DrillDistributionTrait>{
   public static final DrillDistributionTraitDef INSTANCE = new DrillDistributionTraitDef();

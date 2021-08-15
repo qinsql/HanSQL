@@ -36,12 +36,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.calcite.rel.type.RelDataType;
-import org.apache.calcite.rel.type.RelDataTypeField;
-import org.apache.calcite.rel.type.java.JavaTypeFactoryImpl;
-import org.apache.calcite.schema.Schema.TableType;
-import org.apache.calcite.schema.SchemaPlus;
-import org.apache.calcite.schema.Table;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.drill.exec.ExecConstants;
 import org.apache.drill.exec.context.options.OptionManager;
@@ -58,6 +52,12 @@ import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
 import org.apache.drill.exec.util.FileSystemUtil;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
+import org.lealone.hansql.optimizer.rel.type.RelDataType;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeField;
+import org.lealone.hansql.optimizer.rel.type.java.JavaTypeFactoryImpl;
+import org.lealone.hansql.optimizer.schema.SchemaPlus;
+import org.lealone.hansql.optimizer.schema.Table;
+import org.lealone.hansql.optimizer.schema.Schema.TableType;
 
 /**
  * Generates records for POJO RecordReader by scanning the given schema. At every level (catalog, schema, table, field),

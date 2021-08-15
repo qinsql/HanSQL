@@ -17,15 +17,15 @@
  */
 package org.apache.drill.exec.planner;
 
-import org.apache.calcite.plan.Context;
-import org.apache.calcite.plan.Contexts;
-import org.apache.calcite.plan.RelOptCluster;
-import org.apache.calcite.plan.RelOptSchema;
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.rel.core.RelFactories;
-import org.apache.calcite.tools.RelBuilder;
-import org.apache.calcite.tools.RelBuilderFactory;
-import org.apache.calcite.util.Util;
+import org.lealone.hansql.optimizer.plan.Context;
+import org.lealone.hansql.optimizer.plan.Contexts;
+import org.lealone.hansql.optimizer.plan.RelOptCluster;
+import org.lealone.hansql.optimizer.plan.RelOptSchema;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.core.RelFactories;
+import org.lealone.hansql.optimizer.tools.RelBuilder;
+import org.lealone.hansql.optimizer.tools.RelBuilderFactory;
+import org.lealone.hansql.optimizer.util.Util;
 
 public class DrillRelBuilder extends RelBuilder {
   private final RelFactories.FilterFactory filterFactory;
@@ -69,7 +69,7 @@ public class DrillRelBuilder extends RelBuilder {
   }
 
   /**
-   * Disables combining of consecutive {@link org.apache.calcite.rel.core.Project} nodes.
+   * Disables combining of consecutive {@link org.lealone.hansql.optimizer.rel.core.Project} nodes.
    * See comments under CALCITE-2470 for details.
    * @return false
    */

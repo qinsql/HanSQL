@@ -17,9 +17,9 @@
  */
 package org.apache.drill.exec.store;
 
-import org.apache.calcite.plan.RelOptRule;
-import org.apache.calcite.plan.RelOptRuleOperand;
 import org.apache.drill.exec.planner.logical.DrillRelFactories;
+import org.lealone.hansql.optimizer.plan.RelOptRule;
+import org.lealone.hansql.optimizer.plan.RelOptRuleOperand;
 
 public abstract class StoragePluginOptimizerRule extends RelOptRule {
 

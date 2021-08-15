@@ -19,10 +19,11 @@ package org.apache.drill.exec.planner;
 
 import java.util.List;
 import java.util.Map;
-import org.apache.calcite.rel.type.RelDataType;
-import org.apache.calcite.rex.RexInputRef;
-import org.apache.calcite.rex.RexNode;
+
 import org.apache.drill.common.expression.SchemaPath;
+import org.lealone.hansql.optimizer.rel.type.RelDataType;
+import org.lealone.hansql.optimizer.rex.RexInputRef;
+import org.lealone.hansql.optimizer.rex.RexNode;
 
 public class StarColumnHelper {
 

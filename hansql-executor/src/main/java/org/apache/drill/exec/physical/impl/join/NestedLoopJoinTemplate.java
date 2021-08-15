@@ -17,7 +17,6 @@
  */
 package org.apache.drill.exec.physical.impl.join;
 
-import org.apache.calcite.rel.core.JoinRelType;
 import org.apache.drill.common.exceptions.DrillRuntimeException;
 import org.apache.drill.exec.ops.FragmentContext;
 import org.apache.drill.exec.record.ExpandableHyperContainer;
@@ -26,6 +25,8 @@ import org.apache.drill.exec.record.VectorContainer;
 import org.apache.drill.exec.record.VectorWrapper;
 import org.apache.drill.exec.util.record.RecordBatchStats;
 import org.apache.drill.exec.util.record.RecordBatchStats.RecordBatchIOType;
+import org.lealone.hansql.optimizer.rel.core.JoinRelType;
+
 import javax.inject.Named;
 import java.util.LinkedList;
 import java.util.List;

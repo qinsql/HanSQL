@@ -19,7 +19,6 @@ package org.apache.drill.exec.planner.logical;
 
 import java.util.Set;
 
-import org.apache.calcite.rel.RelNode;
 import org.apache.drill.common.logical.LogicalPlan;
 import org.apache.drill.common.logical.LogicalPlanBuilder;
 import org.apache.drill.common.logical.PlanProperties.Generator.ResultMode;
@@ -28,6 +27,7 @@ import org.apache.drill.common.logical.data.LogicalOperator;
 import org.apache.drill.common.logical.data.visitors.AbstractLogicalVisitor;
 
 import org.apache.drill.shaded.guava.com.google.common.collect.Sets;
+import org.lealone.hansql.optimizer.rel.RelNode;
 
 /**
  * Context for converting a tree of {@link DrillRel} nodes into a Drill logical plan.

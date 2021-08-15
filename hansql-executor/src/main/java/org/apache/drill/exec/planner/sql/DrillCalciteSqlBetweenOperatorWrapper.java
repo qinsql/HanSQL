@@ -17,12 +17,11 @@
  */
 package org.apache.drill.exec.planner.sql;
 
-import org.apache.calcite.sql.fun.SqlBetweenOperator;
-import org.apache.calcite.sql.SqlCallBinding;
-import org.apache.calcite.sql.SqlOperator;
-
 import org.apache.drill.common.types.TypeProtos;
 import org.apache.drill.exec.resolver.TypeCastRules;
+import org.lealone.hansql.optimizer.sql.SqlCallBinding;
+import org.lealone.hansql.optimizer.sql.SqlOperator;
+import org.lealone.hansql.optimizer.sql.fun.SqlBetweenOperator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +51,7 @@ public class DrillCalciteSqlBetweenOperatorWrapper extends SqlBetweenOperator im
 
   /**
    * Since Calcite has its rule for type compatibility
-   * (see {@link org.apache.calcite.sql.type.SqlTypeUtil#isComparable(org.apache.calcite.rel.type.RelDataType,
+   * (see {@link org.lealone.hansql.optimizer.sql.type.SqlTypeUtil#isComparable(org.apache.calcite.rel.type.RelDataType,
    * org.apache.calcite.rel.type.RelDataType)}), which is usually different from Drill's, this method is overridden here to avoid
    * Calcite early terminating the queries.
    */

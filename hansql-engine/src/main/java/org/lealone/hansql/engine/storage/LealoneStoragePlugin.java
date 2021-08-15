@@ -25,9 +25,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.calcite.plan.RelOptRule;
-import org.apache.calcite.schema.CalciteSchema;
-import org.apache.calcite.schema.SchemaPlus;
 import org.apache.drill.common.JSONOptions;
 import org.apache.drill.exec.context.DrillbitContext;
 import org.apache.drill.exec.ops.OptimizerRulesContext;
@@ -44,6 +41,9 @@ import org.lealone.db.LealoneDatabase;
 import org.lealone.db.schema.Schema;
 import org.lealone.db.table.Table;
 import org.lealone.hansql.engine.index.LealonePushFilterIntoScan;
+import org.lealone.hansql.optimizer.plan.RelOptRule;
+import org.lealone.hansql.optimizer.schema.CalciteSchema;
+import org.lealone.hansql.optimizer.schema.SchemaPlus;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -167,7 +167,7 @@ public class LealoneStoragePlugin extends AbstractStoragePlugin {
         }
 
         @Override
-        public org.apache.calcite.schema.Table getTable(String name) {
+        public org.lealone.hansql.optimizer.schema.Table getTable(String name) {
             Table table = inner.findTableOrView(null, name);
             if (table == null) {
                 if (!areTableNamesCaseSensitive()) {
@@ -242,7 +242,7 @@ public class LealoneStoragePlugin extends AbstractStoragePlugin {
         }
 
         @Override
-        public org.apache.calcite.schema.Schema getDefaultSchema() {
+        public org.lealone.hansql.optimizer.schema.Schema getDefaultSchema() {
             return defaultSchema;
         }
 
@@ -257,8 +257,8 @@ public class LealoneStoragePlugin extends AbstractStoragePlugin {
         }
 
         @Override
-        public org.apache.calcite.schema.Table getTable(String name) {
-            org.apache.calcite.schema.Schema schema = getDefaultSchema();
+        public org.lealone.hansql.optimizer.schema.Table getTable(String name) {
+            org.lealone.hansql.optimizer.schema.Schema schema = getDefaultSchema();
 
             if (schema != null) {
                 try {

@@ -20,15 +20,14 @@ package org.apache.drill.exec.planner.types;
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.calcite.rel.type.RelDataTypeFactory;
-import org.apache.calcite.rel.type.RelDataTypeField;
-import org.apache.calcite.rel.type.RelDataTypeFieldImpl;
-import org.apache.calcite.rel.type.RelDataTypeImpl;
-import org.apache.calcite.rel.type.RelDataTypePrecedenceList;
-import org.apache.calcite.sql.type.SqlTypeExplicitPrecedenceList;
-import org.apache.calcite.sql.type.SqlTypeName;
-
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeFactory;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeField;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeFieldImpl;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeImpl;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypePrecedenceList;
+import org.lealone.hansql.optimizer.sql.type.SqlTypeExplicitPrecedenceList;
+import org.lealone.hansql.optimizer.sql.type.SqlTypeName;
 
 /**
  * Implements RowType for fixed field list with ANY type.

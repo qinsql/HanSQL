@@ -17,7 +17,7 @@
  */
 package org.apache.drill.exec.planner.index.rules;
 
-import org.apache.calcite.plan.RelOptRuleCall;
+import org.lealone.hansql.optimizer.plan.RelOptRuleCall;
 
 public interface MatchFunction<T> {
   boolean match(RelOptRuleCall call);

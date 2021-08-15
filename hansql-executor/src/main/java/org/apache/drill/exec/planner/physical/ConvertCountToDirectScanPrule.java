@@ -24,12 +24,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Collections;
 
-import org.apache.calcite.plan.RelOptRule;
-import org.apache.calcite.plan.RelOptRuleCall;
-import org.apache.calcite.plan.RelOptRuleOperand;
-import org.apache.calcite.rel.type.RelDataType;
-import org.apache.calcite.rex.RexInputRef;
-import org.apache.calcite.rel.core.AggregateCall;
 import org.apache.drill.common.expression.SchemaPath;
 import org.apache.drill.exec.physical.base.GroupScan;
 import org.apache.drill.exec.physical.base.ScanStats;
@@ -43,6 +37,12 @@ import org.apache.drill.exec.store.ColumnExplorer;
 import org.apache.drill.exec.store.direct.MetadataDirectGroupScan;
 import org.apache.drill.exec.store.pojo.DynamicPojoRecordReader;
 import org.apache.drill.shaded.guava.com.google.common.collect.ImmutableMap;
+import org.lealone.hansql.optimizer.plan.RelOptRule;
+import org.lealone.hansql.optimizer.plan.RelOptRuleCall;
+import org.lealone.hansql.optimizer.plan.RelOptRuleOperand;
+import org.lealone.hansql.optimizer.rel.core.AggregateCall;
+import org.lealone.hansql.optimizer.rel.type.RelDataType;
+import org.lealone.hansql.optimizer.rex.RexInputRef;
 
 /**
  * <p>

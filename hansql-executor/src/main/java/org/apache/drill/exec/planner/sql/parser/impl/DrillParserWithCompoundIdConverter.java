@@ -21,16 +21,16 @@ import java.io.Reader;
 
 import org.apache.drill.exec.planner.physical.PlannerSettings;
 import org.apache.drill.exec.planner.sql.parser.CompoundIdentifierConverter;
-import org.apache.calcite.sql.SqlNode;
-import org.apache.calcite.sql.parser.SqlAbstractParserImpl;
-import org.apache.calcite.sql.parser.SqlParserImplFactory;
-import org.apache.calcite.sql.util.SqlVisitor;
 import org.apache.drill.exec.planner.sql.parser.SqlAnalyzeTable;
+import org.lealone.hansql.optimizer.sql.SqlNode;
+import org.lealone.hansql.optimizer.sql.parser.SqlAbstractParserImpl;
+import org.lealone.hansql.optimizer.sql.parser.SqlParserImplFactory;
+import org.lealone.hansql.optimizer.sql.util.SqlVisitor;
 
 public class DrillParserWithCompoundIdConverter extends DrillParserImpl {
 
   /**
-   * {@link org.apache.calcite.sql.parser.SqlParserImplFactory} implementation for creating parser.
+   * {@link org.lealone.hansql.optimizer.sql.parser.SqlParserImplFactory} implementation for creating parser.
    */
 
   public static final SqlParserImplFactory FACTORY = new SqlParserImplFactory() {

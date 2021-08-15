@@ -32,8 +32,8 @@ import org.apache.drill.exec.context.options.TypeValidators.PositiveLongValidato
 import org.apache.drill.exec.context.options.TypeValidators.RangeDoubleValidator;
 import org.apache.drill.exec.context.options.TypeValidators.RangeLongValidator;
 import org.apache.drill.exec.expr.fn.FunctionImplementationRegistry;
-import org.apache.calcite.plan.Context;
-import org.apache.calcite.util.Quoting;
+import org.lealone.hansql.optimizer.plan.Context;
+import org.lealone.hansql.optimizer.util.Quoting;
 
 public class PlannerSettings implements Context{
   static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(PlannerSettings.class);

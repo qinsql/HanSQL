@@ -22,18 +22,18 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.apache.calcite.rel.type.DynamicRecordType;
-import org.apache.calcite.sql.SqlIntervalQualifier;
-import org.apache.calcite.sql.parser.SqlParserPos;
-import org.apache.calcite.sql.type.SqlTypeFamily;
 import org.apache.drill.common.expression.SchemaPath;
 import org.apache.drill.exec.planner.StarColumnHelper;
 import org.apache.drill.exec.planner.types.RelDataTypeDrillImpl;
 import org.apache.drill.exec.planner.types.RelDataTypeHolder;
-import org.apache.calcite.rel.type.RelDataType;
-import org.apache.calcite.rel.type.RelDataTypeFactory;
-import org.apache.calcite.sql.type.SqlTypeName;
-import org.apache.calcite.util.TimeUnit;
+import org.lealone.hansql.optimizer.rel.type.DynamicRecordType;
+import org.lealone.hansql.optimizer.rel.type.RelDataType;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeFactory;
+import org.lealone.hansql.optimizer.sql.SqlIntervalQualifier;
+import org.lealone.hansql.optimizer.sql.parser.SqlParserPos;
+import org.lealone.hansql.optimizer.sql.type.SqlTypeFamily;
+import org.lealone.hansql.optimizer.sql.type.SqlTypeName;
+import org.lealone.hansql.optimizer.util.TimeUnit;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -224,7 +224,7 @@ public class View {
 
     /**
      * Gets key type for fields whose type is
-     * {@link org.apache.calcite.sql.type.SqlTypeName#MAP}
+     * {@link org.lealone.hansql.optimizer.sql.type.SqlTypeName#MAP}
      *
      * @return key type of map
      */
@@ -234,7 +234,7 @@ public class View {
 
     /**
      * Gets value type for fields whose type is
-     * {@link org.apache.calcite.sql.type.SqlTypeName#MAP}
+     * {@link org.lealone.hansql.optimizer.sql.type.SqlTypeName#MAP}
      *
      * @return value type of map
      */

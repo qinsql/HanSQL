@@ -17,7 +17,7 @@
  */
 package org.apache.drill.exec.planner.sql;
 
-import org.apache.calcite.sql.SqlOperandCountRange;
+import org.lealone.hansql.optimizer.sql.SqlOperandCountRange;
 
 class FixedRange implements SqlOperandCountRange{
 

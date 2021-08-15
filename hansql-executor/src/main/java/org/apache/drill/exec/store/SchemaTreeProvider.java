@@ -20,7 +20,6 @@ package org.apache.drill.exec.store;
 import java.io.IOException;
 import java.util.List;
 
-import org.apache.calcite.schema.SchemaPlus;
 import org.apache.drill.common.AutoCloseables;
 import org.apache.drill.common.exceptions.UserException;
 import org.apache.drill.exec.ExecConstants;
@@ -32,6 +31,7 @@ import org.apache.drill.exec.store.SchemaConfig.SchemaConfigInfoProvider;
 import org.apache.drill.exec.util.ImpersonationUtil;
 
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
+import org.lealone.hansql.optimizer.schema.SchemaPlus;
 
 /**
  * Class which creates new schema trees. It keeps track of newly created schema trees and closes them safely as

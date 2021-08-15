@@ -20,8 +20,6 @@ package org.apache.drill.common.logical.data;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.calcite.rel.RelFieldCollation.Direction;
-import org.apache.calcite.rel.RelFieldCollation.NullDirection;
 import org.apache.drill.common.exceptions.DrillRuntimeException;
 import org.apache.drill.common.expression.FieldReference;
 import org.apache.drill.common.expression.LogicalExpression;
@@ -35,6 +33,8 @@ import org.apache.drill.shaded.guava.com.google.common.annotations.VisibleForTes
 import org.apache.drill.shaded.guava.com.google.common.collect.ImmutableMap;
 import org.apache.drill.shaded.guava.com.google.common.collect.Iterators;
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
+import org.lealone.hansql.optimizer.rel.RelFieldCollation.Direction;
+import org.lealone.hansql.optimizer.rel.RelFieldCollation.NullDirection;
 
 @JsonTypeName("order")
 public class Order extends SingleInputOperator {

@@ -17,17 +17,17 @@
  */
 package org.apache.drill.exec.planner.logical;
 
-import org.apache.calcite.config.CalciteConnectionConfig;
-import org.apache.calcite.plan.RelOptTable;
-import org.apache.calcite.plan.RelOptTable.ToRelContext;
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.rel.type.RelDataType;
-import org.apache.calcite.rel.type.RelDataTypeFactory;
-import org.apache.calcite.schema.Statistic;
-import org.apache.calcite.schema.TranslatableTable;
-import org.apache.calcite.schema.Schema.TableType;
-import org.apache.calcite.sql.SqlCall;
-import org.apache.calcite.sql.SqlNode;
+import org.lealone.hansql.optimizer.config.CalciteConnectionConfig;
+import org.lealone.hansql.optimizer.plan.RelOptTable;
+import org.lealone.hansql.optimizer.plan.RelOptTable.ToRelContext;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.type.RelDataType;
+import org.lealone.hansql.optimizer.rel.type.RelDataTypeFactory;
+import org.lealone.hansql.optimizer.schema.Statistic;
+import org.lealone.hansql.optimizer.schema.TranslatableTable;
+import org.lealone.hansql.optimizer.schema.Schema.TableType;
+import org.lealone.hansql.optimizer.sql.SqlCall;
+import org.lealone.hansql.optimizer.sql.SqlNode;
 
 /**
  * TableMacros must return a TranslatableTable

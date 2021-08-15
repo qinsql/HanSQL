@@ -22,13 +22,6 @@ import static org.apache.drill.exec.planner.sql.SchemaUtilites.findSchema;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.apache.calcite.schema.SchemaPlus;
-import org.apache.calcite.schema.Table;
-import org.apache.calcite.sql.SqlIdentifier;
-import org.apache.calcite.sql.SqlLiteral;
-import org.apache.calcite.sql.SqlNode;
-import org.apache.calcite.sql.SqlNodeList;
-import org.apache.calcite.sql.parser.SqlParserPos;
 import org.apache.drill.common.expression.SchemaPath;
 import org.apache.drill.common.logical.FormatPluginConfig;
 import org.apache.drill.exec.physical.PhysicalPlan;
@@ -46,6 +39,13 @@ import org.apache.drill.exec.store.parquet.metadata.Metadata;
 import org.apache.drill.exec.util.ImpersonationUtil;
 import org.apache.drill.exec.work.exception.SqlExecutorSetupException;
 import org.apache.hadoop.fs.Path;
+import org.lealone.hansql.optimizer.schema.SchemaPlus;
+import org.lealone.hansql.optimizer.schema.Table;
+import org.lealone.hansql.optimizer.sql.SqlIdentifier;
+import org.lealone.hansql.optimizer.sql.SqlLiteral;
+import org.lealone.hansql.optimizer.sql.SqlNode;
+import org.lealone.hansql.optimizer.sql.SqlNodeList;
+import org.lealone.hansql.optimizer.sql.parser.SqlParserPos;
 
 public class RefreshMetadataHandler extends DefaultSqlHandler {
 

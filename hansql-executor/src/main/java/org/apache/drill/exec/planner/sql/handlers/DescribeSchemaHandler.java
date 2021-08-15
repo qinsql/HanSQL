@@ -22,10 +22,6 @@ import static com.fasterxml.jackson.databind.SerializationFeature.INDENT_OUTPUT;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.calcite.schema.SchemaPlus;
-import org.apache.calcite.sql.SqlDescribeSchema;
-import org.apache.calcite.sql.SqlIdentifier;
-import org.apache.calcite.sql.SqlNode;
 import org.apache.drill.common.exceptions.DrillRuntimeException;
 import org.apache.drill.common.exceptions.ExecutionSetupException;
 import org.apache.drill.common.exceptions.UserException;
@@ -39,6 +35,10 @@ import org.apache.drill.exec.store.dfs.FileSystemPlugin;
 import org.apache.drill.exec.store.dfs.WorkspaceConfig;
 import org.apache.drill.exec.work.exception.SqlExecutorSetupException;
 import org.apache.drill.shaded.guava.com.google.common.base.Joiner;
+import org.lealone.hansql.optimizer.schema.SchemaPlus;
+import org.lealone.hansql.optimizer.sql.SqlDescribeSchema;
+import org.lealone.hansql.optimizer.sql.SqlIdentifier;
+import org.lealone.hansql.optimizer.sql.SqlNode;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.SerializableString;

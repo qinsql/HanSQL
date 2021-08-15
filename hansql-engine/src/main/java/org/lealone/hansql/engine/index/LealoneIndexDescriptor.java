@@ -24,12 +24,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.calcite.plan.RelOptCost;
-import org.apache.calcite.plan.RelOptPlanner;
-import org.apache.calcite.rel.RelCollation;
-import org.apache.calcite.rel.RelFieldCollation.NullDirection;
-import org.apache.calcite.rel.RelNode;
-import org.apache.calcite.rex.RexNode;
 import org.apache.drill.common.expression.LogicalExpression;
 import org.apache.drill.common.expression.SchemaPath;
 import org.apache.drill.exec.physical.base.GroupScan;
@@ -45,6 +39,12 @@ import org.apache.drill.exec.planner.index.IndexProperties;
 import org.apache.drill.exec.planner.logical.DrillTable;
 import org.lealone.db.table.Table;
 import org.lealone.hansql.engine.storage.LealoneGroupScan;
+import org.lealone.hansql.optimizer.plan.RelOptCost;
+import org.lealone.hansql.optimizer.plan.RelOptPlanner;
+import org.lealone.hansql.optimizer.rel.RelCollation;
+import org.lealone.hansql.optimizer.rel.RelNode;
+import org.lealone.hansql.optimizer.rel.RelFieldCollation.NullDirection;
+import org.lealone.hansql.optimizer.rex.RexNode;
 
 public class LealoneIndexDescriptor extends DrillIndexDescriptor {
     static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(LealoneIndexDescriptor.class);

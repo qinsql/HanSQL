@@ -22,8 +22,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
-import org.apache.calcite.sql.SqlCharStringLiteral;
-import org.apache.calcite.sql.SqlNode;
 import org.apache.commons.io.FileUtils;
 import org.apache.drill.common.exceptions.DrillRuntimeException;
 import org.apache.drill.common.exceptions.UserException;
@@ -46,6 +44,8 @@ import org.apache.drill.shaded.guava.com.google.common.io.Files;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.FileUtil;
 import org.apache.hadoop.fs.Path;
+import org.lealone.hansql.optimizer.sql.SqlCharStringLiteral;
+import org.lealone.hansql.optimizer.sql.SqlNode;
 
 public class CreateFunctionHandler extends DefaultSqlHandler {
 

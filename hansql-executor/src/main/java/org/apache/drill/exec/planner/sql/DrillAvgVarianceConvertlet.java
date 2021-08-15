@@ -17,21 +17,21 @@
  */
 package org.apache.drill.exec.planner.sql;
 
-import org.apache.calcite.rel.type.RelDataType;
-import org.apache.calcite.rex.RexNode;
-import org.apache.calcite.sql.SqlCall;
-import org.apache.calcite.sql.SqlKind;
-import org.apache.calcite.sql.SqlLiteral;
-import org.apache.calcite.sql.SqlNode;
-import org.apache.calcite.sql.SqlNumericLiteral;
-import org.apache.calcite.sql.SqlOperatorBinding;
-import org.apache.calcite.sql.fun.SqlStdOperatorTable;
-import org.apache.calcite.sql.parser.SqlParserPos;
-import org.apache.calcite.sql.type.SqlReturnTypeInference;
-import org.apache.calcite.sql.type.SqlTypeName;
-import org.apache.calcite.sql2rel.SqlRexContext;
-import org.apache.calcite.sql2rel.SqlRexConvertlet;
-import org.apache.calcite.util.Util;
+import org.lealone.hansql.optimizer.rel.type.RelDataType;
+import org.lealone.hansql.optimizer.rex.RexNode;
+import org.lealone.hansql.optimizer.sql.SqlCall;
+import org.lealone.hansql.optimizer.sql.SqlKind;
+import org.lealone.hansql.optimizer.sql.SqlLiteral;
+import org.lealone.hansql.optimizer.sql.SqlNode;
+import org.lealone.hansql.optimizer.sql.SqlNumericLiteral;
+import org.lealone.hansql.optimizer.sql.SqlOperatorBinding;
+import org.lealone.hansql.optimizer.sql.fun.SqlStdOperatorTable;
+import org.lealone.hansql.optimizer.sql.parser.SqlParserPos;
+import org.lealone.hansql.optimizer.sql.type.SqlReturnTypeInference;
+import org.lealone.hansql.optimizer.sql.type.SqlTypeName;
+import org.lealone.hansql.optimizer.sql2rel.SqlRexContext;
+import org.lealone.hansql.optimizer.sql2rel.SqlRexConvertlet;
+import org.lealone.hansql.optimizer.util.Util;
 
 /*
  * This class is adapted from calcite's AvgVarianceConvertlet. The difference being
