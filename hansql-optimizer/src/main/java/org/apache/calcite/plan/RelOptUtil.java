@@ -50,7 +50,6 @@ import org.apache.calcite.rel.core.RelFactories;
 import org.apache.calcite.rel.core.SemiJoin;
 import org.apache.calcite.rel.core.Sort;
 import org.apache.calcite.rel.core.TableScan;
-import org.apache.calcite.rel.externalize.RelJsonWriter;
 import org.apache.calcite.rel.externalize.RelWriterImpl;
 import org.apache.calcite.rel.externalize.RelXmlWriter;
 import org.apache.calcite.rel.logical.LogicalAggregate;
@@ -1437,10 +1436,6 @@ public abstract class RelOptUtil {
         case XML:
             planWriter = new RelXmlWriter(pw, detailLevel);
             break;
-        case JSON:
-            planWriter = new RelJsonWriter();
-            rel.explain(planWriter);
-            return ((RelJsonWriter) planWriter).asString();
         default:
             planWriter = new RelWriterImpl(pw, detailLevel, false);
         }
