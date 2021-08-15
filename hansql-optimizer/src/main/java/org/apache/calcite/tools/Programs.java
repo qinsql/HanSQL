@@ -70,13 +70,9 @@ import com.google.common.collect.Lists;
  * Utilities for creating {@link Program}s.
  */
 public class Programs {
-    public static final ImmutableList<RelOptRule> CALC_RULES = ImmutableList.of(
-            // NoneToBindableConverterRule.INSTANCE,
-            // EnumerableRules.ENUMERABLE_CALC_RULE,
-            // EnumerableRules.ENUMERABLE_FILTER_TO_CALC_RULE,
-            // EnumerableRules.ENUMERABLE_PROJECT_TO_CALC_RULE,
-            CalcMergeRule.INSTANCE, FilterCalcMergeRule.INSTANCE, ProjectCalcMergeRule.INSTANCE,
-            FilterToCalcRule.INSTANCE, ProjectToCalcRule.INSTANCE, CalcMergeRule.INSTANCE,
+    public static final ImmutableList<RelOptRule> CALC_RULES = ImmutableList.of(CalcMergeRule.INSTANCE,
+            FilterCalcMergeRule.INSTANCE, ProjectCalcMergeRule.INSTANCE, FilterToCalcRule.INSTANCE,
+            ProjectToCalcRule.INSTANCE, CalcMergeRule.INSTANCE,
 
             // REVIEW jvs 9-Apr-2006: Do we still need these two? Doesn't the
             // combination of CalcMergeRule, FilterToCalcRule, and
@@ -196,11 +192,6 @@ public class Programs {
 
     public static Program calc(RelMetadataProvider metadataProvider) {
         return hep(CALC_RULES, true, metadataProvider);
-    }
-
-    @Deprecated // to be removed before 2.0
-    public static Program subquery(RelMetadataProvider metadataProvider) {
-        return subQuery(metadataProvider);
     }
 
     public static Program subQuery(RelMetadataProvider metadataProvider) {
