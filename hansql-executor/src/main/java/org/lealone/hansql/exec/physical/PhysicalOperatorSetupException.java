@@ -19,30 +19,27 @@ package org.lealone.hansql.exec.physical;
 
 import org.lealone.hansql.common.exceptions.ExecutionSetupException;
 
-
 public class PhysicalOperatorSetupException extends ExecutionSetupException {
-  static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(PhysicalOperatorSetupException.class);
 
-  public PhysicalOperatorSetupException() {
-    super();
-  }
+    public PhysicalOperatorSetupException() {
+        super();
+    }
 
-  public PhysicalOperatorSetupException(String message, Throwable cause, boolean enableSuppression,
-      boolean writableStackTrace) {
-    super(message, cause, enableSuppression, writableStackTrace);
-  }
+    public PhysicalOperatorSetupException(String message, Throwable cause, boolean enableSuppression,
+            boolean writableStackTrace) {
+        super(message, cause, enableSuppression, writableStackTrace);
+    }
 
-  public PhysicalOperatorSetupException(String message, Throwable cause) {
-    super(message, cause);
-  }
+    public PhysicalOperatorSetupException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
-  public PhysicalOperatorSetupException(String message) {
-    super(message);
-  }
+    public PhysicalOperatorSetupException(String message) {
+        super(message);
+    }
 
-  public PhysicalOperatorSetupException(Throwable cause) {
-    super(cause);
-  }
-
+    public PhysicalOperatorSetupException(Throwable cause) {
+        super(cause);
+    }
 
 }

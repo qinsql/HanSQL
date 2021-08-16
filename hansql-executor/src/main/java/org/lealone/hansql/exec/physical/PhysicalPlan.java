@@ -20,13 +20,6 @@ package org.lealone.hansql.exec.physical;
 import java.io.IOException;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectReader;
-import com.fasterxml.jackson.databind.ObjectWriter;
 import org.apache.drill.shaded.guava.com.google.common.collect.Lists;
 import org.lealone.hansql.common.graph.Graph;
 import org.lealone.hansql.common.graph.GraphAlgos;
@@ -35,70 +28,77 @@ import org.lealone.hansql.exec.physical.base.Leaf;
 import org.lealone.hansql.exec.physical.base.PhysicalOperator;
 import org.lealone.hansql.exec.physical.base.Root;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectReader;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
 @JsonPropertyOrder({ "head", "graph" })
 public class PhysicalPlan {
-  static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(PhysicalPlan.class);
 
-  PlanProperties properties;
+    PlanProperties properties;
 
-  Graph<PhysicalOperator, Root, Leaf> graph;
+    Graph<PhysicalOperator, Root, Leaf> graph;
 
-  @JsonCreator
-  public PhysicalPlan(@JsonProperty("head") PlanProperties properties,
-                      @JsonProperty("graph") List<PhysicalOperator> operators) {
-    this.properties = properties;
-    this.graph = Graph.newGraph(operators, Root.class, Leaf.class);
-  }
-
-  @JsonProperty("graph")
-  public List<PhysicalOperator> getSortedOperators(){
-    // reverse the list so that nested references are flattened rather than nested.
-    return getSortedOperators(true);
-  }
-
-  public List<PhysicalOperator> getSortedOperators(boolean reverse){
-    List<PhysicalOperator> list = GraphAlgos.TopoSorter.sort(graph);
-    if(reverse){
-      return Lists.reverse(list);
-    }else{
-      return list;
+    @JsonCreator
+    public PhysicalPlan(@JsonProperty("head") PlanProperties properties,
+            @JsonProperty("graph") List<PhysicalOperator> operators) {
+        this.properties = properties;
+        this.graph = Graph.newGraph(operators, Root.class, Leaf.class);
     }
-  }
 
-  @JsonProperty("head")
-  public PlanProperties getProperties() {
-    return properties;
-  }
-
-  /** Parses a physical plan. */
-  public static PhysicalPlan parse(ObjectReader reader, String planString) {
-    try {
-      PhysicalPlan plan = reader.readValue(planString);
-      return plan;
-    } catch (IOException e) {
-      throw new RuntimeException(e);
+    @JsonProperty("graph")
+    public List<PhysicalOperator> getSortedOperators() {
+        // reverse the list so that nested references are flattened rather than nested.
+        return getSortedOperators(true);
     }
-  }
 
-  /** Converts a physical plan to a string. (Opposite of {@link #parse}.) */
-  public String unparse(ObjectWriter writer) {
-    try {
-      return writer.writeValueAsString(this);
-    } catch (JsonProcessingException e) {
-      throw new RuntimeException(e);
+    public List<PhysicalOperator> getSortedOperators(boolean reverse) {
+        List<PhysicalOperator> list = GraphAlgos.TopoSorter.sort(graph);
+        if (reverse) {
+            return Lists.reverse(list);
+        } else {
+            return list;
+        }
     }
-  }
 
-  public double totalCost() {
-    double totalCost = 0;
-    for (final PhysicalOperator ops : getSortedOperators()) {
-      totalCost += ops.getCost().getOutputRowCount();
+    @JsonProperty("head")
+    public PlanProperties getProperties() {
+        return properties;
     }
-    return totalCost;
-  }
 
-  @JsonIgnore
-  public Graph<PhysicalOperator, Root, Leaf> graph() {
-    return graph;
-  }
+    /** Parses a physical plan. */
+    public static PhysicalPlan parse(ObjectReader reader, String planString) {
+        try {
+            PhysicalPlan plan = reader.readValue(planString);
+            return plan;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /** Converts a physical plan to a string. (Opposite of {@link #parse}.) */
+    public String unparse(ObjectWriter writer) {
+        try {
+            return writer.writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public double totalCost() {
+        double totalCost = 0;
+        for (final PhysicalOperator ops : getSortedOperators()) {
+            totalCost += ops.getCost().getOutputRowCount();
+        }
+        return totalCost;
+    }
+
+    @JsonIgnore
+    public Graph<PhysicalOperator, Root, Leaf> graph() {
+        return graph;
+    }
 }

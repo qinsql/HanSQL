@@ -29,36 +29,37 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeName("fragment-endpoint")
 public class MinorFragmentEndpoint {
-  private final int id;
-  private final DrillbitEndpoint endpoint;
+    private final int id;
+    private final DrillbitEndpoint endpoint;
 
-  @JsonCreator
-  public MinorFragmentEndpoint(@JsonProperty("minorFragmentId") int id, @JsonProperty("endpoint") DrillbitEndpoint endpoint) {
-    this.id = id;
-    this.endpoint = endpoint;
-  }
+    @JsonCreator
+    public MinorFragmentEndpoint(@JsonProperty("minorFragmentId") int id,
+            @JsonProperty("endpoint") DrillbitEndpoint endpoint) {
+        this.id = id;
+        this.endpoint = endpoint;
+    }
 
-  /**
-   * Get the minor fragment id.
-   * @return Minor fragment id.
-   */
-  @JsonProperty("minorFragmentId")
-  public int getId() {
-    return id;
-  }
+    /**
+     * Get the minor fragment id.
+     * @return Minor fragment id.
+     */
+    @JsonProperty("minorFragmentId")
+    public int getId() {
+        return id;
+    }
 
-  /**
-   * Get the Drillbit endpoint where the fragment is assigned for execution.
-   *
-   * @return Drillbit endpoint.
-   */
-  @JsonProperty("endpoint")
-  public DrillbitEndpoint getEndpoint() {
-    return endpoint;
-  }
+    /**
+     * Get the Drillbit endpoint where the fragment is assigned for execution.
+     *
+     * @return Drillbit endpoint.
+     */
+    @JsonProperty("endpoint")
+    public DrillbitEndpoint getEndpoint() {
+        return endpoint;
+    }
 
-  @Override
-  public String toString() {
-    return "FragmentEndPoint: id = " + id + ", ep = " + endpoint;
-  }
+    @Override
+    public String toString() {
+        return "FragmentEndPoint: id = " + id + ", ep = " + endpoint;
+    }
 }

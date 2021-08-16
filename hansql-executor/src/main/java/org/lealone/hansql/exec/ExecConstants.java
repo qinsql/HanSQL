@@ -44,18 +44,6 @@ public final class ExecConstants {
         // Don't allow instantiation
     }
 
-    public static final String BIT_RETRY_TIMES = "drill.exec.rpc.bit.server.retry.count";
-    public static final String BIT_RETRY_DELAY = "drill.exec.rpc.bit.server.retry.delay";
-    public static final String BIT_TIMEOUT = "drill.exec.bit.timeout";
-    public static final String SERVICE_NAME = "drill.exec.cluster-id";
-    public static final String INITIAL_BIT_PORT = "drill.exec.rpc.bit.server.port";
-    public static final String INITIAL_DATA_PORT = "drill.exec.rpc.bit.server.dataport";
-    public static final String BIT_RPC_TIMEOUT = "drill.exec.rpc.bit.timeout";
-    public static final String METRICS_CONTEXT_NAME = "drill.exec.metrics.context";
-    public static final String USE_IP_ADDRESS = "drill.exec.rpc.use.ip";
-    public static final String CLIENT_RPC_THREADS = "drill.exec.rpc.user.client.threads";
-    public static final String BIT_SERVER_RPC_THREADS = "drill.exec.rpc.bit.server.threads";
-    public static final String USER_SERVER_RPC_THREADS = "drill.exec.rpc.user.server.threads";
     public static final String FRAG_RUNNER_RPC_TIMEOUT = "drill.exec.rpc.fragrunner.timeout";
     public static final PositiveLongValidator FRAG_RUNNER_RPC_TIMEOUT_VALIDATOR = new PositiveLongValidator(
             FRAG_RUNNER_RPC_TIMEOUT, Long.MAX_VALUE, null);
@@ -364,18 +352,6 @@ public final class ExecConstants {
             new OptionDescription(
                     "Parquet writer logical type for decimal; supported types \'fixed_len_byte_array\' and \'binary\'"),
             "fixed_len_byte_array", "binary");
-
-    // TODO - The below two options don't seem to be used in the Drill code base
-    @Deprecated // TODO: DRILL-6527
-    public static final String PARQUET_VECTOR_FILL_THRESHOLD = "store.parquet.vector_fill_threshold";
-    @Deprecated // TODO: DRILL-6527
-    public static final OptionValidator PARQUET_VECTOR_FILL_THRESHOLD_VALIDATOR = new PositiveLongValidator(
-            PARQUET_VECTOR_FILL_THRESHOLD, 99L, new OptionDescription("Deprecated."));
-    @Deprecated // TODO: DRILL-6527
-    public static final String PARQUET_VECTOR_FILL_CHECK_THRESHOLD = "store.parquet.vector_fill_check_threshold";
-    @Deprecated // TODO: DRILL-6527
-    public static final OptionValidator PARQUET_VECTOR_FILL_CHECK_THRESHOLD_VALIDATOR = new PositiveLongValidator(
-            PARQUET_VECTOR_FILL_CHECK_THRESHOLD, 100L, new OptionDescription("Deprecated."));
 
     public static final String PARQUET_NEW_RECORD_READER = "store.parquet.use_new_reader";
     public static final OptionValidator PARQUET_RECORD_READER_IMPLEMENTATION_VALIDATOR = new BooleanValidator(
