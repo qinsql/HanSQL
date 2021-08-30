@@ -24,13 +24,27 @@ import java.util.concurrent.TimeUnit;
 import javax.tools.ToolProvider;
 
 import org.apache.drill.shaded.guava.com.google.common.base.Stopwatch;
+import org.lealone.common.exceptions.DbException;
+import org.lealone.db.Constants;
+import org.lealone.db.Database;
+import org.lealone.db.LealoneDatabase;
+import org.lealone.db.schema.Schema;
+import org.lealone.db.session.ServerSession;
+import org.lealone.db.table.Table;
 import org.lealone.hansql.common.AutoCloseables;
 import org.lealone.hansql.common.concurrent.ExtendedLatch;
 import org.lealone.hansql.common.config.DrillConfig;
+import org.lealone.hansql.common.exceptions.ExecutionSetupException;
 import org.lealone.hansql.common.map.CaseInsensitiveMap;
 import org.lealone.hansql.common.scanner.ClassPathScanner;
 import org.lealone.hansql.common.scanner.persistence.ScanResult;
 import org.lealone.hansql.common.util.DrillVersionInfo;
+import org.lealone.hansql.engine.server.HanSQLServer;
+import org.lealone.hansql.engine.sql.HanSQLEngine;
+import org.lealone.hansql.engine.storage.LealoneScanSpec;
+import org.lealone.hansql.engine.storage.LealoneStoragePlugin;
+import org.lealone.hansql.engine.storage.LealoneStoragePluginConfig;
+import org.lealone.hansql.engine.storage.LealoneTable;
 import org.lealone.hansql.exec.ExecConstants;
 import org.lealone.hansql.exec.SqlExecutor;
 import org.lealone.hansql.exec.context.BootStrapContext;
@@ -38,8 +52,8 @@ import org.lealone.hansql.exec.context.DrillbitContext;
 import org.lealone.hansql.exec.context.options.OptionDefinition;
 import org.lealone.hansql.exec.context.options.OptionManager;
 import org.lealone.hansql.exec.context.options.OptionValue;
-import org.lealone.hansql.exec.context.options.SystemOptionManager;
 import org.lealone.hansql.exec.context.options.OptionValue.OptionScope;
+import org.lealone.hansql.exec.context.options.SystemOptionManager;
 import org.lealone.hansql.exec.coord.ClusterCoordinator;
 import org.lealone.hansql.exec.coord.ClusterCoordinator.RegistrationHandle;
 import org.lealone.hansql.exec.coord.local.LocalClusterCoordinator;
@@ -47,16 +61,20 @@ import org.lealone.hansql.exec.exception.DrillbitStartupException;
 import org.lealone.hansql.exec.proto.CoordinationProtos.DrillbitEndpoint;
 import org.lealone.hansql.exec.proto.CoordinationProtos.DrillbitEndpoint.State;
 import org.lealone.hansql.exec.proto.UserBitShared.QueryId;
-import org.lealone.hansql.exec.proto.UserProtos.RunQuery;
+import org.lealone.hansql.exec.proto.UserProtos;
 import org.lealone.hansql.exec.session.UserClientConnection;
+import org.lealone.hansql.exec.store.SchemaTreeProvider;
 import org.lealone.hansql.exec.store.StoragePluginRegistry;
 import org.lealone.hansql.exec.store.sys.PersistentStoreProvider;
 import org.lealone.hansql.exec.store.sys.store.provider.CachingPersistentStoreProvider;
 import org.lealone.hansql.exec.store.sys.store.provider.InMemoryStoreProvider;
 import org.lealone.hansql.exec.store.sys.store.provider.LocalPersistentStoreProvider;
+import org.lealone.hansql.optimizer.schema.CalciteSchema;
+import org.lealone.hansql.optimizer.schema.SchemaPlus;
 import org.lealone.hansql.optimizer.sql.SqlNode;
 import org.lealone.hansql.optimizer.sql.parser.SqlParseException;
 import org.lealone.hansql.optimizer.sql.parser.SqlParser;
+import org.lealone.server.ProtocolServerEngineManager;
 
 /**
  * Starts, tracks and stops all the required services for a Drillbit daemon to work.
@@ -64,8 +82,8 @@ import org.lealone.hansql.optimizer.sql.parser.SqlParser;
 public class HanEngine implements AutoCloseable {
 
     public static SqlNode parse(String sql) throws SqlParseException {
-        SqlParser.Config config = SqlParser.configBuilder().setUnquotedCasing(org.lealone.hansql.optimizer.util.Casing.TO_LOWER)
-                .build();
+        SqlParser.Config config = SqlParser.configBuilder()
+                .setUnquotedCasing(org.lealone.hansql.optimizer.util.Casing.TO_LOWER).build();
         return parse(sql, config);
     }
 
@@ -305,14 +323,76 @@ public class HanEngine implements AutoCloseable {
         return id;
     }
 
-    public QueryId submitWork(UserClientConnection connection, RunQuery query) {
-        QueryId id = queryIdGenerator();
-        SqlExecutor sqlExecutor = new SqlExecutor(executor, dContext, connection, id, query);
+    public void submitWork(UserClientConnection connection, String sql) {
+        SqlExecutor sqlExecutor = createSqlExecutor(connection, sql);
         executor.execute(sqlExecutor);
-        return id;
+    }
+
+    public SqlExecutor createSqlExecutor(UserClientConnection connection, String sql) {
+        UserProtos.RunQuery runQuery = UserProtos.RunQuery.newBuilder().setPlan(sql)
+                .setType(org.lealone.hansql.exec.proto.UserBitShared.QueryType.SQL).build();
+        QueryId id = queryIdGenerator();
+        return new SqlExecutor(executor, dContext, connection, id, runQuery);
     }
 
     public OptionManager getOptionManager() {
         return dContext.getOptionManager();
+    }
+
+    public SchemaPlus getRootSchema(ServerSession session, String sql, boolean useDefaultSchema, boolean isOlap) {
+        if (isOlap) {
+            LealoneStoragePlugin lsp;
+            try {
+                lsp = (LealoneStoragePlugin) getStoragePluginRegistry().getPlugin(LealoneStoragePluginConfig.NAME);
+            } catch (ExecutionSetupException e) {
+                throw DbException.throwInternalError();
+            }
+            SchemaPlus parent = CalciteSchema.createRootSchema(false, true, "").plus();
+            SchemaPlus defaultSchema = CalciteSchema.createRootSchema(false, true, Constants.SCHEMA_MAIN).plus();
+            String dbName = session.getDatabase().getShortName();
+            Database db = LealoneDatabase.getInstance().getDatabase(dbName);
+            for (Schema schema : db.getAllSchemas()) {
+                final String schemaName = schema.getName();
+                final SchemaPlus subSchema;
+                if (schemaName.equalsIgnoreCase(Constants.SCHEMA_MAIN)) {
+                    subSchema = defaultSchema;
+                } else {
+                    subSchema = CalciteSchema.createRootSchema(false, true, schemaName).plus();
+                }
+                for (Table table : schema.getAllTablesAndViews()) {
+                    LealoneTable t = new LealoneTable(table, lsp,
+                            new LealoneScanSpec(dbName, schemaName, table.getName()));
+                    subSchema.add(table.getName().toUpperCase(), t);
+                    subSchema.add(table.getName().toLowerCase(), t);
+                }
+                parent.add(schemaName, subSchema);
+            }
+            if (session.getCurrentSchemaName().equalsIgnoreCase(Constants.SCHEMA_MAIN))
+                return defaultSchema;
+            return parent;
+        }
+        SchemaTreeProvider schemaTreeProvider = new SchemaTreeProvider(getDrillbitContext());
+        SchemaPlus rootSchema = schemaTreeProvider.createRootSchema(getOptionManager());
+        if (useDefaultSchema && (isOlap || sql.contains(LealoneStoragePluginConfig.NAME))) {
+            LealoneStoragePlugin lsp;
+            try {
+                lsp = (LealoneStoragePlugin) getStoragePluginRegistry().getPlugin(LealoneStoragePluginConfig.NAME);
+            } catch (ExecutionSetupException e) {
+                throw DbException.throwInternalError();
+            }
+
+            SchemaPlus defaultSchema = CalciteSchema.createRootSchema(false, true, Constants.SCHEMA_MAIN).plus();
+            String dbName = session.getDatabase().getShortName();
+            SchemaPlus schema = CalciteSchema.createRootSchema(defaultSchema, false, true, dbName).plus();
+            lsp.registerSchema(schema, dbName, defaultSchema);
+            rootSchema.add(LealoneStoragePluginConfig.NAME, defaultSchema);
+            rootSchema.add("", defaultSchema);
+        }
+        return rootSchema;
+    }
+
+    public static HanEngine getInstance() {
+        return ((HanSQLServer) ProtocolServerEngineManager.getInstance().getEngine(HanSQLEngine.NAME)
+                .getProtocolServer()).getHanEngine();
     }
 }

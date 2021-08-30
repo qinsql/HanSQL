@@ -21,6 +21,8 @@ import java.net.SocketAddress;
 
 import org.lealone.db.async.AsyncHandler;
 import org.lealone.db.async.AsyncResult;
+import org.lealone.db.index.Cursor;
+import org.lealone.db.result.LocalResult;
 import org.lealone.db.result.Result;
 import org.lealone.db.session.ServerSession;
 import org.lealone.hansql.engine.HanEngine;
@@ -38,9 +40,12 @@ public class HanClientConnection implements org.lealone.hansql.exec.session.User
     private final UserSession session;
     private final SocketAddress remoteAddress;
     private final AsyncHandler<AsyncResult<Result>> asyncHandler;
+    private final LocalResult localResult;
+
+    private Cursor cursor;
 
     public HanClientConnection(SchemaPlus schema, ServerSession serverSession, HanEngine engine,
-            SocketAddress remoteAddress, AsyncHandler<AsyncResult<Result>> asyncHandler) {
+            SocketAddress remoteAddress, LocalResult localResult, AsyncHandler<AsyncResult<Result>> asyncHandler) {
         this.serverSession = serverSession;
         session = UserSession.Builder.newBuilder()
                 .withCredentials(UserCredentials.newBuilder().setUserName(serverSession.getUser().getName()).build())
@@ -51,6 +56,7 @@ public class HanClientConnection implements org.lealone.hansql.exec.session.User
         session.setDefaultSchema(schema);
         this.remoteAddress = remoteAddress;
         this.asyncHandler = asyncHandler;
+        this.localResult = localResult;
     }
 
     public ServerSession getServerSession() {
@@ -62,6 +68,14 @@ public class HanClientConnection implements org.lealone.hansql.exec.session.User
         return session;
     }
 
+    public Cursor getCursor() {
+        return cursor;
+    }
+
+    public void setCursor(Cursor cursor) {
+        this.cursor = cursor;
+    }
+
     @Override
     public void sendResult(QueryResult result) {
         // logger.info("sendResult");
@@ -69,7 +83,7 @@ public class HanClientConnection implements org.lealone.hansql.exec.session.User
         if (result != null && result.getQueryState() == QueryResult.QueryState.FAILED) {
             ar.setCause(new RuntimeException(result.getErrorList().get(0).getMessage()));
         } else {
-            ar.setResult(batchResult);
+            ar.setResult(localResult == null ? batchResult : localResult);
         }
         asyncHandler.handle(ar);
     }
@@ -87,7 +101,13 @@ public class HanClientConnection implements org.lealone.hansql.exec.session.User
     @Override
     public void sendData(RecordBatch data) {
         HanResult result = new HanResult(data);
-        batchResult.addResult(result);
+        if (localResult == null) {
+            batchResult.addResult(result);
+        } else {
+            while (result.next()) {
+                localResult.addRow(result.current);
+            }
+        }
     }
 
     public org.lealone.db.result.Result getResult() {
@@ -97,5 +117,10 @@ public class HanClientConnection implements org.lealone.hansql.exec.session.User
     @Override
     public SocketAddress getRemoteAddress() {
         return remoteAddress;
+    }
+
+    @Override
+    public int getRowCount() {
+        return localResult == null ? batchResult.getRowCount() : localResult.getRowCount();
     }
 }

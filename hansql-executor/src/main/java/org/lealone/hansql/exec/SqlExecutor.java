@@ -53,6 +53,7 @@ import org.lealone.hansql.exec.work.QueryWorkUnit;
 import org.lealone.hansql.exec.work.exception.SqlExecutorException;
 import org.lealone.hansql.exec.work.exception.SqlExecutorSetupException;
 import org.lealone.hansql.exec.work.filter.RuntimeFilterRouter;
+import org.lealone.sql.query.Select;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 
@@ -108,14 +109,18 @@ public class SqlExecutor implements Runnable {
         return queryContext;
     }
 
+    @Override
+    public void run() {
+        run(false);
+    }
+
     /**
      * Called by execution pool to do query setup, and kick off remote execution.
      *
      * <p>Note that completion of this function is not the end of the Foreman's role
      * in the query's lifecycle.
      */
-    @Override
-    public void run() {
+    private void run(boolean isStarting) {
         // rename the thread we're using for debugging purposes
         Thread currentThread = Thread.currentThread();
         String originalName = currentThread.getName();
@@ -133,7 +138,7 @@ public class SqlExecutor implements Runnable {
                 // them together such that it is easy to search based on query id
                 logger.info("Query text for query with id {} issued by {}: {}", queryIdString,
                         queryContext.getQueryUserName(), sql);
-                runSQL(sql);
+                runSQL(sql, isStarting);
                 break;
             case LOGICAL:
                 parseAndRunLogicalPlan(queryRequest.getPlan());
@@ -158,13 +163,14 @@ public class SqlExecutor implements Runnable {
         }
     }
 
-    private void runSQL(String sql) throws ExecutionSetupException {
+    private void runSQL(String sql, boolean isStarting) throws ExecutionSetupException {
         Pointer<String> textPlan = new Pointer<>();
         PhysicalPlan plan = SqlPlanner.getPlan(queryContext, sql, textPlan);
-        runPhysicalPlan(plan, textPlan);
+        runPhysicalPlan(plan, textPlan, isStarting);
     }
 
-    private void runPhysicalPlan(PhysicalPlan plan, Pointer<String> textPlan) throws ExecutionSetupException {
+    private void runPhysicalPlan(PhysicalPlan plan, Pointer<String> textPlan, boolean isStarting)
+            throws ExecutionSetupException {
         validatePlan(plan);
 
         QueryWorkUnit work = getQueryWorkUnit(plan);
@@ -175,7 +181,7 @@ public class SqlExecutor implements Runnable {
         work.applyPlan(drillbitContext.getPlanReader());
         logWorkUnit(work);
 
-        executeQuery(work.getFragments(), work.getRootFragment(), work.getRootOperator());
+        executeQuery(work.getFragments(), work.getRootFragment(), work.getRootOperator(), isStarting);
     }
 
     private static void validatePlan(PhysicalPlan plan) throws SqlExecutorSetupException {
@@ -195,13 +201,14 @@ public class SqlExecutor implements Runnable {
                 queryContext.getQueryContextInfo());
     }
 
+    private FragmentExecutor fragmentExecutor;
+
     private void executeQuery(List<PlanFragment> planFragments, PlanFragment rootPlanFragment,
-            FragmentRoot rootOperator) throws ExecutionSetupException {
+            FragmentRoot rootOperator, boolean isStarting) throws ExecutionSetupException {
         FragmentContextImpl rootContext = new FragmentContextImpl(drillbitContext, rootPlanFragment, queryContext,
                 clientConnection, drillbitContext.getFunctionImplementationRegistry());
-        FragmentExecutor fragmentExecutor = new FragmentExecutor(rootContext, rootPlanFragment, rootOperator,
-                clientConnection);
-        fragmentExecutor.execute();
+        fragmentExecutor = new FragmentExecutor(rootContext, rootPlanFragment, rootOperator, clientConnection);
+        fragmentExecutor.execute(isStarting);
     }
 
     private void parseAndRunLogicalPlan(String json) throws ExecutionSetupException {
@@ -271,7 +278,7 @@ public class SqlExecutor implements Runnable {
     }
 
     private void runPhysicalPlan(PhysicalPlan plan) throws ExecutionSetupException {
-        runPhysicalPlan(plan, null);
+        runPhysicalPlan(plan, null, false);
     }
 
     /**
@@ -312,7 +319,7 @@ public class SqlExecutor implements Runnable {
                     String.format("Unable to parse FragmentRoot from fragment: %s", rootFragment.getFragmentJson()));
         }
 
-        executeQuery(planFragments, rootFragment, rootOperator);
+        executeQuery(planFragments, rootFragment, rootOperator, false);
     }
 
     /**
@@ -336,7 +343,7 @@ public class SqlExecutor implements Runnable {
 
         String queryText = serverState.getSqlQuery();
         logger.info("Prepared statement query for QueryId {} : {}", queryId, queryText);
-        runSQL(queryText);
+        runSQL(queryText, false);
     }
 
     private void logWorkUnit(QueryWorkUnit queryWorkUnit) {
@@ -352,5 +359,21 @@ public class SqlExecutor implements Runnable {
         }
         return new BasicOptimizer(queryContext, clientConnection)
                 .optimize(new BasicOptimizer.BasicOptimizationContext(queryContext), plan);
+    }
+
+    public void start() {
+        run(true);
+    }
+
+    public void yieldableRun() {
+        fragmentExecutor.run();
+    }
+
+    public boolean isStopped() {
+        return fragmentExecutor.isCompleted();
+    }
+
+    public void setSelect(Select select) {
+        fragmentExecutor.setSelect(select);
     }
 }

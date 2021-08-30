@@ -43,6 +43,7 @@ import org.lealone.hansql.exec.proto.helper.QueryIdHelper;
 import org.lealone.hansql.exec.session.UserClientConnection;
 import org.lealone.hansql.exec.testing.ControlsInjector;
 import org.lealone.hansql.exec.testing.ControlsInjectorFactory;
+import org.lealone.sql.query.Select;
 
 /**
  * <h2>Overview</h2>
@@ -176,20 +177,31 @@ class FragmentExecutor {
         updateState(state);
     }
 
-    public void execute() {
+    private Runnable yieldableFragment;
+    private Select select;
+
+    public void setSelect(Select select) {
+        this.select = select;
+    }
+
+    public void run() {
+        yieldableFragment.run();
+    }
+
+    public void execute(boolean isStarting) {
         final Thread myThread = Thread.currentThread();
 
         if (!myThreadRef.compareAndSet(null, myThread)) {
             return;
         }
 
-        final String originalThreadName = myThread.getName();
+        // final String originalThreadName = myThread.getName();
         final FragmentHandle fragmentHandle = fragmentContext.getHandle();
-        final String newThreadName = QueryIdHelper.getExecutorThreadName(fragmentHandle);
+        // final String newThreadName = QueryIdHelper.getExecutorThreadName(fragmentHandle);
 
         try {
 
-            myThread.setName(newThreadName);
+            // myThread.setName(newThreadName);
 
             // if we didn't get the root operator when the executor was created, create it now.
             final FragmentRoot rootOperator = this.rootOperator != null ? this.rootOperator
@@ -211,20 +223,33 @@ class FragmentExecutor {
 
             injector.injectChecked(fragmentContext.getExecutionControls(), "fragment-execution", IOException.class);
 
-            while (shouldContinue()) {
-                // Fragment is not cancelled
+            yieldableFragment = new Runnable() {
+                @Override
+                public void run() {
+                    while (shouldContinue()) {
+                        // Fragment is not cancelled
 
-                for (FragmentHandle fragmentHandle2; (fragmentHandle2 = receiverFinishedQueue.poll()) != null;) {
-                    // See if we have any finished requests. If so execute them.
-                    root.receivingFragmentFinished(fragmentHandle2);
-                }
+                        for (FragmentHandle fragmentHandle2; (fragmentHandle2 = receiverFinishedQueue
+                                .poll()) != null;) {
+                            // See if we have any finished requests. If so execute them.
+                            root.receivingFragmentFinished(fragmentHandle2);
+                        }
 
-                if (!root.next()) {
-                    // Fragment has processed all of its data
-                    break;
+                        if (!root.next()) {
+                            // Fragment has processed all of its data
+                            break;
+                        }
+
+                        if (select != null && select.setCurrentRowNumber(clientConnection.getRowCount()))
+                            return;
+                    }
+                    clientConnection.sendResult(null);
+                    eventProcessor.terminate();
+                    cleanup(FragmentState.FINISHED);
                 }
-            }
-            clientConnection.sendResult(null);
+            };
+            if (!isStarting)
+                yieldableFragment.run();
         } catch (OutOfMemoryError | OutOfMemoryException e) {
             if (FailureUtils.isDirectMemoryOOM(e)) {
                 fail(UserException.memoryError(e).build(logger));
@@ -236,18 +261,18 @@ class FragmentExecutor {
         } catch (Throwable t) {
             fail(t);
         } finally {
-            // Don't process any more termination requests, we are done.
-            eventProcessor.terminate();
-            // Clear the interrupt flag if it is set.
-            Thread.interrupted();
-
-            // here we could be in FAILED, RUNNING, or CANCELLATION_REQUESTED
-            // FAILED state will be because of any Exception in execution loop root.next()
-            // CANCELLATION_REQUESTED because of a CANCEL request received by Foreman.
-            // ELSE will be in FINISHED state.
-            cleanup(FragmentState.FINISHED);
-
-            myThread.setName(originalThreadName);
+            // // Don't process any more termination requests, we are done.
+            // eventProcessor.terminate();
+            // // Clear the interrupt flag if it is set.
+            // Thread.interrupted();
+            //
+            // // here we could be in FAILED, RUNNING, or CANCELLATION_REQUESTED
+            // // FAILED state will be because of any Exception in execution loop root.next()
+            // // CANCELLATION_REQUESTED because of a CANCEL request received by Foreman.
+            // // ELSE will be in FINISHED state.
+            // cleanup(FragmentState.FINISHED);
+            //
+            // // myThread.setName(originalThreadName);
         }
     }
 
@@ -265,7 +290,7 @@ class FragmentExecutor {
      *
      * @return Whether this state is in a terminal state.
      */
-    private boolean isCompleted() {
+    public boolean isCompleted() {
         return isTerminal(fragmentState.get());
     }
 

@@ -65,4 +65,6 @@ public interface UserClientConnection {
 
     default void sendData(RecordBatch result) {
     }
+
+    int getRowCount();
 }

@@ -233,20 +233,25 @@ public class LealoneRecordReader extends AbstractRecordReader {
     public void setup(OperatorContext operatorContext, OutputMutator output) throws ExecutionSetupException {
         try {
             ServerSession session = null;
+            Cursor cursor = null;
             if (operatorContext.getFragmentContext() instanceof ExchangeFragmentContext) {
                 HanClientConnection conn = (HanClientConnection) ((ExchangeFragmentContext) operatorContext
                         .getFragmentContext()).getUserDataTunnel().getConnection();
                 session = conn.getServerSession();
+                cursor = conn.getCursor();
             }
-            Index index;
-            if (subScanConfig.getIndexName() == null)
-                index = table.getScanIndex(session);
-            else
-                index = table.getSchema().getIndex(session, subScanConfig.getIndexName());
+            if (cursor == null) {
+                Index index;
+                if (subScanConfig.getIndexName() == null)
+                    index = table.getScanIndex(session);
+                else
+                    index = table.getSchema().getIndex(session, subScanConfig.getIndexName());
 
-            if (session == null)
-                session = table.getDatabase().getSystemSession();
-            cursor = index.find(session, null, null);
+                if (session == null)
+                    session = table.getDatabase().getSystemSession();
+                cursor = index.find(session, null, null);
+            }
+            this.cursor = cursor;
 
             // final int columns = meta.getColumnCount();
             Column[] columns = table.getColumns();
