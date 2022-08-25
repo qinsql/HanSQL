@@ -37,10 +37,13 @@ transaction_engines:
 sql_engines:
   - name: HanSQL
     enabled: true
+    is_default: true
     parameters: {
         # key1: v1,
         # key2: v2,
     }
+  - name: Lealone
+    enabled: false
 
 protocol_server_engines:
   - name: HanSQL
@@ -57,7 +60,13 @@ protocol_server_engines:
         session_timeout: -1
     }
   - name: P2P
-    enabled: true
+    enabled: false
+    parameters: {
+        port: 9211,
+        ssl: false
+    }
+  - name: TCP
+    enabled: false
     parameters: {
         port: 9211,
         ssl: false
@@ -72,7 +81,7 @@ server_encryption_options:
 cluster_config:
     cluster_name: Test Cluster
     node_snitch: SimpleSnitch
-    dynamic_snitch: true
+    #dynamic_snitch: true
     #方便在eclipse中debug，不会产生超时
     request_timeout_in_ms: 100000000
     #request_timeout_in_ms: 2000

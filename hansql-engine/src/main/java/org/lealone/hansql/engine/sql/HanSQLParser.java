@@ -19,10 +19,10 @@ package org.lealone.hansql.engine.sql;
 
 import org.lealone.common.exceptions.UnsupportedSchemaException;
 import org.lealone.db.session.ServerSession;
-import org.lealone.sql.Parser;
+import org.lealone.sql.LealoneSQLParser;
 import org.lealone.sql.StatementBase;
 
-public class HanSQLParser extends Parser {
+public class HanSQLParser extends LealoneSQLParser {
 
     public HanSQLParser(ServerSession session) {
         super(session);

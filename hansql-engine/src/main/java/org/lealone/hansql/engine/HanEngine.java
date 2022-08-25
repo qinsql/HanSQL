@@ -28,6 +28,7 @@ import org.lealone.common.exceptions.DbException;
 import org.lealone.db.Constants;
 import org.lealone.db.Database;
 import org.lealone.db.LealoneDatabase;
+import org.lealone.db.PluginManager;
 import org.lealone.db.schema.Schema;
 import org.lealone.db.session.ServerSession;
 import org.lealone.db.table.Table;
@@ -74,7 +75,7 @@ import org.lealone.hansql.optimizer.schema.SchemaPlus;
 import org.lealone.hansql.optimizer.sql.SqlNode;
 import org.lealone.hansql.optimizer.sql.parser.SqlParseException;
 import org.lealone.hansql.optimizer.sql.parser.SqlParser;
-import org.lealone.server.ProtocolServerEngineManager;
+import org.lealone.server.ProtocolServerEngine;
 
 /**
  * Starts, tracks and stops all the required services for a Drillbit daemon to work.
@@ -140,11 +141,12 @@ public class HanEngine implements AutoCloseable {
     private final PersistentStoreProvider profileStoreProvider;
 
     public HanEngine(DrillConfig config) throws Exception {
-        this(config, SystemOptionManager.createDefaultOptionDefinitions(), ClassPathScanner.fromPrescan(config));
+        this(config, SystemOptionManager.createDefaultOptionDefinitions(),
+                ClassPathScanner.fromPrescan(config));
     }
 
-    public HanEngine(DrillConfig config, CaseInsensitiveMap<OptionDefinition> definitions, ScanResult classpathScan)
-            throws Exception {
+    public HanEngine(DrillConfig config, CaseInsensitiveMap<OptionDefinition> definitions,
+            ScanResult classpathScan) throws Exception {
         this.config = config;
         // Must start up with access to JDK Compiler
         if (ToolProvider.getSystemJavaCompiler() == null) {
@@ -163,7 +165,8 @@ public class HanEngine implements AutoCloseable {
 
         // Check if InMemory Profile Store, else use Default Store Provider
         if (config.getBoolean(ExecConstants.PROFILES_STORE_INMEMORY)) {
-            profileStoreProvider = new InMemoryStoreProvider(config.getInt(ExecConstants.PROFILES_STORE_CAPACITY));
+            profileStoreProvider = new InMemoryStoreProvider(
+                    config.getInt(ExecConstants.PROFILES_STORE_CAPACITY));
             logger.info("Upto {} latest query profiles will be retained in-memory",
                     config.getInt(ExecConstants.PROFILES_STORE_CAPACITY));
         } else {
@@ -280,8 +283,8 @@ public class HanEngine implements AutoCloseable {
     }
 
     private static void throwInvalidSystemOption(final String systemProp, final String errorMessage) {
-        throw new IllegalStateException(
-                "Property \"" + SYSTEM_OPTIONS_NAME + "\" part \"" + systemProp + "\" " + errorMessage + ".");
+        throw new IllegalStateException("Property \"" + SYSTEM_OPTIONS_NAME + "\" part \"" + systemProp
+                + "\" " + errorMessage + ".");
     }
 
     private static String stripQuotes(final String s, final String systemProp) {
@@ -339,16 +342,19 @@ public class HanEngine implements AutoCloseable {
         return dContext.getOptionManager();
     }
 
-    public SchemaPlus getRootSchema(ServerSession session, String sql, boolean useDefaultSchema, boolean isOlap) {
+    public SchemaPlus getRootSchema(ServerSession session, String sql, boolean useDefaultSchema,
+            boolean isOlap) {
         if (isOlap) {
             LealoneStoragePlugin lsp;
             try {
-                lsp = (LealoneStoragePlugin) getStoragePluginRegistry().getPlugin(LealoneStoragePluginConfig.NAME);
+                lsp = (LealoneStoragePlugin) getStoragePluginRegistry()
+                        .getPlugin(LealoneStoragePluginConfig.NAME);
             } catch (ExecutionSetupException e) {
                 throw DbException.throwInternalError();
             }
             SchemaPlus parent = CalciteSchema.createRootSchema(false, true, "").plus();
-            SchemaPlus defaultSchema = CalciteSchema.createRootSchema(false, true, Constants.SCHEMA_MAIN).plus();
+            SchemaPlus defaultSchema = CalciteSchema.createRootSchema(false, true, Constants.SCHEMA_MAIN)
+                    .plus();
             String dbName = session.getDatabase().getShortName();
             Database db = LealoneDatabase.getInstance().getDatabase(dbName);
             for (Schema schema : db.getAllSchemas()) {
@@ -376,14 +382,17 @@ public class HanEngine implements AutoCloseable {
         if (useDefaultSchema && (isOlap || sql.contains(LealoneStoragePluginConfig.NAME))) {
             LealoneStoragePlugin lsp;
             try {
-                lsp = (LealoneStoragePlugin) getStoragePluginRegistry().getPlugin(LealoneStoragePluginConfig.NAME);
+                lsp = (LealoneStoragePlugin) getStoragePluginRegistry()
+                        .getPlugin(LealoneStoragePluginConfig.NAME);
             } catch (ExecutionSetupException e) {
                 throw DbException.throwInternalError();
             }
 
-            SchemaPlus defaultSchema = CalciteSchema.createRootSchema(false, true, Constants.SCHEMA_MAIN).plus();
+            SchemaPlus defaultSchema = CalciteSchema.createRootSchema(false, true, Constants.SCHEMA_MAIN)
+                    .plus();
             String dbName = session.getDatabase().getShortName();
-            SchemaPlus schema = CalciteSchema.createRootSchema(defaultSchema, false, true, dbName).plus();
+            SchemaPlus schema = CalciteSchema.createRootSchema(defaultSchema, false, true, dbName)
+                    .plus();
             lsp.registerSchema(schema, dbName, defaultSchema);
             rootSchema.add(LealoneStoragePluginConfig.NAME, defaultSchema);
             rootSchema.add("", defaultSchema);
@@ -392,7 +401,7 @@ public class HanEngine implements AutoCloseable {
     }
 
     public static HanEngine getInstance() {
-        return ((HanSQLServer) ProtocolServerEngineManager.getInstance().getEngine(HanSQLEngine.NAME)
+        return ((HanSQLServer) PluginManager.getPlugin(ProtocolServerEngine.class, HanSQLEngine.NAME)
                 .getProtocolServer()).getHanEngine();
     }
 }
