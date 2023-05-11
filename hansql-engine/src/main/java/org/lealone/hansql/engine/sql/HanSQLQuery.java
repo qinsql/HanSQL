@@ -27,6 +27,7 @@ import org.lealone.db.session.ServerSession;
 import org.lealone.db.session.SessionStatus;
 import org.lealone.hansql.engine.HanEngine;
 import org.lealone.hansql.engine.server.HanClientConnection;
+import org.lealone.hansql.exec.SqlExecutor;
 import org.lealone.hansql.optimizer.schema.SchemaPlus;
 import org.lealone.net.NetNode;
 import org.lealone.sql.SQLStatement;
@@ -37,10 +38,12 @@ import org.lealone.sql.query.YieldableQueryBase;
 public class HanSQLQuery extends StatementBase {
 
     private final String sql;
+    private boolean useDefaultSchema;
 
-    public HanSQLQuery(ServerSession session, String sql) {
+    public HanSQLQuery(ServerSession session, String sql, boolean useDefaultSchema) {
         super(session);
         this.sql = sql;
+        this.useDefaultSchema = useDefaultSchema;
         parameters = new ArrayList<>();
     }
 
@@ -99,7 +102,8 @@ public class HanSQLQuery extends StatementBase {
         private void executeQueryAsync(ServerSession session, String sql, boolean useDefaultSchema) {
             HanEngine hanEngine = HanEngine.getInstance();
             SchemaPlus rootSchema = hanEngine.getRootSchema(session, sql, useDefaultSchema, false);
-            HanClientConnection clientConnection = new HanClientConnection(rootSchema, session, hanEngine,
+            HanClientConnection clientConnection = new HanClientConnection(rootSchema,
+                    select.useDefaultSchema, session, hanEngine,
                     NetNode.getLocalTcpNode().getInetSocketAddress(), null, res -> {
                         if (res.isSucceeded()) {
                             result = res.getResult();
@@ -110,7 +114,9 @@ public class HanSQLQuery extends StatementBase {
                         session.setStatus(SessionStatus.STATEMENT_COMPLETED);
                         session.getTransactionListener().wakeUp();
                     });
-            hanEngine.submitWork(clientConnection, sql);
+            // hanEngine.submitWork(clientConnection, sql);
+            SqlExecutor sqlExecutor = hanEngine.createSqlExecutor(clientConnection, sql);
+            sqlExecutor.run(false);
         }
     }
 }

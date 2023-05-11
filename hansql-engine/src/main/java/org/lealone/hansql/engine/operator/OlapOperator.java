@@ -45,8 +45,8 @@ public class OlapOperator implements Operator {
         String sql = select.getSQL();
         HanEngine hanEngine = HanEngine.getInstance();
         SchemaPlus rootSchema = hanEngine.getRootSchema(session, sql, true, true);
-        HanClientConnection clientConnection = new HanClientConnection(rootSchema, session, hanEngine,
-                NetNode.getLocalTcpNode().getInetSocketAddress(), localResult, res -> {
+        HanClientConnection clientConnection = new HanClientConnection(rootSchema, true, session,
+                hanEngine, NetNode.getLocalTcpNode().getInetSocketAddress(), localResult, res -> {
                     session.setStatus(SessionStatus.STATEMENT_COMPLETED);
                     session.getTransactionListener().wakeUp();
                 });

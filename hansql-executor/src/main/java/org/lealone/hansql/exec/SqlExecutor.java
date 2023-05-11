@@ -60,7 +60,8 @@ import com.google.protobuf.InvalidProtocolBufferException;
 public class SqlExecutor implements Runnable {
 
     private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(SqlExecutor.class);
-    private static final ControlsInjector injector = ControlsInjectorFactory.getInjector(SqlExecutor.class);
+    private static final ControlsInjector injector = ControlsInjectorFactory
+            .getInjector(SqlExecutor.class);
 
     private final QueryId queryId;
     private final String queryIdString;
@@ -81,8 +82,8 @@ public class SqlExecutor implements Runnable {
      * @param queryId the id for the query
      * @param queryRequest the query to execute
      */
-    public SqlExecutor(Executor executor, DrillbitContext drillbitContext, UserClientConnection connection,
-            QueryId queryId, RunQuery queryRequest) {
+    public SqlExecutor(Executor executor, DrillbitContext drillbitContext,
+            UserClientConnection connection, QueryId queryId, RunQuery queryRequest) {
         this.queryId = queryId;
         this.queryIdString = QueryIdHelper.getQueryId(queryId);
         this.queryRequest = queryRequest;
@@ -120,7 +121,7 @@ public class SqlExecutor implements Runnable {
      * <p>Note that completion of this function is not the end of the Foreman's role
      * in the query's lifecycle.
      */
-    private void run(boolean isStarting) {
+    public void run(boolean isStarting) {
         // rename the thread we're using for debugging purposes
         Thread currentThread = Thread.currentThread();
         String originalName = currentThread.getName();
@@ -155,7 +156,8 @@ public class SqlExecutor implements Runnable {
             default:
                 throw new IllegalStateException();
             }
-            injector.injectChecked(queryContext.getExecutionControls(), "run-try-end", SqlExecutorException.class);
+            injector.injectChecked(queryContext.getExecutionControls(), "run-try-end",
+                    SqlExecutorException.class);
         } catch (Exception ex) {
         } finally {
             // restore the thread's original name
@@ -195,19 +197,20 @@ public class SqlExecutor implements Runnable {
     private QueryWorkUnit getQueryWorkUnit(PhysicalPlan plan) throws ExecutionSetupException {
         PhysicalOperator rootOperator = plan.getSortedOperators(false).iterator().next();
         Fragment rootFragment = rootOperator.accept(MakeFragmentsVisitor.INSTANCE, null);
-        return new DefaultQueryParallelizer(plan.getProperties().hasResourcePlan, getQueryContext()).generateWorkUnit(
-                queryContext.getOptions().getOptionList(), queryContext.getCurrentEndpoint(), queryId,
-                queryContext.getOnlineEndpoints(), rootFragment, clientConnection.getSession(),
-                queryContext.getQueryContextInfo());
+        return new DefaultQueryParallelizer(plan.getProperties().hasResourcePlan, getQueryContext())
+                .generateWorkUnit(queryContext.getOptions().getOptionList(),
+                        queryContext.getCurrentEndpoint(), queryId, queryContext.getOnlineEndpoints(),
+                        rootFragment, clientConnection.getSession(), queryContext.getQueryContextInfo());
     }
 
     private FragmentExecutor fragmentExecutor;
 
     private void executeQuery(List<PlanFragment> planFragments, PlanFragment rootPlanFragment,
             FragmentRoot rootOperator, boolean isStarting) throws ExecutionSetupException {
-        FragmentContextImpl rootContext = new FragmentContextImpl(drillbitContext, rootPlanFragment, queryContext,
-                clientConnection, drillbitContext.getFunctionImplementationRegistry());
-        fragmentExecutor = new FragmentExecutor(rootContext, rootPlanFragment, rootOperator, clientConnection);
+        FragmentContextImpl rootContext = new FragmentContextImpl(drillbitContext, rootPlanFragment,
+                queryContext, clientConnection, drillbitContext.getFunctionImplementationRegistry());
+        fragmentExecutor = new FragmentExecutor(rootContext, rootPlanFragment, rootOperator,
+                clientConnection);
         fragmentExecutor.execute(isStarting);
     }
 
@@ -257,7 +260,8 @@ public class SqlExecutor implements Runnable {
 
     private void returnPhysical(PhysicalPlan plan) throws ExecutionSetupException {
         String jsonPlan = plan.unparse(queryContext.getLpPersistence().getMapper().writer());
-        runPhysicalPlan(SqlPlanner.createDirectPlan(queryContext, new PhysicalFromLogicalExplain(jsonPlan)));
+        runPhysicalPlan(
+                SqlPlanner.createDirectPlan(queryContext, new PhysicalFromLogicalExplain(jsonPlan)));
     }
 
     public static class PhysicalFromLogicalExplain {
@@ -298,9 +302,10 @@ public class SqlExecutor implements Runnable {
             // it can not be used until every piece of code that creates handle is using it, as otherwise
             // comparisons on that handle fail that causes fragment runtime failure
             FragmentHandle newFragmentHandle = FragmentHandle.newBuilder()
-                    .setMajorFragmentId(handle.getMajorFragmentId()).setMinorFragmentId(handle.getMinorFragmentId())
-                    .setQueryId(queryId).build();
-            PlanFragment newFragment = PlanFragment.newBuilder(myFragment).setHandle(newFragmentHandle).build();
+                    .setMajorFragmentId(handle.getMajorFragmentId())
+                    .setMinorFragmentId(handle.getMinorFragmentId()).setQueryId(queryId).build();
+            PlanFragment newFragment = PlanFragment.newBuilder(myFragment).setHandle(newFragmentHandle)
+                    .build();
             if (isFirst) {
                 rootFragment = newFragment;
                 isFirst = false;
@@ -313,10 +318,11 @@ public class SqlExecutor implements Runnable {
 
         FragmentRoot rootOperator;
         try {
-            rootOperator = drillbitContext.getPlanReader().readFragmentRoot(rootFragment.getFragmentJson());
+            rootOperator = drillbitContext.getPlanReader()
+                    .readFragmentRoot(rootFragment.getFragmentJson());
         } catch (IOException e) {
-            throw new ExecutionSetupException(
-                    String.format("Unable to parse FragmentRoot from fragment: %s", rootFragment.getFragmentJson()));
+            throw new ExecutionSetupException(String.format(
+                    "Unable to parse FragmentRoot from fragment: %s", rootFragment.getFragmentJson()));
         }
 
         executeQuery(planFragments, rootFragment, rootOperator, false);
@@ -329,15 +335,16 @@ public class SqlExecutor implements Runnable {
      * @param preparedStatementHandle prepared statement handle
      * @throws ExecutionSetupException
      */
-    private void runPreparedStatement(PreparedStatementHandle preparedStatementHandle) throws ExecutionSetupException {
+    private void runPreparedStatement(PreparedStatementHandle preparedStatementHandle)
+            throws ExecutionSetupException {
         ServerPreparedStatementState serverState;
 
         try {
-            serverState = ServerPreparedStatementState.PARSER.parseFrom(preparedStatementHandle.getServerInfo());
+            serverState = ServerPreparedStatementState.PARSER
+                    .parseFrom(preparedStatementHandle.getServerInfo());
         } catch (InvalidProtocolBufferException ex) {
-            throw UserException.parseError(ex)
-                    .message("Failed to parse the prepared statement handle. "
-                            + "Make sure the handle is same as one returned from create prepared statement call.")
+            throw UserException.parseError(ex).message("Failed to parse the prepared statement handle. "
+                    + "Make sure the handle is same as one returned from create prepared statement call.")
                     .build(logger);
         }
 
@@ -350,12 +357,14 @@ public class SqlExecutor implements Runnable {
         if (!logger.isTraceEnabled()) {
             return;
         }
-        logger.trace(String.format("PlanFragments for query %s \n%s", queryId, queryWorkUnit.stringifyFragments()));
+        logger.trace(String.format("PlanFragments for query %s \n%s", queryId,
+                queryWorkUnit.stringifyFragments()));
     }
 
     private PhysicalPlan convert(LogicalPlan plan) throws OptimizerException {
         if (logger.isDebugEnabled()) {
-            logger.debug("Converting logical plan {}.", plan.toJsonStringSafe(queryContext.getLpPersistence()));
+            logger.debug("Converting logical plan {}.",
+                    plan.toJsonStringSafe(queryContext.getLpPersistence()));
         }
         return new BasicOptimizer(queryContext, clientConnection)
                 .optimize(new BasicOptimizer.BasicOptimizationContext(queryContext), plan);

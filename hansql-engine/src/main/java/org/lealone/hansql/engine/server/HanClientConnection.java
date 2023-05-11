@@ -19,6 +19,7 @@ package org.lealone.hansql.engine.server;
 
 import java.net.SocketAddress;
 
+import org.lealone.common.exceptions.DbException;
 import org.lealone.db.async.AsyncHandler;
 import org.lealone.db.async.AsyncResult;
 import org.lealone.db.index.Cursor;
@@ -32,6 +33,7 @@ import org.lealone.hansql.exec.proto.UserBitShared.UserCredentials;
 import org.lealone.hansql.exec.record.RecordBatch;
 import org.lealone.hansql.exec.session.UserSession;
 import org.lealone.hansql.optimizer.schema.SchemaPlus;
+import org.lealone.hansql.optimizer.tools.ValidationException;
 
 public class HanClientConnection implements org.lealone.hansql.exec.session.UserClientConnection {
 
@@ -44,15 +46,26 @@ public class HanClientConnection implements org.lealone.hansql.exec.session.User
 
     private Cursor cursor;
 
-    public HanClientConnection(SchemaPlus schema, ServerSession serverSession, HanEngine engine,
-            SocketAddress remoteAddress, LocalResult localResult, AsyncHandler<AsyncResult<Result>> asyncHandler) {
+    public HanClientConnection(SchemaPlus schema, boolean useDefaultSchema, ServerSession serverSession,
+            HanEngine engine, SocketAddress remoteAddress, LocalResult localResult,
+            AsyncHandler<AsyncResult<Result>> asyncHandler) {
         this.serverSession = serverSession;
         session = UserSession.Builder.newBuilder()
-                .withCredentials(UserCredentials.newBuilder().setUserName(serverSession.getUser().getName()).build())
+                .withCredentials(UserCredentials.newBuilder()
+                        .setUserName(serverSession.getUser().getName()).build())
                 .withOptionManager(engine.getOptionManager())
                 // .withUserProperties(inbound.getProperties())
                 // .setSupportComplexTypes(inbound.getSupportComplexTypes())
                 .build();
+        if (useDefaultSchema) {
+            try {
+                session.setDefaultSchemaPath(serverSession.getCurrentSchemaName(), schema);
+            } catch (ValidationException e) {
+                throw DbException.convert(e);
+            }
+        } else {
+            session.setDefaultSchema(schema);
+        }
         session.setDefaultSchema(schema);
         this.remoteAddress = remoteAddress;
         this.asyncHandler = asyncHandler;

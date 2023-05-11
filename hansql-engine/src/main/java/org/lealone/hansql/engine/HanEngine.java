@@ -99,7 +99,8 @@ public class HanEngine implements AutoCloseable {
         // Environment.logEnv("Drillbit environment: ", logger);
     }
 
-    private final static String SYSTEM_OPTIONS_NAME = "org.apache.drill.exec.server.Drillbit.system_options";
+    private final static String SYSTEM_OPTIONS_NAME = //
+            "org.apache.drill.exec.server.Drillbit.system_options";
 
     private final ClusterCoordinator coord;
     private final PersistentStoreProvider storeProvider;
@@ -150,8 +151,8 @@ public class HanEngine implements AutoCloseable {
         this.config = config;
         // Must start up with access to JDK Compiler
         if (ToolProvider.getSystemJavaCompiler() == null) {
-            throw new DrillbitStartupException(
-                    "JDK Java compiler not available. Ensure Drill is running with the java executable from a JDK and not a JRE");
+            throw new DrillbitStartupException("JDK Java compiler not available. "
+                    + "Ensure Drill is running with the java executable from a JDK and not a JRE");
         }
 
         gracePeriod = config.getInt(ExecConstants.GRACE_PERIOD);
@@ -317,8 +318,8 @@ public class HanEngine implements AutoCloseable {
     private static QueryId queryIdGenerator() {
         ThreadLocalRandom r = ThreadLocalRandom.current();
 
-        // create a new queryid where the first four bytes are a growing time (each new value comes earlier in
-        // sequence). Last 12 bytes are random.
+        // create a new queryid where the first four bytes are a growing time
+        // (each new value comes earlier in sequence). Last 12 bytes are random.
         long time = (int) (System.currentTimeMillis() / 1000);
         long p1 = ((Integer.MAX_VALUE - time) << 32) + r.nextInt();
         long p2 = r.nextLong();

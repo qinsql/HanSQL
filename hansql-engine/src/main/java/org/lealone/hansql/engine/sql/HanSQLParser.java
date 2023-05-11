@@ -17,6 +17,7 @@
  */
 package org.lealone.hansql.engine.sql;
 
+import org.lealone.common.exceptions.DbException;
 import org.lealone.common.exceptions.UnsupportedSchemaException;
 import org.lealone.db.session.ServerSession;
 import org.lealone.sql.LealoneSQLParser;
@@ -24,8 +25,11 @@ import org.lealone.sql.StatementBase;
 
 public class HanSQLParser extends LealoneSQLParser {
 
+    private final ServerSession session;
+
     public HanSQLParser(ServerSession session) {
         super(session);
+        this.session = session;
     }
 
     @Override
@@ -33,7 +37,9 @@ public class HanSQLParser extends LealoneSQLParser {
         try {
             return super.parse(sql);
         } catch (UnsupportedSchemaException e) {
-            return new HanSQLQuery((ServerSession) e.getSession(), sql);
+            return new HanSQLQuery((ServerSession) e.getSession(), sql, false);
+        } catch (DbException e) {
+            return new HanSQLQuery(session, sql, true);
         }
     }
 }

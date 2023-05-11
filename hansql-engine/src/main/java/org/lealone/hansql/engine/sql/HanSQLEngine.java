@@ -17,9 +17,8 @@
  */
 package org.lealone.hansql.engine.sql;
 
-import java.util.Map;
-
 import org.lealone.db.CommandParameter;
+import org.lealone.db.PluginBase;
 import org.lealone.db.schema.Sequence;
 import org.lealone.db.session.ServerSession;
 import org.lealone.db.session.Session;
@@ -33,25 +32,17 @@ import org.lealone.sql.expression.SequenceValue;
 import org.lealone.sql.expression.ValueExpression;
 import org.lealone.sql.expression.condition.ConditionAndOr;
 
-public class HanSQLEngine implements SQLEngine {
+public class HanSQLEngine extends PluginBase implements SQLEngine {
 
     public static final String NAME = "HanSQL";
 
     public HanSQLEngine() {
+        super(NAME);
     }
 
     @Override
     public SQLParser createParser(Session session) {
         return new HanSQLParser((ServerSession) session);
-    }
-
-    @Override
-    public String getName() {
-        return NAME;
-    }
-
-    @Override
-    public void init(Map<String, String> config) {
     }
 
     @Override
@@ -79,9 +70,5 @@ public class HanSQLEngine implements SQLEngine {
         return new ConditionAndOr(and ? ConditionAndOr.AND : ConditionAndOr.OR,
                 (org.lealone.sql.expression.Expression) left,
                 (org.lealone.sql.expression.Expression) right);
-    }
-
-    @Override
-    public void close() {
     }
 }

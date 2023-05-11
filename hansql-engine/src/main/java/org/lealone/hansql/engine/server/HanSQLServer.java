@@ -21,7 +21,10 @@ import java.util.Map;
 
 import org.lealone.common.logging.Logger;
 import org.lealone.common.logging.LoggerFactory;
+import org.lealone.db.Database;
 import org.lealone.db.LealoneDatabase;
+import org.lealone.db.auth.User;
+import org.lealone.db.schema.Schema;
 import org.lealone.hansql.common.config.DrillConfig;
 import org.lealone.hansql.engine.HanEngine;
 import org.lealone.hansql.exec.store.StoragePlugin;
@@ -78,8 +81,15 @@ public class HanSQLServer extends TcpServer implements AsyncConnectionManager {
         hanEngine.setHostName(getHost());
         hanEngine.run();
 
+        Database db = LealoneDatabase.getInstance();
+        User systemUser = db.getSystemSession().getUser();
         for (Map.Entry<String, StoragePlugin> e : hanEngine.getStoragePluginRegistry()) {
-            LealoneDatabase.addUnsupportedSchema(e.getKey());
+            String name = e.getKey();
+            if (db.findSchema(null, name) == null) {
+                LealoneDatabase.addUnsupportedSchema(e.getKey());
+                Schema schema = new Schema(db, 0, name, systemUser, true);
+                db.addDatabaseObject(null, schema, null);
+            }
         }
     }
 }
